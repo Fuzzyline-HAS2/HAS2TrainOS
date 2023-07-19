@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -19,6 +20,10 @@ namespace HAS2TrainOS
         public MainForm()
         {
             InitializeComponent();
+
+            structGlove[] glove = new structGlove[8];   //글러브 데이터 저장용 구조체 배열
+
+            timerMain = new System.Threading.Timer(timerMain_CallBack);
             PlayerSpk.nDeviceNum = 0;
             KillerrSpk.nDeviceNum = 2;
             CommonSpk.nDeviceNum = 2;
@@ -26,38 +31,15 @@ namespace HAS2TrainOS
         }
         private void MainForm_Load(object sender, EventArgs e)
         {
-            ExceltoListview();
+            ExceltoListview();          //Excel에 저장된 값 불러오기
+            ComboBoxDeviceAdd();    //Device panel에 있는 콤보박스에 추가하기
         }
-
-        private void button1_Click(object sender, EventArgs e)
+        
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            PlayerSpk.nDeviceVolume = 25;
-            PlayerSpk.PlayMp3("test");
+            ListviewtoExcel();
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            PlayerSpk.PlayMp3("test2");
-        }
-
-        private void radioButton4_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void radioButton3_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void radioButton1_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
+        
     }
 }

@@ -9,15 +9,19 @@ namespace HAS2TrainOS
 {
     public partial class MainForm : Form
     {
-        System.Threading.Timer PCM_ThreadTimer;
-        delegate void TimerEventFiredDelegate_PCM();
-        void PCM_timerCallBack(Object state)
-        {
-            BeginInvoke(new TimerEventFiredDelegate_PCM(PCM_timerWork));
-        }
-        private void PCM_timerWork()
-        {
+        System.Threading.Timer timerMain;
+        delegate void TimerEventFiredDelegate_timerMain();
+        uint nMainTime = 0;
 
+        void timerMain_CallBack(Object state)
+        {
+            BeginInvoke(new TimerEventFiredDelegate_timerMain(timerMainWork));
+        }
+        private void timerMainWork()
+        { 
+            lbMainTime.Text = (nMainTime / 60).ToString("00") + ":" + (nMainTime % 60).ToString("00");    //남은 시간 uint -> String으로 변환하는 작업
+            nMainTime += 1;                                                                      //초 마다 타이머 함수 실행되면 -1해 남은시간 줄여줌
+            //Gamesys_TimeAction();
         }
     }
 }

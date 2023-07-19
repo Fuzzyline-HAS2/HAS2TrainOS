@@ -28,31 +28,104 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewItem listViewItem77 = new System.Windows.Forms.ListViewItem("EI1");
-            System.Windows.Forms.ListViewItem listViewItem78 = new System.Windows.Forms.ListViewItem("EI2");
-            System.Windows.Forms.ListViewItem listViewItem79 = new System.Windows.Forms.ListViewItem("ER1");
-            System.Windows.Forms.ListViewItem listViewItem80 = new System.Windows.Forms.ListViewItem("ER2");
-            System.Windows.Forms.ListViewItem listViewItem81 = new System.Windows.Forms.ListViewItem("EV1");
-            System.Windows.Forms.ListViewItem listViewItem82 = new System.Windows.Forms.ListViewItem("EV2");
-            System.Windows.Forms.ListViewItem listViewItem83 = new System.Windows.Forms.ListViewItem("EG");
-            System.Windows.Forms.ListViewItem listViewItem84 = new System.Windows.Forms.ListViewItem("ED");
-            System.Windows.Forms.ListViewItem listViewItem85 = new System.Windows.Forms.ListViewItem("EE");
-            System.Windows.Forms.ListViewItem listViewItem86 = new System.Windows.Forms.ListViewItem("ET");
-            System.Windows.Forms.ListViewItem listViewItem87 = new System.Windows.Forms.ListViewItem("EM");
-            System.Windows.Forms.ListViewItem listViewItem88 = new System.Windows.Forms.ListViewItem("P1");
-            System.Windows.Forms.ListViewItem listViewItem89 = new System.Windows.Forms.ListViewItem("P2");
-            System.Windows.Forms.ListViewItem listViewItem90 = new System.Windows.Forms.ListViewItem("P3");
-            System.Windows.Forms.ListViewItem listViewItem91 = new System.Windows.Forms.ListViewItem("P4");
-            System.Windows.Forms.ListViewItem listViewItem92 = new System.Windows.Forms.ListViewItem("P5");
-            System.Windows.Forms.ListViewItem listViewItem93 = new System.Windows.Forms.ListViewItem("P6");
-            System.Windows.Forms.ListViewItem listViewItem94 = new System.Windows.Forms.ListViewItem("P7");
-            System.Windows.Forms.ListViewItem listViewItem95 = new System.Windows.Forms.ListViewItem("P8");
+            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
+            "EI1",
+            "",
+            ""}, -1);
+            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem(new string[] {
+            "EI2",
+            "",
+            ""}, -1);
+            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem(new string[] {
+            "ER1",
+            "",
+            ""}, -1);
+            System.Windows.Forms.ListViewItem listViewItem4 = new System.Windows.Forms.ListViewItem(new string[] {
+            "ER2",
+            "",
+            ""}, -1);
+            System.Windows.Forms.ListViewItem listViewItem5 = new System.Windows.Forms.ListViewItem(new string[] {
+            "EV1",
+            "",
+            ""}, -1);
+            System.Windows.Forms.ListViewItem listViewItem6 = new System.Windows.Forms.ListViewItem(new string[] {
+            "EV2",
+            "",
+            ""}, -1);
+            System.Windows.Forms.ListViewItem listViewItem7 = new System.Windows.Forms.ListViewItem(new string[] {
+            "EG",
+            "",
+            ""}, -1);
+            System.Windows.Forms.ListViewItem listViewItem8 = new System.Windows.Forms.ListViewItem(new string[] {
+            "ED",
+            "",
+            ""}, -1);
+            System.Windows.Forms.ListViewItem listViewItem9 = new System.Windows.Forms.ListViewItem(new string[] {
+            "EE",
+            "",
+            ""}, -1);
+            System.Windows.Forms.ListViewItem listViewItem10 = new System.Windows.Forms.ListViewItem(new string[] {
+            "ET",
+            "",
+            ""}, -1);
+            System.Windows.Forms.ListViewItem listViewItem11 = new System.Windows.Forms.ListViewItem(new string[] {
+            "EM",
+            "",
+            ""}, -1);
+            System.Windows.Forms.ListViewItem listViewItem12 = new System.Windows.Forms.ListViewItem(new string[] {
+            "P1",
+            "",
+            "",
+            "",
+            ""}, -1);
+            System.Windows.Forms.ListViewItem listViewItem13 = new System.Windows.Forms.ListViewItem(new string[] {
+            "P2",
+            "",
+            "",
+            "",
+            ""}, -1);
+            System.Windows.Forms.ListViewItem listViewItem14 = new System.Windows.Forms.ListViewItem(new string[] {
+            "P3",
+            "",
+            "",
+            "",
+            ""}, -1);
+            System.Windows.Forms.ListViewItem listViewItem15 = new System.Windows.Forms.ListViewItem(new string[] {
+            "P4",
+            "",
+            "",
+            "",
+            ""}, -1);
+            System.Windows.Forms.ListViewItem listViewItem16 = new System.Windows.Forms.ListViewItem(new string[] {
+            "P5",
+            "",
+            "",
+            "",
+            ""}, -1);
+            System.Windows.Forms.ListViewItem listViewItem17 = new System.Windows.Forms.ListViewItem(new string[] {
+            "P6",
+            "",
+            "",
+            "",
+            ""}, -1);
+            System.Windows.Forms.ListViewItem listViewItem18 = new System.Windows.Forms.ListViewItem(new string[] {
+            "P7",
+            "",
+            "",
+            "",
+            ""}, -1);
+            System.Windows.Forms.ListViewItem listViewItem19 = new System.Windows.Forms.ListViewItem(new string[] {
+            "P8",
+            "",
+            "",
+            "",
+            ""}, -1);
             this.listView1 = new System.Windows.Forms.ListView();
             this.playerCurrent = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.playerSCN = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.playerNarration = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.trbP2 = new System.Windows.Forms.TrackBar();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.pnRoomSelect = new System.Windows.Forms.Panel();
             this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.btnGloveKShift = new System.Windows.Forms.Button();
             this.btnGloveNShift = new System.Windows.Forms.Button();
@@ -76,10 +149,10 @@
             this.trbP4 = new System.Windows.Forms.TrackBar();
             this.trbP1 = new System.Windows.Forms.TrackBar();
             this.trbP3 = new System.Windows.Forms.TrackBar();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.panel2 = new System.Windows.Forms.Panel();
+            this.btnStart = new System.Windows.Forms.Button();
+            this.btnReady = new System.Windows.Forms.Button();
+            this.pnMainButton = new System.Windows.Forms.Panel();
+            this.btnManual = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel9 = new System.Windows.Forms.Panel();
             this.label13 = new System.Windows.Forms.Label();
@@ -94,38 +167,38 @@
             this.label9 = new System.Windows.Forms.Label();
             this.button11 = new System.Windows.Forms.Button();
             this.lbMainTime = new System.Windows.Forms.Label();
-            this.panel4 = new System.Windows.Forms.Panel();
+            this.pnDevice = new System.Windows.Forms.Panel();
             this.panel7 = new System.Windows.Forms.Panel();
-            this.comboBox4 = new System.Windows.Forms.ComboBox();
-            this.button9 = new System.Windows.Forms.Button();
-            this.button10 = new System.Windows.Forms.Button();
-            this.button8 = new System.Windows.Forms.Button();
+            this.cbDeviceName = new System.Windows.Forms.ComboBox();
+            this.btnDeviceSetting = new System.Windows.Forms.Button();
+            this.btnDeviceActivate = new System.Windows.Forms.Button();
+            this.btnDeviceReady = new System.Windows.Forms.Button();
             this.panel6 = new System.Windows.Forms.Panel();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.button7 = new System.Windows.Forms.Button();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.listView4 = new System.Windows.Forms.ListView();
+            this.tbDeviceLCBP = new System.Windows.Forms.TextBox();
+            this.btnDeviceApply = new System.Windows.Forms.Button();
+            this.cbDeviceState = new System.Windows.Forms.ComboBox();
+            this.tbDeviceName = new System.Windows.Forms.TextBox();
+            this.lvDevice = new System.Windows.Forms.ListView();
             this.deviceName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.deviceState = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.deviceLifeChipBattery = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panel5 = new System.Windows.Forms.Panel();
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.listView2 = new System.Windows.Forms.ListView();
+            this.tbGloveBattery = new System.Windows.Forms.TextBox();
+            this.lvGlove = new System.Windows.Forms.ListView();
             this.gloveName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.gloveRole = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.gloveState = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.GloveLifeChip = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.GloveBattery = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.button6 = new System.Windows.Forms.Button();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.cbGloveState = new System.Windows.Forms.ComboBox();
+            this.tbGloveName = new System.Windows.Forms.TextBox();
+            this.btnGloveApply = new System.Windows.Forms.Button();
+            this.cbGloveRole = new System.Windows.Forms.ComboBox();
+            this.tbGloveLifeChip = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.trbP2)).BeginInit();
-            this.panel1.SuspendLayout();
+            this.pnRoomSelect.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trbP8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trbP7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trbP6)).BeginInit();
@@ -133,11 +206,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.trbP4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trbP1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trbP3)).BeginInit();
-            this.panel2.SuspendLayout();
+            this.pnMainButton.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel9.SuspendLayout();
             this.panel8.SuspendLayout();
-            this.panel4.SuspendLayout();
+            this.pnDevice.SuspendLayout();
             this.panel7.SuspendLayout();
             this.panel6.SuspendLayout();
             this.panel5.SuspendLayout();
@@ -180,7 +253,7 @@
             // 
             this.trbP2.BackColor = System.Drawing.Color.White;
             this.trbP2.LargeChange = 1;
-            this.trbP2.Location = new System.Drawing.Point(21, 139);
+            this.trbP2.Location = new System.Drawing.Point(21, 120);
             this.trbP2.Maximum = 2;
             this.trbP2.Name = "trbP2";
             this.trbP2.Size = new System.Drawing.Size(104, 45);
@@ -188,38 +261,37 @@
             this.trbP2.Value = 1;
             this.trbP2.ValueChanged += new System.EventHandler(this.trbP2_ValueChanged);
             // 
-            // panel1
+            // pnRoomSelect
             // 
-            this.panel1.Controls.Add(this.radioButton2);
-            this.panel1.Controls.Add(this.btnGloveKShift);
-            this.panel1.Controls.Add(this.btnGloveNShift);
-            this.panel1.Controls.Add(this.btnGlovePShift);
-            this.panel1.Controls.Add(this.btnGloveToggle);
-            this.panel1.Controls.Add(this.lbP6);
-            this.panel1.Controls.Add(this.lbP8);
-            this.panel1.Controls.Add(this.lbP7);
-            this.panel1.Controls.Add(this.lbP5);
-            this.panel1.Controls.Add(this.lbP4);
-            this.panel1.Controls.Add(this.lbP3);
-            this.panel1.Controls.Add(this.lbP2);
-            this.panel1.Controls.Add(this.lbP1);
-            this.panel1.Controls.Add(this.radioButton4);
-            this.panel1.Controls.Add(this.radioButton3);
-            this.panel1.Controls.Add(this.radioButton1);
-            this.panel1.Controls.Add(this.trbP8);
-            this.panel1.Controls.Add(this.trbP7);
-            this.panel1.Controls.Add(this.trbP6);
-            this.panel1.Controls.Add(this.trbP5);
-            this.panel1.Controls.Add(this.trbP4);
-            this.panel1.Controls.Add(this.trbP1);
-            this.panel1.Controls.Add(this.trbP3);
-            this.panel1.Controls.Add(this.trbP2);
-            this.panel1.Font = new System.Drawing.Font("Impact", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panel1.Location = new System.Drawing.Point(818, 12);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(147, 492);
-            this.panel1.TabIndex = 5;
-            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
+            this.pnRoomSelect.Controls.Add(this.radioButton2);
+            this.pnRoomSelect.Controls.Add(this.btnGloveKShift);
+            this.pnRoomSelect.Controls.Add(this.btnGloveNShift);
+            this.pnRoomSelect.Controls.Add(this.btnGlovePShift);
+            this.pnRoomSelect.Controls.Add(this.btnGloveToggle);
+            this.pnRoomSelect.Controls.Add(this.lbP6);
+            this.pnRoomSelect.Controls.Add(this.lbP8);
+            this.pnRoomSelect.Controls.Add(this.lbP7);
+            this.pnRoomSelect.Controls.Add(this.lbP5);
+            this.pnRoomSelect.Controls.Add(this.lbP4);
+            this.pnRoomSelect.Controls.Add(this.lbP3);
+            this.pnRoomSelect.Controls.Add(this.lbP2);
+            this.pnRoomSelect.Controls.Add(this.lbP1);
+            this.pnRoomSelect.Controls.Add(this.radioButton4);
+            this.pnRoomSelect.Controls.Add(this.radioButton3);
+            this.pnRoomSelect.Controls.Add(this.radioButton1);
+            this.pnRoomSelect.Controls.Add(this.trbP8);
+            this.pnRoomSelect.Controls.Add(this.trbP7);
+            this.pnRoomSelect.Controls.Add(this.trbP6);
+            this.pnRoomSelect.Controls.Add(this.trbP5);
+            this.pnRoomSelect.Controls.Add(this.trbP4);
+            this.pnRoomSelect.Controls.Add(this.trbP1);
+            this.pnRoomSelect.Controls.Add(this.trbP3);
+            this.pnRoomSelect.Controls.Add(this.trbP2);
+            this.pnRoomSelect.Font = new System.Drawing.Font("Impact", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.pnRoomSelect.Location = new System.Drawing.Point(818, 12);
+            this.pnRoomSelect.Name = "pnRoomSelect";
+            this.pnRoomSelect.Size = new System.Drawing.Size(147, 484);
+            this.pnRoomSelect.TabIndex = 5;
             // 
             // radioButton2
             // 
@@ -282,7 +354,7 @@
             // 
             this.lbP6.AutoSize = true;
             this.lbP6.BackColor = System.Drawing.Color.Transparent;
-            this.lbP6.Location = new System.Drawing.Point(65, 348);
+            this.lbP6.Location = new System.Drawing.Point(65, 329);
             this.lbP6.Name = "lbP6";
             this.lbP6.Size = new System.Drawing.Size(20, 16);
             this.lbP6.TabIndex = 7;
@@ -292,7 +364,7 @@
             // 
             this.lbP8.AutoSize = true;
             this.lbP8.BackColor = System.Drawing.Color.Transparent;
-            this.lbP8.Location = new System.Drawing.Point(65, 450);
+            this.lbP8.Location = new System.Drawing.Point(65, 431);
             this.lbP8.Name = "lbP8";
             this.lbP8.Size = new System.Drawing.Size(19, 16);
             this.lbP8.TabIndex = 20;
@@ -302,7 +374,7 @@
             // 
             this.lbP7.AutoSize = true;
             this.lbP7.BackColor = System.Drawing.Color.Transparent;
-            this.lbP7.Location = new System.Drawing.Point(65, 399);
+            this.lbP7.Location = new System.Drawing.Point(65, 380);
             this.lbP7.Name = "lbP7";
             this.lbP7.Size = new System.Drawing.Size(18, 16);
             this.lbP7.TabIndex = 19;
@@ -312,7 +384,7 @@
             // 
             this.lbP5.AutoSize = true;
             this.lbP5.BackColor = System.Drawing.Color.Transparent;
-            this.lbP5.Location = new System.Drawing.Point(65, 297);
+            this.lbP5.Location = new System.Drawing.Point(65, 278);
             this.lbP5.Name = "lbP5";
             this.lbP5.Size = new System.Drawing.Size(19, 16);
             this.lbP5.TabIndex = 18;
@@ -322,7 +394,7 @@
             // 
             this.lbP4.AutoSize = true;
             this.lbP4.BackColor = System.Drawing.Color.Transparent;
-            this.lbP4.Location = new System.Drawing.Point(65, 246);
+            this.lbP4.Location = new System.Drawing.Point(65, 227);
             this.lbP4.Name = "lbP4";
             this.lbP4.Size = new System.Drawing.Size(19, 16);
             this.lbP4.TabIndex = 17;
@@ -332,7 +404,7 @@
             // 
             this.lbP3.AutoSize = true;
             this.lbP3.BackColor = System.Drawing.Color.Transparent;
-            this.lbP3.Location = new System.Drawing.Point(65, 195);
+            this.lbP3.Location = new System.Drawing.Point(65, 176);
             this.lbP3.Name = "lbP3";
             this.lbP3.Size = new System.Drawing.Size(19, 16);
             this.lbP3.TabIndex = 16;
@@ -342,7 +414,7 @@
             // 
             this.lbP2.AutoSize = true;
             this.lbP2.BackColor = System.Drawing.Color.Transparent;
-            this.lbP2.Location = new System.Drawing.Point(65, 144);
+            this.lbP2.Location = new System.Drawing.Point(65, 125);
             this.lbP2.Name = "lbP2";
             this.lbP2.Size = new System.Drawing.Size(19, 16);
             this.lbP2.TabIndex = 15;
@@ -352,7 +424,7 @@
             // 
             this.lbP1.AutoSize = true;
             this.lbP1.BackColor = System.Drawing.Color.Transparent;
-            this.lbP1.Location = new System.Drawing.Point(65, 93);
+            this.lbP1.Location = new System.Drawing.Point(65, 74);
             this.lbP1.Name = "lbP1";
             this.lbP1.Size = new System.Drawing.Size(18, 16);
             this.lbP1.TabIndex = 6;
@@ -370,7 +442,6 @@
             this.radioButton4.Text = "G4";
             this.radioButton4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.radioButton4.UseVisualStyleBackColor = true;
-            this.radioButton4.CheckedChanged += new System.EventHandler(this.radioButton4_CheckedChanged);
             // 
             // radioButton3
             // 
@@ -384,7 +455,6 @@
             this.radioButton3.Text = "G3";
             this.radioButton3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.radioButton3.UseVisualStyleBackColor = true;
-            this.radioButton3.CheckedChanged += new System.EventHandler(this.radioButton3_CheckedChanged);
             // 
             // radioButton1
             // 
@@ -398,13 +468,12 @@
             this.radioButton1.Text = "G2";
             this.radioButton1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.radioButton1.UseVisualStyleBackColor = true;
-            this.radioButton1.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
             // 
             // trbP8
             // 
             this.trbP8.BackColor = System.Drawing.Color.White;
             this.trbP8.LargeChange = 1;
-            this.trbP8.Location = new System.Drawing.Point(21, 445);
+            this.trbP8.Location = new System.Drawing.Point(21, 426);
             this.trbP8.Maximum = 2;
             this.trbP8.Name = "trbP8";
             this.trbP8.Size = new System.Drawing.Size(104, 45);
@@ -416,7 +485,7 @@
             // 
             this.trbP7.BackColor = System.Drawing.Color.White;
             this.trbP7.LargeChange = 1;
-            this.trbP7.Location = new System.Drawing.Point(21, 394);
+            this.trbP7.Location = new System.Drawing.Point(21, 375);
             this.trbP7.Maximum = 2;
             this.trbP7.Name = "trbP7";
             this.trbP7.Size = new System.Drawing.Size(104, 45);
@@ -428,7 +497,7 @@
             // 
             this.trbP6.BackColor = System.Drawing.Color.White;
             this.trbP6.LargeChange = 1;
-            this.trbP6.Location = new System.Drawing.Point(21, 343);
+            this.trbP6.Location = new System.Drawing.Point(21, 324);
             this.trbP6.Maximum = 2;
             this.trbP6.Name = "trbP6";
             this.trbP6.Size = new System.Drawing.Size(104, 45);
@@ -440,7 +509,7 @@
             // 
             this.trbP5.BackColor = System.Drawing.Color.White;
             this.trbP5.LargeChange = 1;
-            this.trbP5.Location = new System.Drawing.Point(21, 292);
+            this.trbP5.Location = new System.Drawing.Point(21, 273);
             this.trbP5.Maximum = 2;
             this.trbP5.Name = "trbP5";
             this.trbP5.Size = new System.Drawing.Size(104, 45);
@@ -452,7 +521,7 @@
             // 
             this.trbP4.BackColor = System.Drawing.Color.White;
             this.trbP4.LargeChange = 1;
-            this.trbP4.Location = new System.Drawing.Point(21, 241);
+            this.trbP4.Location = new System.Drawing.Point(21, 222);
             this.trbP4.Maximum = 2;
             this.trbP4.Name = "trbP4";
             this.trbP4.Size = new System.Drawing.Size(104, 45);
@@ -464,7 +533,7 @@
             // 
             this.trbP1.BackColor = System.Drawing.Color.White;
             this.trbP1.LargeChange = 1;
-            this.trbP1.Location = new System.Drawing.Point(21, 88);
+            this.trbP1.Location = new System.Drawing.Point(21, 69);
             this.trbP1.Maximum = 2;
             this.trbP1.Name = "trbP1";
             this.trbP1.Size = new System.Drawing.Size(104, 45);
@@ -476,7 +545,7 @@
             // 
             this.trbP3.BackColor = System.Drawing.Color.White;
             this.trbP3.LargeChange = 1;
-            this.trbP3.Location = new System.Drawing.Point(21, 190);
+            this.trbP3.Location = new System.Drawing.Point(21, 171);
             this.trbP3.Maximum = 2;
             this.trbP3.Name = "trbP3";
             this.trbP3.Size = new System.Drawing.Size(104, 45);
@@ -484,54 +553,57 @@
             this.trbP3.Value = 1;
             this.trbP3.ValueChanged += new System.EventHandler(this.trbP3_ValueChanged);
             // 
-            // button3
+            // btnStart
             // 
-            this.button3.BackColor = System.Drawing.Color.GreenYellow;
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button3.Font = new System.Drawing.Font("Impact", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.button3.Location = new System.Drawing.Point(0, 55);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(147, 46);
-            this.button3.TabIndex = 6;
-            this.button3.Text = "START";
-            this.button3.UseVisualStyleBackColor = false;
+            this.btnStart.BackColor = System.Drawing.Color.YellowGreen;
+            this.btnStart.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnStart.Font = new System.Drawing.Font("Impact", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnStart.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnStart.Location = new System.Drawing.Point(0, 109);
+            this.btnStart.Name = "btnStart";
+            this.btnStart.Size = new System.Drawing.Size(147, 46);
+            this.btnStart.TabIndex = 6;
+            this.btnStart.Text = "START";
+            this.btnStart.UseVisualStyleBackColor = false;
+            this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
             // 
-            // button4
+            // btnReady
             // 
-            this.button4.BackColor = System.Drawing.Color.Tomato;
-            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button4.Font = new System.Drawing.Font("Impact", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button4.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.button4.Location = new System.Drawing.Point(0, 3);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(147, 46);
-            this.button4.TabIndex = 7;
-            this.button4.Text = "READY";
-            this.button4.UseVisualStyleBackColor = false;
+            this.btnReady.BackColor = System.Drawing.Color.Tomato;
+            this.btnReady.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnReady.Font = new System.Drawing.Font("Impact", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReady.ForeColor = System.Drawing.Color.Black;
+            this.btnReady.Location = new System.Drawing.Point(0, 57);
+            this.btnReady.Name = "btnReady";
+            this.btnReady.Size = new System.Drawing.Size(147, 46);
+            this.btnReady.TabIndex = 7;
+            this.btnReady.Text = "READY";
+            this.btnReady.UseVisualStyleBackColor = false;
+            this.btnReady.Click += new System.EventHandler(this.btnReady_Click);
             // 
-            // button5
+            // pnMainButton
             // 
-            this.button5.BackColor = System.Drawing.Color.Yellow;
-            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button5.Font = new System.Drawing.Font("Impact", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button5.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.button5.Location = new System.Drawing.Point(0, 107);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(147, 46);
-            this.button5.TabIndex = 8;
-            this.button5.Text = "MANUAL";
-            this.button5.UseVisualStyleBackColor = false;
+            this.pnMainButton.Controls.Add(this.btnReady);
+            this.pnMainButton.Controls.Add(this.btnManual);
+            this.pnMainButton.Controls.Add(this.btnStart);
+            this.pnMainButton.Location = new System.Drawing.Point(818, 502);
+            this.pnMainButton.Name = "pnMainButton";
+            this.pnMainButton.Size = new System.Drawing.Size(147, 159);
+            this.pnMainButton.TabIndex = 0;
             // 
-            // panel2
+            // btnManual
             // 
-            this.panel2.Controls.Add(this.button4);
-            this.panel2.Controls.Add(this.button5);
-            this.panel2.Controls.Add(this.button3);
-            this.panel2.Location = new System.Drawing.Point(818, 505);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(147, 156);
-            this.panel2.TabIndex = 0;
+            this.btnManual.BackColor = System.Drawing.Color.PaleTurquoise;
+            this.btnManual.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnManual.Font = new System.Drawing.Font("Impact", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnManual.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnManual.Location = new System.Drawing.Point(0, 5);
+            this.btnManual.Name = "btnManual";
+            this.btnManual.Size = new System.Drawing.Size(147, 46);
+            this.btnManual.TabIndex = 8;
+            this.btnManual.Text = "MANUAL";
+            this.btnManual.UseVisualStyleBackColor = false;
+            this.btnManual.Click += new System.EventHandler(this.btnManual_Click);
             // 
             // panel3
             // 
@@ -667,155 +739,166 @@
             this.lbMainTime.Font = new System.Drawing.Font("Impact", 100F);
             this.lbMainTime.Location = new System.Drawing.Point(235, -24);
             this.lbMainTime.Name = "lbMainTime";
-            this.lbMainTime.Size = new System.Drawing.Size(362, 162);
+            this.lbMainTime.Size = new System.Drawing.Size(383, 162);
             this.lbMainTime.TabIndex = 7;
-            this.lbMainTime.Text = "10:00";
+            this.lbMainTime.Text = "00:00";
             // 
-            // panel4
+            // pnDevice
             // 
-            this.panel4.Controls.Add(this.panel7);
-            this.panel4.Controls.Add(this.panel6);
-            this.panel4.Controls.Add(this.listView4);
-            this.panel4.Controls.Add(this.panel5);
-            this.panel4.Font = new System.Drawing.Font("한컴 윤고딕 250", 9F);
-            this.panel4.Location = new System.Drawing.Point(12, 380);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(800, 281);
-            this.panel4.TabIndex = 7;
+            this.pnDevice.Controls.Add(this.panel7);
+            this.pnDevice.Controls.Add(this.panel6);
+            this.pnDevice.Controls.Add(this.lvDevice);
+            this.pnDevice.Controls.Add(this.panel5);
+            this.pnDevice.Font = new System.Drawing.Font("한컴 윤고딕 250", 9F);
+            this.pnDevice.Location = new System.Drawing.Point(12, 380);
+            this.pnDevice.Name = "pnDevice";
+            this.pnDevice.Size = new System.Drawing.Size(800, 281);
+            this.pnDevice.TabIndex = 7;
             // 
             // panel7
             // 
-            this.panel7.Controls.Add(this.comboBox4);
-            this.panel7.Controls.Add(this.button9);
-            this.panel7.Controls.Add(this.button10);
-            this.panel7.Controls.Add(this.button8);
+            this.panel7.Controls.Add(this.cbDeviceName);
+            this.panel7.Controls.Add(this.btnDeviceSetting);
+            this.panel7.Controls.Add(this.btnDeviceActivate);
+            this.panel7.Controls.Add(this.btnDeviceReady);
             this.panel7.Location = new System.Drawing.Point(262, 3);
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(137, 74);
             this.panel7.TabIndex = 11;
             // 
-            // comboBox4
+            // cbDeviceName
             // 
-            this.comboBox4.FormattingEnabled = true;
-            this.comboBox4.Location = new System.Drawing.Point(3, 3);
-            this.comboBox4.Name = "comboBox4";
-            this.comboBox4.Size = new System.Drawing.Size(131, 26);
-            this.comboBox4.TabIndex = 18;
-            this.comboBox4.Text = "ALL";
+            this.cbDeviceName.FormattingEnabled = true;
+            this.cbDeviceName.Location = new System.Drawing.Point(3, 3);
+            this.cbDeviceName.Name = "cbDeviceName";
+            this.cbDeviceName.Size = new System.Drawing.Size(131, 26);
+            this.cbDeviceName.TabIndex = 18;
+            this.cbDeviceName.Text = "ALL";
             // 
-            // button9
+            // btnDeviceSetting
             // 
-            this.button9.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.button9.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button9.Font = new System.Drawing.Font("Impact", 13F);
-            this.button9.Location = new System.Drawing.Point(3, 33);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(40, 38);
-            this.button9.TabIndex = 17;
-            this.button9.Text = "S";
-            this.button9.UseVisualStyleBackColor = false;
+            this.btnDeviceSetting.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnDeviceSetting.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnDeviceSetting.Font = new System.Drawing.Font("Impact", 13F);
+            this.btnDeviceSetting.Location = new System.Drawing.Point(3, 33);
+            this.btnDeviceSetting.Name = "btnDeviceSetting";
+            this.btnDeviceSetting.Size = new System.Drawing.Size(40, 38);
+            this.btnDeviceSetting.TabIndex = 17;
+            this.btnDeviceSetting.Text = "S";
+            this.btnDeviceSetting.UseVisualStyleBackColor = false;
+            this.btnDeviceSetting.Click += new System.EventHandler(this.btnDeviceSetting_Click);
             // 
-            // button10
+            // btnDeviceActivate
             // 
-            this.button10.BackColor = System.Drawing.Color.Yellow;
-            this.button10.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button10.Font = new System.Drawing.Font("Impact", 13F);
-            this.button10.Location = new System.Drawing.Point(94, 33);
-            this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(40, 38);
-            this.button10.TabIndex = 15;
-            this.button10.Text = "A";
-            this.button10.UseVisualStyleBackColor = false;
+            this.btnDeviceActivate.BackColor = System.Drawing.Color.Yellow;
+            this.btnDeviceActivate.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnDeviceActivate.Font = new System.Drawing.Font("Impact", 13F);
+            this.btnDeviceActivate.Location = new System.Drawing.Point(94, 33);
+            this.btnDeviceActivate.Name = "btnDeviceActivate";
+            this.btnDeviceActivate.Size = new System.Drawing.Size(40, 38);
+            this.btnDeviceActivate.TabIndex = 15;
+            this.btnDeviceActivate.Text = "A";
+            this.btnDeviceActivate.UseVisualStyleBackColor = false;
+            this.btnDeviceActivate.Click += new System.EventHandler(this.btnDeviceActivate_Click);
             // 
-            // button8
+            // btnDeviceReady
             // 
-            this.button8.BackColor = System.Drawing.Color.Tomato;
-            this.button8.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button8.Font = new System.Drawing.Font("Impact", 13F);
-            this.button8.Location = new System.Drawing.Point(49, 33);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(40, 38);
-            this.button8.TabIndex = 16;
-            this.button8.Text = "R";
-            this.button8.UseVisualStyleBackColor = false;
+            this.btnDeviceReady.BackColor = System.Drawing.Color.Tomato;
+            this.btnDeviceReady.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnDeviceReady.Font = new System.Drawing.Font("Impact", 13F);
+            this.btnDeviceReady.Location = new System.Drawing.Point(49, 33);
+            this.btnDeviceReady.Name = "btnDeviceReady";
+            this.btnDeviceReady.Size = new System.Drawing.Size(40, 38);
+            this.btnDeviceReady.TabIndex = 16;
+            this.btnDeviceReady.Text = "R";
+            this.btnDeviceReady.UseVisualStyleBackColor = false;
+            this.btnDeviceReady.Click += new System.EventHandler(this.btnDeviceReady_Click);
             // 
             // panel6
             // 
-            this.panel6.Controls.Add(this.textBox5);
-            this.panel6.Controls.Add(this.button7);
-            this.panel6.Controls.Add(this.comboBox3);
-            this.panel6.Controls.Add(this.textBox4);
+            this.panel6.Controls.Add(this.tbDeviceLCBP);
+            this.panel6.Controls.Add(this.btnDeviceApply);
+            this.panel6.Controls.Add(this.cbDeviceState);
+            this.panel6.Controls.Add(this.tbDeviceName);
             this.panel6.Font = new System.Drawing.Font("한컴 윤고딕 250", 9F);
             this.panel6.Location = new System.Drawing.Point(262, 134);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(137, 147);
             this.panel6.TabIndex = 10;
             // 
-            // textBox5
+            // tbDeviceLCBP
             // 
-            this.textBox5.Location = new System.Drawing.Point(3, 63);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(131, 25);
-            this.textBox5.TabIndex = 11;
-            this.textBox5.Text = "0";
+            this.tbDeviceLCBP.Location = new System.Drawing.Point(3, 63);
+            this.tbDeviceLCBP.Name = "tbDeviceLCBP";
+            this.tbDeviceLCBP.Size = new System.Drawing.Size(131, 25);
+            this.tbDeviceLCBP.TabIndex = 11;
+            this.tbDeviceLCBP.Text = "0";
             // 
-            // button7
+            // btnDeviceApply
             // 
-            this.button7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button7.Font = new System.Drawing.Font("Impact", 13F);
-            this.button7.Location = new System.Drawing.Point(2, 91);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(132, 53);
-            this.button7.TabIndex = 11;
-            this.button7.Text = "APPLY";
-            this.button7.UseVisualStyleBackColor = true;
+            this.btnDeviceApply.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDeviceApply.Font = new System.Drawing.Font("Impact", 13F);
+            this.btnDeviceApply.Location = new System.Drawing.Point(2, 91);
+            this.btnDeviceApply.Name = "btnDeviceApply";
+            this.btnDeviceApply.Size = new System.Drawing.Size(132, 53);
+            this.btnDeviceApply.TabIndex = 11;
+            this.btnDeviceApply.Text = "APPLY";
+            this.btnDeviceApply.UseVisualStyleBackColor = true;
+            this.btnDeviceApply.Click += new System.EventHandler(this.btnDeviceApply_Click);
             // 
-            // comboBox3
+            // cbDeviceState
             // 
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(3, 33);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(131, 26);
-            this.comboBox3.TabIndex = 11;
-            this.comboBox3.Text = "ROLE";
+            this.cbDeviceState.FormattingEnabled = true;
+            this.cbDeviceState.Items.AddRange(new object[] {
+            "setting",
+            "ready",
+            "activate",
+            "OTA",
+            "debuff"});
+            this.cbDeviceState.Location = new System.Drawing.Point(3, 33);
+            this.cbDeviceState.Name = "cbDeviceState";
+            this.cbDeviceState.Size = new System.Drawing.Size(131, 26);
+            this.cbDeviceState.TabIndex = 11;
+            this.cbDeviceState.Text = "STATE";
             // 
-            // textBox4
+            // tbDeviceName
             // 
-            this.textBox4.Location = new System.Drawing.Point(3, 5);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(131, 25);
-            this.textBox4.TabIndex = 11;
-            this.textBox4.Text = "NAME";
+            this.tbDeviceName.Location = new System.Drawing.Point(3, 5);
+            this.tbDeviceName.Name = "tbDeviceName";
+            this.tbDeviceName.Size = new System.Drawing.Size(131, 25);
+            this.tbDeviceName.TabIndex = 11;
+            this.tbDeviceName.Text = "NAME";
             // 
-            // listView4
+            // lvDevice
             // 
-            this.listView4.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.lvDevice.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.deviceName,
             this.deviceState,
             this.deviceLifeChipBattery});
-            this.listView4.Font = new System.Drawing.Font("한컴 윤고딕 250", 9F);
-            this.listView4.FullRowSelect = true;
-            this.listView4.GridLines = true;
-            this.listView4.HideSelection = false;
-            this.listView4.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem77,
-            listViewItem78,
-            listViewItem79,
-            listViewItem80,
-            listViewItem81,
-            listViewItem82,
-            listViewItem83,
-            listViewItem84,
-            listViewItem85,
-            listViewItem86,
-            listViewItem87});
-            this.listView4.Location = new System.Drawing.Point(6, 6);
-            this.listView4.MultiSelect = false;
-            this.listView4.Name = "listView4";
-            this.listView4.Size = new System.Drawing.Size(250, 273);
-            this.listView4.TabIndex = 9;
-            this.listView4.UseCompatibleStateImageBehavior = false;
-            this.listView4.View = System.Windows.Forms.View.Details;
+            this.lvDevice.Font = new System.Drawing.Font("한컴 윤고딕 250", 9F);
+            this.lvDevice.FullRowSelect = true;
+            this.lvDevice.GridLines = true;
+            this.lvDevice.HideSelection = false;
+            this.lvDevice.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
+            listViewItem1,
+            listViewItem2,
+            listViewItem3,
+            listViewItem4,
+            listViewItem5,
+            listViewItem6,
+            listViewItem7,
+            listViewItem8,
+            listViewItem9,
+            listViewItem10,
+            listViewItem11});
+            this.lvDevice.Location = new System.Drawing.Point(6, 6);
+            this.lvDevice.MultiSelect = false;
+            this.lvDevice.Name = "lvDevice";
+            this.lvDevice.Size = new System.Drawing.Size(250, 273);
+            this.lvDevice.TabIndex = 9;
+            this.lvDevice.UseCompatibleStateImageBehavior = false;
+            this.lvDevice.View = System.Windows.Forms.View.Details;
+            this.lvDevice.SelectedIndexChanged += new System.EventHandler(this.lvDevice_SelectedIndexChanged);
             // 
             // deviceName
             // 
@@ -835,13 +918,13 @@
             // 
             this.panel5.Controls.Add(this.label11);
             this.panel5.Controls.Add(this.label10);
-            this.panel5.Controls.Add(this.textBox3);
-            this.panel5.Controls.Add(this.listView2);
-            this.panel5.Controls.Add(this.comboBox1);
-            this.panel5.Controls.Add(this.textBox1);
-            this.panel5.Controls.Add(this.button6);
-            this.panel5.Controls.Add(this.comboBox2);
-            this.panel5.Controls.Add(this.textBox2);
+            this.panel5.Controls.Add(this.tbGloveBattery);
+            this.panel5.Controls.Add(this.lvGlove);
+            this.panel5.Controls.Add(this.cbGloveState);
+            this.panel5.Controls.Add(this.tbGloveName);
+            this.panel5.Controls.Add(this.btnGloveApply);
+            this.panel5.Controls.Add(this.cbGloveRole);
+            this.panel5.Controls.Add(this.tbGloveLifeChip);
             this.panel5.Location = new System.Drawing.Point(401, 3);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(396, 278);
@@ -867,43 +950,44 @@
             this.label10.TabIndex = 9;
             this.label10.Text = "LIFECHIP :";
             // 
-            // textBox3
+            // tbGloveBattery
             // 
-            this.textBox3.Location = new System.Drawing.Point(257, 250);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(25, 25);
-            this.textBox3.TabIndex = 8;
-            this.textBox3.Text = "0";
-            this.textBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tbGloveBattery.Location = new System.Drawing.Point(257, 250);
+            this.tbGloveBattery.Name = "tbGloveBattery";
+            this.tbGloveBattery.Size = new System.Drawing.Size(25, 25);
+            this.tbGloveBattery.TabIndex = 8;
+            this.tbGloveBattery.Text = "0";
+            this.tbGloveBattery.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // listView2
+            // lvGlove
             // 
-            this.listView2.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.lvGlove.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.gloveName,
             this.gloveRole,
             this.gloveState,
             this.GloveLifeChip,
             this.GloveBattery});
-            this.listView2.Font = new System.Drawing.Font("한컴 윤고딕 250", 9F);
-            this.listView2.FullRowSelect = true;
-            this.listView2.GridLines = true;
-            this.listView2.HideSelection = false;
-            this.listView2.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem88,
-            listViewItem89,
-            listViewItem90,
-            listViewItem91,
-            listViewItem92,
-            listViewItem93,
-            listViewItem94,
-            listViewItem95});
-            this.listView2.Location = new System.Drawing.Point(3, 3);
-            this.listView2.MultiSelect = false;
-            this.listView2.Name = "listView2";
-            this.listView2.Size = new System.Drawing.Size(390, 208);
-            this.listView2.TabIndex = 0;
-            this.listView2.UseCompatibleStateImageBehavior = false;
-            this.listView2.View = System.Windows.Forms.View.Details;
+            this.lvGlove.Font = new System.Drawing.Font("한컴 윤고딕 250", 9F);
+            this.lvGlove.FullRowSelect = true;
+            this.lvGlove.GridLines = true;
+            this.lvGlove.HideSelection = false;
+            this.lvGlove.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
+            listViewItem12,
+            listViewItem13,
+            listViewItem14,
+            listViewItem15,
+            listViewItem16,
+            listViewItem17,
+            listViewItem18,
+            listViewItem19});
+            this.lvGlove.Location = new System.Drawing.Point(3, 3);
+            this.lvGlove.MultiSelect = false;
+            this.lvGlove.Name = "lvGlove";
+            this.lvGlove.Size = new System.Drawing.Size(390, 208);
+            this.lvGlove.TabIndex = 0;
+            this.lvGlove.UseCompatibleStateImageBehavior = false;
+            this.lvGlove.View = System.Windows.Forms.View.Details;
+            this.lvGlove.SelectedIndexChanged += new System.EventHandler(this.lvGlove_SelectedIndexChanged);
             // 
             // gloveName
             // 
@@ -929,51 +1013,62 @@
             this.GloveBattery.Text = "BP";
             this.GloveBattery.Width = 33;
             // 
-            // comboBox1
+            // cbGloveState
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(180, 220);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(102, 26);
-            this.comboBox1.TabIndex = 7;
-            this.comboBox1.Text = "STATE";
+            this.cbGloveState.FormattingEnabled = true;
+            this.cbGloveState.Items.AddRange(new object[] {
+            "setting",
+            "ready",
+            "activate"});
+            this.cbGloveState.Location = new System.Drawing.Point(180, 220);
+            this.cbGloveState.Name = "cbGloveState";
+            this.cbGloveState.Size = new System.Drawing.Size(102, 26);
+            this.cbGloveState.TabIndex = 7;
+            this.cbGloveState.Text = "STATE";
             // 
-            // textBox1
+            // tbGloveName
             // 
-            this.textBox1.Location = new System.Drawing.Point(4, 220);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(63, 25);
-            this.textBox1.TabIndex = 3;
-            this.textBox1.Text = "NAME";
+            this.tbGloveName.Location = new System.Drawing.Point(4, 220);
+            this.tbGloveName.Name = "tbGloveName";
+            this.tbGloveName.Size = new System.Drawing.Size(63, 25);
+            this.tbGloveName.TabIndex = 3;
+            this.tbGloveName.Text = "NAME";
             // 
-            // button6
+            // btnGloveApply
             // 
-            this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button6.Font = new System.Drawing.Font("Impact", 13F);
-            this.button6.Location = new System.Drawing.Point(288, 220);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(105, 55);
-            this.button6.TabIndex = 6;
-            this.button6.Text = "APPLY";
-            this.button6.UseVisualStyleBackColor = true;
+            this.btnGloveApply.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnGloveApply.Font = new System.Drawing.Font("Impact", 13F);
+            this.btnGloveApply.Location = new System.Drawing.Point(288, 220);
+            this.btnGloveApply.Name = "btnGloveApply";
+            this.btnGloveApply.Size = new System.Drawing.Size(105, 55);
+            this.btnGloveApply.TabIndex = 6;
+            this.btnGloveApply.Text = "APPLY";
+            this.btnGloveApply.UseVisualStyleBackColor = true;
+            this.btnGloveApply.Click += new System.EventHandler(this.btnGloveApply_Click);
             // 
-            // comboBox2
+            // cbGloveRole
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(72, 220);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(102, 26);
-            this.comboBox2.TabIndex = 2;
-            this.comboBox2.Text = "ROLE";
+            this.cbGloveRole.FormattingEnabled = true;
+            this.cbGloveRole.Items.AddRange(new object[] {
+            "player",
+            "killer",
+            "ghost",
+            "revival",
+            "none"});
+            this.cbGloveRole.Location = new System.Drawing.Point(72, 220);
+            this.cbGloveRole.Name = "cbGloveRole";
+            this.cbGloveRole.Size = new System.Drawing.Size(102, 26);
+            this.cbGloveRole.TabIndex = 2;
+            this.cbGloveRole.Text = "ROLE";
             // 
-            // textBox2
+            // tbGloveLifeChip
             // 
-            this.textBox2.Location = new System.Drawing.Point(103, 250);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(25, 25);
-            this.textBox2.TabIndex = 4;
-            this.textBox2.Text = "0";
-            this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tbGloveLifeChip.Location = new System.Drawing.Point(103, 250);
+            this.tbGloveLifeChip.Name = "tbGloveLifeChip";
+            this.tbGloveLifeChip.Size = new System.Drawing.Size(25, 25);
+            this.tbGloveLifeChip.TabIndex = 4;
+            this.tbGloveLifeChip.Text = "0";
+            this.tbGloveLifeChip.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // MainForm
             // 
@@ -981,16 +1076,17 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(971, 666);
-            this.Controls.Add(this.panel4);
+            this.Controls.Add(this.pnDevice);
             this.Controls.Add(this.panel3);
-            this.Controls.Add(this.panel2);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.pnMainButton);
+            this.Controls.Add(this.pnRoomSelect);
             this.Name = "MainForm";
             this.Text = "TrainOS";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.trbP2)).EndInit();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.pnRoomSelect.ResumeLayout(false);
+            this.pnRoomSelect.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trbP8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trbP7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trbP6)).EndInit();
@@ -998,14 +1094,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.trbP4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trbP1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trbP3)).EndInit();
-            this.panel2.ResumeLayout(false);
+            this.pnMainButton.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.panel9.ResumeLayout(false);
             this.panel9.PerformLayout();
             this.panel8.ResumeLayout(false);
             this.panel8.PerformLayout();
-            this.panel4.ResumeLayout(false);
+            this.pnDevice.ResumeLayout(false);
             this.panel7.ResumeLayout(false);
             this.panel6.ResumeLayout(false);
             this.panel6.PerformLayout();
@@ -1018,7 +1114,7 @@
         #endregion
         private System.Windows.Forms.ListView listView1;
         private System.Windows.Forms.TrackBar trbP2;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel pnRoomSelect;
         private System.Windows.Forms.RadioButton radioButton1;
         private System.Windows.Forms.TrackBar trbP8;
         private System.Windows.Forms.TrackBar trbP7;
@@ -1037,45 +1133,44 @@
         private System.Windows.Forms.Label lbP4;
         private System.Windows.Forms.Label lbP3;
         private System.Windows.Forms.Label lbP2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Button btnStart;
+        private System.Windows.Forms.Button btnReady;
+        private System.Windows.Forms.Panel pnMainButton;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Label lbMainTime;
         private System.Windows.Forms.ColumnHeader playerNarration;
         private System.Windows.Forms.ColumnHeader playerSCN;
         private System.Windows.Forms.ColumnHeader playerCurrent;
-        private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.ListView listView2;
+        private System.Windows.Forms.Panel pnDevice;
+        private System.Windows.Forms.ListView lvGlove;
         private System.Windows.Forms.ColumnHeader gloveName;
         private System.Windows.Forms.ColumnHeader gloveRole;
         private System.Windows.Forms.ColumnHeader GloveLifeChip;
         private System.Windows.Forms.ColumnHeader GloveBattery;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.TextBox tbGloveLifeChip;
+        private System.Windows.Forms.TextBox tbGloveName;
+        private System.Windows.Forms.ComboBox cbGloveRole;
+        private System.Windows.Forms.Button btnGloveApply;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.ColumnHeader gloveState;
-        private System.Windows.Forms.ListView listView4;
+        private System.Windows.Forms.ListView lvDevice;
         private System.Windows.Forms.ColumnHeader deviceName;
         private System.Windows.Forms.ColumnHeader deviceState;
         private System.Windows.Forms.ColumnHeader deviceLifeChipBattery;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cbGloveState;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox tbGloveBattery;
         private System.Windows.Forms.Panel panel6;
-        private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.ComboBox comboBox3;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.Button button9;
-        private System.Windows.Forms.Button button8;
-        private System.Windows.Forms.Button button10;
+        private System.Windows.Forms.Button btnDeviceApply;
+        private System.Windows.Forms.ComboBox cbDeviceState;
+        private System.Windows.Forms.TextBox tbDeviceName;
+        private System.Windows.Forms.Button btnDeviceSetting;
+        private System.Windows.Forms.Button btnDeviceReady;
+        private System.Windows.Forms.Button btnDeviceActivate;
         private System.Windows.Forms.Panel panel7;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.ComboBox comboBox4;
+        private System.Windows.Forms.TextBox tbDeviceLCBP;
+        private System.Windows.Forms.ComboBox cbDeviceName;
         private System.Windows.Forms.Panel panel8;
         private System.Windows.Forms.Button button11;
         private System.Windows.Forms.Label label9;
@@ -1093,6 +1188,7 @@
         private System.Windows.Forms.Button btnGloveNShift;
         private System.Windows.Forms.Button btnGlovePShift;
         private System.Windows.Forms.RadioButton radioButton2;
+        private System.Windows.Forms.Button btnManual;
     }
 }
 

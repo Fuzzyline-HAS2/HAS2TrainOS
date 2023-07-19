@@ -17,8 +17,8 @@ namespace HAS2TrainOS
             switch(nTempTrackValue)
             {
                 case 0: //Player 
-                    this.Controls.Find(strTrackBarName, true).FirstOrDefault().BackColor = Color.GreenYellow;
-                    this.Controls.Find(strLabelName, true).FirstOrDefault().BackColor = Color.GreenYellow;
+                    this.Controls.Find(strTrackBarName, true).FirstOrDefault().BackColor = Color.YellowGreen;
+                    this.Controls.Find(strLabelName, true).FirstOrDefault().BackColor = Color.YellowGreen;
                     break;
                 case 1: //None
                     this.Controls.Find(strTrackBarName, true).FirstOrDefault().BackColor = SystemColors.Control;
