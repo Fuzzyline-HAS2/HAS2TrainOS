@@ -43,6 +43,8 @@ namespace HAS2TrainOS
             client.Disconnect();    //MQTT 연결종료
         }
 
-        
+        private void button11_Click(object sender, EventArgs e)
+        {
+        }
     }
 }

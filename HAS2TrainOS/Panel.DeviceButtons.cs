@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NAudio.CoreAudioApi;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -28,8 +29,11 @@ namespace HAS2TrainOS
             if (lvDevice.SelectedItems.Count > 0)    //listview에서 선택이 되었을때만 실행되기 위해 조건
             {
                 int nSelectedIndex = lvDevice.FocusedItem.Index; //현재 선택된 인데스 번호 전자용
-                lvDevice.Items[nSelectedIndex].SubItems[1].Text = cbDeviceState.Text;
-                lvDevice.Items[nSelectedIndex].SubItems[2].Text = tbDeviceLCBP.Text;
+                lvDevice.Items[nSelectedIndex].SubItems[(int)listviewDevice.State].Text = cbDeviceState.Text;
+                lvDevice.Items[nSelectedIndex].SubItems[(int)listviewDevice.LCBP].Text = tbDeviceLCBP.Text;
+                DeviceJSONPublish(lvDevice.Items[nSelectedIndex].SubItems[(int)listviewDevice.Name].Text,
+                    lvDevice.Items[nSelectedIndex].SubItems[(int)listviewDevice.State].Text,
+                    lvDevice.Items[nSelectedIndex].SubItems[(int)listviewDevice.LCBP].Text);
 
             }
         }
@@ -53,22 +57,40 @@ namespace HAS2TrainOS
                     for (int i = 0; i < lvDevice.Items.Count; i++)
                     {
                         lvDevice.Items[i].SubItems[(int)listviewDevice.State].Text = "setting";
+                        DeviceJSONPublish(lvDevice.Items[i].SubItems[(int)listviewDevice.Name].Text, 
+                            lvDevice.Items[i].SubItems[(int)listviewDevice.State].Text);
                     }
                     break;
                 case (int)enumDevice.ITEMBOX:
                     lvDevice.Items[(int)enumDevice.EI1].SubItems[(int)listviewDevice.State].Text = "setting";
                     lvDevice.Items[(int)enumDevice.EI2].SubItems[(int)listviewDevice.State].Text = "setting";
+                    DeviceJSONPublish(lvDevice.Items[(int)enumDevice.EI1].SubItems[(int)listviewDevice.Name].Text, 
+                        lvDevice.Items[(int)enumDevice.EI1].SubItems[(int)listviewDevice.State].Text);
+                    DeviceJSONPublish(lvDevice.Items[(int)enumDevice.EI2].SubItems[(int)listviewDevice.Name].Text,
+                        lvDevice.Items[(int)enumDevice.EI2].SubItems[(int)listviewDevice.State].Text);
                     break;
                 case (int)enumDevice.REVIVAL:
                     lvDevice.Items[(int)enumDevice.ER1].SubItems[(int)listviewDevice.State].Text = "setting";
                     lvDevice.Items[(int)enumDevice.ER2].SubItems[(int)listviewDevice.State].Text = "setting";
+                    DeviceJSONPublish(lvDevice.Items[(int)enumDevice.ER1].SubItems[(int)listviewDevice.Name].Text,
+                        lvDevice.Items[(int)enumDevice.ER1].SubItems[(int)listviewDevice.State].Text);
+                    DeviceJSONPublish(lvDevice.Items[(int)enumDevice.ER2].SubItems[(int)listviewDevice.Name].Text,
+                        lvDevice.Items[(int)enumDevice.ER2].SubItems[(int)listviewDevice.State].Text);
+
                     break;
                 case (int)enumDevice.VENT:
                     lvDevice.Items[(int)enumDevice.EV1].SubItems[(int)listviewDevice.State].Text = "setting";
                     lvDevice.Items[(int)enumDevice.EV2].SubItems[(int)listviewDevice.State].Text = "setting";
+                    DeviceJSONPublish(lvDevice.Items[(int)enumDevice.EV1].SubItems[(int)listviewDevice.Name].Text,
+                        lvDevice.Items[(int)enumDevice.EV1].SubItems[(int)listviewDevice.State].Text);
+                    DeviceJSONPublish(lvDevice.Items[(int)enumDevice.EV2].SubItems[(int)listviewDevice.Name].Text,
+                        lvDevice.Items[(int)enumDevice.EV2].SubItems[(int)listviewDevice.State].Text);
+
                     break;
                 default:
                     lvDevice.Items[cbDeviceName.SelectedIndex].SubItems[(int)listviewDevice.State].Text = "setting";
+                    DeviceJSONPublish(lvDevice.Items[cbDeviceName.SelectedIndex].SubItems[(int)listviewDevice.Name].Text,
+                        lvDevice.Items[cbDeviceName.SelectedIndex].SubItems[(int)listviewDevice.State].Text);
                     break; 
             }
         }
@@ -81,22 +103,40 @@ namespace HAS2TrainOS
                     for (int i = 0; i < lvDevice.Items.Count; i++)
                     {
                         lvDevice.Items[i].SubItems[(int)listviewDevice.State].Text = "ready";
+                        DeviceJSONPublish(lvDevice.Items[i].SubItems[(int)listviewDevice.Name].Text,
+                            lvDevice.Items[i].SubItems[(int)listviewDevice.State].Text);
                     }
                     break;
                 case (int)enumDevice.ITEMBOX:
                     lvDevice.Items[(int)enumDevice.EI1].SubItems[(int)listviewDevice.State].Text = "ready";
                     lvDevice.Items[(int)enumDevice.EI2].SubItems[(int)listviewDevice.State].Text = "ready";
+                    DeviceJSONPublish(lvDevice.Items[(int)enumDevice.EI1].SubItems[(int)listviewDevice.Name].Text,
+                        lvDevice.Items[(int)enumDevice.EI1].SubItems[(int)listviewDevice.State].Text);
+                    DeviceJSONPublish(lvDevice.Items[(int)enumDevice.EI2].SubItems[(int)listviewDevice.Name].Text,
+                        lvDevice.Items[(int)enumDevice.EI2].SubItems[(int)listviewDevice.State].Text);
                     break;
                 case (int)enumDevice.REVIVAL:
                     lvDevice.Items[(int)enumDevice.ER1].SubItems[(int)listviewDevice.State].Text = "ready";
                     lvDevice.Items[(int)enumDevice.ER2].SubItems[(int)listviewDevice.State].Text = "ready";
+                    DeviceJSONPublish(lvDevice.Items[(int)enumDevice.ER1].SubItems[(int)listviewDevice.Name].Text,
+                        lvDevice.Items[(int)enumDevice.ER1].SubItems[(int)listviewDevice.State].Text);
+                    DeviceJSONPublish(lvDevice.Items[(int)enumDevice.ER2].SubItems[(int)listviewDevice.Name].Text,
+                        lvDevice.Items[(int)enumDevice.ER2].SubItems[(int)listviewDevice.State].Text);
+
                     break;
                 case (int)enumDevice.VENT:
                     lvDevice.Items[(int)enumDevice.EV1].SubItems[(int)listviewDevice.State].Text = "ready";
                     lvDevice.Items[(int)enumDevice.EV2].SubItems[(int)listviewDevice.State].Text = "ready";
+                    DeviceJSONPublish(lvDevice.Items[(int)enumDevice.EV1].SubItems[(int)listviewDevice.Name].Text,
+                        lvDevice.Items[(int)enumDevice.EV1].SubItems[(int)listviewDevice.State].Text);
+                    DeviceJSONPublish(lvDevice.Items[(int)enumDevice.EV2].SubItems[(int)listviewDevice.Name].Text,
+                        lvDevice.Items[(int)enumDevice.EV2].SubItems[(int)listviewDevice.State].Text);
+
                     break;
                 default:
                     lvDevice.Items[cbDeviceName.SelectedIndex].SubItems[(int)listviewDevice.State].Text = "ready";
+                    DeviceJSONPublish(lvDevice.Items[cbDeviceName.SelectedIndex].SubItems[(int)listviewDevice.Name].Text,
+                        lvDevice.Items[cbDeviceName.SelectedIndex].SubItems[(int)listviewDevice.State].Text);
                     break;
             }
         }
@@ -109,22 +149,40 @@ namespace HAS2TrainOS
                     for (int i = 0; i < lvDevice.Items.Count; i++)
                     {
                         lvDevice.Items[i].SubItems[(int)listviewDevice.State].Text = "activate";
+                        DeviceJSONPublish(lvDevice.Items[i].SubItems[(int)listviewDevice.Name].Text,
+                            lvDevice.Items[i].SubItems[(int)listviewDevice.State].Text);
                     }
                     break;
                 case (int)enumDevice.ITEMBOX:
                     lvDevice.Items[(int)enumDevice.EI1].SubItems[(int)listviewDevice.State].Text = "activate";
                     lvDevice.Items[(int)enumDevice.EI2].SubItems[(int)listviewDevice.State].Text = "activate";
+                    DeviceJSONPublish(lvDevice.Items[(int)enumDevice.EI1].SubItems[(int)listviewDevice.Name].Text,
+                        lvDevice.Items[(int)enumDevice.EI1].SubItems[(int)listviewDevice.State].Text);
+                    DeviceJSONPublish(lvDevice.Items[(int)enumDevice.EI2].SubItems[(int)listviewDevice.Name].Text,
+                        lvDevice.Items[(int)enumDevice.EI2].SubItems[(int)listviewDevice.State].Text);
                     break;
                 case (int)enumDevice.REVIVAL:
                     lvDevice.Items[(int)enumDevice.ER1].SubItems[(int)listviewDevice.State].Text = "activate";
                     lvDevice.Items[(int)enumDevice.ER2].SubItems[(int)listviewDevice.State].Text = "activate";
+                    DeviceJSONPublish(lvDevice.Items[(int)enumDevice.ER1].SubItems[(int)listviewDevice.Name].Text,
+                        lvDevice.Items[(int)enumDevice.ER1].SubItems[(int)listviewDevice.State].Text);
+                    DeviceJSONPublish(lvDevice.Items[(int)enumDevice.ER2].SubItems[(int)listviewDevice.Name].Text,
+                        lvDevice.Items[(int)enumDevice.ER2].SubItems[(int)listviewDevice.State].Text);
+
                     break;
                 case (int)enumDevice.VENT:
                     lvDevice.Items[(int)enumDevice.EV1].SubItems[(int)listviewDevice.State].Text = "activate";
                     lvDevice.Items[(int)enumDevice.EV2].SubItems[(int)listviewDevice.State].Text = "activate";
+                    DeviceJSONPublish(lvDevice.Items[(int)enumDevice.EV1].SubItems[(int)listviewDevice.Name].Text,
+                        lvDevice.Items[(int)enumDevice.EV1].SubItems[(int)listviewDevice.State].Text);
+                    DeviceJSONPublish(lvDevice.Items[(int)enumDevice.EV2].SubItems[(int)listviewDevice.Name].Text,
+                        lvDevice.Items[(int)enumDevice.EV2].SubItems[(int)listviewDevice.State].Text);
+
                     break;
                 default:
                     lvDevice.Items[cbDeviceName.SelectedIndex].SubItems[(int)listviewDevice.State].Text = "activate";
+                    DeviceJSONPublish(lvDevice.Items[cbDeviceName.SelectedIndex].SubItems[(int)listviewDevice.Name].Text,
+                        lvDevice.Items[cbDeviceName.SelectedIndex].SubItems[(int)listviewDevice.State].Text);
                     break;
             }
         }
@@ -153,6 +211,11 @@ namespace HAS2TrainOS
                 lvGlove.Items[nSelectedIndex].SubItems[2].Text = cbGloveState.Text;
                 lvGlove.Items[nSelectedIndex].SubItems[3].Text = tbGloveLifeChip.Text;
                 lvGlove.Items[nSelectedIndex].SubItems[4].Text = tbGloveBattery.Text;
+                GloveJSONPublish(lvGlove.Items[nSelectedIndex].SubItems[(int)listviewGlove.Name].Text, 
+                    lvGlove.Items[nSelectedIndex].SubItems[(int)listviewGlove.Role].Text, 
+                    lvGlove.Items[nSelectedIndex].SubItems[(int)listviewGlove.State].Text, 
+                    lvGlove.Items[nSelectedIndex].SubItems[(int)listviewGlove.LC].Text, 
+                    lvGlove.Items[nSelectedIndex].SubItems[(int)listviewGlove.BP].Text);
             }
         }
 

@@ -5,11 +5,69 @@ using System.Text;
 using System.Drawing;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Newtonsoft.Json.Linq;
 
 namespace HAS2TrainOS
 {
     public partial class MainForm
     {
+        private void GloveSelection()
+        {
+            if (rbG1.Checked) TrackBarFindAndChange("G1");
+            else if (rbG2.Checked) TrackBarFindAndChange("G2");
+            else if (rbG3.Checked) TrackBarFindAndChange("G3");
+            else if (rbG4.Checked) TrackBarFindAndChange("G4");
+            else MessageBox.Show("그룹을 선택해주세요.");
+        }
+        private void TrackBarFindAndChange(String gloveGroup)
+        {
+            for (int i = (int)enumGlove.P1; i <= (int)enumGlove.P8; i++)
+            {
+                lvGlove.Items[i].SubItems[(int)listviewGlove.Name].Text = gloveGroup +"P" + (i + 1).ToString(); //listview name G1 붙여줌
+                foreach (Control tmp in pnRoomSelect.Controls)  //패널 안에서 TrackBar 찾기
+                {
+                    if (("trbP" + (i + 1).ToString()) == tmp.Name)
+                    {
+                        TrackBar trb = (TrackBar)tmp;
+                        lvGlove.Items[i].SubItems[(int)listviewGlove.Role].Text = RoleReturn(trb.Value);    //TrackBar에 맞춘 Role 전송
+                        lvGlove.Items[i].BackColor = ColorReturn(trb.Value);                                            //TrackBar에 맞춘 색 전송
+                        if (trb.Value == 1)
+                        {
+                            lvGlove.Items[i].ForeColor = Color.Gray;    //none 일때만 글자색 회색
+                        }
+                        else
+                        {
+                            lvGlove.Items[i].ForeColor = Color.Black;    //none 일때만 글자색 회색
+                        }
+                    }
+                }
+                GloveJSONPublish(lvGlove.Items[i].SubItems[(int)listviewGlove.Name].Text, 
+                    lvGlove.Items[i].SubItems[(int)listviewGlove.Role].Text, 
+                    lvGlove.Items[i].SubItems[(int)listviewGlove.State].Text, 
+                    lvGlove.Items[i].SubItems[(int)listviewGlove.LC].Text, 
+                    lvGlove.Items[i].SubItems[(int)listviewGlove.BP].Text);
+            }
+        }
+        private String RoleReturn(int value)
+        {
+            switch (value)
+            {
+                case 0: return "player";
+                case 1: return "none";
+                case 2: return "killer";
+                default: return "error";
+            }
+        }
+        private Color ColorReturn(int value)
+        {
+            switch (value)
+            {
+                case 0: return Color.PaleGreen;
+                case 1: return Color.LightGray;
+                case 2: return Color.Violet;
+                default: return Color.Gray;
+            }
+        }
         private void ColorChange(String strTrackBarName, int nTempTrackValue)
         {
             String strLabelName  = "lb" + strTrackBarName.Substring(3); //매개변수로 받아온 트랙바 이름에서 글러브 번호만 추출후 "lb" 붙여서 라벨 이름 만듦

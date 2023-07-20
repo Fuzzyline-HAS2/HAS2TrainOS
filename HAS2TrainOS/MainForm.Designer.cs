@@ -126,7 +126,7 @@
             this.playerNarration = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.trbP2 = new System.Windows.Forms.TrackBar();
             this.pnRoomSelect = new System.Windows.Forms.Panel();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.rbG1 = new System.Windows.Forms.RadioButton();
             this.btnGloveKShift = new System.Windows.Forms.Button();
             this.btnGloveNShift = new System.Windows.Forms.Button();
             this.btnGlovePShift = new System.Windows.Forms.Button();
@@ -139,9 +139,9 @@
             this.lbP3 = new System.Windows.Forms.Label();
             this.lbP2 = new System.Windows.Forms.Label();
             this.lbP1 = new System.Windows.Forms.Label();
-            this.radioButton4 = new System.Windows.Forms.RadioButton();
-            this.radioButton3 = new System.Windows.Forms.RadioButton();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.rbG4 = new System.Windows.Forms.RadioButton();
+            this.rbG3 = new System.Windows.Forms.RadioButton();
+            this.rbG2 = new System.Windows.Forms.RadioButton();
             this.trbP8 = new System.Windows.Forms.TrackBar();
             this.trbP7 = new System.Windows.Forms.TrackBar();
             this.trbP6 = new System.Windows.Forms.TrackBar();
@@ -153,7 +153,8 @@
             this.btnReady = new System.Windows.Forms.Button();
             this.pnMainButton = new System.Windows.Forms.Panel();
             this.btnManual = new System.Windows.Forms.Button();
-            this.panel3 = new System.Windows.Forms.Panel();
+            this.pnNarration = new System.Windows.Forms.Panel();
+            this.btnSetup = new System.Windows.Forms.Button();
             this.panel9 = new System.Windows.Forms.Panel();
             this.label13 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
@@ -207,7 +208,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.trbP1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trbP3)).BeginInit();
             this.pnMainButton.SuspendLayout();
-            this.panel3.SuspendLayout();
+            this.pnNarration.SuspendLayout();
             this.panel9.SuspendLayout();
             this.panel8.SuspendLayout();
             this.pnDevice.SuspendLayout();
@@ -263,7 +264,7 @@
             // 
             // pnRoomSelect
             // 
-            this.pnRoomSelect.Controls.Add(this.radioButton2);
+            this.pnRoomSelect.Controls.Add(this.rbG1);
             this.pnRoomSelect.Controls.Add(this.btnGloveKShift);
             this.pnRoomSelect.Controls.Add(this.btnGloveNShift);
             this.pnRoomSelect.Controls.Add(this.btnGlovePShift);
@@ -276,9 +277,9 @@
             this.pnRoomSelect.Controls.Add(this.lbP3);
             this.pnRoomSelect.Controls.Add(this.lbP2);
             this.pnRoomSelect.Controls.Add(this.lbP1);
-            this.pnRoomSelect.Controls.Add(this.radioButton4);
-            this.pnRoomSelect.Controls.Add(this.radioButton3);
-            this.pnRoomSelect.Controls.Add(this.radioButton1);
+            this.pnRoomSelect.Controls.Add(this.rbG4);
+            this.pnRoomSelect.Controls.Add(this.rbG3);
+            this.pnRoomSelect.Controls.Add(this.rbG2);
             this.pnRoomSelect.Controls.Add(this.trbP8);
             this.pnRoomSelect.Controls.Add(this.trbP7);
             this.pnRoomSelect.Controls.Add(this.trbP6);
@@ -293,18 +294,19 @@
             this.pnRoomSelect.Size = new System.Drawing.Size(147, 484);
             this.pnRoomSelect.TabIndex = 5;
             // 
-            // radioButton2
+            // rbG1
             // 
-            this.radioButton2.Appearance = System.Windows.Forms.Appearance.Button;
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.radioButton2.Location = new System.Drawing.Point(3, 3);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(31, 28);
-            this.radioButton2.TabIndex = 24;
-            this.radioButton2.Text = "G1";
-            this.radioButton2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.rbG1.Appearance = System.Windows.Forms.Appearance.Button;
+            this.rbG1.AutoSize = true;
+            this.rbG1.Checked = true;
+            this.rbG1.Location = new System.Drawing.Point(3, 3);
+            this.rbG1.Name = "rbG1";
+            this.rbG1.Size = new System.Drawing.Size(29, 26);
+            this.rbG1.TabIndex = 24;
+            this.rbG1.TabStop = true;
+            this.rbG1.Text = "G1";
+            this.rbG1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rbG1.UseVisualStyleBackColor = true;
             // 
             // btnGloveKShift
             // 
@@ -430,44 +432,41 @@
             this.lbP1.TabIndex = 6;
             this.lbP1.Text = "P1";
             // 
-            // radioButton4
+            // rbG4
             // 
-            this.radioButton4.Appearance = System.Windows.Forms.Appearance.Button;
-            this.radioButton4.AutoSize = true;
-            this.radioButton4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.radioButton4.Location = new System.Drawing.Point(38, 35);
-            this.radioButton4.Name = "radioButton4";
-            this.radioButton4.Size = new System.Drawing.Size(32, 28);
-            this.radioButton4.TabIndex = 14;
-            this.radioButton4.Text = "G4";
-            this.radioButton4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.radioButton4.UseVisualStyleBackColor = true;
+            this.rbG4.Appearance = System.Windows.Forms.Appearance.Button;
+            this.rbG4.AutoSize = true;
+            this.rbG4.Location = new System.Drawing.Point(38, 35);
+            this.rbG4.Name = "rbG4";
+            this.rbG4.Size = new System.Drawing.Size(30, 26);
+            this.rbG4.TabIndex = 14;
+            this.rbG4.Text = "G4";
+            this.rbG4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rbG4.UseVisualStyleBackColor = true;
             // 
-            // radioButton3
+            // rbG3
             // 
-            this.radioButton3.Appearance = System.Windows.Forms.Appearance.Button;
-            this.radioButton3.AutoSize = true;
-            this.radioButton3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.radioButton3.Location = new System.Drawing.Point(38, 3);
-            this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(32, 28);
-            this.radioButton3.TabIndex = 13;
-            this.radioButton3.Text = "G3";
-            this.radioButton3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.radioButton3.UseVisualStyleBackColor = true;
+            this.rbG3.Appearance = System.Windows.Forms.Appearance.Button;
+            this.rbG3.AutoSize = true;
+            this.rbG3.Location = new System.Drawing.Point(38, 3);
+            this.rbG3.Name = "rbG3";
+            this.rbG3.Size = new System.Drawing.Size(30, 26);
+            this.rbG3.TabIndex = 13;
+            this.rbG3.Text = "G3";
+            this.rbG3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rbG3.UseVisualStyleBackColor = true;
             // 
-            // radioButton1
+            // rbG2
             // 
-            this.radioButton1.Appearance = System.Windows.Forms.Appearance.Button;
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.radioButton1.Location = new System.Drawing.Point(3, 35);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(32, 28);
-            this.radioButton1.TabIndex = 6;
-            this.radioButton1.Text = "G2";
-            this.radioButton1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.rbG2.Appearance = System.Windows.Forms.Appearance.Button;
+            this.rbG2.AutoSize = true;
+            this.rbG2.Location = new System.Drawing.Point(3, 35);
+            this.rbG2.Name = "rbG2";
+            this.rbG2.Size = new System.Drawing.Size(30, 26);
+            this.rbG2.TabIndex = 6;
+            this.rbG2.Text = "G2";
+            this.rbG2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rbG2.UseVisualStyleBackColor = true;
             // 
             // trbP8
             // 
@@ -605,16 +604,29 @@
             this.btnManual.UseVisualStyleBackColor = false;
             this.btnManual.Click += new System.EventHandler(this.btnManual_Click);
             // 
-            // panel3
+            // pnNarration
             // 
-            this.panel3.Controls.Add(this.panel9);
-            this.panel3.Controls.Add(this.panel8);
-            this.panel3.Controls.Add(this.lbMainTime);
-            this.panel3.Font = new System.Drawing.Font("Impact", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panel3.Location = new System.Drawing.Point(12, 10);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(800, 376);
-            this.panel3.TabIndex = 6;
+            this.pnNarration.Controls.Add(this.btnSetup);
+            this.pnNarration.Controls.Add(this.panel9);
+            this.pnNarration.Controls.Add(this.panel8);
+            this.pnNarration.Controls.Add(this.lbMainTime);
+            this.pnNarration.Font = new System.Drawing.Font("Impact", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.pnNarration.Location = new System.Drawing.Point(12, 10);
+            this.pnNarration.Name = "pnNarration";
+            this.pnNarration.Size = new System.Drawing.Size(800, 376);
+            this.pnNarration.TabIndex = 6;
+            // 
+            // btnSetup
+            // 
+            this.btnSetup.BackgroundImage = global::HAS2TrainOS.Properties.Resources.settings;
+            this.btnSetup.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnSetup.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSetup.Font = new System.Drawing.Font("Impact", 11F);
+            this.btnSetup.Location = new System.Drawing.Point(3, 3);
+            this.btnSetup.Name = "btnSetup";
+            this.btnSetup.Size = new System.Drawing.Size(25, 25);
+            this.btnSetup.TabIndex = 4;
+            this.btnSetup.UseVisualStyleBackColor = true;
             // 
             // panel9
             // 
@@ -732,6 +744,7 @@
             this.button11.TabIndex = 0;
             this.button11.Text = "Apply";
             this.button11.UseVisualStyleBackColor = true;
+            this.button11.Click += new System.EventHandler(this.button11_Click);
             // 
             // lbMainTime
             // 
@@ -1077,7 +1090,7 @@
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(971, 666);
             this.Controls.Add(this.pnDevice);
-            this.Controls.Add(this.panel3);
+            this.Controls.Add(this.pnNarration);
             this.Controls.Add(this.pnMainButton);
             this.Controls.Add(this.pnRoomSelect);
             this.Name = "MainForm";
@@ -1095,8 +1108,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.trbP1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trbP3)).EndInit();
             this.pnMainButton.ResumeLayout(false);
-            this.panel3.ResumeLayout(false);
-            this.panel3.PerformLayout();
+            this.pnNarration.ResumeLayout(false);
+            this.pnNarration.PerformLayout();
             this.panel9.ResumeLayout(false);
             this.panel9.PerformLayout();
             this.panel8.ResumeLayout(false);
@@ -1115,7 +1128,7 @@
         private System.Windows.Forms.ListView listView1;
         private System.Windows.Forms.TrackBar trbP2;
         private System.Windows.Forms.Panel pnRoomSelect;
-        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.RadioButton rbG2;
         private System.Windows.Forms.TrackBar trbP8;
         private System.Windows.Forms.TrackBar trbP7;
         private System.Windows.Forms.TrackBar trbP6;
@@ -1123,8 +1136,8 @@
         private System.Windows.Forms.TrackBar trbP4;
         private System.Windows.Forms.TrackBar trbP1;
         private System.Windows.Forms.TrackBar trbP3;
-        private System.Windows.Forms.RadioButton radioButton4;
-        private System.Windows.Forms.RadioButton radioButton3;
+        private System.Windows.Forms.RadioButton rbG4;
+        private System.Windows.Forms.RadioButton rbG3;
         private System.Windows.Forms.Label lbP1;
         private System.Windows.Forms.Label lbP6;
         private System.Windows.Forms.Label lbP8;
@@ -1136,7 +1149,7 @@
         private System.Windows.Forms.Button btnStart;
         private System.Windows.Forms.Button btnReady;
         private System.Windows.Forms.Panel pnMainButton;
-        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Panel pnNarration;
         private System.Windows.Forms.Label lbMainTime;
         private System.Windows.Forms.ColumnHeader playerNarration;
         private System.Windows.Forms.ColumnHeader playerSCN;
@@ -1187,8 +1200,9 @@
         private System.Windows.Forms.Button btnGloveKShift;
         private System.Windows.Forms.Button btnGloveNShift;
         private System.Windows.Forms.Button btnGlovePShift;
-        private System.Windows.Forms.RadioButton radioButton2;
+        private System.Windows.Forms.RadioButton rbG1;
         private System.Windows.Forms.Button btnManual;
+        private System.Windows.Forms.Button btnSetup;
     }
 }
 

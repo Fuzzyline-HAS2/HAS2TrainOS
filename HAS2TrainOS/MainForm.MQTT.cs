@@ -7,6 +7,7 @@ using System.Windows.Forms;
 using uPLibrary.Networking.M2Mqtt;
 using uPLibrary.Networking.M2Mqtt.Messages;
 using Aspose.Cells;
+using NAudio.CoreAudioApi;
 
 
 namespace HAS2TrainOS
@@ -20,7 +21,8 @@ namespace HAS2TrainOS
         {
             /*Excel에서 MAC 주소 가져오기*/
             Worksheet wsMac = wbMac.Worksheets[0];  //MAC 시트
-
+            int rowsMac = wsMac.Cells.MaxDataRow;
+            /*MQTT 서버 연결*/
             string BrokerAddress = "172.30.1.44";
             client = new MqttClient(BrokerAddress);
             // register a callback-function (we have to implement, see below) which is called by the library when a message was received
@@ -31,30 +33,35 @@ namespace HAS2TrainOS
 
             //Subscribe Topic 추가
             //client.Subscribe(new string[] { "test" }, new byte[] { 1 });   // we need arrays as parameters because we can subscribe to different topics with one call
-            string[] mqtt_topic = { "MAINOS", "ALL", "EI1", "EI2", "ER1", "ER2", "EV1", "EV2", "ED", "EG", "ET", "EE", "DOOR1", "DOOR2", "EM1", "EM2" };
-            //[] mqtt_topic = { "MAINOS" };
-            //for(int i = 0; i <)
-            byte[] mqtt_qos = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+            //string[] mqtt_topic = { "MAINOS", "ALL", "EI1", "EI2", "ER1", "ER2", "EV1", "EV2", "ED", "EG", "ET", "EE", "DOOR1", "DOOR2", "EM1", "EM2" };
+            string[] mqtt_topic = new string[rowsMac + 1];
+            byte[] mqtt_qos = new byte[rowsMac + 1];
+            for (int i = 0; i < rowsMac; i++)
+            {
+                //Console.WriteLine((wsMac.Cells[i + 1, 0].Value).ToString());
+                mqtt_topic[i] = (wsMac.Cells[i + 1, 0].Value).ToString();
+                mqtt_qos[i] = (byte)0;
+            }
+            mqtt_topic[rowsMac] = "MAINOS";
+            mqtt_qos[rowsMac] = (byte)0;
+
             client.Subscribe(mqtt_topic, mqtt_qos);
         }
         private void client_MqttMsgPublishReceived(object sender, MqttMsgPublishEventArgs e)
         {
             string ReceivedMessage = Encoding.UTF8.GetString(e.Message);
             string ReceivedTopic = e.Topic;
-            Console.WriteLine(ReceivedMessage);
+            //Console.WriteLine(ReceivedMessage);
             this.Invoke(new MethodInvoker(delegate ()
             {
                 Console.WriteLine(ReceivedTopic + ": " + ReceivedMessage + "\r\n");
             }));
             //DO SOMETHING..!
         }
+
         public void MQTT_Publish(string mqtt_topic, string mqtt_msg)
         {
             client.Publish(mqtt_topic, Encoding.UTF8.GetBytes(mqtt_msg), 0, true);
-        }
-        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            
         }
     }
 }

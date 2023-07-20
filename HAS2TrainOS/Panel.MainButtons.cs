@@ -15,7 +15,7 @@ namespace HAS2TrainOS
         {
             if (btnReady.Text == "READY")  //수동모드 시작하면
             {
-
+                GloveSelection();
             }
             else if (btnReady.Text == "!STOP¡")
             {
