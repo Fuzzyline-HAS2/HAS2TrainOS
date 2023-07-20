@@ -17,6 +17,7 @@ namespace HAS2TrainOS
         Mp3Player PlayerSpk = new Mp3Player();
         Mp3Player KillerrSpk = new Mp3Player();
         Mp3Player CommonSpk = new Mp3Player();
+
         public MainForm()
         {
             InitializeComponent();
@@ -33,11 +34,13 @@ namespace HAS2TrainOS
         {
             ExceltoListview();          //Excel에 저장된 값 불러오기
             ComboBoxDeviceAdd();    //Device panel에 있는 콤보박스에 추가하기
+            MQTT_Initializtion();
         }
         
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            ListviewtoExcel();
+            ListviewtoExcel();      //현재까지 값 엑셀에 저장
+            client.Disconnect();    //MQTT 연결종료
         }
 
         

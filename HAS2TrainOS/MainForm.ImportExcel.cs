@@ -6,8 +6,6 @@ using System.Threading.Tasks;
 using System.Runtime.InteropServices;
 using Aspose.Cells;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
-using NAudio.CoreAudioApi;
 
 namespace HAS2TrainOS
 {
@@ -24,6 +22,7 @@ namespace HAS2TrainOS
             Worksheet wsKiller= wbMain.Worksheets[1];      //Killer 시트
             Worksheet wsDevice = wbDevice.Worksheets[0]; //Device 시트
             Worksheet wsGlove = wbGlove.Worksheets[0];  //Glove 시트
+            
 
             int rowsPlayer = wsPlayer.Cells.MaxDataRow;
             for (int i = 1; i < rowsPlayer; i++)
