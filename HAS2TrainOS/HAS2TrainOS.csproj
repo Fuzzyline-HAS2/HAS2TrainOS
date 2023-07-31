@@ -93,11 +93,15 @@
       <DependentUpon>MainForm.cs</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SertupForm.cs">
+    <Compile Include="SetupForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SertupForm.Designer.cs">
-      <DependentUpon>SertupForm.cs</DependentUpon>
+    <Compile Include="SetupForm.Designer.cs">
+      <DependentUpon>SetupForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SetupForm.ImportExcel.cs">
+      <DependentUpon>SetupForm.cs</DependentUpon>
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="MainForm.ImportExcel.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
@@ -136,6 +140,7 @@
       <DependentUpon>MainForm.cs</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
+    
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -148,8 +153,8 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="SertupForm.resx">
-      <DependentUpon>SertupForm.cs</DependentUpon>
+    <EmbeddedResource Include="SetupForm.resx">
+      <DependentUpon>SetupForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

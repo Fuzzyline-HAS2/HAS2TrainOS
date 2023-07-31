@@ -51,7 +51,9 @@ namespace HAS2TrainOS
         }
         private void btnDeviceSetting_Click(object sender, EventArgs e)
         {
-            switch (cbDeviceName.SelectedIndex)
+            SituationJSONPublish("TAG");
+            SituationJSONPublish("TAG", "G1P1");
+            /*switch (cbDeviceName.SelectedIndex)
             {
                 case (int)enumDevice.ALL:
                     for (int i = 0; i < lvDevice.Items.Count; i++)
@@ -92,7 +94,7 @@ namespace HAS2TrainOS
                     DeviceJSONPublish(lvDevice.Items[cbDeviceName.SelectedIndex].SubItems[(int)listviewDevice.Name].Text,
                         lvDevice.Items[cbDeviceName.SelectedIndex].SubItems[(int)listviewDevice.State].Text);
                     break; 
-            }
+            }*/
         }
 
         private void btnDeviceReady_Click(object sender, EventArgs e)
@@ -211,6 +213,8 @@ namespace HAS2TrainOS
                 lvGlove.Items[nSelectedIndex].SubItems[2].Text = cbGloveState.Text;
                 lvGlove.Items[nSelectedIndex].SubItems[3].Text = tbGloveLifeChip.Text;
                 lvGlove.Items[nSelectedIndex].SubItems[4].Text = tbGloveBattery.Text;
+
+                //listview에서 변동이 토픽으로  publish
                 GloveJSONPublish(lvGlove.Items[nSelectedIndex].SubItems[(int)listviewGlove.Name].Text, 
                     lvGlove.Items[nSelectedIndex].SubItems[(int)listviewGlove.Role].Text, 
                     lvGlove.Items[nSelectedIndex].SubItems[(int)listviewGlove.State].Text, 

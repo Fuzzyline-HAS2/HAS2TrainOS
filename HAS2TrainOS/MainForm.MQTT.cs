@@ -8,7 +8,8 @@ using uPLibrary.Networking.M2Mqtt;
 using uPLibrary.Networking.M2Mqtt.Messages;
 using Aspose.Cells;
 using NAudio.CoreAudioApi;
-
+using Newtonsoft.Json.Linq;
+using Newtonsoft.Json;
 
 namespace HAS2TrainOS
 {
@@ -20,8 +21,9 @@ namespace HAS2TrainOS
         public void MQTT_Initializtion()
         {
             /*Excel에서 MAC 주소 가져오기*/
-            Worksheet wsMac = wbMac.Worksheets[0];  //MAC 시트
+            Worksheet wsMac = wbMAC.Worksheets[0];  //MAC 시트
             int rowsMac = wsMac.Cells.MaxDataRow;
+
             /*MQTT 서버 연결*/
             string BrokerAddress = "172.30.1.44";
             client = new MqttClient(BrokerAddress);
@@ -36,7 +38,7 @@ namespace HAS2TrainOS
             //string[] mqtt_topic = { "MAINOS", "ALL", "EI1", "EI2", "ER1", "ER2", "EV1", "EV2", "ED", "EG", "ET", "EE", "DOOR1", "DOOR2", "EM1", "EM2" };
             string[] mqtt_topic = new string[rowsMac + 1];
             byte[] mqtt_qos = new byte[rowsMac + 1];
-            for (int i = 0; i < rowsMac; i++)
+            for (int i = 0; i < 8; i++)
             {
                 //Console.WriteLine((wsMac.Cells[i + 1, 0].Value).ToString());
                 mqtt_topic[i] = (wsMac.Cells[i + 1, 0].Value).ToString();
@@ -47,6 +49,10 @@ namespace HAS2TrainOS
 
             client.Subscribe(mqtt_topic, mqtt_qos);
         }
+        public void MQTT_Publish(string mqtt_topic, string mqtt_msg)
+        {
+            client.Publish(mqtt_topic, Encoding.UTF8.GetBytes(mqtt_msg), 0, true);
+        }
         private void client_MqttMsgPublishReceived(object sender, MqttMsgPublishEventArgs e)
         {
             string ReceivedMessage = Encoding.UTF8.GetString(e.Message);
@@ -54,14 +60,31 @@ namespace HAS2TrainOS
             //Console.WriteLine(ReceivedMessage);
             this.Invoke(new MethodInvoker(delegate ()
             {
-                Console.WriteLine(ReceivedTopic + ": " + ReceivedMessage + "\r\n");
+                //Console.WriteLine(ReceivedTopic + ":" + ReceivedMessage + "\r\n");
+                JObject jsonInput = JObject.Parse(ReceivedMessage);
+                //JObject jsonInput = JsonConvert.DeserializeObject<Name>(ReceivedMessage);
+                //Console.WriteLine("ReceivedTopic: " + ReceivedTopic + ": \r\n");
+
+                if (ReceivedTopic == "MAINOS") 
+                {
+                    if (jsonInput.ContainsKey("situation"))
+                    {
+                        if (jsonInput.ContainsKey("MAC"))
+                        {
+                            Console.WriteLine("MAC: " + jsonInput["MAC"].ToString());
+
+                        }
+                            Console.WriteLine("Situation: "+ jsonInput["situation"].ToString());
+                        if (jsonInput.ContainsKey("DN"))
+                        {
+                            Console.WriteLine("DN: " + jsonInput["DN"].ToString());
+                        }
+                    }
+
+                }
+
             }));
             //DO SOMETHING..!
-        }
-
-        public void MQTT_Publish(string mqtt_topic, string mqtt_msg)
-        {
-            client.Publish(mqtt_topic, Encoding.UTF8.GetBytes(mqtt_msg), 0, true);
         }
     }
 }

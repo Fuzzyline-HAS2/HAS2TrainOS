@@ -28,94 +28,94 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem20 = new System.Windows.Forms.ListViewItem(new string[] {
             "EI1",
             "",
             ""}, -1);
-            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem21 = new System.Windows.Forms.ListViewItem(new string[] {
             "EI2",
             "",
             ""}, -1);
-            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem22 = new System.Windows.Forms.ListViewItem(new string[] {
             "ER1",
             "",
             ""}, -1);
-            System.Windows.Forms.ListViewItem listViewItem4 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem23 = new System.Windows.Forms.ListViewItem(new string[] {
             "ER2",
             "",
             ""}, -1);
-            System.Windows.Forms.ListViewItem listViewItem5 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem24 = new System.Windows.Forms.ListViewItem(new string[] {
             "EV1",
             "",
             ""}, -1);
-            System.Windows.Forms.ListViewItem listViewItem6 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem25 = new System.Windows.Forms.ListViewItem(new string[] {
             "EV2",
             "",
             ""}, -1);
-            System.Windows.Forms.ListViewItem listViewItem7 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem26 = new System.Windows.Forms.ListViewItem(new string[] {
             "EG",
             "",
             ""}, -1);
-            System.Windows.Forms.ListViewItem listViewItem8 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem27 = new System.Windows.Forms.ListViewItem(new string[] {
             "ED",
             "",
             ""}, -1);
-            System.Windows.Forms.ListViewItem listViewItem9 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem28 = new System.Windows.Forms.ListViewItem(new string[] {
             "EE",
             "",
             ""}, -1);
-            System.Windows.Forms.ListViewItem listViewItem10 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem29 = new System.Windows.Forms.ListViewItem(new string[] {
             "ET",
             "",
             ""}, -1);
-            System.Windows.Forms.ListViewItem listViewItem11 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem30 = new System.Windows.Forms.ListViewItem(new string[] {
             "EM",
             "",
             ""}, -1);
-            System.Windows.Forms.ListViewItem listViewItem12 = new System.Windows.Forms.ListViewItem(new string[] {
-            "P1",
+            System.Windows.Forms.ListViewItem listViewItem31 = new System.Windows.Forms.ListViewItem(new string[] {
+            "G1P1",
             "",
             "",
             "",
             ""}, -1);
-            System.Windows.Forms.ListViewItem listViewItem13 = new System.Windows.Forms.ListViewItem(new string[] {
-            "P2",
+            System.Windows.Forms.ListViewItem listViewItem32 = new System.Windows.Forms.ListViewItem(new string[] {
+            "G1P2",
             "",
             "",
             "",
             ""}, -1);
-            System.Windows.Forms.ListViewItem listViewItem14 = new System.Windows.Forms.ListViewItem(new string[] {
-            "P3",
+            System.Windows.Forms.ListViewItem listViewItem33 = new System.Windows.Forms.ListViewItem(new string[] {
+            "G1P3",
             "",
             "",
             "",
             ""}, -1);
-            System.Windows.Forms.ListViewItem listViewItem15 = new System.Windows.Forms.ListViewItem(new string[] {
-            "P4",
+            System.Windows.Forms.ListViewItem listViewItem34 = new System.Windows.Forms.ListViewItem(new string[] {
+            "G1P4",
             "",
             "",
             "",
             ""}, -1);
-            System.Windows.Forms.ListViewItem listViewItem16 = new System.Windows.Forms.ListViewItem(new string[] {
-            "P5",
+            System.Windows.Forms.ListViewItem listViewItem35 = new System.Windows.Forms.ListViewItem(new string[] {
+            "G1P5",
             "",
             "",
             "",
             ""}, -1);
-            System.Windows.Forms.ListViewItem listViewItem17 = new System.Windows.Forms.ListViewItem(new string[] {
-            "P6",
+            System.Windows.Forms.ListViewItem listViewItem36 = new System.Windows.Forms.ListViewItem(new string[] {
+            "G1P6",
             "",
             "",
             "",
             ""}, -1);
-            System.Windows.Forms.ListViewItem listViewItem18 = new System.Windows.Forms.ListViewItem(new string[] {
-            "P7",
+            System.Windows.Forms.ListViewItem listViewItem37 = new System.Windows.Forms.ListViewItem(new string[] {
+            "G1P7",
             "",
             "",
             "",
             ""}, -1);
-            System.Windows.Forms.ListViewItem listViewItem19 = new System.Windows.Forms.ListViewItem(new string[] {
-            "P8",
+            System.Windows.Forms.ListViewItem listViewItem38 = new System.Windows.Forms.ListViewItem(new string[] {
+            "G1P8",
             "",
             "",
             "",
@@ -162,11 +162,11 @@
             this.KillerCurrent = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.KillerSCN = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.KillerNarration = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.button12 = new System.Windows.Forms.Button();
+            this.btnTaggerNarrApply = new System.Windows.Forms.Button();
             this.panel8 = new System.Windows.Forms.Panel();
             this.label12 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.button11 = new System.Windows.Forms.Button();
+            this.btnPlayerNarrApply = new System.Windows.Forms.Button();
             this.lbMainTime = new System.Windows.Forms.Label();
             this.pnDevice = new System.Windows.Forms.Panel();
             this.panel7 = new System.Windows.Forms.Panel();
@@ -198,6 +198,9 @@
             this.btnGloveApply = new System.Windows.Forms.Button();
             this.cbGloveRole = new System.Windows.Forms.ComboBox();
             this.tbGloveLifeChip = new System.Windows.Forms.TextBox();
+            this.playerSendto = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.playerSkipCondition = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.playerWaitTime = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             ((System.ComponentModel.ISupportInitialize)(this.trbP2)).BeginInit();
             this.pnRoomSelect.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trbP8)).BeginInit();
@@ -222,13 +225,16 @@
             this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.playerCurrent,
             this.playerSCN,
-            this.playerNarration});
+            this.playerNarration,
+            this.playerSendto,
+            this.playerSkipCondition,
+            this.playerWaitTime});
             this.listView1.Font = new System.Drawing.Font("한컴 윤고딕 240", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.listView1.FullRowSelect = true;
             this.listView1.GridLines = true;
             this.listView1.HideSelection = false;
             this.listView1.HoverSelection = true;
-            this.listView1.Location = new System.Drawing.Point(3, 38);
+            this.listView1.Location = new System.Drawing.Point(3, 36);
             this.listView1.Name = "listView1";
             this.listView1.Size = new System.Drawing.Size(390, 198);
             this.listView1.TabIndex = 3;
@@ -627,13 +633,14 @@
             this.btnSetup.Size = new System.Drawing.Size(25, 25);
             this.btnSetup.TabIndex = 4;
             this.btnSetup.UseVisualStyleBackColor = true;
+            this.btnSetup.Click += new System.EventHandler(this.btnSetup_Click);
             // 
             // panel9
             // 
             this.panel9.Controls.Add(this.label13);
             this.panel9.Controls.Add(this.label14);
             this.panel9.Controls.Add(this.listView3);
-            this.panel9.Controls.Add(this.button12);
+            this.panel9.Controls.Add(this.btnTaggerNarrApply);
             this.panel9.Location = new System.Drawing.Point(401, 133);
             this.panel9.Name = "panel9";
             this.panel9.Size = new System.Drawing.Size(396, 237);
@@ -670,7 +677,7 @@
             this.listView3.GridLines = true;
             this.listView3.HideSelection = false;
             this.listView3.HoverSelection = true;
-            this.listView3.Location = new System.Drawing.Point(3, 38);
+            this.listView3.Location = new System.Drawing.Point(3, 36);
             this.listView3.Name = "listView3";
             this.listView3.Size = new System.Drawing.Size(390, 198);
             this.listView3.TabIndex = 3;
@@ -692,23 +699,23 @@
             this.KillerNarration.Text = "Killer Narr.";
             this.KillerNarration.Width = 304;
             // 
-            // button12
+            // btnTaggerNarrApply
             // 
-            this.button12.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button12.Font = new System.Drawing.Font("Impact", 11F);
-            this.button12.Location = new System.Drawing.Point(339, 3);
-            this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(54, 32);
-            this.button12.TabIndex = 0;
-            this.button12.Text = "Apply";
-            this.button12.UseVisualStyleBackColor = true;
+            this.btnTaggerNarrApply.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnTaggerNarrApply.Font = new System.Drawing.Font("Impact", 11F);
+            this.btnTaggerNarrApply.Location = new System.Drawing.Point(339, 3);
+            this.btnTaggerNarrApply.Name = "btnTaggerNarrApply";
+            this.btnTaggerNarrApply.Size = new System.Drawing.Size(54, 32);
+            this.btnTaggerNarrApply.TabIndex = 0;
+            this.btnTaggerNarrApply.Text = "Apply";
+            this.btnTaggerNarrApply.UseVisualStyleBackColor = true;
             // 
             // panel8
             // 
+            this.panel8.Controls.Add(this.listView1);
             this.panel8.Controls.Add(this.label12);
             this.panel8.Controls.Add(this.label9);
-            this.panel8.Controls.Add(this.listView1);
-            this.panel8.Controls.Add(this.button11);
+            this.panel8.Controls.Add(this.btnPlayerNarrApply);
             this.panel8.Location = new System.Drawing.Point(3, 133);
             this.panel8.Name = "panel8";
             this.panel8.Size = new System.Drawing.Size(396, 240);
@@ -734,17 +741,17 @@
             this.label9.TabIndex = 1;
             this.label9.Text = "Current: ";
             // 
-            // button11
+            // btnPlayerNarrApply
             // 
-            this.button11.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button11.Font = new System.Drawing.Font("Impact", 11F);
-            this.button11.Location = new System.Drawing.Point(339, 3);
-            this.button11.Name = "button11";
-            this.button11.Size = new System.Drawing.Size(54, 31);
-            this.button11.TabIndex = 0;
-            this.button11.Text = "Apply";
-            this.button11.UseVisualStyleBackColor = true;
-            this.button11.Click += new System.EventHandler(this.button11_Click);
+            this.btnPlayerNarrApply.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPlayerNarrApply.Font = new System.Drawing.Font("Impact", 11F);
+            this.btnPlayerNarrApply.Location = new System.Drawing.Point(339, 3);
+            this.btnPlayerNarrApply.Name = "btnPlayerNarrApply";
+            this.btnPlayerNarrApply.Size = new System.Drawing.Size(54, 31);
+            this.btnPlayerNarrApply.TabIndex = 0;
+            this.btnPlayerNarrApply.Text = "Apply";
+            this.btnPlayerNarrApply.UseVisualStyleBackColor = true;
+            this.btnPlayerNarrApply.Click += new System.EventHandler(this.btnPlayerNarrApply_Click);
             // 
             // lbMainTime
             // 
@@ -893,17 +900,17 @@
             this.lvDevice.GridLines = true;
             this.lvDevice.HideSelection = false;
             this.lvDevice.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1,
-            listViewItem2,
-            listViewItem3,
-            listViewItem4,
-            listViewItem5,
-            listViewItem6,
-            listViewItem7,
-            listViewItem8,
-            listViewItem9,
-            listViewItem10,
-            listViewItem11});
+            listViewItem20,
+            listViewItem21,
+            listViewItem22,
+            listViewItem23,
+            listViewItem24,
+            listViewItem25,
+            listViewItem26,
+            listViewItem27,
+            listViewItem28,
+            listViewItem29,
+            listViewItem30});
             this.lvDevice.Location = new System.Drawing.Point(6, 6);
             this.lvDevice.MultiSelect = false;
             this.lvDevice.Name = "lvDevice";
@@ -985,14 +992,14 @@
             this.lvGlove.GridLines = true;
             this.lvGlove.HideSelection = false;
             this.lvGlove.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem12,
-            listViewItem13,
-            listViewItem14,
-            listViewItem15,
-            listViewItem16,
-            listViewItem17,
-            listViewItem18,
-            listViewItem19});
+            listViewItem31,
+            listViewItem32,
+            listViewItem33,
+            listViewItem34,
+            listViewItem35,
+            listViewItem36,
+            listViewItem37,
+            listViewItem38});
             this.lvGlove.Location = new System.Drawing.Point(3, 3);
             this.lvGlove.MultiSelect = false;
             this.lvGlove.Name = "lvGlove";
@@ -1082,6 +1089,18 @@
             this.tbGloveLifeChip.TabIndex = 4;
             this.tbGloveLifeChip.Text = "0";
             this.tbGloveLifeChip.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // playerSendto
+            // 
+            this.playerSendto.Text = "Send To.";
+            // 
+            // playerSkipCondition
+            // 
+            this.playerSkipCondition.Text = "Skip Conditions";
+            // 
+            // playerWaitTime
+            // 
+            this.playerWaitTime.Text = "Wait Time";
             // 
             // MainForm
             // 
@@ -1185,7 +1204,7 @@
         private System.Windows.Forms.TextBox tbDeviceLCBP;
         private System.Windows.Forms.ComboBox cbDeviceName;
         private System.Windows.Forms.Panel panel8;
-        private System.Windows.Forms.Button button11;
+        private System.Windows.Forms.Button btnPlayerNarrApply;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Panel panel9;
@@ -1195,7 +1214,7 @@
         private System.Windows.Forms.ColumnHeader KillerCurrent;
         private System.Windows.Forms.ColumnHeader KillerSCN;
         private System.Windows.Forms.ColumnHeader KillerNarration;
-        private System.Windows.Forms.Button button12;
+        private System.Windows.Forms.Button btnTaggerNarrApply;
         private System.Windows.Forms.Button btnGloveToggle;
         private System.Windows.Forms.Button btnGloveKShift;
         private System.Windows.Forms.Button btnGloveNShift;
@@ -1203,6 +1222,9 @@
         private System.Windows.Forms.RadioButton rbG1;
         private System.Windows.Forms.Button btnManual;
         private System.Windows.Forms.Button btnSetup;
+        private System.Windows.Forms.ColumnHeader playerSendto;
+        private System.Windows.Forms.ColumnHeader playerSkipCondition;
+        private System.Windows.Forms.ColumnHeader playerWaitTime;
     }
 }
 

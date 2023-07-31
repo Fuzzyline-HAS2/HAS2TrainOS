@@ -6,31 +6,46 @@ using System.Threading.Tasks;
 using System.Runtime.InteropServices;
 using Aspose.Cells;
 using System.Windows.Forms;
+using System.Globalization;
 
 namespace HAS2TrainOS
 {
 
     public partial class MainForm : Form
     {
-        Workbook wbMain = new Workbook(@"C:\Users\user\Desktop\bbangjun\HAS2_Train\wbMain.xlsx");
-        Workbook wbMac = new Workbook(@"C:\Users\user\Desktop\bbangjun\HAS2_Train\wbMac.xlsx");
-        Workbook wbDevice = new Workbook(@"C:\Users\user\Desktop\bbangjun\HAS2_Train\wbDevice.xlsx");
-        Workbook wbGlove = new Workbook(@"C:\Users\user\Desktop\bbangjun\HAS2_Train\wbGlove.xlsx");
+        Workbook wbMain = new Workbook(@"C:\Users\user\Desktop\bbangjun\HAS2_Train\wbMain.xlsx");        // 나레이션 엑셀
+        Workbook wbMAC = new Workbook(@"C:\Users\user\Desktop\bbangjun\HAS2_Train\wbMac.xlsx");         //MQTT 구독하기 위해
+        Workbook wbDevice = new Workbook(@"C:\Users\user\Desktop\bbangjun\HAS2_Train\wbDevice.xlsx");  //장치 데이터 저장용
+        Workbook wbGlove = new Workbook(@"C:\Users\user\Desktop\bbangjun\HAS2_Train\wbGlove.xlsx");     // 글러브 데이터 저장용
         private void ExceltoListview()
         {
             Worksheet wsPlayer = wbMain.Worksheets[0];    //Player 시트
             Worksheet wsKiller= wbMain.Worksheets[1];      //Killer 시트
             Worksheet wsDevice = wbDevice.Worksheets[0]; //Device 시트
             Worksheet wsGlove = wbGlove.Worksheets[0];  //Glove 시트
-            
 
+            String validformats = "yyyy-MM-dd tt HH:mm:ss";
+            string tmp = GetCell(wsPlayer, 1, 15);
+            string tmpp = "1899-12-31 오전 12:00:05";
+            Console.WriteLine(tmp);
+            DateTime dateTime = DateTime.ParseExact(tmpp, "yyyy-MM-dd tt HH:mm:ss", null);
+
+            //DateTime dateTime = DateTime.ParseExact(tmp, validformats , null);
+            Console.WriteLine(dateTime);
             int rowsPlayer = wsPlayer.Cells.MaxDataRow;
             for (int i = 1; i < rowsPlayer; i++)
             {
                 ListViewItem items = new ListViewItem();
-                items.Text = "";    //Ip삽입
-                items.SubItems.Add((wsPlayer.Cells[i, 1].Value).ToString());    //port삽입
-                items.SubItems.Add((wsPlayer.Cells[i, 5].Value).ToString());    //product삽입
+                items.Text = "";
+                /*items.SubItems.Add((wsPlayer.Cells[i, 1].Value).ToString());    //port삽입
+                items.SubItems.Add((wsPlayer.Cells[i, 5].Value).ToString());    //product삽입*/
+                items.SubItems.Add(GetCell(wsPlayer, i, 1));
+                items.SubItems.Add(GetCell(wsPlayer, i, 5));
+                items.SubItems.Add(GetCell(wsPlayer, i, 6));
+                items.SubItems.Add(GetCell(wsPlayer, i, 7));
+                //DateTime dt = DateTime.Parse(GetCell(wsPlayer, i, 15));
+                //Console.WriteLine(dt.Second);
+                //items.SubItems.Add(dt);
                 listView1.Items.Add(items);    //실제 추가
             }
 
@@ -88,6 +103,7 @@ namespace HAS2TrainOS
             {
                 Console.WriteLine("no wbGlove more sheet to erase");
             }
+            /*aspose.cell 라이선스 문제로 저장할때마다 시트가 추가되는 버그를 해결하기 위해 매번 켤때마다 시트를 삭제함*/
         }
         private void ListviewtoExcel()
         {
@@ -115,6 +131,19 @@ namespace HAS2TrainOS
                 }
             }
             wbGlove.Save("C:\\Users\\user\\Desktop\\bbangjun\\HAS2_Train\\wbGlove.xlsx");
+        }
+
+        private String GetCell(Worksheet ws, int col, int row)
+        {
+          
+            if(ws.Cells[col, row].Value != null)
+            {
+                return ws.Cells[col, row].Value.ToString();
+            }
+            else
+            {
+                return "";
+            } 
         }
     }
 }

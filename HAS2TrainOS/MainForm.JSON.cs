@@ -7,6 +7,7 @@ using System.Windows.Forms;
 using NAudio.CoreAudioApi;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using static System.Windows.Forms.AxHost;
 
 namespace HAS2TrainOS
 {
@@ -33,6 +34,14 @@ namespace HAS2TrainOS
             if (LCBP != "")
                 DeviceData.Add(new JProperty("lcbp", LCBP));
             MQTT_Publish(DN, DeviceData.ToString());
+        }
+        public void SituationJSONPublish(String Situation, String DN = "")
+        {
+            JObject SituationData = new JObject(new JProperty("situation", Situation));
+            if (DN != "")
+                SituationData.Add(new JProperty("DN", DN));
+
+            MQTT_Publish("MAINOS", SituationData.ToString());
         }
     }
 }
