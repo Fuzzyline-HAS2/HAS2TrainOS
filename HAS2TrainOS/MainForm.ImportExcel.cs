@@ -24,14 +24,6 @@ namespace HAS2TrainOS
             Worksheet wsDevice = wbDevice.Worksheets[0]; //Device 시트
             Worksheet wsGlove = wbGlove.Worksheets[0];  //Glove 시트
 
-            String validformats = "yyyy-MM-dd tt HH:mm:ss";
-            string tmp = GetCell(wsPlayer, 1, 15);
-            string tmpp = "1899-12-31 오전 12:00:05";
-            Console.WriteLine(tmp);
-            DateTime dateTime = DateTime.ParseExact(tmpp, "yyyy-MM-dd tt HH:mm:ss", null);
-
-            //DateTime dateTime = DateTime.ParseExact(tmp, validformats , null);
-            Console.WriteLine(dateTime);
             int rowsPlayer = wsPlayer.Cells.MaxDataRow;
             for (int i = 1; i < rowsPlayer; i++)
             {
@@ -43,10 +35,16 @@ namespace HAS2TrainOS
                 items.SubItems.Add(GetCell(wsPlayer, i, 5));
                 items.SubItems.Add(GetCell(wsPlayer, i, 6));
                 items.SubItems.Add(GetCell(wsPlayer, i, 7));
-                //DateTime dt = DateTime.Parse(GetCell(wsPlayer, i, 15));
-                //Console.WriteLine(dt.Second);
-                //items.SubItems.Add(dt);
-                listView1.Items.Add(items);    //실제 추가
+                String strNarrTime = GetCell(wsPlayer, i, 15);                                 // 나레이션 시간 타임 가져오기
+                String strWaitTime = GetCell(wsPlayer, i, 16);                                 // 대기 시간 타임 가져오기
+                //Console.WriteLine(strNarrTime);
+                strNarrTime = strNarrTime.Substring(strNarrTime.Length - 5, 5);     //1899-12-31 AM 12:00:00  포멧에서 뒤에 mm:ss만 남기고 자르기
+                strWaitTime = strWaitTime.Substring(strWaitTime.Length - 5, 5);     // 1899-12-31 AM 12:00:00  포멧에서 뒤에 mm:ss만 남기고 자르기
+                String validformats = "mm:ss";
+                DateTime dtNarrTime = DateTime.ParseExact(strNarrTime, validformats, null);
+                DateTime dtWaitTime = DateTime.ParseExact(strWaitTime, validformats, null);
+                items.SubItems.Add((dtNarrTime.Second + dtWaitTime.Second).ToString());
+                lvPlayerNarr.Items.Add(items);    //실제 추가
             }
 
             int rowsKiller = wsKiller.Cells.MaxDataRow;
@@ -132,7 +130,8 @@ namespace HAS2TrainOS
             }
             wbGlove.Save("C:\\Users\\user\\Desktop\\bbangjun\\HAS2_Train\\wbGlove.xlsx");
         }
-
+        
+        // excel에서 불러올때 null 이면 예외처리 해주는 함수
         private String GetCell(Worksheet ws, int col, int row)
         {
           

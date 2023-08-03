@@ -17,7 +17,7 @@ namespace HAS2TrainOS
     {
         MqttClient client;
         string clientId;
-
+        structMAC[] MACs;
         public void MQTT_Initializtion()
         {
             /*Excel에서 MAC 주소 가져오기*/
@@ -38,13 +38,15 @@ namespace HAS2TrainOS
             //string[] mqtt_topic = { "MAINOS", "ALL", "EI1", "EI2", "ER1", "ER2", "EV1", "EV2", "ED", "EG", "ET", "EE", "DOOR1", "DOOR2", "EM1", "EM2" };
             string[] mqtt_topic = new string[rowsMac + 1];
             byte[] mqtt_qos = new byte[rowsMac + 1];
-            for (int i = 0; i < 8; i++)
+            MACs = new structMAC[rowsMac];
+            for (int i = 0; i < rowsMac; i++)
             {
                 //Console.WriteLine((wsMac.Cells[i + 1, 0].Value).ToString());
-                mqtt_topic[i] = (wsMac.Cells[i + 1, 0].Value).ToString();
+                mqtt_topic[i] = (wsMac.Cells[i + 1, 1].Value).ToString();
                 mqtt_qos[i] = (byte)0;
+                MACs[i].SaveMAC((wsMac.Cells[i + 1, 0].Value).ToString(), (wsMac.Cells[i + 1, 1].Value).ToString());
             }
-            mqtt_topic[rowsMac] = "MAINOS";
+            mqtt_topic[rowsMac] = "OS";
             mqtt_qos[rowsMac] = (byte)0;
 
             client.Subscribe(mqtt_topic, mqtt_qos);
@@ -53,6 +55,12 @@ namespace HAS2TrainOS
         {
             client.Publish(mqtt_topic, Encoding.UTF8.GetBytes(mqtt_msg), 0, true);
         }
+
+        String strTagTo = "";
+        String[] strTagDevice;
+        int nTagCnt = 0;
+        int nTagMaxCnt = 0;
+        
         private void client_MqttMsgPublishReceived(object sender, MqttMsgPublishEventArgs e)
         {
             string ReceivedMessage = Encoding.UTF8.GetString(e.Message);
@@ -60,14 +68,75 @@ namespace HAS2TrainOS
             //Console.WriteLine(ReceivedMessage);
             this.Invoke(new MethodInvoker(delegate ()
             {
-                //Console.WriteLine(ReceivedTopic + ":" + ReceivedMessage + "\r\n");
-                JObject jsonInput = JObject.Parse(ReceivedMessage);
+            //Console.WriteLine(ReceivedTopic + ":" + ReceivedMessage + "\r\n");
+            JObject jsonInput = JObject.Parse(ReceivedMessage);
                 //JObject jsonInput = JsonConvert.DeserializeObject<Name>(ReceivedMessage);
-                //Console.WriteLine("ReceivedTopic: " + ReceivedTopic + ": \r\n");
+                Console.WriteLine(ReceivedTopic + ": " + ReceivedMessage) ;
 
-                if (ReceivedTopic == "MAINOS") 
+                if (ReceivedTopic == "OS")
                 {
-                    if (jsonInput.ContainsKey("situation"))
+                    if (strTagDevice != null)   //엑셀에서 TAG명령어 들어왔을때만 실행
+                    {
+                        if (jsonInput.ContainsKey("Situation"))
+                        {
+                            if (jsonInput["Situation"].ToString() == "tag")
+                            {
+                                if (jsonInput.ContainsKey("MAC"))
+                                {
+                                    foreach (structMAC m in MACs)
+                                    {
+                                        if (m.strDeviceMAC == jsonInput["MAC"].ToString())
+                                        {
+                                            foreach (String s in strTagDevice)
+                                            {
+                                                if (s == m.strDeviceName)
+                                                {
+                                                    Console.WriteLine (s);
+                                                    nTagCnt++;
+                                                    break;
+                                                }
+                                            }
+                                            if (nTagCnt >= nTagMaxCnt)
+                                            {
+                                                timerPlayerSkipTime.Change(System.Threading.Timeout.Infinite, System.Threading.Timeout.Infinite); //PlayerSkipTimer 종료
+                                                foreach (ListViewItem listitem in lvPlayerNarr.Items)
+                                                {
+                                                    if (listitem.SubItems[1].Text == strTagTo)
+                                                    {
+                                                        nPlayerCur = listitem.Index;
+                                                    }
+                                                }
+                                                strTagDevice = null;
+                                                PlayerNarr();
+                                                break;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    if (jsonInput.ContainsKey("DN"))
+                    {
+                        
+                        if (jsonInput["DN"].ToString().Contains("G"))
+                        {
+                            foreach(ListViewItem listitem in lvGlove.Items)
+                            {
+                                if(jsonInput["DN"].ToString() == listitem.SubItems[0].Text)
+                                {
+                                    if (jsonInput.ContainsKey("LC"))
+                                    {
+
+                                    }
+                                }
+                            }
+                        }
+
+                    }
+                }
+        
+                  /*  if (jsonInput.ContainsKey("situation"))
                     {
                         if (jsonInput.ContainsKey("MAC"))
                         {
@@ -79,10 +148,8 @@ namespace HAS2TrainOS
                         {
                             Console.WriteLine("DN: " + jsonInput["DN"].ToString());
                         }
-                    }
-
-                }
-
+                    }*/
+                
             }));
             //DO SOMETHING..!
         }

@@ -36,13 +36,32 @@ namespace HAS2TrainOS
             {
                 if (btnManual.Enabled == true)  //Start를 맨 처음에 눌렀을경우 타이머 초기화 해서 0부터 카운트 되게
                 {
+                    //메인 파트
                     btnReady.Text = "!STOP¡";
                     btnReady.BackColor = Color.Red;
                     btnReady.ForeColor = Color.Yellow;
                     btnStart.BackColor = Color.Yellow;
                     pnRoomSelect.Enabled = false;
                     nMainTime = 0;  //메인 타이머 변수 초기화
-                }   //중간에 PAUSE 했다가 다시하는경우 타이머 변수 초기화 안되게 하기 위함
+
+                    //나레이션 파트
+                    nPlayerCur  = 0;         //Player 나레이션 0번부터 초기화
+                    PlayerNarr();
+
+                    // 글러브 전송
+                    foreach(ListViewItem listiem in lvGlove.Items)
+                    {
+                        int i = listiem.Index;
+                        GloveJSONPublish(lvGlove.Items[i].SubItems[(int)listviewGlove.Name].Text,
+                            lvGlove.Items[i].SubItems[(int)listviewGlove.Role].Text,
+                            lvGlove.Items[i].SubItems[(int)listviewGlove.State].Text,
+                            lvGlove.Items[i].SubItems[(int)listviewGlove.LC].Text,
+                            lvGlove.Items[i].SubItems[(int)listviewGlove.BP].Text);
+                    }
+
+                }   
+                //중간에 PAUSE 했다가 다시하는경우 타이머 변수 초기화 안되게 하기 위함
+                //메인 타이머
                 btnStart.Text = "PAUSE";
                 btnManual.Enabled = false;
                 timerMain.Change(0, 1000);  //메인 타이머 시작
@@ -52,6 +71,7 @@ namespace HAS2TrainOS
                 btnStart.Text = "RESUME";
                 btnManual.Enabled = false;
                 timerMain.Change(System.Threading.Timeout.Infinite, System.Threading.Timeout.Infinite); //메인타이머 종료
+                timerPlayerWaitTime.Change(System.Threading.Timeout.Infinite, System.Threading.Timeout.Infinite); //메인타이머 종료
             }
         }
 

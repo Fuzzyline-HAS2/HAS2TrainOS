@@ -51,8 +51,8 @@ namespace HAS2TrainOS
         }
         private void btnDeviceSetting_Click(object sender, EventArgs e)
         {
-            SituationJSONPublish("TAG");
-            SituationJSONPublish("TAG", "G1P1");
+            SituationJSONPublish("OS","TAG");
+            //SituationJSONPublish("MAINOS", "TAG", "G1P1");
             /*switch (cbDeviceName.SelectedIndex)
             {
                 case (int)enumDevice.ALL:

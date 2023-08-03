@@ -33,23 +33,50 @@ namespace HAS2TrainOS
         }
         private void timerPlayerWaitTimeWork()
         {
-            lbMainTime.Text = (nPlayerWaitTime / 60).ToString("00") + ":" + (nPlayerWaitTime % 60).ToString("00");    //남은 시간 uint -> String으로 변환하는 작업
+            lbPlayerWaitTimer.Text = (nPlayerWaitTime / 60).ToString("00") + ":" + (nPlayerWaitTime % 60).ToString("00");    //남은 시간 uint -> String으로 변환하는 작업
+            if (Int32.Parse(lvPlayerNarr.Items[nPlayerCur].SubItems[5].Text) == 0)
+            {
+                Console.WriteLine("0sec detected Wait for skip condition!");
+                nPlayerWaitTime = 0;
+            }
+            else if (nPlayerWaitTime >= Int32.Parse(lvPlayerNarr.Items[nPlayerCur].SubItems[5].Text))
+            {
+                Console.WriteLine(nPlayerCur.ToString() + " Player Narr Wait Time End!");
+                //lvPlayerNarr.Focus();
+                nPlayerCur++;
+                PlayerNarr();
+            }
             nPlayerWaitTime += 1;                                                                      //초 마다 타이머 함수 실행되면 -1해 남은시간 줄여줌
-            //Gamesys_TimeAction();
+
         }
         /* 플레이어 SkipTime 타이머*/
         System.Threading.Timer timerPlayerSkipTime;
         delegate void TimerEventFiredDelegate_timerPlayerSkipTime();
         uint nPlayerSkipTime = 0;
+        uint nPlayerSkipCondition = 0;
+        String strSkipTo = "";
         void timerPlayerSkipTime_CallBack(Object state)
         {
             BeginInvoke(new TimerEventFiredDelegate_timerPlayerSkipTime(timerPlayerSkipTimeWork));
         }
         private void timerPlayerSkipTimeWork()
         {
-            lbMainTime.Text = (nPlayerSkipTime / 60).ToString("00") + ":" + (nPlayerSkipTime % 60).ToString("00");    //남은 시간 uint -> String으로 변환하는 작업
+            lbPlayerSkipTimer.Text = (nPlayerSkipTime / 60).ToString("00") + ":" + (nPlayerSkipTime % 60).ToString("00");    //남은 시간 uint -> String으로 변환하는 작업
             nPlayerSkipTime += 1;                                                                      //초 마다 타이머 함수 실행되면 -1해 남은시간 줄여줌
-            //Gamesys_TimeAction();
+            if(nPlayerSkipTime >= nPlayerSkipCondition)
+            {
+                foreach(ListViewItem listitem in lvPlayerNarr.Items)
+                {
+                    if (listitem.SubItems[1].Text == strSkipTo)
+                    {
+                        timerPlayerSkipTime.Change(System.Threading.Timeout.Infinite, System.Threading.Timeout.Infinite); //PlayerSkipTimer 종료
+                        nPlayerCur = listitem.Index;
+                        strTagDevice = null;
+                        PlayerNarr();
+                        break;
+                    }
+                }
+            }
         }
 
 

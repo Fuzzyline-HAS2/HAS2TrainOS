@@ -17,31 +17,39 @@ namespace HAS2TrainOS
         {
             JObject gloveData = new JObject(new JProperty("DN", DN));
             if (role != "")
-                gloveData.Add(new JProperty("role", role));
+                gloveData.Add(new JProperty("R", role));
             if (state != "")
-                gloveData.Add(new JProperty("state", state));
+                gloveData.Add(new JProperty("DS", state));
             if (LC != "")
-                gloveData.Add(new JProperty("lc", LC));
+                gloveData.Add(new JProperty("LC", LC));
             if (role != "")
-                gloveData.Add(new JProperty("bp", BP));
-            MQTT_Publish(DN, gloveData.ToString());
+                gloveData.Add(new JProperty("BP", BP));
+            MQTT_Publish("GLOVE", gloveData.ToString());
         }
         public void DeviceJSONPublish(String DN, String state = "", String LCBP = "")
         {
-            JObject DeviceData = new JObject(new JProperty("dn", DN));
+            JObject DeviceData = new JObject(new JProperty("DN", DN));
             if (state != "")
-                DeviceData.Add(new JProperty("state", state));
+                DeviceData.Add(new JProperty("DS", state));
             if (LCBP != "")
-                DeviceData.Add(new JProperty("lcbp", LCBP));
+                DeviceData.Add(new JProperty("LCBP", LCBP));
             MQTT_Publish(DN, DeviceData.ToString());
         }
-        public void SituationJSONPublish(String Situation, String DN = "")
+        public void SituationJSONPublish(String Device, String Situation, String DN = "")
         {
-            JObject SituationData = new JObject(new JProperty("situation", Situation));
+            JObject SituationData = new JObject(new JProperty("Situation", Situation));
+            SituationData.Add(new JProperty("MAC", "8A:88"));
             if (DN != "")
                 SituationData.Add(new JProperty("DN", DN));
 
-            MQTT_Publish("MAINOS", SituationData.ToString());
+            MQTT_Publish(Device, SituationData.ToString());
+        }
+        public void SCNJSONPublish(String Device, String SCN)
+        {
+            JObject SituationData = new JObject(new JProperty("DS", "scenario"));
+            SituationData.Add(new JProperty("SCN", SCN));
+           
+            MQTT_Publish(Device, SituationData.ToString());
         }
     }
 }
