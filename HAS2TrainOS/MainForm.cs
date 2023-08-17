@@ -126,7 +126,7 @@ namespace HAS2TrainOS
                     {
                         if(m.strDeviceName == s)
                         {
-                            SCNJSONPublish(m.strDeviceMAC, "p" + lvPlayerNarr.Items[nPlayerCur].SubItems[1].Text.Replace("#","" ));
+                            SCNJSONPublish(m.strDeviceMAC, "t" + lvPlayerNarr.Items[nPlayerCur].SubItems[1].Text.Replace("#","" ));
                         }
                     }
                 }
@@ -155,7 +155,7 @@ namespace HAS2TrainOS
                         timerPlayerSkipTime.Change(0, 1000);//Player Skip Timer 시작
 
                         nPlayerSkipCondition = UInt32.Parse(strWait[1]);    //스킵하는 시간 저장
-                        strSkipTo = "#" + strWait[2];                                 //스킵하고 진행시킬 나레이션 번호 저장
+                        strPlayerSkipTo = "#" + strWait[2];                                 //스킵하고 진행시킬 나레이션 번호 저장
                     }
                 }
             }

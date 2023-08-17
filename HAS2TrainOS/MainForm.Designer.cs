@@ -45,11 +45,11 @@
             "",
             ""}, -1);
             System.Windows.Forms.ListViewItem listViewItem5 = new System.Windows.Forms.ListViewItem(new string[] {
-            "EV1",
+            "EVp",
             "",
             ""}, -1);
             System.Windows.Forms.ListViewItem listViewItem6 = new System.Windows.Forms.ListViewItem(new string[] {
-            "EV2",
+            "EVt",
             "",
             ""}, -1);
             System.Windows.Forms.ListViewItem listViewItem7 = new System.Windows.Forms.ListViewItem(new string[] {
@@ -157,6 +157,8 @@
             this.pnMainButton = new System.Windows.Forms.Panel();
             this.btnManual = new System.Windows.Forms.Button();
             this.pnNarration = new System.Windows.Forms.Panel();
+            this.lbTaggerSkipTimer = new System.Windows.Forms.Label();
+            this.lbTaggerWaitTimer = new System.Windows.Forms.Label();
             this.lbPlayerSkipTimer = new System.Windows.Forms.Label();
             this.lbPlayerWaitTimer = new System.Windows.Forms.Label();
             this.btnSetup = new System.Windows.Forms.Button();
@@ -628,6 +630,8 @@
             // 
             // pnNarration
             // 
+            this.pnNarration.Controls.Add(this.lbTaggerSkipTimer);
+            this.pnNarration.Controls.Add(this.lbTaggerWaitTimer);
             this.pnNarration.Controls.Add(this.lbPlayerSkipTimer);
             this.pnNarration.Controls.Add(this.lbPlayerWaitTimer);
             this.pnNarration.Controls.Add(this.btnSetup);
@@ -639,6 +643,24 @@
             this.pnNarration.Name = "pnNarration";
             this.pnNarration.Size = new System.Drawing.Size(800, 376);
             this.pnNarration.TabIndex = 6;
+            // 
+            // lbTaggerSkipTimer
+            // 
+            this.lbTaggerSkipTimer.AutoSize = true;
+            this.lbTaggerSkipTimer.Location = new System.Drawing.Point(764, 114);
+            this.lbTaggerSkipTimer.Name = "lbTaggerSkipTimer";
+            this.lbTaggerSkipTimer.Size = new System.Drawing.Size(33, 16);
+            this.lbTaggerSkipTimer.TabIndex = 15;
+            this.lbTaggerSkipTimer.Text = "00:00";
+            // 
+            // lbTaggerWaitTimer
+            // 
+            this.lbTaggerWaitTimer.AutoSize = true;
+            this.lbTaggerWaitTimer.Location = new System.Drawing.Point(725, 114);
+            this.lbTaggerWaitTimer.Name = "lbTaggerWaitTimer";
+            this.lbTaggerWaitTimer.Size = new System.Drawing.Size(33, 16);
+            this.lbTaggerWaitTimer.TabIndex = 14;
+            this.lbTaggerWaitTimer.Text = "00:00";
             // 
             // lbPlayerSkipTimer
             // 
@@ -1107,7 +1129,7 @@
             this.cbGloveRole.FormattingEnabled = true;
             this.cbGloveRole.Items.AddRange(new object[] {
             "player",
-            "killer",
+            "tagger",
             "ghost",
             "revival",
             "none"});
@@ -1251,6 +1273,8 @@
         private System.Windows.Forms.ColumnHeader playerWaitTime;
         private System.Windows.Forms.Label lbPlayerSkipTimer;
         private System.Windows.Forms.Label lbPlayerWaitTimer;
+        private System.Windows.Forms.Label lbTaggerSkipTimer;
+        private System.Windows.Forms.Label lbTaggerWaitTimer;
     }
 }
 

@@ -54,7 +54,7 @@ namespace HAS2TrainOS
             {
                 case 0: return "player";
                 case 1: return "none";
-                case 2: return "killer";
+                case 2: return "tagger";
                 default: return "error";
             }
         }
@@ -82,7 +82,7 @@ namespace HAS2TrainOS
                     this.Controls.Find(strTrackBarName, true).FirstOrDefault().BackColor = SystemColors.Control;
                     this.Controls.Find(strLabelName, true).FirstOrDefault().BackColor = SystemColors.Control;
                     break;
-                case 2: //Killer
+                case 2: //Tagger
                     this.Controls.Find(strTrackBarName, true).FirstOrDefault().BackColor = Color.BlueViolet;
                     this.Controls.Find(strLabelName, true).FirstOrDefault().BackColor = Color.BlueViolet;
                     break;

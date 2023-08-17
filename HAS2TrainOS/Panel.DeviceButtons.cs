@@ -51,9 +51,9 @@ namespace HAS2TrainOS
         }
         private void btnDeviceSetting_Click(object sender, EventArgs e)
         {
-            SituationJSONPublish("OS","TAG");
+            //SituationJSONPublish("OS","TAG");
             //SituationJSONPublish("MAINOS", "TAG", "G1P1");
-            /*switch (cbDeviceName.SelectedIndex)
+            switch (cbDeviceName.SelectedIndex)
             {
                 case (int)enumDevice.ALL:
                     for (int i = 0; i < lvDevice.Items.Count; i++)
@@ -81,12 +81,12 @@ namespace HAS2TrainOS
 
                     break;
                 case (int)enumDevice.VENT:
-                    lvDevice.Items[(int)enumDevice.EV1].SubItems[(int)listviewDevice.State].Text = "setting";
-                    lvDevice.Items[(int)enumDevice.EV2].SubItems[(int)listviewDevice.State].Text = "setting";
-                    DeviceJSONPublish(lvDevice.Items[(int)enumDevice.EV1].SubItems[(int)listviewDevice.Name].Text,
-                        lvDevice.Items[(int)enumDevice.EV1].SubItems[(int)listviewDevice.State].Text);
-                    DeviceJSONPublish(lvDevice.Items[(int)enumDevice.EV2].SubItems[(int)listviewDevice.Name].Text,
-                        lvDevice.Items[(int)enumDevice.EV2].SubItems[(int)listviewDevice.State].Text);
+                    lvDevice.Items[(int)enumDevice.EVp].SubItems[(int)listviewDevice.State].Text = "setting";
+                    lvDevice.Items[(int)enumDevice.EVt].SubItems[(int)listviewDevice.State].Text = "setting";
+                    DeviceJSONPublish(lvDevice.Items[(int)enumDevice.EVp].SubItems[(int)listviewDevice.Name].Text,
+                        lvDevice.Items[(int)enumDevice.EVp].SubItems[(int)listviewDevice.State].Text);
+                    DeviceJSONPublish(lvDevice.Items[(int)enumDevice.EVt].SubItems[(int)listviewDevice.Name].Text,
+                        lvDevice.Items[(int)enumDevice.EVt].SubItems[(int)listviewDevice.State].Text);
 
                     break;
                 default:
@@ -94,7 +94,7 @@ namespace HAS2TrainOS
                     DeviceJSONPublish(lvDevice.Items[cbDeviceName.SelectedIndex].SubItems[(int)listviewDevice.Name].Text,
                         lvDevice.Items[cbDeviceName.SelectedIndex].SubItems[(int)listviewDevice.State].Text);
                     break; 
-            }*/
+            }
         }
 
         private void btnDeviceReady_Click(object sender, EventArgs e)
@@ -127,12 +127,12 @@ namespace HAS2TrainOS
 
                     break;
                 case (int)enumDevice.VENT:
-                    lvDevice.Items[(int)enumDevice.EV1].SubItems[(int)listviewDevice.State].Text = "ready";
-                    lvDevice.Items[(int)enumDevice.EV2].SubItems[(int)listviewDevice.State].Text = "ready";
-                    DeviceJSONPublish(lvDevice.Items[(int)enumDevice.EV1].SubItems[(int)listviewDevice.Name].Text,
-                        lvDevice.Items[(int)enumDevice.EV1].SubItems[(int)listviewDevice.State].Text);
-                    DeviceJSONPublish(lvDevice.Items[(int)enumDevice.EV2].SubItems[(int)listviewDevice.Name].Text,
-                        lvDevice.Items[(int)enumDevice.EV2].SubItems[(int)listviewDevice.State].Text);
+                    lvDevice.Items[(int)enumDevice.EVp].SubItems[(int)listviewDevice.State].Text = "ready";
+                    lvDevice.Items[(int)enumDevice.EVt].SubItems[(int)listviewDevice.State].Text = "ready";
+                    DeviceJSONPublish(lvDevice.Items[(int)enumDevice.EVp].SubItems[(int)listviewDevice.Name].Text,
+                        lvDevice.Items[(int)enumDevice.EVp].SubItems[(int)listviewDevice.State].Text);
+                    DeviceJSONPublish(lvDevice.Items[(int)enumDevice.EVt].SubItems[(int)listviewDevice.Name].Text,
+                        lvDevice.Items[(int)enumDevice.EVt].SubItems[(int)listviewDevice.State].Text);
 
                     break;
                 default:
@@ -173,12 +173,12 @@ namespace HAS2TrainOS
 
                     break;
                 case (int)enumDevice.VENT:
-                    lvDevice.Items[(int)enumDevice.EV1].SubItems[(int)listviewDevice.State].Text = "activate";
-                    lvDevice.Items[(int)enumDevice.EV2].SubItems[(int)listviewDevice.State].Text = "activate";
-                    DeviceJSONPublish(lvDevice.Items[(int)enumDevice.EV1].SubItems[(int)listviewDevice.Name].Text,
-                        lvDevice.Items[(int)enumDevice.EV1].SubItems[(int)listviewDevice.State].Text);
-                    DeviceJSONPublish(lvDevice.Items[(int)enumDevice.EV2].SubItems[(int)listviewDevice.Name].Text,
-                        lvDevice.Items[(int)enumDevice.EV2].SubItems[(int)listviewDevice.State].Text);
+                    lvDevice.Items[(int)enumDevice.EVp].SubItems[(int)listviewDevice.State].Text = "activate";
+                    lvDevice.Items[(int)enumDevice.EVt].SubItems[(int)listviewDevice.State].Text = "activate";
+                    DeviceJSONPublish(lvDevice.Items[(int)enumDevice.EVp].SubItems[(int)listviewDevice.Name].Text,
+                        lvDevice.Items[(int)enumDevice.EVp].SubItems[(int)listviewDevice.State].Text);
+                    DeviceJSONPublish(lvDevice.Items[(int)enumDevice.EVt].SubItems[(int)listviewDevice.Name].Text,
+                        lvDevice.Items[(int)enumDevice.EVt].SubItems[(int)listviewDevice.State].Text);
 
                     break;
                 default:

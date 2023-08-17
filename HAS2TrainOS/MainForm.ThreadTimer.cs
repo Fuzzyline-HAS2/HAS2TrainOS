@@ -54,7 +54,7 @@ namespace HAS2TrainOS
         delegate void TimerEventFiredDelegate_timerPlayerSkipTime();
         uint nPlayerSkipTime = 0;
         uint nPlayerSkipCondition = 0;
-        String strSkipTo = "";
+        String strPlayerSkipTo = "";
         void timerPlayerSkipTime_CallBack(Object state)
         {
             BeginInvoke(new TimerEventFiredDelegate_timerPlayerSkipTime(timerPlayerSkipTimeWork));
@@ -67,7 +67,7 @@ namespace HAS2TrainOS
             {
                 foreach(ListViewItem listitem in lvPlayerNarr.Items)
                 {
-                    if (listitem.SubItems[1].Text == strSkipTo)
+                    if (listitem.SubItems[1].Text == strPlayerSkipTo)
                     {
                         timerPlayerSkipTime.Change(System.Threading.Timeout.Infinite, System.Threading.Timeout.Infinite); //PlayerSkipTimer 종료
                         nPlayerCur = listitem.Index;
@@ -90,7 +90,7 @@ namespace HAS2TrainOS
         }
         private void timerTaggerWaitTimeWork()
         {
-            lbMainTime.Text = (nTaggerWaitTime / 60).ToString("00") + ":" + (nTaggerWaitTime % 60).ToString("00");    //남은 시간 uint -> String으로 변환하는 작업
+            lbTaggerWaitTimer.Text = (nTaggerWaitTime / 60).ToString("00") + ":" + (nTaggerWaitTime % 60).ToString("00");    //남은 시간 uint -> String으로 변환하는 작업
             nTaggerWaitTime += 1;                                                                      //초 마다 타이머 함수 실행되면 -1해 남은시간 줄여줌
             //Gamesys_TimeAction();
         }
@@ -99,13 +99,15 @@ namespace HAS2TrainOS
         System.Threading.Timer timerTaggerSkipTime;
         delegate void TimerEventFiredDelegate_timerTaggerSkipTime();
         uint nTaggerSkipTime = 0;
+        uint nTaggerSkipCondition = 0;
+        String strTaggerSkipTo = "";
         void timerTaggerSkipTime_CallBack(Object state)
         {
             BeginInvoke(new TimerEventFiredDelegate_timerTaggerSkipTime(timerTaggerSkipTimeWork));
         }
         private void timerTaggerSkipTimeWork()
         {
-            lbMainTime.Text = (nTaggerSkipTime / 60).ToString("00") + ":" + (nTaggerSkipTime % 60).ToString("00");    //남은 시간 uint -> String으로 변환하는 작업
+            lbTaggerSkipTimer.Text = (nTaggerSkipTime / 60).ToString("00") + ":" + (nTaggerSkipTime % 60).ToString("00");    //남은 시간 uint -> String으로 변환하는 작업
             nTaggerSkipTime += 1;                                                                      //초 마다 타이머 함수 실행되면 -1해 남은시간 줄여줌
             //Gamesys_TimeAction();
         }

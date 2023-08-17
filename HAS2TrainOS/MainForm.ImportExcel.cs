@@ -19,7 +19,7 @@ namespace HAS2TrainOS
         Workbook wbGlove = new Workbook(@"C:\Users\user\Desktop\bbangjun\HAS2_Train\wbGlove.xlsx");     // 글러브 데이터 저장용
         private void ExceltoListview()
         {
-            Worksheet wsPlayer = wbMain.Worksheets[0];    //Player 시트
+            Worksheet wsPlayer = wbMain.Worksheets[1];    //Player 시트
             Worksheet wsKiller= wbMain.Worksheets[1];      //Killer 시트
             Worksheet wsDevice = wbDevice.Worksheets[0]; //Device 시트
             Worksheet wsGlove = wbGlove.Worksheets[0];  //Glove 시트
@@ -31,19 +31,19 @@ namespace HAS2TrainOS
                 items.Text = "";
                 /*items.SubItems.Add((wsPlayer.Cells[i, 1].Value).ToString());    //port삽입
                 items.SubItems.Add((wsPlayer.Cells[i, 5].Value).ToString());    //product삽입*/
-                items.SubItems.Add(GetCell(wsPlayer, i, 1));
-                items.SubItems.Add(GetCell(wsPlayer, i, 5));
-                items.SubItems.Add(GetCell(wsPlayer, i, 6));
-                items.SubItems.Add(GetCell(wsPlayer, i, 7));
-                String strNarrTime = GetCell(wsPlayer, i, 15);                                 // 나레이션 시간 타임 가져오기
-                String strWaitTime = GetCell(wsPlayer, i, 16);                                 // 대기 시간 타임 가져오기
-                //Console.WriteLine(strNarrTime);
+                items.SubItems.Add(GetCell(wsPlayer, i, 1));    //번호
+                items.SubItems.Add(GetCell(wsPlayer, i, 5));    //나레이션
+                items.SubItems.Add(GetCell(wsPlayer, i, 6));    //사용장치
+                items.SubItems.Add(GetCell(wsPlayer, i, 7));    //스킵조건
+                String strNarrTime = GetCell(wsPlayer, i, 15);   //나레이션 길이                            // 나레이션 시간 타임 가져오기
+                String strWaitTime = GetCell(wsPlayer, i, 16);   //대기시간                                   // 대기 시간 타임 가져오기
+                Console.WriteLine(strNarrTime + " + " + strWaitTime);
                 strNarrTime = strNarrTime.Substring(strNarrTime.Length - 5, 5);     //1899-12-31 AM 12:00:00  포멧에서 뒤에 mm:ss만 남기고 자르기
                 strWaitTime = strWaitTime.Substring(strWaitTime.Length - 5, 5);     // 1899-12-31 AM 12:00:00  포멧에서 뒤에 mm:ss만 남기고 자르기
                 String validformats = "mm:ss";
                 DateTime dtNarrTime = DateTime.ParseExact(strNarrTime, validformats, null);
                 DateTime dtWaitTime = DateTime.ParseExact(strWaitTime, validformats, null);
-                items.SubItems.Add((dtNarrTime.Second + dtWaitTime.Second).ToString());
+                items.SubItems.Add((dtNarrTime.Minute + dtWaitTime.Minute).ToString());
                 lvPlayerNarr.Items.Add(items);    //실제 추가
             }
 
@@ -52,8 +52,17 @@ namespace HAS2TrainOS
             {
                 ListViewItem items = new ListViewItem();
                 items.Text = "";    //Ip삽입
-                items.SubItems.Add((wsKiller.Cells[i, 1].Value).ToString());    //port삽입
-                items.SubItems.Add((wsKiller.Cells[i, 5].Value).ToString());    //product삽입
+                /*try
+                {
+                    items.SubItems.Add((wsKiller.Cells[i, 1].Value).ToString());    //port삽입
+                }
+                catch
+                {
+                    items.SubItems.Add((wsKiller.Cells[i, 1].Value).ToString());    //port삽입
+                    //MessageBox.Show((String msg) "Hello Mablang World!");
+                }*/
+                items.SubItems.Add(GetCell(wsKiller, i, 1));    //port삽입
+                items.SubItems.Add(GetCell(wsKiller, i, 5));    //product삽입
                 listView3.Items.Add(items);    //실제 추가
             }
 
@@ -134,15 +143,40 @@ namespace HAS2TrainOS
         // excel에서 불러올때 null 이면 예외처리 해주는 함수
         private String GetCell(Worksheet ws, int col, int row)
         {
-          
-            if(ws.Cells[col, row].Value != null)
+            String strWSDatea = "";
+            DateTime dtTemp;
+            Cell cellTemp = ws.Cells[col, row];
+            switch (cellTemp.Type)
             {
-                return ws.Cells[col, row].Value.ToString();
+                case CellValueType.IsString:
+                    strWSDatea = cellTemp.StringValue;
+                    Console.WriteLine("String Value: " + strWSDatea);
+                    break;
+
+               case CellValueType.IsDateTime:
+                    dtTemp = cellTemp.DateTimeValue;
+                    Console.WriteLine("DateTime Value: " + dtTemp);
+                    strWSDatea = dtTemp.ToString();
+                    break;
+
+                // Evaluating the unknown data type of the cell data
+                case CellValueType.IsUnknown:
+                    strWSDatea = cellTemp.StringValue;
+                    Console.WriteLine("Unknown Value: " + strWSDatea);
+                    break;
+                // Terminating the type checking of type of the cell data is null
+                case CellValueType.IsNull:
+                    strWSDatea = "";
+                    break;
+                default:
+                    strWSDatea = cellTemp.StringValue;
+                    break;
             }
-            else
+            if(strWSDatea == "-")
             {
-                return "";
-            } 
+                strWSDatea = "1899 - 12 - 31 AM 12:00:00";
+            }
+            return strWSDatea;
         }
     }
 }

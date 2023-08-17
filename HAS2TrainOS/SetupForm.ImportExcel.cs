@@ -13,7 +13,8 @@ namespace HAS2TrainOS
 {
     public partial class SetupForm : Form
     {
-        Workbook wbMAC = new Workbook(@"C:\Users\user\Desktop\bbangjun\HAS2_Train\wbMac.xlsx");
+
+        Workbook wbMAC = new Workbook();
         private void ExceltoListview()
         {
             Worksheet wsMAC = wbMAC.Worksheets[0];    //Player 시트

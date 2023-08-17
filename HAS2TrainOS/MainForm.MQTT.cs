@@ -118,7 +118,6 @@ namespace HAS2TrainOS
                     }
                     if (jsonInput.ContainsKey("DN"))
                     {
-                        
                         if (jsonInput["DN"].ToString().Contains("G"))
                         {
                             foreach(ListViewItem listitem in lvGlove.Items)
