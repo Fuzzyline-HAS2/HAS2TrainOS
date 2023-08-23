@@ -160,5 +160,10 @@ namespace HAS2TrainOS
                 }
             }
         }
+
+        private void lvGlove_AfterLabelEdit(object sender, LabelEditEventArgs e)
+        {
+            Console.WriteLine("lvGlove Data Changed!");
+        }
     }
 }
