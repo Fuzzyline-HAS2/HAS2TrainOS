@@ -161,9 +161,54 @@ namespace HAS2TrainOS
             }
         }
 
-        private void lvGlove_AfterLabelEdit(object sender, LabelEditEventArgs e)
+        private void pnNarration_Paint(object sender, PaintEventArgs e)
         {
-            Console.WriteLine("lvGlove Data Changed!");
+
+        }
+
+        private void pnRoomSelect_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void lbMainTime_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lbP1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lbP2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lbP3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lbP4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lbP5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void trbP6_Scroll(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pnDevice_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

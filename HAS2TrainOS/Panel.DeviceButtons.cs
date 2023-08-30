@@ -222,34 +222,6 @@ namespace HAS2TrainOS
                     lvGlove.Items[nSelectedIndex].SubItems[(int)listviewGlove.BP].Text);
             }
         }
-        void lvGloveDataChange(int nSelectedIndex, String strGloveRole = "", String strGloveState, String strGloveLifeChip, String strGloveBattery)
-        {
-            if(strGloveRole != null)
-            {
-                lvGlove.Items[nSelectedIndex].SubItems[1].Text = strGloveRole;
-                if(strGloveRole == "tagger")
-                {
 
-                }
-                else if (strGloveRole == "player")
-                {
-
-                }
-                else
-                {
-
-                }
-            }
-            
-            lvGlove.Items[nSelectedIndex].SubItems[2].Text = strGloveState;
-            lvGlove.Items[nSelectedIndex].SubItems[3].Text = strGloveLifeChip;
-            lvGlove.Items[nSelectedIndex].SubItems[4].Text = strGloveBattery;
-            //listview에서 변동이 토픽으로  publish
-            GloveJSONPublish(lvGlove.Items[nSelectedIndex].SubItems[(int)listviewGlove.Name].Text,
-                lvGlove.Items[nSelectedIndex].SubItems[(int)listviewGlove.Role].Text,
-                lvGlove.Items[nSelectedIndex].SubItems[(int)listviewGlove.State].Text,
-                lvGlove.Items[nSelectedIndex].SubItems[(int)listviewGlove.LC].Text,
-                lvGlove.Items[nSelectedIndex].SubItems[(int)listviewGlove.BP].Text);
-        }
     }
 }

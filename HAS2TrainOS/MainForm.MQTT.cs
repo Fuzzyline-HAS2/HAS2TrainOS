@@ -74,48 +74,112 @@ namespace HAS2TrainOS
                 Console.WriteLine(ReceivedTopic + ": " + ReceivedMessage) ;
 
                 if (ReceivedTopic == "OS")
-                {
-                    if (strTagDevice != null)   //엑셀에서 TAG명령어 들어왔을때만 실행
+                {                
+                    if (jsonInput.ContainsKey("MAC"))   // 발신자 MAC 확인
                     {
-                        if (jsonInput.ContainsKey("Situation"))
+                        foreach (structMAC m in MACs)   // 발신자 MAC으로 이름 검색
                         {
-                            if (jsonInput["Situation"].ToString() == "tag")
+                            if (m.strDeviceMAC == jsonInput["MAC"].ToString())  // 찾은 이름 m. 으로 임시 저장
                             {
-                                if (jsonInput.ContainsKey("MAC"))
-                                {
-                                    foreach (structMAC m in MACs)
-                                    {
-                                        if (m.strDeviceMAC == jsonInput["MAC"].ToString())
-                                        {
-                                            foreach (String s in strTagDevice)
-                                            {
-                                                if (s == m.strDeviceName)
-                                                {
-                                                    Console.WriteLine (s);
-                                                    nTagCnt++;
-                                                    break;
-                                                }
-                                            }
-                                            if (nTagCnt >= nTagMaxCnt)
-                                            {
-                                                timerPlayerSkipTime.Change(System.Threading.Timeout.Infinite, System.Threading.Timeout.Infinite); //PlayerSkipTimer 종료
-                                                foreach (ListViewItem listitem in lvPlayerNarr.Items)
-                                                {
-                                                    if (listitem.SubItems[1].Text == strTagTo)
-                                                    {
-                                                        nPlayerCur = listitem.Index;
-                                                    }
-                                                }
-                                                strTagDevice = null;
-                                                PlayerNarr();
-                                                break;
-                                            }
-                                        }
-                                    }
+                                ListView lvTemp = lvDevice;
+                                if (m.strDeviceName.StartsWith("G")){
+                                     lvTemp = lvGlove;
                                 }
-                            }
-                        }
-                    }
+
+                                foreach(ListViewItem lvTempDevice in lvTemp.Items)  //lvTempDevice = 통신 보낸 주체, lvTempGlove = 통신보낸주체에 쓰여 있는 글러브 DN
+                                {
+                                    if (lvTempDevice.SubItems[(int)listviewDevice.Name].Text == m.strDeviceName)  // 찾은 이름 m. 으로 임시 저장
+                                    {
+
+                                        if (jsonInput.ContainsKey("SIT")) // json에 situation 존재할때
+                                        {
+                                            if (jsonInput["SIT"].ToString() == "tag")
+                                            {
+                                                if (jsonInput["DN"].ToString().Contains("G"))
+                                                {
+                                                    foreach (ListViewItem lvTempGlove in lvGlove.Items) //lvTempDevice = 통신 보낸 주체, lvTempGlove = 통신보낸주체에 쓰여 있는 글러브 DN
+                                                    {
+                                                        if (jsonInput["DN"].ToString() == lvTempGlove.SubItems[(int)listviewGlove.Name].Text)
+                                                        {
+                                                            switch (m.strDeviceName[1])
+                                                            {
+                                                                case 'I':
+                                                                    lvTempGlove.SubItems[(int)listviewGlove.BP].Text 
+                                                                        = (Int32.Parse(lvTempGlove.SubItems[(int)listviewGlove.BP].Text) + Int32.Parse(lvTempDevice.SubItems[(int)listviewDevice.LCBP].Text)).ToString();   //글러브 BP 데이터 수정
+                                                                    lvTempDevice.SubItems[(int)listviewDevice.LCBP].Text = "0"; // 아박 배터리팩 데이터 사용완료 '0' 처리
+                                                                    break;
+                                                                case 'G':
+                                                                    lvTempGlove.SubItems[(int)listviewGlove.BP].Text = (Int32.Parse(lvTempGlove.SubItems[(int)listviewGlove.BP].Text) - 1).ToString();   //글러브 BP 데이터 '-1' 처리
+                                                                    lvTempDevice.SubItems[(int)listviewDevice.LCBP].Text = (Int32.Parse(lvTempDevice.SubItems[(int)listviewDevice.LCBP].Text) + 1).ToString(); ; // 발전기 배터리팩 데이터  '+1' 처리
+                                                                    break;
+                                                                case 'R':
+                                                                    lvTempGlove.SubItems[(int)listviewGlove.LC].Text
+                                                                        = (Int32.Parse(lvTempGlove.SubItems[(int)listviewGlove.LC].Text) + Int32.Parse(lvTempDevice.SubItems[(int)listviewDevice.LCBP].Text)).ToString();   //글러브 LC 데이터 수정
+                                                                    lvTempDevice.SubItems[(int)listviewDevice.LCBP].Text = "0"; // 생장 생명칩 데이터 사용완료 '0' 처리
+                                                                    break;
+                                                                case 'T':
+                                                                    lvTempGlove.SubItems[(int)listviewGlove.LC].Text = (Int32.Parse(lvTempGlove.SubItems[(int)listviewGlove.LC].Text) - 1).ToString();   //글러브 LC 데이터 '-1' 처리
+                                                                    lvTempDevice.SubItems[(int)listviewDevice.LCBP].Text = (Int32.Parse(lvTempDevice.SubItems[(int)listviewDevice.LCBP].Text) + 1).ToString(); ; // 제단 생명칩 데이터  '+1' 처리
+                                                                    break;
+                                                                case 'V':
+                                                                    lvTempGlove.SubItems[(int)listviewGlove.LC].Text = (Int32.Parse(lvTempGlove.SubItems[(int)listviewGlove.LC].Text) - 1).ToString();   //생존자 글러브 LC 데이터 '-1' 처리
+                                                                    foreach(ListViewItem lvTagger in lvGlove.Items)
+                                                                    {
+                                                                        if (lvTagger.SubItems[(int)listviewGlove.Role].Text == "tagger")
+                                                                        {
+                                                                            lvTagger.SubItems[(int)listviewGlove.LC].Text = (Int32.Parse(lvTempGlove.SubItems[(int)listviewGlove.LC].Text) + 1).ToString();   //술래글러브 LC 데이터 '-1' 처리
+                                                                        }
+                                                                    }
+                                                                    break;
+                                                                case '1':   //글러브 인경우
+                                                                case '2':
+                                                                case '3':
+                                                                case '4':
+                                                                case '5':
+                                                                case '6':
+                                                                case '7':
+                                                                case '8':
+                                                                    lvTempGlove.SubItems[(int)listviewGlove.LC].Text = (Int32.Parse(lvTempGlove.SubItems[(int)listviewGlove.LC].Text) - 1).ToString();   // 생명칩을 주는 글러브 LC 데이터 '-1' 처리
+                                                                    lvTempDevice.SubItems[(int)listviewDevice.LCBP].Text = (Int32.Parse(lvTempDevice.SubItems[(int)listviewDevice.LCBP].Text) + 1).ToString(); ; // 생명칩을 받는 글러브 LC 데이터  '+1' 처리
+                                                                    break;
+                                                                default:
+                                                                    break;
+                                                            }
+                                                        }
+                                                    }
+                                                    if (strTagDevice != null)   //엑셀에서 TAG명령어 들어왔을때만 실행
+                                                    {
+                                                        foreach (String s in strTagDevice)  //엑셀에 있는 TAG_장치이름_시나리오# 에서 장치 이름 strTagDevice에 저장 후 비교중
+                                                        {
+                                                            if (s == m.strDeviceName)
+                                                            {
+                                                                Console.WriteLine(s);
+                                                                nTagCnt++;
+                                                                break;
+                                                            }
+                                                        }   // 비교 종료
+                                                        if (nTagCnt >= nTagMaxCnt)  //엑셀 TAG 명령어 총 개수와 일치하면 다음 나레인 재생 위한 if문
+                                                        {
+                                                            timerPlayerSkipTime.Change(System.Threading.Timeout.Infinite, System.Threading.Timeout.Infinite); //PlayerSkipTimer 종료
+                                                            foreach (ListViewItem listitem in lvPlayerNarr.Items)
+                                                            {
+                                                                if (listitem.SubItems[1].Text == strTagTo)
+                                                                {
+                                                                    nPlayerCur = listitem.Index;
+                                                                }
+                                                            }
+                                                            strTagDevice = null;    //TAG 명령어 초기화
+                                                            PlayerNarr();
+                                                        }
+                                                    }
+                                                } // if (jsonInput["DN"].ToString().Contains("G")) ")
+                                            } //if (jsonInput["SIT"].ToString() == "tag")
+                                        } //if (jsonInput.ContainsKey("SIT")) 
+                                    } //if (lvTempDevice.SubItems[(int)listviewDevice.Name].Text == m.strDeviceName)
+                                } //foreach(ListViewItem lvTempDevice in lvDevice.Items)
+                            } //if (m.strDeviceMAC == jsonInput["MAC"].ToString())
+                        } //foreach (structMAC m in MACs)
+                    } //if (jsonInput.ContainsKey("MAC"))
                     if (jsonInput.ContainsKey("DN"))
                     {
                         if (jsonInput["DN"].ToString().Contains("G"))
