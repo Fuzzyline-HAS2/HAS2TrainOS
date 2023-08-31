@@ -13,7 +13,7 @@ namespace HAS2TrainOS
 {
     public partial class MainForm : Form
     {
-        public void GloveJSONPublish(String DN, String role = "", String state = "", String LC = "", String BP = "")
+        public void GloveJSONPublish(String DN, String role = "", String state = "", String LC = "", String BP = "") 
         {
             JObject gloveData = new JObject(new JProperty("DN", DN));
             if (role != "")
@@ -24,32 +24,43 @@ namespace HAS2TrainOS
                 gloveData.Add(new JProperty("LC", LC));
             if (role != "")
                 gloveData.Add(new JProperty("BP", BP));
-            MQTT_Publish("GLOVE", gloveData.ToString());
+
+            MQTT_Publish("GLOVE", gloveData.ToString());//글러브의 TOPIC은 GLOVE를 통해서 전체 장치에 전달
         }
-        public void DeviceJSONPublish(String DN, String state = "", String LCBP = "")
+        public void DeviceJSONPublish(String DN, String state = "", String LCBP = "") //DN: 장치이름. State: 장치 상태, LCBP: 생명/배터리 개수
         {
             JObject DeviceData = new JObject(new JProperty("DN", DN));
             if (state != "")
                 DeviceData.Add(new JProperty("DS", state));
             if (LCBP != "")
                 DeviceData.Add(new JProperty("LCBP", LCBP));
-            MQTT_Publish(DN, DeviceData.ToString());
+            foreach (structMAC m in MACs)
+            {
+                if (m.strDeviceName == DN)
+                {
+                    MQTT_Publish(m.strDeviceMAC, DeviceData.ToString());
+                }
+            }
         }
-        public void SituationJSONPublish(String Device, String Situation, String DN = "")
+        public void SituationJSONPublish(String Device, String Situation, String DN = "")   //Device: 글러브 이름, Situation: 명령어, DN: 글러브 이름(선택적)
         {
             JObject SituationData = new JObject(new JProperty("Situation", Situation));
-            SituationData.Add(new JProperty("MAC", "8A:88"));
             if (DN != "")
                 SituationData.Add(new JProperty("DN", DN));
-
-            MQTT_Publish(Device, SituationData.ToString());
+            foreach (structMAC m in MACs)
+            {
+                if(m.strDeviceName == Device)
+                {
+                    MQTT_Publish(m.strDeviceMAC, SituationData.ToString());
+                }
+            }
         }
-        public void SCNJSONPublish(String Device, String SCN)
+        public void SCNJSONPublish(String DeviceMAC, String SCN)   //DeviceMAC:보내는 장치 MAC 주소,SCN: 시나리오 번호
         {
             JObject SituationData = new JObject(new JProperty("DS", "scenario"));
             SituationData.Add(new JProperty("SCN", SCN));
            
-            MQTT_Publish(Device, SituationData.ToString());
+            MQTT_Publish(DeviceMAC, SituationData.ToString());
         }
     }
 }

@@ -93,7 +93,7 @@ namespace HAS2TrainOS
             Console.WriteLine("플레이어 나레이션 플레이: SCN" + strWavName.ToString());
             String strNarrNum = strWavName.Substring(strWavName.Length - 1, 1);
             //Console.WriteLine(strWavName);
-            strWavName = "C:\\Users\\user\\Desktop\\bbangjun\\HAS2_Train\\wavPlayerNarr\\SCN" + strWavName + ".wav";
+            strWavName = @"C:\Users\teamh\OneDrive\바탕 화면\CODE\HAS2Train\TrainRoom_excel\SCN" + strWavName + ".wav";
             FileInfo fileTmp = new FileInfo(strWavName);
             if (fileTmp.Exists)  //FileInfo.Exists로 파일 존재유무 확인 "
             {
@@ -126,7 +126,7 @@ namespace HAS2TrainOS
                     {
                         if(m.strDeviceName == s)
                         {
-                            SCNJSONPublish(m.strDeviceMAC, "t" + lvPlayerNarr.Items[nPlayerCur].SubItems[1].Text.Replace("#","" ));
+                            SCNJSONPublish(m.strDeviceMAC, "p" + lvPlayerNarr.Items[nPlayerCur].SubItems[1].Text.Replace("#","" ));
                         }
                     }
                 }

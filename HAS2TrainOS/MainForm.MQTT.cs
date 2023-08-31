@@ -83,14 +83,16 @@ namespace HAS2TrainOS
                             {
                                 ListView lvTemp = lvDevice;
                                 if (m.strDeviceName.StartsWith("G")){
-                                     lvTemp = lvGlove;
+                                    lvTemp = lvGlove;
+                                    if (!m.strDeviceName[1].Equals(lvGlove.Items[0].SubItems[(int)listviewGlove.Name].Text[1])){    //글러브 그룹의 번호가 lvGlove에 있는 글러브 그룹 번호가 동일하지 않다면 해당 글러브 change 전송
+                                        SituationJSONPublish(m.strDeviceName, "change"); //현재 훈련소에 들어가있는 번호와 다르면 change 보내서 게임 상태로 전송
+                                    }
                                 }
 
                                 foreach(ListViewItem lvTempDevice in lvTemp.Items)  //lvTempDevice = 통신 보낸 주체, lvTempGlove = 통신보낸주체에 쓰여 있는 글러브 DN
                                 {
                                     if (lvTempDevice.SubItems[(int)listviewDevice.Name].Text == m.strDeviceName)  // 찾은 이름 m. 으로 임시 저장
                                     {
-
                                         if (jsonInput.ContainsKey("SIT")) // json에 situation 존재할때
                                         {
                                             if (jsonInput["SIT"].ToString() == "tag")
@@ -140,10 +142,31 @@ namespace HAS2TrainOS
                                                                 case '7':
                                                                 case '8':
                                                                     lvTempGlove.SubItems[(int)listviewGlove.LC].Text = (Int32.Parse(lvTempGlove.SubItems[(int)listviewGlove.LC].Text) - 1).ToString();   // 생명칩을 주는 글러브 LC 데이터 '-1' 처리
-                                                                    lvTempDevice.SubItems[(int)listviewDevice.LCBP].Text = (Int32.Parse(lvTempDevice.SubItems[(int)listviewDevice.LCBP].Text) + 1).ToString(); ; // 생명칩을 받는 글러브 LC 데이터  '+1' 처리
+                                                                    lvTempDevice.SubItems[(int)listviewGlove.LC].Text = (Int32.Parse(lvTempDevice.SubItems[(int)listviewGlove.LC].Text) + 1).ToString(); ; // 생명칩을 받는 글러브 LC 데이터  '+1' 처리
                                                                     break;
                                                                 default:
                                                                     break;
+                                                            }
+                                                            int nSelectedIndex = lvTempGlove.Index;
+                                                            GloveJSONPublish(lvGlove.Items[nSelectedIndex].SubItems[(int)listviewGlove.Name].Text,
+                                                                lvGlove.Items[nSelectedIndex].SubItems[(int)listviewGlove.Role].Text,
+                                                                lvGlove.Items[nSelectedIndex].SubItems[(int)listviewGlove.State].Text,
+                                                                lvGlove.Items[nSelectedIndex].SubItems[(int)listviewGlove.LC].Text,
+                                                                lvGlove.Items[nSelectedIndex].SubItems[(int)listviewGlove.BP].Text);
+                                                            nSelectedIndex = lvTempDevice.Index;
+                                                            if (lvTemp == lvGlove)
+                                                            {
+                                                                GloveJSONPublish(lvGlove.Items[nSelectedIndex].SubItems[(int)listviewGlove.Name].Text,
+                                                                    lvGlove.Items[nSelectedIndex].SubItems[(int)listviewGlove.Role].Text,
+                                                                    lvGlove.Items[nSelectedIndex].SubItems[(int)listviewGlove.State].Text,
+                                                                    lvGlove.Items[nSelectedIndex].SubItems[(int)listviewGlove.LC].Text,
+                                                                    lvGlove.Items[nSelectedIndex].SubItems[(int)listviewGlove.BP].Text);
+                                                            }
+                                                            else
+                                                            {
+                                                                DeviceJSONPublish(lvDevice.Items[nSelectedIndex].SubItems[(int)listviewDevice.Name].Text,
+                                                                    lvDevice.Items[nSelectedIndex].SubItems[(int)listviewDevice.State].Text,
+                                                                    lvDevice.Items[nSelectedIndex].SubItems[(int)listviewDevice.LCBP].Text);
                                                             }
                                                         }
                                                     }
@@ -174,6 +197,25 @@ namespace HAS2TrainOS
                                                     }
                                                 } // if (jsonInput["DN"].ToString().Contains("G")) ")
                                             } //if (jsonInput["SIT"].ToString() == "tag")
+                                            else if(jsonInput["SIT"].ToString() == "start")
+                                            {
+                                                int nSelectedIndex = lvTempDevice.Index;
+                                                if (lvTemp == lvGlove)
+                                                {
+                                                    GloveJSONPublish(lvGlove.Items[nSelectedIndex].SubItems[(int)listviewGlove.Name].Text,
+                                                        lvGlove.Items[nSelectedIndex].SubItems[(int)listviewGlove.Role].Text,
+                                                        lvGlove.Items[nSelectedIndex].SubItems[(int)listviewGlove.State].Text,
+                                                        lvGlove.Items[nSelectedIndex].SubItems[(int)listviewGlove.LC].Text,
+                                                        lvGlove.Items[nSelectedIndex].SubItems[(int)listviewGlove.BP].Text);
+                                                }
+                                                else
+                                                {
+                                                    DeviceJSONPublish(lvDevice.Items[nSelectedIndex].SubItems[(int)listviewDevice.Name].Text,
+                                                        lvDevice.Items[nSelectedIndex].SubItems[(int)listviewDevice.State].Text,
+                                                        lvDevice.Items[nSelectedIndex].SubItems[(int)listviewDevice.LCBP].Text);
+                                                }
+
+                                            }
                                         } //if (jsonInput.ContainsKey("SIT")) 
                                     } //if (lvTempDevice.SubItems[(int)listviewDevice.Name].Text == m.strDeviceName)
                                 } //foreach(ListViewItem lvTempDevice in lvDevice.Items)
