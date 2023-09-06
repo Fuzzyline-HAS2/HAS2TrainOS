@@ -81,10 +81,6 @@ namespace HAS2TrainOS
             PlayerNarr();
         }
 
-        private void lvPlayerNarr_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            
-        }
         public void PlayerNarr()
         {
             // WAV 나레이션 플레이 부분
@@ -93,7 +89,7 @@ namespace HAS2TrainOS
             Console.WriteLine("플레이어 나레이션 플레이: SCN" + strWavName.ToString());
             String strNarrNum = strWavName.Substring(strWavName.Length - 1, 1);
             //Console.WriteLine(strWavName);
-            strWavName = @"C:\Users\teamh\OneDrive\바탕 화면\CODE\HAS2Train\TrainRoom_excel\SCN" + strWavName + ".wav";
+            strWavName = @"C:\Users\user\Desktop\bbangjun\TrainRoom_excel\SCN" + strWavName + ".wav";
             FileInfo fileTmp = new FileInfo(strWavName);
             if (fileTmp.Exists)  //FileInfo.Exists로 파일 존재유무 확인 "
             {
@@ -119,14 +115,22 @@ namespace HAS2TrainOS
             {
                 String strDevces = lvPlayerNarr.Items[nPlayerCur].SubItems[3].Text;
                 String[] strDevceArr = strDevces.Split(',');
-                foreach (String s in strDevceArr)
+                foreach (String strDN in strDevceArr)
                 {
-                    Console.WriteLine(s);
-                    foreach (structMAC m in MACs)
+
+                    Console.WriteLine(strDN);
+                    if (strDN.Contains("SG"))
                     {
-                        if(m.strDeviceName == s)
+                        this.GetType().GetMethod("SCNp32").Invoke(this, null);
+                    }
+                    else
+                    {
+                        foreach (structMAC m in MACs)
                         {
-                            SCNJSONPublish(m.strDeviceMAC, "p" + lvPlayerNarr.Items[nPlayerCur].SubItems[1].Text.Replace("#","" ));
+                            if (m.strDeviceName == strDN)
+                            {
+                                SCNJSONPublish(m.strDeviceMAC, "p" + lvPlayerNarr.Items[nPlayerCur].SubItems[1].Text.Replace("#", ""));
+                            }
                         }
                     }
                 }
@@ -159,56 +163,8 @@ namespace HAS2TrainOS
                     }
                 }
             }
-        }
+        } //public void PlayerNarr()
 
-        private void pnNarration_Paint(object sender, PaintEventArgs e)
-        {
 
-        }
-
-        private void pnRoomSelect_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void lbMainTime_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lbP1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lbP2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lbP3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lbP4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lbP5_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void trbP6_Scroll(object sender, EventArgs e)
-        {
-
-        }
-
-        private void pnDevice_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
     }
 }

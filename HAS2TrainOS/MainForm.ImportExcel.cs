@@ -13,10 +13,10 @@ namespace HAS2TrainOS
 
     public partial class MainForm : Form
     {
-        Workbook wbMain = new Workbook(@"C:\Users\teamh\OneDrive\바탕 화면\CODE\HAS2Train\TrainRoom_excel\wbMain.xlsx");        // 나레이션 엑셀
-        Workbook wbMAC = new Workbook(@"C:\Users\teamh\OneDrive\바탕 화면\CODE\HAS2Train\TrainRoom_excel\wbMac.xlsx");         //MQTT 구독하기 위해
-        Workbook wbDevice = new Workbook(@"C:\Users\teamh\OneDrive\바탕 화면\CODE\HAS2Train\TrainRoom_excel\wbDevice.xlsx");  //장치 데이터 저장용
-        Workbook wbGlove = new Workbook(@"C:\Users\teamh\OneDrive\바탕 화면\CODE\HAS2Train\TrainRoom_excel\wbGlove.xlsx");     // 글러브 데이터 저장용
+        Workbook wbMain = new Workbook(@"C:\Users\user\Desktop\bbangjun\TrainRoom_excel\wbMain.xlsx");        // 나레이션 엑셀
+        Workbook wbMAC = new Workbook(@"C:\Users\user\Desktop\bbangjun\TrainRoom_excel\wbMac.xlsx");         //MQTT 구독하기 위해
+        Workbook wbDevice = new Workbook(@"C:\Users\user\Desktop\bbangjun\TrainRoom_excel\wbDevice.xlsx");  //장치 데이터 저장용
+        Workbook wbGlove = new Workbook(@"C:\Users\user\Desktop\bbangjun\TrainRoom_excel\wbGlove.xlsx");     // 글러브 데이터 저장용
         private void ExceltoListview()
         {
             Worksheet wsPlayer = wbMain.Worksheets[0];    //Player 시트
@@ -126,7 +126,7 @@ namespace HAS2TrainOS
                     wsDevice.Cells[i + 1, j].Value = lvDevice.Items[i].SubItems[j].Text;
                 }
             }
-            wbDevice.Save(@"C:\Users\teamh\OneDrive\바탕 화면\CODE\HAS2Train\TrainRoom_excel\wbDevice.xlsx");
+            wbDevice.Save(@"C:\Users\user\Desktop\bbangjun\TrainRoom_excel\wbDevice.xlsx");
 
             int rowsGlove = wsGlove.Cells.MaxDataRow;
             int colsGlove = wsGlove.Cells.MaxDataColumn;
@@ -137,7 +137,7 @@ namespace HAS2TrainOS
                     wsGlove.Cells[i + 1, j].Value = lvGlove.Items[i].SubItems[j].Text;
                 }
             }
-            wbGlove.Save(@"C:\Users\teamh\OneDrive\바탕 화면\CODE\HAS2Train\TrainRoom_excel\wbGlove.xlsx");
+            wbGlove.Save(@"C:\Users\user\Desktop\bbangjun\TrainRoom_excel\wbGlove.xlsx");
         }
         
         // excel에서 불러올때 null 이면 예외처리 해주는 함수

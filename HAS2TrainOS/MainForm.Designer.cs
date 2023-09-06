@@ -290,7 +290,6 @@
             this.pnDevice.Name = "pnDevice";
             this.pnDevice.Size = new System.Drawing.Size(457, 279);
             this.pnDevice.TabIndex = 7;
-            this.pnDevice.Paint += new System.Windows.Forms.PaintEventHandler(this.pnDevice_Paint);
             // 
             // btnSetup
             // 
@@ -710,7 +709,6 @@
             this.lvPlayerNarr.TabIndex = 3;
             this.lvPlayerNarr.UseCompatibleStateImageBehavior = false;
             this.lvPlayerNarr.View = System.Windows.Forms.View.Details;
-            this.lvPlayerNarr.SelectedIndexChanged += new System.EventHandler(this.lvPlayerNarr_SelectedIndexChanged);
             this.lvPlayerNarr.DoubleClick += new System.EventHandler(this.lvPlayerNarr_DoubleClick);
             // 
             // playerCurrent
@@ -785,7 +783,6 @@
             this.lbMainTime.TabIndex = 7;
             this.lbMainTime.Text = "00:00";
             this.lbMainTime.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lbMainTime.Click += new System.EventHandler(this.lbMainTime_Click);
             // 
             // lbPlayerWaitTimer
             // 
@@ -828,7 +825,6 @@
             this.pnRoomSelect.Name = "pnRoomSelect";
             this.pnRoomSelect.Size = new System.Drawing.Size(116, 560);
             this.pnRoomSelect.TabIndex = 5;
-            this.pnRoomSelect.Paint += new System.Windows.Forms.PaintEventHandler(this.pnRoomSelect_Paint);
             // 
             // btnGloveSelectApply
             // 
@@ -939,7 +935,6 @@
             this.lbP5.Size = new System.Drawing.Size(19, 16);
             this.lbP5.TabIndex = 18;
             this.lbP5.Text = "P5";
-            this.lbP5.Click += new System.EventHandler(this.lbP5_Click);
             // 
             // lbP4
             // 
@@ -950,7 +945,6 @@
             this.lbP4.Size = new System.Drawing.Size(19, 16);
             this.lbP4.TabIndex = 17;
             this.lbP4.Text = "P4";
-            this.lbP4.Click += new System.EventHandler(this.lbP4_Click);
             // 
             // lbP3
             // 
@@ -961,7 +955,6 @@
             this.lbP3.Size = new System.Drawing.Size(19, 16);
             this.lbP3.TabIndex = 16;
             this.lbP3.Text = "P3";
-            this.lbP3.Click += new System.EventHandler(this.lbP3_Click);
             // 
             // lbP2
             // 
@@ -972,7 +965,6 @@
             this.lbP2.Size = new System.Drawing.Size(19, 16);
             this.lbP2.TabIndex = 15;
             this.lbP2.Text = "P2";
-            this.lbP2.Click += new System.EventHandler(this.lbP2_Click);
             // 
             // lbP1
             // 
@@ -983,7 +975,6 @@
             this.lbP1.Size = new System.Drawing.Size(18, 16);
             this.lbP1.TabIndex = 6;
             this.lbP1.Text = "P1";
-            this.lbP1.Click += new System.EventHandler(this.lbP1_Click);
             // 
             // rbG4
             // 
@@ -1052,7 +1043,6 @@
             this.trbP6.Size = new System.Drawing.Size(116, 45);
             this.trbP6.TabIndex = 9;
             this.trbP6.Value = 1;
-            this.trbP6.Scroll += new System.EventHandler(this.trbP6_Scroll);
             this.trbP6.ValueChanged += new System.EventHandler(this.trbP6_ValueChanged);
             // 
             // trbP5
@@ -1157,7 +1147,6 @@
             this.pnNarration.Name = "pnNarration";
             this.pnNarration.Size = new System.Drawing.Size(920, 680);
             this.pnNarration.TabIndex = 6;
-            this.pnNarration.Paint += new System.Windows.Forms.PaintEventHandler(this.pnNarration_Paint);
             // 
             // MainForm
             // 
