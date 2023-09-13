@@ -6,11 +6,116 @@ using System.Drawing;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Newtonsoft.Json.Linq;
+using NAudio.Dsp;
 
 namespace HAS2TrainOS
 {
     public partial class MainForm
     {
+        public bool GloveListViewChange(ListViewItem lvSelectedGlove, String Role = "", String State = "", String strLC = "", String strBP = "")
+        {
+            if(Role != null)
+            {
+                lvSelectedGlove.SubItems[(int)listviewGlove.Role].Text = Role;   //글러브 Role 데이터 치환
+            }
+            if (State != null)
+            {
+                lvSelectedGlove.SubItems[(int)listviewGlove.State].Text = State;   //글러브 Role 데이터 치환
+            }
+            if (strLC != null)
+            {
+                int nCurLC = Int32.Parse(lvSelectedGlove.SubItems[(int)listviewGlove.LC].Text); // 현재 선택된 글러브의 배터리팩 개수
+                int nLC = 0;    // 현재 배터리팩에서 추가하려는 배터리팩 개수
+                String strApplyLC = "";
+                try
+                {
+                    nLC = Int32.Parse(strLC);   //들어온 LC값이 정수로 변환 가능한지 확인
+                }
+                catch
+                {
+                    MessageBox.Show(lvSelectedGlove.SubItems[(int)listviewGlove.Name].Text + "허용되지 않는 숫자의 생명칩이 입력되었습니다\r\nLC: " + strLC);
+                    goto GloveBP;    // LC값이 정수로 변환이 안될때 다음 IF문인 BP섹션으로 이동
+                }
+                if (strLC.StartsWith("+") || strLC.StartsWith("-")) //글러브 배터리팩 +또는 -인지 확인 (게임처럼 동착하기 위함)
+                {
+                    int nSumLC = nCurLC + nLC;
+                    if ((nSumLC <= nMaxLifeChip) && (nSumLC >= 0))   //글러브가 소지 할 수 있는 배터리팩의 범위 안의 경우
+                    {
+                        strApplyLC = nSumLC.ToString();
+                    }
+                    else  //글러브가 소지 할 수 있는 배터리팩의 범위를 벗어나는 경우
+                    {
+                        MessageBox.Show(lvSelectedGlove.SubItems[(int)listviewGlove.Name].Text + "의 배터리팩 범위를 벗어났습니다\r\n현재LC: " + nCurLC.ToString() + " 추가하려는 LC: " + strLC);
+                        goto GloveBP;   //범위를 벗어났기 때문에 오류박스 show  후 함수 종료
+                    }
+                }
+                else //글러브 배터리팩 +또는 - 없으면 배터리 최대소지개수에 상관없이 들어온 정수값 그대로 강제변환
+                {
+                    MessageBox.Show(lvSelectedGlove.SubItems[(int)listviewGlove.Name].Text + "의 배터리팩을 강제로 바꿉니다.\r\n현재LC: " + "Change LC: " + strBP);
+                    strApplyLC = strLC;
+                }
+                lvSelectedGlove.SubItems[(int)listviewGlove.LC].Text = strApplyLC;   //lvGlove에 적용 
+
+                if (strApplyLC == "0")   //생명칩이 0으로 바뀔때 ghost로 적용
+                {
+                    if (lvSelectedGlove.SubItems[(int)listviewGlove.Role].Text == "player")  //role이 플레이어 일때만 ghost로
+                    { 
+                        lvSelectedGlove.SubItems[(int)listviewGlove.Role].Text = "ghost";   //lvGlove에 적용 
+                    }
+                }
+                else if(lvSelectedGlove.SubItems[(int)listviewGlove.Role].Text == "ghost")
+                {
+                    if(strApplyLC == "1")
+                    {
+                        lvSelectedGlove.SubItems[(int)listviewGlove.Role].Text = "revival";   //lvGlove에 적용 
+                    }
+                }
+            }
+
+            GloveBP:
+            if (strBP != null)
+            {
+                int nCurBP = Int32.Parse(lvSelectedGlove.SubItems[(int)listviewGlove.BP].Text); // 현재 선택된 글러브의 배터리팩 개수
+                int nBP = 0;    // 현재 배터리팩에서 추가하려는 배터리팩 개수
+                String strApplyBP = "";
+                try
+                {
+                    nBP = Int32.Parse(strBP);   //들어온 BP값이 정수로 변환 가능한지 확인
+                }
+                catch
+                {
+                    MessageBox.Show(lvSelectedGlove.SubItems[(int)listviewGlove.Name].Text + "허용되지 않는 숫자의 배터리팩이 입력되었습니다\r\nBP: " + strBP);
+                    goto GlovePublish;    // BP값이 정수로 변환이 안될때 함수 종료
+                }
+                if (strBP.StartsWith("+") || strBP.StartsWith("-")) //글러브 배터리팩 +또는 -인지 확인 (게임처럼 동착하기 위함)
+                {
+                    int nSumBP = nCurBP + nBP;
+                    if((nSumBP <= nMaxBatteryPack) && (nSumBP >= 0))   //글러브가 소지 할 수 있는 배터리팩의 범위 안의 경우
+                    { 
+                        strApplyBP = nSumBP.ToString();
+                    }
+                    else  //글러브가 소지 할 수 있는 배터리팩의 범위를 벗어나는 경우
+                    {
+                        MessageBox.Show(lvSelectedGlove.SubItems[(int)listviewGlove.Name].Text + "의 배터리팩 범위를 벗어났습니다\r\n현재BP: " + nCurBP.ToString() + " 추가하려는 BP: " + strBP);
+                        goto GlovePublish;   //범위를 벗어났기 때문에 오류박스 show  후 함수 종료
+                    }
+                }
+                else //글러브 배터리팩 +또는 - 없으면 배터리 최대소지개수에 상관없이 들어온 정수값 그대로 강제변환
+                {
+                    MessageBox.Show(lvSelectedGlove.SubItems[(int)listviewGlove.Name].Text + "의 배터리팩을 강제로 바꿉니다.\r\n현재BP: " + "Change BP: " + strBP);
+                    strApplyBP = strBP;
+                }
+                lvSelectedGlove.SubItems[(int)listviewGlove.BP].Text = strApplyBP;   //lvGlove에 적용 
+            }
+
+        GlovePublish:
+            GloveJSONPublish(lvSelectedGlove.SubItems[(int)listviewGlove.Name].Text,
+                                                                lvSelectedGlove.SubItems[(int)listviewGlove.Role].Text,
+                                                                lvSelectedGlove.SubItems[(int)listviewGlove.State].Text,
+                                                                lvSelectedGlove.SubItems[(int)listviewGlove.LC].Text,
+                                                                lvSelectedGlove.SubItems[(int)listviewGlove.BP].Text);
+            return false;
+        }
         private void GloveSelection()
         {
             if (rbG1.Checked) TrackBarFindAndChange("G1");
@@ -29,7 +134,7 @@ namespace HAS2TrainOS
                     if (("trbP" + (i + 1).ToString()) == tmp.Name)
                     {
                         TrackBar trb = (TrackBar)tmp;
-                        lvGlove.Items[i].SubItems[(int)listviewGlove.Role].Text = RoleReturn(trb.Value);    //TrackBar에 맞춘 Role 전송
+                        GloveListViewChange(lvGlove.Items[i], Role: RoleReturn(trb.Value));         //TrackBar에 맞춘 Role 전송
                         lvGlove.Items[i].BackColor = ColorReturn(trb.Value);                                            //TrackBar에 맞춘 색 전송
                         if (trb.Value == 1)
                         {
@@ -41,11 +146,6 @@ namespace HAS2TrainOS
                         }
                     }
                 }
-                GloveJSONPublish(lvGlove.Items[i].SubItems[(int)listviewGlove.Name].Text, 
-                    lvGlove.Items[i].SubItems[(int)listviewGlove.Role].Text, 
-                    lvGlove.Items[i].SubItems[(int)listviewGlove.State].Text, 
-                    lvGlove.Items[i].SubItems[(int)listviewGlove.LC].Text, 
-                    lvGlove.Items[i].SubItems[(int)listviewGlove.BP].Text);
             }
         }
         private String RoleReturn(int value)
@@ -62,10 +162,10 @@ namespace HAS2TrainOS
         {
             switch (value)
             {
-                case 0: return Color.PaleGreen;
+                case 0: return Color.YellowGreen;
                 case 1: return Color.LightGray;
-                case 2: return Color.Violet;
-                default: return Color.Gray;
+                case 2: return Color.BlueViolet;
+                default: return SystemColors.Control;
             }
         }
         private void ColorChange(String strTrackBarName, int nTempTrackValue)

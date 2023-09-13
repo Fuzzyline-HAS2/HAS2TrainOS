@@ -48,6 +48,8 @@ namespace HAS2TrainOS
             ExceltoListview();          //Excel에 저장된 값 불러오기
             ComboBoxDeviceAdd();    //Device panel에 있는 콤보박스에 추가하기
             MQTT_Initializtion();
+            Console.WriteLine(Int32.Parse("+3"));
+            Console.WriteLine(Int32.Parse("-3"));
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -163,6 +165,9 @@ namespace HAS2TrainOS
                     }
                 }
             }
+
+            SCNJSONPublish("4F:0E", "p" + lvPlayerNarr.Items[nPlayerCur].SubItems[1].Text.Replace("#", ""));    //생존자 훈련소 모니터 시나리오 전송하는 부분
+            //SCNJSONPublish("4F:0E", "t" + lvPlayerNarr.Items[nPlayerCur].SubItems[1].Text.Replace("#", ""));    //생존자 훈련소 모니터 시나리오 전송하는 부분
         } //public void PlayerNarr()
 
 

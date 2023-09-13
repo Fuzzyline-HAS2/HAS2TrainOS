@@ -27,6 +27,25 @@ namespace HAS2TrainOS
 
             MQTT_Publish("GLOVE", gloveData.ToString());//글러브의 TOPIC은 GLOVE를 통해서 전체 장치에 전달
         }
+        public void GloveJSONPublish_MAC(String DN, String role = "", String state = "", String LC = "", String BP = "")
+        {
+            JObject gloveData = new JObject(new JProperty("DN", DN));
+            if (role != "")
+                gloveData.Add(new JProperty("R", role));
+            if (state != "")
+                gloveData.Add(new JProperty("DS", state));
+            if (LC != "")
+                gloveData.Add(new JProperty("LC", LC));
+            if (role != "")
+                gloveData.Add(new JProperty("BP", BP));
+            foreach (structMAC m in MACs)
+            {
+                if (m.strDeviceName == DN)
+                {
+                    MQTT_Publish(m.strDeviceMAC, gloveData.ToString());//글러브의 TOPIC은 GLOVE를 통해서 전체 장치에 전달
+                }
+            }
+        }
         public void DeviceJSONPublish(String DN, String state = "", String LCBP = "") //DN: 장치이름. State: 장치 상태, LCBP: 생명/배터리 개수
         {
             JObject DeviceData = new JObject(new JProperty("DN", DN));

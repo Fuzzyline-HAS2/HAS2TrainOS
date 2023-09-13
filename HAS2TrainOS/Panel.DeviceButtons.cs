@@ -10,6 +10,53 @@ namespace HAS2TrainOS
 {
     public partial class MainForm : Form
     {
+        public bool DeviceListViewChange(ListViewItem lvSelectedDevice, String State = "", String strLCBP = "")
+        {
+            if (State != null)
+            {
+                lvSelectedDevice.SubItems[(int)listviewGlove.State].Text = State;   //글러브 Role 데이터 치환
+            }
+            if(strLCBP != null)
+            {
+                int nCurLCBP = Int32.Parse(lvSelectedDevice.SubItems[(int)listviewGlove.LC].Text); // 현재 선택된 글러브의 배터리팩 개수
+                int nLCBP = 0;    // 현재 배터리팩에서 추가하려는 배터리팩 개수
+                String strApplyLCBP = "";
+                try
+                {
+                    nLCBP = Int32.Parse(strLCBP);   //들어온 LC값이 정수로 변환 가능한지 확인
+                }
+                catch
+                {
+                    MessageBox.Show(lvSelectedDevice.SubItems[(int)listviewGlove.Name].Text + "허용되지 않는 숫자의 생명칩이 입력되었습니다\r\nLC: " + strLCBP);
+                    goto DevicePublish;    // LC값이 정수로 변환이 안될때 다음 IF문인 BP섹션으로 이동
+                }
+                if (strLCBP.StartsWith("+") || strLCBP.StartsWith("-")) //글러브 배터리팩 +또는 -인지 확인 (게임처럼 동착하기 위함)
+                {
+                    int nSumLCBP = nCurLCBP + nLCBP;
+                    if ((nSumLCBP <= nMaxBatteryPack) && (nSumLCBP >= 0))   //글러브가 소지 할 수 있는 배터리팩의 범위 안의 경우
+                    {
+                        strApplyLCBP = nSumLCBP.ToString();
+                    }
+                    else  //글러브가 소지 할 수 있는 배터리팩의 범위를 벗어나는 경우
+                    {
+                        MessageBox.Show(lvSelectedDevice.SubItems[(int)listviewGlove.Name].Text + "의 배터리팩 범위를 벗어났습니다\r\n현재BP: " + nCurLCBP.ToString() + " 추가하려는 BP: " + strLCBP);
+                        goto DevicePublish;   //범위를 벗어났기 때문에 오류박스 show  후 함수 종료
+                    }
+                }
+                else //글러브 배터리팩 +또는 - 없으면 배터리 최대소지개수에 상관없이 들어온 정수값 그대로 강제변환
+                {
+                    MessageBox.Show(lvSelectedDevice.SubItems[(int)listviewGlove.Name].Text + "의 배터리팩을 강제로 바꿉니다.\r\n현재BP: " + "Change BP: " + strLCBP);
+                    strApplyLCBP = strLCBP;
+                }
+                lvSelectedDevice.SubItems[(int)listviewGlove.BP].Text = strApplyLCBP;   //lvGlove에 적용 
+            }
+
+            DevicePublish:
+            DeviceJSONPublish(lvSelectedDevice.SubItems[(int)listviewDevice.Name].Text,
+                                            lvSelectedDevice.SubItems[(int)listviewDevice.State].Text,
+                                            lvSelectedDevice.SubItems[(int)listviewDevice.LCBP].Text);
+            return false;
+        }
         /* DEVICE ListView Code */
         private void lvDevice_SelectedIndexChanged(object sender, EventArgs e)
         {

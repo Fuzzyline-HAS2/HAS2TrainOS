@@ -7,6 +7,7 @@ using System.Runtime.InteropServices;
 using Aspose.Cells;
 using System.Windows.Forms;
 using System.Globalization;
+using System.Drawing;
 
 namespace HAS2TrainOS
 {
@@ -91,6 +92,21 @@ namespace HAS2TrainOS
                     lvGlove.Items[i].SubItems[j].Text = (wsGlove.Cells[i + 1, j].Value).ToString();
                 }
             }
+            foreach (ListViewItem lvG in lvGlove.Items)
+            {
+                if (lvG.SubItems[(int)listviewGlove.Role].Text == "player")
+                {
+                    lvG.BackColor = Color.YellowGreen;
+                }
+                else if (lvG.SubItems[(int)listviewGlove.Role].Text == "tagger")
+                {
+                    lvG.BackColor = Color.BlueViolet;
+                }
+                else
+                {
+                    lvG.BackColor = Color.LightGray;
+                }
+            }
 
             /* aspose.cell 라이선스 문제로 저장할때마다 시트가 추가되는 버그를 해결하기 위해 매번 켤때마다 시트를 삭제함*/
             try
@@ -137,6 +153,7 @@ namespace HAS2TrainOS
                     wsGlove.Cells[i + 1, j].Value = lvGlove.Items[i].SubItems[j].Text;
                 }
             }
+           
             wbGlove.Save(@"C:\Users\user\Desktop\bbangjun\TrainRoom_excel\wbGlove.xlsx");
         }
         
