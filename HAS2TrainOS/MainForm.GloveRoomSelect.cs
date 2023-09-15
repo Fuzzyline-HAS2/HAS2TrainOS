@@ -14,15 +14,15 @@ namespace HAS2TrainOS
     {
         public bool GloveListViewChange(ListViewItem lvSelectedGlove, String Role = "", String State = "", String strLC = "", String strBP = "")
         {
-            if(Role != null)
+            if(Role != "")
             {
                 lvSelectedGlove.SubItems[(int)listviewGlove.Role].Text = Role;   //글러브 Role 데이터 치환
             }
-            if (State != null)
+            if (State != "")
             {
                 lvSelectedGlove.SubItems[(int)listviewGlove.State].Text = State;   //글러브 Role 데이터 치환
             }
-            if (strLC != null)
+            if (strLC != "")
             {
                 int nCurLC = Int32.Parse(lvSelectedGlove.SubItems[(int)listviewGlove.LC].Text); // 현재 선택된 글러브의 배터리팩 개수
                 int nLC = 0;    // 현재 배터리팩에서 추가하려는 배터리팩 개수
@@ -32,7 +32,7 @@ namespace HAS2TrainOS
                     nLC = Int32.Parse(strLC);   //들어온 LC값이 정수로 변환 가능한지 확인
                 }
                 catch
-                {
+                { 
                     MessageBox.Show(lvSelectedGlove.SubItems[(int)listviewGlove.Name].Text + "허용되지 않는 숫자의 생명칩이 입력되었습니다\r\nLC: " + strLC);
                     goto GloveBP;    // LC값이 정수로 변환이 안될때 다음 IF문인 BP섹션으로 이동
                 }
@@ -51,16 +51,17 @@ namespace HAS2TrainOS
                 }
                 else //글러브 배터리팩 +또는 - 없으면 배터리 최대소지개수에 상관없이 들어온 정수값 그대로 강제변환
                 {
-                    MessageBox.Show(lvSelectedGlove.SubItems[(int)listviewGlove.Name].Text + "의 배터리팩을 강제로 바꿉니다.\r\n현재LC: " + "Change LC: " + strBP);
+                    //MessageBox.Show(lvSelectedGlove.SubItems[(int)listviewGlove.Name].Text + "의 배터리팩을 강제로 바꿉니다.\r\n현재LC: " + "Change LC: " + strBP);
                     strApplyLC = strLC;
                 }
                 lvSelectedGlove.SubItems[(int)listviewGlove.LC].Text = strApplyLC;   //lvGlove에 적용 
 
                 if (strApplyLC == "0")   //생명칩이 0으로 바뀔때 ghost로 적용
                 {
-                    if (lvSelectedGlove.SubItems[(int)listviewGlove.Role].Text == "player")  //role이 플레이어 일때만 ghost로
+                    if (lvSelectedGlove.SubItems[(int)listviewGlove.Role].Text != "tagger" )  //role이 플레이어 일때만 ghost로
                     { 
-                        lvSelectedGlove.SubItems[(int)listviewGlove.Role].Text = "ghost";   //lvGlove에 적용 
+                        lvSelectedGlove.SubItems[(int)listviewGlove.Role].Text = "ghost";   //lvGlove에 적용
+                        lvSelectedGlove.BackColor = Color.LightBlue;
                     }
                 }
                 else if(lvSelectedGlove.SubItems[(int)listviewGlove.Role].Text == "ghost")
@@ -68,12 +69,13 @@ namespace HAS2TrainOS
                     if(strApplyLC == "1")
                     {
                         lvSelectedGlove.SubItems[(int)listviewGlove.Role].Text = "revival";   //lvGlove에 적용 
+                        lvSelectedGlove.BackColor = Color.LightYellow;
                     }
                 }
             }
 
             GloveBP:
-            if (strBP != null)
+            if (strBP != "")
             {
                 int nCurBP = Int32.Parse(lvSelectedGlove.SubItems[(int)listviewGlove.BP].Text); // 현재 선택된 글러브의 배터리팩 개수
                 int nBP = 0;    // 현재 배터리팩에서 추가하려는 배터리팩 개수
@@ -102,7 +104,7 @@ namespace HAS2TrainOS
                 }
                 else //글러브 배터리팩 +또는 - 없으면 배터리 최대소지개수에 상관없이 들어온 정수값 그대로 강제변환
                 {
-                    MessageBox.Show(lvSelectedGlove.SubItems[(int)listviewGlove.Name].Text + "의 배터리팩을 강제로 바꿉니다.\r\n현재BP: " + "Change BP: " + strBP);
+                    //MessageBox.Show(lvSelectedGlove.SubItems[(int)listviewGlove.Name].Text + "의 배터리팩을 강제로 바꿉니다.\r\n현재BP: " + "Change BP: " + strBP);
                     strApplyBP = strBP;
                 }
                 lvSelectedGlove.SubItems[(int)listviewGlove.BP].Text = strApplyBP;   //lvGlove에 적용 
@@ -134,38 +136,31 @@ namespace HAS2TrainOS
                     if (("trbP" + (i + 1).ToString()) == tmp.Name)
                     {
                         TrackBar trb = (TrackBar)tmp;
-                        GloveListViewChange(lvGlove.Items[i], Role: RoleReturn(trb.Value));         //TrackBar에 맞춘 Role 전송
-                        lvGlove.Items[i].BackColor = ColorReturn(trb.Value);                                            //TrackBar에 맞춘 색 전송
-                        if (trb.Value == 1)
+                        switch (trb.Value)
                         {
-                            lvGlove.Items[i].ForeColor = Color.Gray;    //none 일때만 글자색 회색
-                        }
-                        else
-                        {
-                            lvGlove.Items[i].ForeColor = Color.Black;    //none 일때만 글자색 회색
+                            case 0:
+                                lvGlove.Items[i].ForeColor = Color.Black;    //none 일때만 글자색 회색
+                                GloveListViewChange(lvGlove.Items[i], Role: "player", State: "ready", strLC: "1", strBP: "0");         //TrackBar에 맞춘 Role 전송
+                                lvGlove.Items[i].BackColor = Color.YellowGreen;
+                                break;
+                            case 1:
+                                lvGlove.Items[i].ForeColor = Color.Gray;    //none 일때만 글자색 회색
+                                GloveListViewChange(lvGlove.Items[i], Role: "none",State:"ready", strLC: "1", strBP: "0");         //TrackBar에 맞춘 Role 전송
+                                lvGlove.Items[i].BackColor = Color.LightGray;
+                                break; 
+                            case 2:
+                                lvGlove.Items[i].ForeColor = Color.Black;    //none 일때만 글자색 회색
+                                GloveListViewChange(lvGlove.Items[i], Role: "tagger", State: "ready", strLC: "0", strBP: "0");         //TrackBar에 맞춘 Role 전송
+                                lvGlove.Items[i].BackColor = Color.BlueViolet;
+                                break;
+                            default:
+                                lvGlove.Items[i].ForeColor = Color.Black;    //none 일때만 글자색 회색
+                                GloveListViewChange(lvGlove.Items[i], Role: "error", State: "ready", strLC: "1", strBP: "0");         //TrackBar에 맞춘 Role 전송
+                                lvGlove.Items[i].BackColor = SystemColors.Control;
+                                break;
                         }
                     }
                 }
-            }
-        }
-        private String RoleReturn(int value)
-        {
-            switch (value)
-            {
-                case 0: return "player";
-                case 1: return "none";
-                case 2: return "tagger";
-                default: return "error";
-            }
-        }
-        private Color ColorReturn(int value)
-        {
-            switch (value)
-            {
-                case 0: return Color.YellowGreen;
-                case 1: return Color.LightGray;
-                case 2: return Color.BlueViolet;
-                default: return SystemColors.Control;
             }
         }
         private void ColorChange(String strTrackBarName, int nTempTrackValue)

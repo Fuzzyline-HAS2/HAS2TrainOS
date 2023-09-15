@@ -120,8 +120,12 @@ namespace HAS2TrainOS
                                                                     DeviceListViewChange(lvTempDevice, strLCBP: "0"); // 생장 생명칩 데이터 사용완료 '0' 처리
                                                                     break;
                                                                 case 'T':
-                                                                    GloveListViewChange(lvTempGlove, strLC: "-1"); //글러브 LC 데이터 '-1' 처리
-                                                                    DeviceListViewChange(lvTempDevice, strLCBP: "+1"); // 제단 생명칩 데이터  '+1' 처리
+                                                                    if (nPlayerCur != 11 && nPlayerCur != 10)
+                                                                    {
+                                                                        GloveListViewChange(lvTempGlove, strLC: "-1"); //글러브 LC 데이터 '-1' 처리
+                                                                        DeviceListViewChange(lvTempDevice, strLCBP: "+1"); // 제단 생명칩 데이터  '+1' 처리
+                                                                    }
+
                                                                     break;
                                                                 case 'V':
                                                                     GloveListViewChange(lvTempGlove, strLC: "-1"); //생존자 글러브 LC 데이터 '-1' 처리
@@ -180,7 +184,11 @@ namespace HAS2TrainOS
                                             {
                                                 if (lvTemp == lvGlove)
                                                 {
-                                                    GloveListViewChange(lvTempDevice);
+                                                    //GloveListViewChange(lvTempDevice);
+                                                    GloveJSONPublish_MAC(lvTempDevice.SubItems[(int)listviewGlove.Name].Text, lvTempDevice.SubItems[(int)listviewGlove.Name].Text, 
+                                                        lvTempDevice.SubItems[(int)listviewGlove.State].Text, 
+                                                        lvTempDevice.SubItems[(int)listviewGlove.LC].Text, 
+                                                        lvTempDevice.SubItems[(int)listviewGlove.BP].Text);
                                                 }
                                                 else
                                                 {

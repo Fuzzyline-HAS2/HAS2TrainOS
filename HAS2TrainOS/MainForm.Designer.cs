@@ -28,93 +28,93 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem20 = new System.Windows.Forms.ListViewItem(new string[] {
             "EI1",
             "",
             ""}, -1);
-            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem21 = new System.Windows.Forms.ListViewItem(new string[] {
             "EI2",
             "",
             ""}, -1);
-            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem22 = new System.Windows.Forms.ListViewItem(new string[] {
             "ER1",
             "",
             ""}, -1);
-            System.Windows.Forms.ListViewItem listViewItem4 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem23 = new System.Windows.Forms.ListViewItem(new string[] {
             "ER2",
             "",
             ""}, -1);
-            System.Windows.Forms.ListViewItem listViewItem5 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem24 = new System.Windows.Forms.ListViewItem(new string[] {
             "EVp",
             "",
             ""}, -1);
-            System.Windows.Forms.ListViewItem listViewItem6 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem25 = new System.Windows.Forms.ListViewItem(new string[] {
             "EVt",
             "",
             ""}, -1);
-            System.Windows.Forms.ListViewItem listViewItem7 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem26 = new System.Windows.Forms.ListViewItem(new string[] {
             "EG",
             "",
             ""}, -1);
-            System.Windows.Forms.ListViewItem listViewItem8 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem27 = new System.Windows.Forms.ListViewItem(new string[] {
             "ED",
             "",
             ""}, -1);
-            System.Windows.Forms.ListViewItem listViewItem9 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem28 = new System.Windows.Forms.ListViewItem(new string[] {
             "EE",
             "",
             ""}, -1);
-            System.Windows.Forms.ListViewItem listViewItem10 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem29 = new System.Windows.Forms.ListViewItem(new string[] {
             "ET",
             "",
             ""}, -1);
-            System.Windows.Forms.ListViewItem listViewItem11 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem30 = new System.Windows.Forms.ListViewItem(new string[] {
             "EM",
             "",
             ""}, -1);
-            System.Windows.Forms.ListViewItem listViewItem12 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem31 = new System.Windows.Forms.ListViewItem(new string[] {
             "G1P1",
             "",
             "",
             "",
             ""}, -1);
-            System.Windows.Forms.ListViewItem listViewItem13 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem32 = new System.Windows.Forms.ListViewItem(new string[] {
             "G1P2",
             "",
             "",
             "",
             ""}, -1);
-            System.Windows.Forms.ListViewItem listViewItem14 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem33 = new System.Windows.Forms.ListViewItem(new string[] {
             "G1P3",
             "",
             "",
             "",
             ""}, -1);
-            System.Windows.Forms.ListViewItem listViewItem15 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem34 = new System.Windows.Forms.ListViewItem(new string[] {
             "G1P4",
             "",
             "",
             "",
             ""}, -1);
-            System.Windows.Forms.ListViewItem listViewItem16 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem35 = new System.Windows.Forms.ListViewItem(new string[] {
             "G1P5",
             "",
             "",
             "",
             ""}, -1);
-            System.Windows.Forms.ListViewItem listViewItem17 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem36 = new System.Windows.Forms.ListViewItem(new string[] {
             "G1P6",
             "",
             "",
             "",
             ""}, -1);
-            System.Windows.Forms.ListViewItem listViewItem18 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem37 = new System.Windows.Forms.ListViewItem(new string[] {
             "G1P7",
             "",
             "",
             "",
             ""}, -1);
-            System.Windows.Forms.ListViewItem listViewItem19 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem38 = new System.Windows.Forms.ListViewItem(new string[] {
             "G1P8",
             "",
             "",
@@ -125,6 +125,8 @@
             this.pnMainButton = new System.Windows.Forms.Panel();
             this.btnManual = new System.Windows.Forms.Button();
             this.pnDevice = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.tbDeviceSCN = new System.Windows.Forms.TextBox();
             this.btnSetup = new System.Windows.Forms.Button();
             this.cbDeviceName = new System.Windows.Forms.ComboBox();
             this.tbDeviceLCBP = new System.Windows.Forms.TextBox();
@@ -138,7 +140,10 @@
             this.deviceName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.deviceState = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.deviceLifeChipBattery = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.deviceScenario = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panel5 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.tbGloveSCN = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.tbGloveBattery = new System.Windows.Forms.TextBox();
@@ -146,8 +151,9 @@
             this.gloveName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.gloveRole = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.gloveState = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.GloveLifeChip = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.GloveBattery = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.gloveLifeChip = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.gloveBattery = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.gloveScenario = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.cbGloveState = new System.Windows.Forms.ComboBox();
             this.tbGloveName = new System.Windows.Forms.TextBox();
             this.btnGloveApply = new System.Windows.Forms.Button();
@@ -275,6 +281,8 @@
             // 
             // pnDevice
             // 
+            this.pnDevice.Controls.Add(this.label2);
+            this.pnDevice.Controls.Add(this.tbDeviceSCN);
             this.pnDevice.Controls.Add(this.btnSetup);
             this.pnDevice.Controls.Add(this.cbDeviceName);
             this.pnDevice.Controls.Add(this.tbDeviceLCBP);
@@ -285,11 +293,29 @@
             this.pnDevice.Controls.Add(this.cbDeviceState);
             this.pnDevice.Controls.Add(this.tbDeviceName);
             this.pnDevice.Controls.Add(this.lvDevice);
-            this.pnDevice.Font = new System.Drawing.Font("한컴 윤고딕 250", 9F);
+            this.pnDevice.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.pnDevice.Location = new System.Drawing.Point(12, 750);
             this.pnDevice.Name = "pnDevice";
             this.pnDevice.Size = new System.Drawing.Size(457, 279);
             this.pnDevice.TabIndex = 7;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.label2.Location = new System.Drawing.Point(322, 198);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(44, 17);
+            this.label2.TabIndex = 13;
+            this.label2.Text = "SCN :";
+            // 
+            // tbDeviceSCN
+            // 
+            this.tbDeviceSCN.Location = new System.Drawing.Point(368, 195);
+            this.tbDeviceSCN.Name = "tbDeviceSCN";
+            this.tbDeviceSCN.Size = new System.Drawing.Size(85, 21);
+            this.tbDeviceSCN.TabIndex = 19;
+            this.tbDeviceSCN.Text = "0";
             // 
             // btnSetup
             // 
@@ -307,17 +333,17 @@
             // cbDeviceName
             // 
             this.cbDeviceName.FormattingEnabled = true;
-            this.cbDeviceName.Location = new System.Drawing.Point(323, 57);
+            this.cbDeviceName.Location = new System.Drawing.Point(322, 34);
             this.cbDeviceName.Name = "cbDeviceName";
-            this.cbDeviceName.Size = new System.Drawing.Size(131, 26);
+            this.cbDeviceName.Size = new System.Drawing.Size(131, 23);
             this.cbDeviceName.TabIndex = 18;
             this.cbDeviceName.Text = "ALL";
             // 
             // tbDeviceLCBP
             // 
-            this.tbDeviceLCBP.Location = new System.Drawing.Point(323, 191);
+            this.tbDeviceLCBP.Location = new System.Drawing.Point(322, 168);
             this.tbDeviceLCBP.Name = "tbDeviceLCBP";
-            this.tbDeviceLCBP.Size = new System.Drawing.Size(131, 25);
+            this.tbDeviceLCBP.Size = new System.Drawing.Size(131, 21);
             this.tbDeviceLCBP.TabIndex = 11;
             this.tbDeviceLCBP.Text = "0";
             // 
@@ -326,7 +352,7 @@
             this.btnDeviceSetting.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.btnDeviceSetting.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnDeviceSetting.Font = new System.Drawing.Font("Impact", 13F);
-            this.btnDeviceSetting.Location = new System.Drawing.Point(323, 89);
+            this.btnDeviceSetting.Location = new System.Drawing.Point(322, 66);
             this.btnDeviceSetting.Name = "btnDeviceSetting";
             this.btnDeviceSetting.Size = new System.Drawing.Size(40, 38);
             this.btnDeviceSetting.TabIndex = 17;
@@ -339,7 +365,7 @@
             this.btnDeviceActivate.BackColor = System.Drawing.Color.Yellow;
             this.btnDeviceActivate.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnDeviceActivate.Font = new System.Drawing.Font("Impact", 13F);
-            this.btnDeviceActivate.Location = new System.Drawing.Point(414, 89);
+            this.btnDeviceActivate.Location = new System.Drawing.Point(413, 66);
             this.btnDeviceActivate.Name = "btnDeviceActivate";
             this.btnDeviceActivate.Size = new System.Drawing.Size(40, 38);
             this.btnDeviceActivate.TabIndex = 15;
@@ -352,7 +378,7 @@
             this.btnDeviceReady.BackColor = System.Drawing.Color.Tomato;
             this.btnDeviceReady.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnDeviceReady.Font = new System.Drawing.Font("Impact", 13F);
-            this.btnDeviceReady.Location = new System.Drawing.Point(369, 89);
+            this.btnDeviceReady.Location = new System.Drawing.Point(368, 66);
             this.btnDeviceReady.Name = "btnDeviceReady";
             this.btnDeviceReady.Size = new System.Drawing.Size(40, 38);
             this.btnDeviceReady.TabIndex = 16;
@@ -381,17 +407,17 @@
             "activate",
             "OTA",
             "debuff"});
-            this.cbDeviceState.Location = new System.Drawing.Point(323, 161);
+            this.cbDeviceState.Location = new System.Drawing.Point(322, 138);
             this.cbDeviceState.Name = "cbDeviceState";
-            this.cbDeviceState.Size = new System.Drawing.Size(131, 26);
+            this.cbDeviceState.Size = new System.Drawing.Size(131, 23);
             this.cbDeviceState.TabIndex = 11;
             this.cbDeviceState.Text = "STATE";
             // 
             // tbDeviceName
             // 
-            this.tbDeviceName.Location = new System.Drawing.Point(323, 133);
+            this.tbDeviceName.Location = new System.Drawing.Point(322, 110);
             this.tbDeviceName.Name = "tbDeviceName";
-            this.tbDeviceName.Size = new System.Drawing.Size(131, 25);
+            this.tbDeviceName.Size = new System.Drawing.Size(131, 21);
             this.tbDeviceName.TabIndex = 11;
             this.tbDeviceName.Text = "NAME";
             // 
@@ -400,23 +426,24 @@
             this.lvDevice.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.deviceName,
             this.deviceState,
-            this.deviceLifeChipBattery});
-            this.lvDevice.Font = new System.Drawing.Font("한컴 윤고딕 250", 9F);
+            this.deviceLifeChipBattery,
+            this.deviceScenario});
+            this.lvDevice.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.lvDevice.FullRowSelect = true;
             this.lvDevice.GridLines = true;
             this.lvDevice.HideSelection = false;
             this.lvDevice.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1,
-            listViewItem2,
-            listViewItem3,
-            listViewItem4,
-            listViewItem5,
-            listViewItem6,
-            listViewItem7,
-            listViewItem8,
-            listViewItem9,
-            listViewItem10,
-            listViewItem11});
+            listViewItem20,
+            listViewItem21,
+            listViewItem22,
+            listViewItem23,
+            listViewItem24,
+            listViewItem25,
+            listViewItem26,
+            listViewItem27,
+            listViewItem28,
+            listViewItem29,
+            listViewItem30});
             this.lvDevice.Location = new System.Drawing.Point(6, 2);
             this.lvDevice.MultiSelect = false;
             this.lvDevice.Name = "lvDevice";
@@ -433,15 +460,22 @@
             // deviceState
             // 
             this.deviceState.Text = "State";
-            this.deviceState.Width = 183;
+            this.deviceState.Width = 139;
             // 
             // deviceLifeChipBattery
             // 
             this.deviceLifeChipBattery.Text = "LC/BP";
             this.deviceLifeChipBattery.Width = 62;
             // 
+            // deviceScenario
+            // 
+            this.deviceScenario.Text = "SCN";
+            this.deviceScenario.Width = 44;
+            // 
             // panel5
             // 
+            this.panel5.Controls.Add(this.label1);
+            this.panel5.Controls.Add(this.tbGloveSCN);
             this.panel5.Controls.Add(this.label11);
             this.panel5.Controls.Add(this.label10);
             this.panel5.Controls.Add(this.tbGloveBattery);
@@ -456,32 +490,52 @@
             this.panel5.Size = new System.Drawing.Size(457, 279);
             this.panel5.TabIndex = 8;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.label1.Location = new System.Drawing.Point(207, 255);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(44, 17);
+            this.label1.TabIndex = 12;
+            this.label1.Text = "SCN :";
+            // 
+            // tbGloveSCN
+            // 
+            this.tbGloveSCN.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
+            this.tbGloveSCN.Location = new System.Drawing.Point(257, 252);
+            this.tbGloveSCN.Name = "tbGloveSCN";
+            this.tbGloveSCN.Size = new System.Drawing.Size(25, 20);
+            this.tbGloveSCN.TabIndex = 11;
+            this.tbGloveSCN.Text = "0";
+            this.tbGloveSCN.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("한컴 윤고딕 250", 10F);
-            this.label11.Location = new System.Drawing.Point(158, 255);
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.label11.Location = new System.Drawing.Point(113, 255);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(96, 20);
+            this.label11.Size = new System.Drawing.Size(34, 17);
             this.label11.TabIndex = 10;
-            this.label11.Text = "BATTERY :";
+            this.label11.Text = "BP :";
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("한컴 윤고딕 250", 10F);
-            this.label10.Location = new System.Drawing.Point(3, 255);
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.label10.Location = new System.Drawing.Point(3, 254);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(98, 20);
+            this.label10.Size = new System.Drawing.Size(33, 17);
             this.label10.TabIndex = 9;
-            this.label10.Text = "LIFECHIP :";
+            this.label10.Text = "LC :";
             // 
             // tbGloveBattery
             // 
-            this.tbGloveBattery.Font = new System.Drawing.Font("한컴 윤고딕 250", 8F);
-            this.tbGloveBattery.Location = new System.Drawing.Point(257, 255);
+            this.tbGloveBattery.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
+            this.tbGloveBattery.Location = new System.Drawing.Point(149, 252);
             this.tbGloveBattery.Name = "tbGloveBattery";
-            this.tbGloveBattery.Size = new System.Drawing.Size(25, 23);
+            this.tbGloveBattery.Size = new System.Drawing.Size(25, 20);
             this.tbGloveBattery.TabIndex = 8;
             this.tbGloveBattery.Text = "0";
             this.tbGloveBattery.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -492,21 +546,22 @@
             this.gloveName,
             this.gloveRole,
             this.gloveState,
-            this.GloveLifeChip,
-            this.GloveBattery});
-            this.lvGlove.Font = new System.Drawing.Font("한컴 윤고딕 250", 9F);
+            this.gloveLifeChip,
+            this.gloveBattery,
+            this.gloveScenario});
+            this.lvGlove.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.lvGlove.FullRowSelect = true;
             this.lvGlove.GridLines = true;
             this.lvGlove.HideSelection = false;
             this.lvGlove.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem12,
-            listViewItem13,
-            listViewItem14,
-            listViewItem15,
-            listViewItem16,
-            listViewItem17,
-            listViewItem18,
-            listViewItem19});
+            listViewItem31,
+            listViewItem32,
+            listViewItem33,
+            listViewItem34,
+            listViewItem35,
+            listViewItem36,
+            listViewItem37,
+            listViewItem38});
             this.lvGlove.Location = new System.Drawing.Point(3, 3);
             this.lvGlove.MultiSelect = false;
             this.lvGlove.Name = "lvGlove";
@@ -528,21 +583,26 @@
             // gloveState
             // 
             this.gloveState.Text = "State";
-            this.gloveState.Width = 224;
+            this.gloveState.Width = 113;
             // 
-            // GloveLifeChip
+            // gloveLifeChip
             // 
-            this.GloveLifeChip.Text = "LC";
-            this.GloveLifeChip.Width = 46;
+            this.gloveLifeChip.Text = "LC";
+            this.gloveLifeChip.Width = 46;
             // 
-            // GloveBattery
+            // gloveBattery
             // 
-            this.GloveBattery.Text = "BP";
-            this.GloveBattery.Width = 44;
+            this.gloveBattery.Text = "BP";
+            this.gloveBattery.Width = 44;
+            // 
+            // gloveScenario
+            // 
+            this.gloveScenario.Text = "SCN";
+            this.gloveScenario.Width = 41;
             // 
             // cbGloveState
             // 
-            this.cbGloveState.Font = new System.Drawing.Font("한컴 윤고딕 250", 8F);
+            this.cbGloveState.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
             this.cbGloveState.FormattingEnabled = true;
             this.cbGloveState.Items.AddRange(new object[] {
             "setting",
@@ -550,16 +610,16 @@
             "activate"});
             this.cbGloveState.Location = new System.Drawing.Point(180, 225);
             this.cbGloveState.Name = "cbGloveState";
-            this.cbGloveState.Size = new System.Drawing.Size(102, 24);
+            this.cbGloveState.Size = new System.Drawing.Size(102, 21);
             this.cbGloveState.TabIndex = 7;
             this.cbGloveState.Text = "STATE";
             // 
             // tbGloveName
             // 
-            this.tbGloveName.Font = new System.Drawing.Font("한컴 윤고딕 250", 8F);
+            this.tbGloveName.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
             this.tbGloveName.Location = new System.Drawing.Point(4, 225);
             this.tbGloveName.Name = "tbGloveName";
-            this.tbGloveName.Size = new System.Drawing.Size(63, 23);
+            this.tbGloveName.Size = new System.Drawing.Size(63, 20);
             this.tbGloveName.TabIndex = 3;
             this.tbGloveName.Text = "NAME";
             // 
@@ -577,7 +637,7 @@
             // 
             // cbGloveRole
             // 
-            this.cbGloveRole.Font = new System.Drawing.Font("한컴 윤고딕 250", 8F);
+            this.cbGloveRole.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
             this.cbGloveRole.FormattingEnabled = true;
             this.cbGloveRole.Items.AddRange(new object[] {
             "player",
@@ -587,16 +647,16 @@
             "none"});
             this.cbGloveRole.Location = new System.Drawing.Point(72, 225);
             this.cbGloveRole.Name = "cbGloveRole";
-            this.cbGloveRole.Size = new System.Drawing.Size(102, 24);
+            this.cbGloveRole.Size = new System.Drawing.Size(102, 21);
             this.cbGloveRole.TabIndex = 2;
             this.cbGloveRole.Text = "ROLE";
             // 
             // tbGloveLifeChip
             // 
-            this.tbGloveLifeChip.Font = new System.Drawing.Font("한컴 윤고딕 250", 8F);
-            this.tbGloveLifeChip.Location = new System.Drawing.Point(103, 255);
+            this.tbGloveLifeChip.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
+            this.tbGloveLifeChip.Location = new System.Drawing.Point(42, 251);
             this.tbGloveLifeChip.Name = "tbGloveLifeChip";
-            this.tbGloveLifeChip.Size = new System.Drawing.Size(25, 23);
+            this.tbGloveLifeChip.Size = new System.Drawing.Size(25, 20);
             this.tbGloveLifeChip.TabIndex = 4;
             this.tbGloveLifeChip.Text = "0";
             this.tbGloveLifeChip.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -619,7 +679,7 @@
             this.KillerCurrent,
             this.KillerSCN,
             this.KillerNarration});
-            this.listView3.Font = new System.Drawing.Font("한컴 윤고딕 240", 7F);
+            this.listView3.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F);
             this.listView3.FullRowSelect = true;
             this.listView3.GridLines = true;
             this.listView3.HideSelection = false;
@@ -649,20 +709,20 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("한컴 윤고딕 250", 9F);
+            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.label13.Location = new System.Drawing.Point(298, 3);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(35, 18);
+            this.label13.Size = new System.Drawing.Size(27, 15);
             this.label13.TabIndex = 2;
             this.label13.Text = "60s";
             // 
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("한컴 윤고딕 250", 9F);
+            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.label14.Location = new System.Drawing.Point(262, 18);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(71, 18);
+            this.label14.Size = new System.Drawing.Size(53, 15);
             this.label14.TabIndex = 1;
             this.label14.Text = ": Current";
             // 
@@ -698,7 +758,7 @@
             this.playerSendto,
             this.playerSkipCondition,
             this.playerWaitTime});
-            this.lvPlayerNarr.Font = new System.Drawing.Font("한컴 윤고딕 240", 6.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lvPlayerNarr.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lvPlayerNarr.FullRowSelect = true;
             this.lvPlayerNarr.GridLines = true;
             this.lvPlayerNarr.HideSelection = false;
@@ -741,20 +801,20 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("한컴 윤고딕 250", 9F);
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.label12.Location = new System.Drawing.Point(63, 3);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(35, 18);
+            this.label12.Size = new System.Drawing.Size(27, 15);
             this.label12.TabIndex = 2;
             this.label12.Text = "60s";
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("한컴 윤고딕 250", 9F);
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.label9.Location = new System.Drawing.Point(63, 18);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(71, 18);
+            this.label9.Size = new System.Drawing.Size(53, 15);
             this.label9.TabIndex = 1;
             this.label9.Text = "Current: ";
             // 
@@ -1195,8 +1255,8 @@
         private System.Windows.Forms.ListView lvGlove;
         private System.Windows.Forms.ColumnHeader gloveName;
         private System.Windows.Forms.ColumnHeader gloveRole;
-        private System.Windows.Forms.ColumnHeader GloveLifeChip;
-        private System.Windows.Forms.ColumnHeader GloveBattery;
+        private System.Windows.Forms.ColumnHeader gloveLifeChip;
+        private System.Windows.Forms.ColumnHeader gloveBattery;
         private System.Windows.Forms.TextBox tbGloveLifeChip;
         private System.Windows.Forms.TextBox tbGloveName;
         private System.Windows.Forms.ComboBox cbGloveRole;
@@ -1272,6 +1332,12 @@
         private System.Windows.Forms.Label lbTaggerWaitTimer;
         private System.Windows.Forms.Label lbTaggerSkipTimer;
         private System.Windows.Forms.Panel pnNarration;
+        private System.Windows.Forms.ColumnHeader deviceScenario;
+        private System.Windows.Forms.ColumnHeader gloveScenario;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox tbGloveSCN;
+        private System.Windows.Forms.TextBox tbDeviceSCN;
+        private System.Windows.Forms.Label label2;
     }
 }
 

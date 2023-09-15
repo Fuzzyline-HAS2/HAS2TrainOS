@@ -45,7 +45,20 @@ namespace HAS2TrainOS
 
         public bool SCNp69()    //생명장치 생명칩 추가
         {
-            Console.WriteLine("SCNp40");
+            //Console.WriteLine("SCNp40");
+            return false;
+        }
+        public bool SCNp18()    //생명장치 생명칩 추가
+        {
+            //Console.WriteLine("SCNp40");
+            foreach (ListViewItem lvGloveTagger in lvGlove.Items)
+            {
+                if (lvGloveTagger.SubItems[(int)listviewGlove.Role].Text == "tagger")
+                {
+                    GloveListViewChange(lvGloveTagger, Role: "player", strLC: "1");
+                    break;
+                }
+            }
             return false;
         }
     }

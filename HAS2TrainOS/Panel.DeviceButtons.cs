@@ -12,11 +12,11 @@ namespace HAS2TrainOS
     {
         public bool DeviceListViewChange(ListViewItem lvSelectedDevice, String State = "", String strLCBP = "")
         {
-            if (State != null)
+            if (State != "")
             {
                 lvSelectedDevice.SubItems[(int)listviewGlove.State].Text = State;   //글러브 Role 데이터 치환
             }
-            if(strLCBP != null)
+            if(strLCBP != "")
             {
                 int nCurLCBP = Int32.Parse(lvSelectedDevice.SubItems[(int)listviewGlove.LC].Text); // 현재 선택된 글러브의 배터리팩 개수
                 int nLCBP = 0;    // 현재 배터리팩에서 추가하려는 배터리팩 개수
@@ -67,7 +67,7 @@ namespace HAS2TrainOS
                 tbDeviceName.Text = lvDevice.Items[nSelectedIndex].SubItems[0].Text; ;
                 cbDeviceState.Text = lvDevice.Items[nSelectedIndex].SubItems[1].Text;
                 tbDeviceLCBP.Text = lvDevice.Items[nSelectedIndex].SubItems[2].Text;
-                
+                //tbDeviceSCN.Text = lvDevice.Items[nSelectedIndex].SubItems[3].Text;
             }
         }
 
@@ -248,6 +248,7 @@ namespace HAS2TrainOS
                 cbGloveState.Text = lvGlove.Items[nSelectedIndex].SubItems[2].Text;
                 tbGloveLifeChip.Text = lvGlove.Items[nSelectedIndex].SubItems[3].Text;
                 tbGloveBattery.Text = lvGlove.Items[nSelectedIndex].SubItems[4].Text;
+                //tbGloveSCN.Text = lvGlove.Items[nSelectedIndex].SubItems[5].Text;
             }
         }
 
@@ -255,18 +256,7 @@ namespace HAS2TrainOS
         {
             if (lvGlove.SelectedItems.Count > 0)    //listview에서 선택이 되었을때만 실행되기 위해 조건
             {
-                int nSelectedIndex = lvGlove.FocusedItem.Index; //현재 선택된 인데스 번호 전자용
-                lvGlove.Items[nSelectedIndex].SubItems[1].Text = cbGloveRole.Text;
-                lvGlove.Items[nSelectedIndex].SubItems[2].Text = cbGloveState.Text;
-                lvGlove.Items[nSelectedIndex].SubItems[3].Text = tbGloveLifeChip.Text;
-                lvGlove.Items[nSelectedIndex].SubItems[4].Text = tbGloveBattery.Text;
-
-                //listview에서 변동이 토픽으로  publish
-                GloveJSONPublish(lvGlove.Items[nSelectedIndex].SubItems[(int)listviewGlove.Name].Text, 
-                    lvGlove.Items[nSelectedIndex].SubItems[(int)listviewGlove.Role].Text, 
-                    lvGlove.Items[nSelectedIndex].SubItems[(int)listviewGlove.State].Text, 
-                    lvGlove.Items[nSelectedIndex].SubItems[(int)listviewGlove.LC].Text, 
-                    lvGlove.Items[nSelectedIndex].SubItems[(int)listviewGlove.BP].Text);
+                GloveListViewChange(lvGlove.FocusedItem, cbGloveRole.Text, cbGloveState.Text, tbGloveLifeChip.Text, tbGloveBattery.Text);
             }
         }
 
