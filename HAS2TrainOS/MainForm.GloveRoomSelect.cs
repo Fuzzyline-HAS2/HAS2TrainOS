@@ -136,6 +136,9 @@ namespace HAS2TrainOS
             String strLifeChip = "0";
             Color tmpBackColor = SystemColors.Control;
             Color tmpForeColor = Color.Black;
+            List<string> listAGp = new List<string>();  //플레이어 글러브를 리스트로 하나씩 저장하기 위한 리스트
+            List<string> listAGt = new List<string>();  //술래 글러브를 리스트로 하나씩 저장하기 위한 리스트
+
             foreach (ListViewItem lvSelectedGlove in lvGlove.Items)
             {
                 nIndex++;                                                                       //현재 선택중인 글러브 인덱스 저장용 변수 foreach에 따라 +1씩 증가함
@@ -152,6 +155,8 @@ namespace HAS2TrainOS
                                 strLifeChip = "1";
                                 tmpBackColor = Color.YellowGreen;
                                 tmpForeColor = Color.Black;
+                                listAGp.Add(lvSelectedGlove.Text);  //플레이어 글러브 리스트에 추가
+
                                 break;
                             case 1:
                                 strGoveRole = "none";
@@ -164,6 +169,7 @@ namespace HAS2TrainOS
                                 strLifeChip = "0";
                                 tmpBackColor = Color.BlueViolet;
                                 tmpForeColor = Color.Black;
+                                listAGt.Add(lvSelectedGlove.Text);  //술래 글러브 리스트에 추가
                                 break;
                             default:
                                 strGoveRole = "error";
@@ -174,6 +180,11 @@ namespace HAS2TrainOS
                         }
                     }
                 }
+                PlayerSCNProcessor.AllDevice.strAGp = listAGp.ToArray();    //플레이어 리스트를 배열로 변환
+                PlayerSCNProcessor.AllDevice.strAGp = listAGt.ToArray();    //플레이어 리스트를 배열로 변환
+                TaggerSCNProcessor.AllDevice.strAGp = listAGp.ToArray();    //플레이어 리스트를 배열로 변환
+                TaggerSCNProcessor.AllDevice.strAGt = listAGt.ToArray();    //술래 리스트를 배열로 변환
+
                 string strGloveName = gloveGroup + "P" + nIndex.ToString();                                 //글러브 이름 만들기
                 GloveListViewChange(lvSelectedGlove,Name:strGloveName, 
                                                                         Role: strGoveRole,

@@ -10,6 +10,7 @@ using Aspose.Cells;
 using NAudio.CoreAudioApi;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
+using System.Security.Cryptography;
 
 namespace HAS2TrainOS
 {
@@ -17,12 +18,8 @@ namespace HAS2TrainOS
     {
         MqttClient client;
         string clientId;
-        structMAC[] MACs;
         public void MQTT_Initializtion()
         {
-            /*Excel에서 MAC 주소 가져오기*/
-            Worksheet wsMac = wbMAC.Worksheets[0];  //MAC 시트
-            int rowsMac = wsMac.Cells.MaxDataRow;
 
             /*MQTT 서버 연결*/
             string BrokerAddress = "172.30.1.44";
@@ -36,18 +33,17 @@ namespace HAS2TrainOS
             //Subscribe Topic 추가
             //client.Subscribe(new string[] { "test" }, new byte[] { 1 });   // we need arrays as parameters because we can subscribe to different topics with one call
             //string[] mqtt_topic = { "MAINOS", "ALL", "EI1", "EI2", "ER1", "ER2", "EV1", "EV2", "ED", "EG", "ET", "EE", "DOOR1", "DOOR2", "EM1", "EM2" };
-            string[] mqtt_topic = new string[rowsMac + 1];
-            byte[] mqtt_qos = new byte[rowsMac + 1];
-            MACs = new structMAC[rowsMac];
-            for (int i = 0; i < rowsMac; i++)
+            string[] mqtt_topic = new string[nMaxMACNum + 1];
+            byte[] mqtt_qos = new byte[nMaxMACNum + 1];
+            int nCntMAC = 0;
+            foreach(structMAC m in MACs)
             {
-                //Console.WriteLine((wsMac.Cells[i + 1, 0].Value).ToString());
-                mqtt_topic[i] = (wsMac.Cells[i + 1, 1].Value).ToString();
-                mqtt_qos[i] = (byte)0;
-                MACs[i].SaveMAC((wsMac.Cells[i + 1, 0].Value).ToString(), (wsMac.Cells[i + 1, 1].Value).ToString());
+                mqtt_topic[nCntMAC] = m.strDeviceMAC;
+                mqtt_qos[nCntMAC] = (byte)0;
+                nCntMAC++;
             }
-            mqtt_topic[rowsMac] = "OS";
-            mqtt_qos[rowsMac] = (byte)0;
+            mqtt_topic[nCntMAC] = "OS";
+            mqtt_qos[nCntMAC] = (byte)0;
 
             client.Subscribe(mqtt_topic, mqtt_qos);
         }
@@ -166,6 +162,31 @@ namespace HAS2TrainOS
                                                             }
                                                             PlayerSCNProcessor.strTagDevice = null;    //TAG 명령어 초기화
                                                             PlayerSCNProcessor.MainProcessor();
+                                                        }
+                                                    }
+                                                    if (TaggerSCNProcessor.strTagDevice != null)   //엑셀에서 TAG명령어 들어왔을때만 실행
+                                                    {
+                                                        foreach (String s in TaggerSCNProcessor.strTagDevice)  //엑셀에 있는 TAG_장치이름_시나리오# 에서 장치 이름 strTagDevice에 저장 후 비교중
+                                                        {
+                                                            if (s == m.strDeviceName)
+                                                            {
+                                                                Console.WriteLine(s);
+                                                                TaggerSCNProcessor.nTagCnt++;
+                                                                break;
+                                                            }
+                                                        }   // 비교 종료
+                                                        if (TaggerSCNProcessor.nTagCnt >= TaggerSCNProcessor.nTagMaxCnt)  //엑셀 TAG 명령어 총 개수와 일치하면 다음 나레인 재생 위한 if문
+                                                        {
+                                                            TaggerSCNProcessor.timerPlayerSkipTime.Change(System.Threading.Timeout.Infinite, System.Threading.Timeout.Infinite); //PlayerSkipTimer 종료
+                                                            foreach (ListViewItem listitem in lvPlayerNarr.Items)
+                                                            {
+                                                                if (listitem.SubItems[1].Text == TaggerSCNProcessor.strTagTo)
+                                                                {
+                                                                    TaggerSCNProcessor.nCurrentCnt = listitem.Index;
+                                                                }
+                                                            }
+                                                            TaggerSCNProcessor.strTagDevice = null;    //TAG 명령어 초기화
+                                                            TaggerSCNProcessor.MainProcessor();
                                                         }
                                                     }
                                                 } // if (jsonInput["DN"].ToString().Contains("G")) ")

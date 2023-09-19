@@ -14,10 +14,14 @@ namespace HAS2TrainOS
 
     public partial class MainForm : Form
     {
-        Workbook wbMain = new Workbook(@"C:\Users\user\Desktop\bbangjun\TrainRoom_excel\wbMain.xlsx");        // 나레이션 엑셀
-        Workbook wbMAC = new Workbook(@"C:\Users\user\Desktop\bbangjun\TrainRoom_excel\wbMac.xlsx");         //MQTT 구독하기 위해
-        Workbook wbDevice = new Workbook(@"C:\Users\user\Desktop\bbangjun\TrainRoom_excel\wbDevice.xlsx");  //장치 데이터 저장용
-        Workbook wbGlove = new Workbook(@"C:\Users\user\Desktop\bbangjun\TrainRoom_excel\wbGlove.xlsx");     // 글러브 데이터 저장용
+        public String strFileDir = @"C:\Users\user\Desktop\bbangjun\TrainRoom_excel\";
+        int nMaxMACNum;         //맥주소  최대개수
+        structMAC[] MACs;
+
+        Workbook wbMain;        // 나레이션 엑셀
+        Workbook wbMAC ;       //MQTT 구독하기 위해
+        Workbook wbDevice;     //장치 데이터 저장용
+        Workbook wbGlove ;     // 글러브 데이터 저장용
 
         private void MainRead(ListView lvNarr, Worksheet wsNarr)
         {
@@ -32,7 +36,7 @@ namespace HAS2TrainOS
                 items.SubItems.Add(GetCell(wsNarr, i, 7));    //스킵조건
                 String strNarrTime = GetCell(wsNarr, i, 15);   //나레이션 길이                            // 나레이션 시간 타임 가져오기
                 String strWaitTime = GetCell(wsNarr, i, 16);   //대기시간                                   // 대기 시간 타임 가져오기
-                Console.WriteLine(strNarrTime + " + " + strWaitTime);
+                //Console.WriteLine(strNarrTime + " + " + strWaitTime);
                 strNarrTime = strNarrTime.Substring(strNarrTime.Length - 5, 5);     //1899-12-31 AM 12:00:00  포멧에서 뒤에 mm:ss만 남기고 자르기
                 strWaitTime = strWaitTime.Substring(strWaitTime.Length - 5, 5);     // 1899-12-31 AM 12:00:00  포멧에서 뒤에 mm:ss만 남기고 자르기
                 String validformats = "mm:ss";
@@ -70,11 +74,16 @@ namespace HAS2TrainOS
         }
         private void ExceltoListview()
         {
+            wbMain = new Workbook(strFileDir + "wbMain.xlsx");        // 나레이션 엑셀
+            wbMAC = new Workbook(strFileDir + "wbMac.xlsx");         //MQTT 구독하기 위해
+            wbDevice = new Workbook(strFileDir + "wbDevice.xlsx");  //장치 데이터 저장용
+            wbGlove = new Workbook(strFileDir + "wbGlove.xlsx");     // 글러브 데이터 저장용
+
             /* aspose.cell 이용해 엑셀 데이터 ㅣListView로 불러와줌*/
-            MainRead(lvPlayerNarr, wbMain.Worksheets[0]);    //Player 시트
-            MainRead(lvTaggerNarr, wbMain.Worksheets[1]);   //Killer 시트
-            DeviceRead(lvDevice, wbDevice.Worksheets[0]);   //Device 시트
-            DeviceRead(lvGlove, wbGlove.Worksheets[0]);      //Glove 시트
+            MainRead(lvPlayerNarr, wbMain.Worksheets["Player"]);    //Player 시트
+            MainRead(lvTaggerNarr, wbMain.Worksheets["Tagger"]);   //Killer 시트
+            DeviceRead(lvDevice, wbDevice.Worksheets["Device"]);   //Device 시트
+            DeviceRead(lvGlove, wbGlove.Worksheets["Glove"]);      //Glove 시트
 
             /* aspose.cell 라이선스 문제로 저장할때마다 시트가 추가되는 버그를 해결하기 위해 매번 켤때마다 시트를 삭제함*/
             AsposeTabEraser(wbDevice);
@@ -90,8 +99,18 @@ namespace HAS2TrainOS
                 else
                     lvG.BackColor = Color.LightGray;
             }
+            Worksheet wsMAC = wbMAC.Worksheets["MAC"];
+            nMaxMACNum = wsMAC.Cells.MaxDataRow;
+            MACs = new structMAC[nMaxMACNum];
+            PlayerSCNProcessor.classMAC = new structMAC[nMaxMACNum];
+            TaggerSCNProcessor.classMAC = new structMAC[nMaxMACNum];
+            for (int i = 0; i < nMaxMACNum; i++)
+            {
+                MACs[i].SaveMAC(GetCell(wsMAC, i+1,0), GetCell(wsMAC, i+1, 1));
+                PlayerSCNProcessor.classMAC[i].SaveMAC(GetCell(wsMAC, i + 1, 0), GetCell(wsMAC, i + 1, 1));
+                TaggerSCNProcessor.classMAC[i].SaveMAC(GetCell(wsMAC, i + 1, 0), GetCell(wsMAC, i + 1, 1));
+            }
         }
-
         private void DevicSave(ListView lvDV, Workbook wbDV, String strXlsx)
         {
             int rowsDevice = wbDV.Worksheets[0].Cells.MaxDataRow;
@@ -101,53 +120,53 @@ namespace HAS2TrainOS
                 for (int j = 0; j <= colsDevice; j++)
                     wbDV.Worksheets[0].Cells[i + 1, j].Value = lvDV.Items[i].SubItems[j].Text;
             }
-            wbDV.Save(@"C:\Users\user\Desktop\bbangjun\TrainRoom_excel\"+ strXlsx+".xlsx");
+            wbDV.Save(strFileDir+ strXlsx);
         }
         private void ListviewtoExcel()
         {
             /* aspose.cell 이용해 ListView 데이터 엑셀에 저장함*/
-            DevicSave(lvDevice, wbDevice, "wbDevice");
-            DevicSave(lvGlove, wbGlove, "wbGlove");
+            DevicSave(lvDevice, wbDevice, "wbDevice.xlsx");
+            DevicSave(lvGlove, wbGlove, "wbGlove.xlsx");
         }
-        
+
         // excel에서 불러올때 null 이면 예외처리 해주는 함수
         private String GetCell(Worksheet ws, int col, int row)
         {
-            String strWSDatea = "";
+            String strWSData = "";
             DateTime dtTemp;
             Cell cellTemp = ws.Cells[col, row];
             switch (cellTemp.Type)
             {
                 case CellValueType.IsString:
-                    strWSDatea = cellTemp.StringValue;
-                    Console.WriteLine("String Value: " + strWSDatea);
+                    strWSData = cellTemp.StringValue;
+                    //Console.WriteLine("String Value: " + strWSData);
                     break;
 
-               case CellValueType.IsDateTime:
+                case CellValueType.IsDateTime:
                     dtTemp = cellTemp.DateTimeValue;
-                    Console.WriteLine("DateTime Value: " + dtTemp);
-                    strWSDatea = dtTemp.ToString();
+                    //Console.WriteLine("DateTime Value: " + dtTemp);
+                    strWSData = dtTemp.ToString();
                     break;
 
                 // Evaluating the unknown data type of the cell data
                 case CellValueType.IsUnknown:
-                    strWSDatea = cellTemp.StringValue;
-                    Console.WriteLine("Unknown Value: " + strWSDatea);
+                    strWSData = cellTemp.StringValue;
+                    //Console.WriteLine("Unknown Value: " + strWSData);
                     break;
                 // Terminating the type checking of type of the cell data is null
                 case CellValueType.IsNull:
-                    strWSDatea = "";
+                    strWSData = "";
                     break;
                 default:
-                    strWSDatea = cellTemp.StringValue;
+                    strWSData = cellTemp.StringValue;
                     break;
             }
-            if(strWSDatea == "-")
+            if (strWSData == "-")
             {
-                strWSDatea = "1899 - 12 - 31 AM 12:00:00";
+                strWSData = "1899 - 12 - 31 AM 12:00:00";
             }
-            return strWSDatea;
+            return strWSData;
         }
-        
+
     }
 }

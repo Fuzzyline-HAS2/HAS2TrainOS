@@ -26,7 +26,27 @@ namespace HAS2TrainOS
                 this.BP = BP;
             }
         }
-        struct structMAC
+        public struct structALL
+        {
+            public String[] strALLp;
+            public String[] strALLt;
+            public String[] strAGp;
+            public String[] strAGt;
+            public String[] StringSelecetor(String input)
+            {
+                if(input == "ALLp")
+                    return strALLp;
+                else if(input == "ALLt")
+                    return strALLt;
+                else if (input == "AGp")
+                    return strAGp;
+                else if (input == "AGt")
+                    return strAGt;
+
+                return strALLp;
+            }
+        }
+        public struct structMAC
         {
             public String strDeviceName;
             public String strDeviceMAC;

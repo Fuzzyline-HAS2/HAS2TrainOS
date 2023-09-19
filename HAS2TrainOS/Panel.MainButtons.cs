@@ -20,6 +20,7 @@ namespace HAS2TrainOS
             else if (btnReady.Text == "!STOP¡")
             {
                 timerMain.Change(System.Threading.Timeout.Infinite, System.Threading.Timeout.Infinite); //메인타이머 종료
+
                 pnRoomSelect.Enabled = true;
                 btnManual.Enabled = true;
                 btnStart.Enabled = true;
@@ -50,8 +51,11 @@ namespace HAS2TrainOS
                     PlayerSCNProcessor.nCurrentCnt  = 0;         //Player 나레이션 0번부터 초기화
                     PlayerSCNProcessor.MainProcessor();
 
+                    TaggerSCNProcessor.nCurrentCnt = 0;         //Player 나레이션 0번부터 초기화
+                    TaggerSCNProcessor.MainProcessor();
+
                     // 글러브 전송
-                    foreach(ListViewItem lvItems in lvGlove.Items)
+                    foreach (ListViewItem lvItems in lvGlove.Items)
                     {
                         GloveListViewChange(lvItems);
                     }
