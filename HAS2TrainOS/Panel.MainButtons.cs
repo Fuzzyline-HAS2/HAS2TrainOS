@@ -47,8 +47,8 @@ namespace HAS2TrainOS
                     nMainTime = 0;  //메인 타이머 변수 초기화
 
                     //나레이션 파트
-                    nPlayerCur  = 0;         //Player 나레이션 0번부터 초기화
-                    PlayerNarr();
+                    PlayerSCNProcessor.nCurrentCnt  = 0;         //Player 나레이션 0번부터 초기화
+                    PlayerSCNProcessor.MainProcessor();
 
                     // 글러브 전송
                     foreach(ListViewItem lvItems in lvGlove.Items)
@@ -68,7 +68,7 @@ namespace HAS2TrainOS
                 btnStart.Text = "RESUME";
                 btnManual.Enabled = false;
                 timerMain.Change(System.Threading.Timeout.Infinite, System.Threading.Timeout.Infinite); //메인타이머 종료
-                timerPlayerWaitTime.Change(System.Threading.Timeout.Infinite, System.Threading.Timeout.Infinite); //메인타이머 종료
+                PlayerSCNProcessor.timerPlayerWaitTime.Change(System.Threading.Timeout.Infinite, System.Threading.Timeout.Infinite); //메인타이머 종료
             }
         }
 

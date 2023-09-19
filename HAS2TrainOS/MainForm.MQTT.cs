@@ -55,12 +55,6 @@ namespace HAS2TrainOS
         {
             client.Publish(mqtt_topic, Encoding.UTF8.GetBytes(mqtt_msg), 0, true);
         }
-
-        String strTagTo = "";
-        String[] strTagDevice;
-        int nTagCnt = 0;
-        int nTagMaxCnt = 0;
-        
         private void client_MqttMsgPublishReceived(object sender, MqttMsgPublishEventArgs e)
         {
             string ReceivedMessage = Encoding.UTF8.GetString(e.Message);
@@ -149,29 +143,29 @@ namespace HAS2TrainOS
                                                             }
                                                         }
                                                     }
-                                                    if (strTagDevice != null)   //엑셀에서 TAG명령어 들어왔을때만 실행
+                                                    if (PlayerSCNProcessor.strTagDevice != null)   //엑셀에서 TAG명령어 들어왔을때만 실행
                                                     {
-                                                        foreach (String s in strTagDevice)  //엑셀에 있는 TAG_장치이름_시나리오# 에서 장치 이름 strTagDevice에 저장 후 비교중
+                                                        foreach (String s in PlayerSCNProcessor.strTagDevice)  //엑셀에 있는 TAG_장치이름_시나리오# 에서 장치 이름 strTagDevice에 저장 후 비교중
                                                         {
                                                             if (s == m.strDeviceName)
                                                             {
                                                                 Console.WriteLine(s);
-                                                                nTagCnt++;
+                                                                PlayerSCNProcessor.nTagCnt++;
                                                                 break;
                                                             }
                                                         }   // 비교 종료
-                                                        if (nTagCnt >= nTagMaxCnt)  //엑셀 TAG 명령어 총 개수와 일치하면 다음 나레인 재생 위한 if문
+                                                        if (PlayerSCNProcessor.nTagCnt >= PlayerSCNProcessor.nTagMaxCnt)  //엑셀 TAG 명령어 총 개수와 일치하면 다음 나레인 재생 위한 if문
                                                         {
-                                                            timerPlayerSkipTime.Change(System.Threading.Timeout.Infinite, System.Threading.Timeout.Infinite); //PlayerSkipTimer 종료
+                                                            PlayerSCNProcessor.timerPlayerSkipTime.Change(System.Threading.Timeout.Infinite, System.Threading.Timeout.Infinite); //PlayerSkipTimer 종료
                                                             foreach (ListViewItem listitem in lvPlayerNarr.Items)
                                                             {
-                                                                if (listitem.SubItems[1].Text == strTagTo)
+                                                                if (listitem.SubItems[1].Text == PlayerSCNProcessor.strTagTo)
                                                                 {
-                                                                    nPlayerCur = listitem.Index;
+                                                                    PlayerSCNProcessor.nCurrentCnt = listitem.Index;
                                                                 }
                                                             }
-                                                            strTagDevice = null;    //TAG 명령어 초기화
-                                                            PlayerNarr();
+                                                            PlayerSCNProcessor.strTagDevice = null;    //TAG 명령어 초기화
+                                                            PlayerSCNProcessor.MainProcessor();
                                                         }
                                                     }
                                                 } // if (jsonInput["DN"].ToString().Contains("G")) ")

@@ -41,8 +41,6 @@ namespace HAS2TrainOS
         enum listviewDevice { Name = 0, State, LCBP };
         enum  listviewGlove { Name = 0, Role, State, LC, BP };
 
-        int nPlayerCur = 0; //플레이어 나레이션의 현재 재생 번호 저장용 변수
-
         const int nMaxLifeChip = 3;
         const int nMaxBatteryPack = 4;
     }

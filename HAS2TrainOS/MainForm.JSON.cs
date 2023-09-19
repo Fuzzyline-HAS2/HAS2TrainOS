@@ -74,12 +74,18 @@ namespace HAS2TrainOS
                 }
             }
         }
-        public void SCNJSONPublish(String DeviceMAC, String SCN)   //DeviceMAC:보내는 장치 MAC 주소,SCN: 시나리오 번호
+        public void SCNJSONPublish(String Device, String SCN)   //DeviceMAC:보내는 장치 MAC 주소,SCN: 시나리오 번호
         {
             JObject SituationData = new JObject(new JProperty("DS", "scenario"));
             SituationData.Add(new JProperty("SCN", SCN));
-           
-            MQTT_Publish(DeviceMAC, SituationData.ToString());
+
+            foreach (structMAC m in MACs)
+            {
+                if (m.strDeviceName == Device)
+                {
+                    MQTT_Publish(Device, SituationData.ToString());
+                }
+            }
         }
     }
 }
