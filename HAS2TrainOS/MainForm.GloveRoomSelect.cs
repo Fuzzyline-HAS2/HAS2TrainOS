@@ -7,22 +7,27 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Newtonsoft.Json.Linq;
 using NAudio.Dsp;
+using System.Reflection;
 
 namespace HAS2TrainOS
 {
     public partial class MainForm
     {
-        public bool GloveListViewChange(ListViewItem lvSelectedGlove, String Role = "", String State = "", String strLC = "", String strBP = "")
+        public bool GloveListViewChange(ListViewItem lvSelectedGlove, String Name = "", String Role = "", String State = "", String strLC = "", String strBP = "")
         {
-            if(Role != null)
+            if (Name != "")
+            {
+                lvSelectedGlove.SubItems[(int)listviewGlove.Name].Text = Name;   //글러브 Role 데이터 치환
+            }
+            if (Role != "")
             {
                 lvSelectedGlove.SubItems[(int)listviewGlove.Role].Text = Role;   //글러브 Role 데이터 치환
             }
-            if (State != null)
+            if (State != "")
             {
                 lvSelectedGlove.SubItems[(int)listviewGlove.State].Text = State;   //글러브 Role 데이터 치환
             }
-            if (strLC != null)
+            if (strLC != "")
             {
                 int nCurLC = Int32.Parse(lvSelectedGlove.SubItems[(int)listviewGlove.LC].Text); // 현재 선택된 글러브의 배터리팩 개수
                 int nLC = 0;    // 현재 배터리팩에서 추가하려는 배터리팩 개수
@@ -51,7 +56,7 @@ namespace HAS2TrainOS
                 }
                 else //글러브 배터리팩 +또는 - 없으면 배터리 최대소지개수에 상관없이 들어온 정수값 그대로 강제변환
                 {
-                    MessageBox.Show(lvSelectedGlove.SubItems[(int)listviewGlove.Name].Text + "의 배터리팩을 강제로 바꿉니다.\r\n현재LC: " + "Change LC: " + strBP);
+                    //MessageBox.Show(lvSelectedGlove.SubItems[(int)listviewGlove.Name].Text + "의 배터리팩을 강제로 바꿉니다.\r\n현재LC: " + "Change LC: " + strBP);
                     strApplyLC = strLC;
                 }
                 lvSelectedGlove.SubItems[(int)listviewGlove.LC].Text = strApplyLC;   //lvGlove에 적용 
@@ -73,7 +78,7 @@ namespace HAS2TrainOS
             }
 
             GloveBP:
-            if (strBP != null)
+            if (strBP != "")
             {
                 int nCurBP = Int32.Parse(lvSelectedGlove.SubItems[(int)listviewGlove.BP].Text); // 현재 선택된 글러브의 배터리팩 개수
                 int nBP = 0;    // 현재 배터리팩에서 추가하려는 배터리팩 개수
@@ -102,7 +107,7 @@ namespace HAS2TrainOS
                 }
                 else //글러브 배터리팩 +또는 - 없으면 배터리 최대소지개수에 상관없이 들어온 정수값 그대로 강제변환
                 {
-                    MessageBox.Show(lvSelectedGlove.SubItems[(int)listviewGlove.Name].Text + "의 배터리팩을 강제로 바꿉니다.\r\n현재BP: " + "Change BP: " + strBP);
+                    //MessageBox.Show(lvSelectedGlove.SubItems[(int)listviewGlove.Name].Text + "의 배터리팩을 강제로 바꿉니다.\r\n현재BP: " + "Change BP: " + strBP);
                     strApplyBP = strBP;
                 }
                 lvSelectedGlove.SubItems[(int)listviewGlove.BP].Text = strApplyBP;   //lvGlove에 적용 
@@ -126,46 +131,56 @@ namespace HAS2TrainOS
         }
         private void TrackBarFindAndChange(String gloveGroup)
         {
-            for (int i = (int)enumGlove.P1; i <= (int)enumGlove.P8; i++)
+            int nIndex = 0;
+            String strGoveRole = "none";
+            String strLifeChip = "0";
+            Color tmpBackColor = SystemColors.Control;
+            Color tmpForeColor = Color.Black;
+            foreach (ListViewItem lvSelectedGlove in lvGlove.Items)
             {
-                lvGlove.Items[i].SubItems[(int)listviewGlove.Name].Text = gloveGroup +"P" + (i + 1).ToString(); //listview name G1 붙여줌
-                foreach (Control tmp in pnRoomSelect.Controls)  //패널 안에서 TrackBar 찾기
+                nIndex++;                                                                       //현재 선택중인 글러브 인덱스 저장용 변수 foreach에 따라 +1씩 증가함
+                foreach (Control tmp in pnRoomSelect.Controls)                  //패널 안에서 TrackBar 찾기
                 {
-                    if (("trbP" + (i + 1).ToString()) == tmp.Name)
+                    String strTrackBarName = "trbP" + nIndex.ToString();    //찾아야할 트랙바 이름
+                    if (strTrackBarName == tmp.Name)                              //foreach문 이용해서 trackbar 하나씩 비교해서 찾음
                     {
                         TrackBar trb = (TrackBar)tmp;
-                        GloveListViewChange(lvGlove.Items[i], Role: RoleReturn(trb.Value));         //TrackBar에 맞춘 Role 전송
-                        lvGlove.Items[i].BackColor = ColorReturn(trb.Value);                                            //TrackBar에 맞춘 색 전송
-                        if (trb.Value == 1)
+                        switch (trb.Value)
                         {
-                            lvGlove.Items[i].ForeColor = Color.Gray;    //none 일때만 글자색 회색
-                        }
-                        else
-                        {
-                            lvGlove.Items[i].ForeColor = Color.Black;    //none 일때만 글자색 회색
+                            case 0:
+                                strGoveRole = "player";
+                                strLifeChip = "1";
+                                tmpBackColor = Color.YellowGreen;
+                                tmpForeColor = Color.Black;
+                                break;
+                            case 1:
+                                strGoveRole = "none";
+                                strLifeChip = "0";
+                                tmpBackColor = Color.LightGray;
+                                tmpForeColor = Color.Gray;
+                                break;
+                            case 2:
+                                strGoveRole = "tagger";
+                                strLifeChip = "0";
+                                tmpBackColor = Color.BlueViolet;
+                                tmpForeColor = Color.Black;
+                                break;
+                            default:
+                                strGoveRole = "error";
+                                strLifeChip = "0";
+                                tmpBackColor = Color.Black;
+                                tmpForeColor = Color.White;
+                                break;
                         }
                     }
                 }
-            }
-        }
-        private String RoleReturn(int value)
-        {
-            switch (value)
-            {
-                case 0: return "player";
-                case 1: return "none";
-                case 2: return "tagger";
-                default: return "error";
-            }
-        }
-        private Color ColorReturn(int value)
-        {
-            switch (value)
-            {
-                case 0: return Color.YellowGreen;
-                case 1: return Color.LightGray;
-                case 2: return Color.BlueViolet;
-                default: return SystemColors.Control;
+                string strGloveName = gloveGroup + "P" + nIndex.ToString();                                 //글러브 이름 만들기
+                GloveListViewChange(lvSelectedGlove,Name:strGloveName, 
+                                                                        Role: strGoveRole,
+                                                                        strLC: strLifeChip,
+                                                                        strBP: "0");                                                //TrackBar에 맞춘 Name, Role,LC,BP 전송
+                lvSelectedGlove.ForeColor = tmpForeColor;                                                            //TrackBar에 맞춘 글자색 변경
+                lvSelectedGlove.BackColor = tmpBackColor;                                                           //TrackBar에 맞춘 바탕색 변경
             }
         }
         private void ColorChange(String strTrackBarName, int nTempTrackValue)
@@ -226,6 +241,39 @@ namespace HAS2TrainOS
             trbP6.Value = 2;
             trbP7.Value = 2;
             trbP8.Value = 2;
+        }
+        private void trbLoad()
+        {
+            string strGroupNum = lvGlove.Items[0].Text.Substring(0,2);
+            Console.WriteLine("GROUP: "+strGroupNum);
+            foreach (Control tmp in pnRoomSelect.Controls)                  //패널 안에서 TrackBar 찾기
+            {
+                String strTrackBarName = "rb" + strGroupNum;    //찾아야할 트랙바 이름
+                if (strTrackBarName == tmp.Name)                              //foreach문 이용해서 trackbar 하나씩 비교해서 찾음
+                {
+                    RadioButton rb = (RadioButton)tmp;
+                    rb.Checked = true;
+                }
+            }
+            int nIndex = 0;
+            foreach (ListViewItem lvSelectedGlove in lvGlove.Items)
+            {
+                nIndex++;
+                foreach (Control tmp in pnRoomSelect.Controls)                  //패널 안에서 TrackBar 찾기
+                {
+                    String strTrackBarName = "trbP" + nIndex.ToString();    //찾아야할 트랙바 이름
+                    if (strTrackBarName == tmp.Name)                              //foreach문 이용해서 trackbar 하나씩 비교해서 찾음
+                    {
+                        TrackBar trb = (TrackBar)tmp;
+                        if (lvSelectedGlove.SubItems[(int)listviewGlove.Role].Text == "player")
+                            trb.Value = 0;
+                        else if (lvSelectedGlove.SubItems[(int)listviewGlove.Role].Text == "tagger")
+                            trb.Value = 2;
+                        else
+                            trb.Value = 1;
+                    }
+                }
+            }
         }
         private void btnGloveToggle_Click(object sender, EventArgs e)
         {

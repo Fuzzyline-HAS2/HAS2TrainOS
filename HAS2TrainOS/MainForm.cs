@@ -45,11 +45,10 @@ namespace HAS2TrainOS
         {
             SetupForm setupform = new SetupForm(this);
             setupform.Show();
-            ExceltoListview();          //Excel에 저장된 값 불러오기
-            ComboBoxDeviceAdd();    //Device panel에 있는 콤보박스에 추가하기
-            MQTT_Initializtion();
-            Console.WriteLine(Int32.Parse("+3"));
-            Console.WriteLine(Int32.Parse("-3"));
+            ExceltoListview();              //Excel에 저장된 값 불러오기
+            ComboBoxDeviceAdd();     //Device panel에 있는 콤보박스에 추가하기
+            MQTT_Initializtion();         // MQTT 서버 연결
+            trbLoad();                        //TrackBar 기존의 엑셀에 저장된 데이터 가져오기
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -82,7 +81,13 @@ namespace HAS2TrainOS
             nPlayerCur = lvPlayerNarr.SelectedItems[0].Index;
             PlayerNarr();
         }
+        public class SCNProcessor
+        {
+            public void MainProcessor()
+            {
 
+            }
+        }
         public void PlayerNarr()
         {
             // WAV 나레이션 플레이 부분
@@ -91,7 +96,7 @@ namespace HAS2TrainOS
             Console.WriteLine("플레이어 나레이션 플레이: SCN" + strWavName.ToString());
             String strNarrNum = strWavName.Substring(strWavName.Length - 1, 1);
             //Console.WriteLine(strWavName);
-            strWavName = @"C:\Users\user\Desktop\bbangjun\TrainRoom_excel\SCN" + strWavName + ".wav";
+            strWavName = @"C:\Users\user\Desktop\bbangjun\TrainRoom_excel\wavPlayerNarr\SCN" + strWavName + ".wav";
             FileInfo fileTmp = new FileInfo(strWavName);
             if (fileTmp.Exists)  //FileInfo.Exists로 파일 존재유무 확인 "
             {
@@ -108,7 +113,8 @@ namespace HAS2TrainOS
             timerPlayerWaitTime.Change(0, 1000);
             foreach (ListViewItem listitem in lvPlayerNarr.Items)
             {
-                listitem.Text = "";
+                if(listitem.Text == "ᐅ")
+                    listitem.Text = "";
             }
             lvPlayerNarr.Items[nPlayerCur].Text = "ᐅ";
 
@@ -123,7 +129,9 @@ namespace HAS2TrainOS
                     Console.WriteLine(strDN);
                     if (strDN.Contains("SG"))
                     {
-                        this.GetType().GetMethod("SCNp32").Invoke(this, null);
+                        String strCurSCNp = "SCNp" + (nPlayerCur + 1).ToString();
+                        Console.WriteLine(strCurSCNp);
+                        this.GetType().GetMethod(strCurSCNp).Invoke(this, null);
                     }
                     else
                     {
@@ -166,7 +174,7 @@ namespace HAS2TrainOS
                 }
             }
 
-            SCNJSONPublish("4F:0E", "p" + lvPlayerNarr.Items[nPlayerCur].SubItems[1].Text.Replace("#", ""));    //생존자 훈련소 모니터 시나리오 전송하는 부분
+            SCNJSONPublish("image", "p" + lvPlayerNarr.Items[nPlayerCur].SubItems[1].Text.Replace("#", ""));    //생존자 훈련소 모니터 시나리오 전송하는 부분
             //SCNJSONPublish("4F:0E", "t" + lvPlayerNarr.Items[nPlayerCur].SubItems[1].Text.Replace("#", ""));    //생존자 훈련소 모니터 시나리오 전송하는 부분
         } //public void PlayerNarr()
 

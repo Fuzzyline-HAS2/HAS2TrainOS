@@ -28,93 +28,93 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem20 = new System.Windows.Forms.ListViewItem(new string[] {
             "EI1",
             "",
             ""}, -1);
-            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem21 = new System.Windows.Forms.ListViewItem(new string[] {
             "EI2",
             "",
             ""}, -1);
-            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem22 = new System.Windows.Forms.ListViewItem(new string[] {
             "ER1",
             "",
             ""}, -1);
-            System.Windows.Forms.ListViewItem listViewItem4 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem23 = new System.Windows.Forms.ListViewItem(new string[] {
             "ER2",
             "",
             ""}, -1);
-            System.Windows.Forms.ListViewItem listViewItem5 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem24 = new System.Windows.Forms.ListViewItem(new string[] {
             "EVp",
             "",
             ""}, -1);
-            System.Windows.Forms.ListViewItem listViewItem6 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem25 = new System.Windows.Forms.ListViewItem(new string[] {
             "EVt",
             "",
             ""}, -1);
-            System.Windows.Forms.ListViewItem listViewItem7 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem26 = new System.Windows.Forms.ListViewItem(new string[] {
             "EG",
             "",
             ""}, -1);
-            System.Windows.Forms.ListViewItem listViewItem8 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem27 = new System.Windows.Forms.ListViewItem(new string[] {
             "ED",
             "",
             ""}, -1);
-            System.Windows.Forms.ListViewItem listViewItem9 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem28 = new System.Windows.Forms.ListViewItem(new string[] {
             "EE",
             "",
             ""}, -1);
-            System.Windows.Forms.ListViewItem listViewItem10 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem29 = new System.Windows.Forms.ListViewItem(new string[] {
             "ET",
             "",
             ""}, -1);
-            System.Windows.Forms.ListViewItem listViewItem11 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem30 = new System.Windows.Forms.ListViewItem(new string[] {
             "EM",
             "",
             ""}, -1);
-            System.Windows.Forms.ListViewItem listViewItem12 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem31 = new System.Windows.Forms.ListViewItem(new string[] {
             "G1P1",
             "",
             "",
             "",
             ""}, -1);
-            System.Windows.Forms.ListViewItem listViewItem13 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem32 = new System.Windows.Forms.ListViewItem(new string[] {
             "G1P2",
             "",
             "",
             "",
             ""}, -1);
-            System.Windows.Forms.ListViewItem listViewItem14 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem33 = new System.Windows.Forms.ListViewItem(new string[] {
             "G1P3",
             "",
             "",
             "",
             ""}, -1);
-            System.Windows.Forms.ListViewItem listViewItem15 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem34 = new System.Windows.Forms.ListViewItem(new string[] {
             "G1P4",
             "",
             "",
             "",
             ""}, -1);
-            System.Windows.Forms.ListViewItem listViewItem16 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem35 = new System.Windows.Forms.ListViewItem(new string[] {
             "G1P5",
             "",
             "",
             "",
             ""}, -1);
-            System.Windows.Forms.ListViewItem listViewItem17 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem36 = new System.Windows.Forms.ListViewItem(new string[] {
             "G1P6",
             "",
             "",
             "",
             ""}, -1);
-            System.Windows.Forms.ListViewItem listViewItem18 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem37 = new System.Windows.Forms.ListViewItem(new string[] {
             "G1P7",
             "",
             "",
             "",
             ""}, -1);
-            System.Windows.Forms.ListViewItem listViewItem19 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem38 = new System.Windows.Forms.ListViewItem(new string[] {
             "G1P8",
             "",
             "",
@@ -154,10 +154,10 @@
             this.cbGloveRole = new System.Windows.Forms.ComboBox();
             this.tbGloveLifeChip = new System.Windows.Forms.TextBox();
             this.panel9 = new System.Windows.Forms.Panel();
-            this.listView3 = new System.Windows.Forms.ListView();
-            this.KillerCurrent = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.KillerSCN = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.KillerNarration = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.lvTaggerNarr = new System.Windows.Forms.ListView();
+            this.killerCurrent = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.killerSCN = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.killerNarration = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label13 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.btnTaggerNarrApply = new System.Windows.Forms.Button();
@@ -204,6 +204,9 @@
             this.lbTaggerWaitTimer = new System.Windows.Forms.Label();
             this.lbTaggerSkipTimer = new System.Windows.Forms.Label();
             this.pnNarration = new System.Windows.Forms.Panel();
+            this.killerSendTo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.killerSkipCondition = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.killerWaitTime = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.pnMainButton.SuspendLayout();
             this.pnDevice.SuspendLayout();
             this.panel5.SuspendLayout();
@@ -285,7 +288,7 @@
             this.pnDevice.Controls.Add(this.cbDeviceState);
             this.pnDevice.Controls.Add(this.tbDeviceName);
             this.pnDevice.Controls.Add(this.lvDevice);
-            this.pnDevice.Font = new System.Drawing.Font("한컴 윤고딕 250", 9F);
+            this.pnDevice.Font = new System.Drawing.Font("Haan YGodic 250", 9F);
             this.pnDevice.Location = new System.Drawing.Point(12, 750);
             this.pnDevice.Name = "pnDevice";
             this.pnDevice.Size = new System.Drawing.Size(457, 279);
@@ -401,22 +404,22 @@
             this.deviceName,
             this.deviceState,
             this.deviceLifeChipBattery});
-            this.lvDevice.Font = new System.Drawing.Font("한컴 윤고딕 250", 9F);
+            this.lvDevice.Font = new System.Drawing.Font("Haan YGodic 250", 9F);
             this.lvDevice.FullRowSelect = true;
             this.lvDevice.GridLines = true;
             this.lvDevice.HideSelection = false;
             this.lvDevice.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1,
-            listViewItem2,
-            listViewItem3,
-            listViewItem4,
-            listViewItem5,
-            listViewItem6,
-            listViewItem7,
-            listViewItem8,
-            listViewItem9,
-            listViewItem10,
-            listViewItem11});
+            listViewItem20,
+            listViewItem21,
+            listViewItem22,
+            listViewItem23,
+            listViewItem24,
+            listViewItem25,
+            listViewItem26,
+            listViewItem27,
+            listViewItem28,
+            listViewItem29,
+            listViewItem30});
             this.lvDevice.Location = new System.Drawing.Point(6, 2);
             this.lvDevice.MultiSelect = false;
             this.lvDevice.Name = "lvDevice";
@@ -459,7 +462,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("한컴 윤고딕 250", 10F);
+            this.label11.Font = new System.Drawing.Font("Haan YGodic 250", 10F);
             this.label11.Location = new System.Drawing.Point(158, 255);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(96, 20);
@@ -469,7 +472,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("한컴 윤고딕 250", 10F);
+            this.label10.Font = new System.Drawing.Font("Haan YGodic 250", 10F);
             this.label10.Location = new System.Drawing.Point(3, 255);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(98, 20);
@@ -478,7 +481,7 @@
             // 
             // tbGloveBattery
             // 
-            this.tbGloveBattery.Font = new System.Drawing.Font("한컴 윤고딕 250", 8F);
+            this.tbGloveBattery.Font = new System.Drawing.Font("Haan YGodic 250", 8F);
             this.tbGloveBattery.Location = new System.Drawing.Point(257, 255);
             this.tbGloveBattery.Name = "tbGloveBattery";
             this.tbGloveBattery.Size = new System.Drawing.Size(25, 23);
@@ -494,19 +497,19 @@
             this.gloveState,
             this.GloveLifeChip,
             this.GloveBattery});
-            this.lvGlove.Font = new System.Drawing.Font("한컴 윤고딕 250", 9F);
+            this.lvGlove.Font = new System.Drawing.Font("Haan YGodic 250", 9F);
             this.lvGlove.FullRowSelect = true;
             this.lvGlove.GridLines = true;
             this.lvGlove.HideSelection = false;
             this.lvGlove.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem12,
-            listViewItem13,
-            listViewItem14,
-            listViewItem15,
-            listViewItem16,
-            listViewItem17,
-            listViewItem18,
-            listViewItem19});
+            listViewItem31,
+            listViewItem32,
+            listViewItem33,
+            listViewItem34,
+            listViewItem35,
+            listViewItem36,
+            listViewItem37,
+            listViewItem38});
             this.lvGlove.Location = new System.Drawing.Point(3, 3);
             this.lvGlove.MultiSelect = false;
             this.lvGlove.Name = "lvGlove";
@@ -542,7 +545,7 @@
             // 
             // cbGloveState
             // 
-            this.cbGloveState.Font = new System.Drawing.Font("한컴 윤고딕 250", 8F);
+            this.cbGloveState.Font = new System.Drawing.Font("Haan YGodic 250", 8F);
             this.cbGloveState.FormattingEnabled = true;
             this.cbGloveState.Items.AddRange(new object[] {
             "setting",
@@ -556,7 +559,7 @@
             // 
             // tbGloveName
             // 
-            this.tbGloveName.Font = new System.Drawing.Font("한컴 윤고딕 250", 8F);
+            this.tbGloveName.Font = new System.Drawing.Font("Haan YGodic 250", 8F);
             this.tbGloveName.Location = new System.Drawing.Point(4, 225);
             this.tbGloveName.Name = "tbGloveName";
             this.tbGloveName.Size = new System.Drawing.Size(63, 23);
@@ -577,7 +580,7 @@
             // 
             // cbGloveRole
             // 
-            this.cbGloveRole.Font = new System.Drawing.Font("한컴 윤고딕 250", 8F);
+            this.cbGloveRole.Font = new System.Drawing.Font("Haan YGodic 250", 8F);
             this.cbGloveRole.FormattingEnabled = true;
             this.cbGloveRole.Items.AddRange(new object[] {
             "player",
@@ -593,7 +596,7 @@
             // 
             // tbGloveLifeChip
             // 
-            this.tbGloveLifeChip.Font = new System.Drawing.Font("한컴 윤고딕 250", 8F);
+            this.tbGloveLifeChip.Font = new System.Drawing.Font("Haan YGodic 250", 8F);
             this.tbGloveLifeChip.Location = new System.Drawing.Point(103, 255);
             this.tbGloveLifeChip.Name = "tbGloveLifeChip";
             this.tbGloveLifeChip.Size = new System.Drawing.Size(25, 23);
@@ -604,7 +607,7 @@
             // panel9
             // 
             this.panel9.BackColor = System.Drawing.Color.Transparent;
-            this.panel9.Controls.Add(this.listView3);
+            this.panel9.Controls.Add(this.lvTaggerNarr);
             this.panel9.Controls.Add(this.label13);
             this.panel9.Controls.Add(this.label14);
             this.panel9.Controls.Add(this.btnTaggerNarrApply);
@@ -613,43 +616,46 @@
             this.panel9.Size = new System.Drawing.Size(395, 596);
             this.panel9.TabIndex = 11;
             // 
-            // listView3
+            // lvTaggerNarr
             // 
-            this.listView3.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.KillerCurrent,
-            this.KillerSCN,
-            this.KillerNarration});
-            this.listView3.Font = new System.Drawing.Font("한컴 윤고딕 240", 7F);
-            this.listView3.FullRowSelect = true;
-            this.listView3.GridLines = true;
-            this.listView3.HideSelection = false;
-            this.listView3.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.listView3.Location = new System.Drawing.Point(3, 36);
-            this.listView3.Name = "listView3";
-            this.listView3.Size = new System.Drawing.Size(390, 557);
-            this.listView3.TabIndex = 3;
-            this.listView3.UseCompatibleStateImageBehavior = false;
-            this.listView3.View = System.Windows.Forms.View.Details;
+            this.lvTaggerNarr.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.killerCurrent,
+            this.killerSCN,
+            this.killerNarration,
+            this.killerSendTo,
+            this.killerSkipCondition,
+            this.killerWaitTime});
+            this.lvTaggerNarr.Font = new System.Drawing.Font("Haan YGodic 240", 7F);
+            this.lvTaggerNarr.FullRowSelect = true;
+            this.lvTaggerNarr.GridLines = true;
+            this.lvTaggerNarr.HideSelection = false;
+            this.lvTaggerNarr.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.lvTaggerNarr.Location = new System.Drawing.Point(3, 36);
+            this.lvTaggerNarr.Name = "lvTaggerNarr";
+            this.lvTaggerNarr.Size = new System.Drawing.Size(390, 557);
+            this.lvTaggerNarr.TabIndex = 3;
+            this.lvTaggerNarr.UseCompatibleStateImageBehavior = false;
+            this.lvTaggerNarr.View = System.Windows.Forms.View.Details;
             // 
-            // KillerCurrent
+            // killerCurrent
             // 
-            this.KillerCurrent.Text = "Cur.";
-            this.KillerCurrent.Width = 42;
+            this.killerCurrent.Text = "Cur.";
+            this.killerCurrent.Width = 42;
             // 
-            // KillerSCN
+            // killerSCN
             // 
-            this.KillerSCN.Text = "SCN#";
-            this.KillerSCN.Width = 50;
+            this.killerSCN.Text = "SCN#";
+            this.killerSCN.Width = 50;
             // 
-            // KillerNarration
+            // killerNarration
             // 
-            this.KillerNarration.Text = "Killer Narr.";
-            this.KillerNarration.Width = 304;
+            this.killerNarration.Text = "Killer Narr.";
+            this.killerNarration.Width = 304;
             // 
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("한컴 윤고딕 250", 9F);
+            this.label13.Font = new System.Drawing.Font("Haan YGodic 250", 9F);
             this.label13.Location = new System.Drawing.Point(298, 3);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(35, 18);
@@ -659,7 +665,7 @@
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("한컴 윤고딕 250", 9F);
+            this.label14.Font = new System.Drawing.Font("Haan YGodic 250", 9F);
             this.label14.Location = new System.Drawing.Point(262, 18);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(71, 18);
@@ -698,7 +704,7 @@
             this.playerSendto,
             this.playerSkipCondition,
             this.playerWaitTime});
-            this.lvPlayerNarr.Font = new System.Drawing.Font("한컴 윤고딕 240", 6.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lvPlayerNarr.Font = new System.Drawing.Font("Haan YGodic 240", 6.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lvPlayerNarr.FullRowSelect = true;
             this.lvPlayerNarr.GridLines = true;
             this.lvPlayerNarr.HideSelection = false;
@@ -741,7 +747,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("한컴 윤고딕 250", 9F);
+            this.label12.Font = new System.Drawing.Font("Haan YGodic 250", 9F);
             this.label12.Location = new System.Drawing.Point(63, 3);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(35, 18);
@@ -751,7 +757,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("한컴 윤고딕 250", 9F);
+            this.label9.Font = new System.Drawing.Font("Haan YGodic 250", 9F);
             this.label9.Location = new System.Drawing.Point(63, 18);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(71, 18);
@@ -1221,10 +1227,10 @@
         private System.Windows.Forms.ComboBox cbDeviceName;
         private System.Windows.Forms.Button btnManual;
         private System.Windows.Forms.Panel panel9;
-        private System.Windows.Forms.ListView listView3;
-        private System.Windows.Forms.ColumnHeader KillerCurrent;
-        private System.Windows.Forms.ColumnHeader KillerSCN;
-        private System.Windows.Forms.ColumnHeader KillerNarration;
+        private System.Windows.Forms.ListView lvTaggerNarr;
+        private System.Windows.Forms.ColumnHeader killerCurrent;
+        private System.Windows.Forms.ColumnHeader killerSCN;
+        private System.Windows.Forms.ColumnHeader killerNarration;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Button btnTaggerNarrApply;
@@ -1272,6 +1278,9 @@
         private System.Windows.Forms.Label lbTaggerWaitTimer;
         private System.Windows.Forms.Label lbTaggerSkipTimer;
         private System.Windows.Forms.Panel pnNarration;
+        private System.Windows.Forms.ColumnHeader killerSendTo;
+        private System.Windows.Forms.ColumnHeader killerSkipCondition;
+        private System.Windows.Forms.ColumnHeader killerWaitTime;
     }
 }
 

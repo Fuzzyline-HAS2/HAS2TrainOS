@@ -31,7 +31,6 @@ namespace HAS2TrainOS
         public bool SCNp40()    //발전기 배터리팩 회수
         {
             Console.WriteLine("SCNp40");
-            int cnt = 0;
             foreach (ListViewItem lvPlayerGlove in lvGlove.Items)   // 모든 글러브 배터리팩 0으로 만듦
             {
                 if (lvPlayerGlove.SubItems[(int)listviewGlove.BP].Text != "0")

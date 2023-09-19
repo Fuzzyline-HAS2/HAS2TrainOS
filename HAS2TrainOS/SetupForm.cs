@@ -35,9 +35,8 @@ namespace HAS2TrainOS
                 if (pFileDlg.ShowDialog() == DialogResult.OK)
                 {
                     wbMAC = new Workbook(pFileDlg.FileName);
-                }
+                }  
             }
-
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)

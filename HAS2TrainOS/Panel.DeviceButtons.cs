@@ -12,11 +12,11 @@ namespace HAS2TrainOS
     {
         public bool DeviceListViewChange(ListViewItem lvSelectedDevice, String State = "", String strLCBP = "")
         {
-            if (State != null)
+            if (State != "")
             {
                 lvSelectedDevice.SubItems[(int)listviewGlove.State].Text = State;   //글러브 Role 데이터 치환
             }
-            if(strLCBP != null)
+            if(strLCBP != "")
             {
                 int nCurLCBP = Int32.Parse(lvSelectedDevice.SubItems[(int)listviewGlove.LC].Text); // 현재 선택된 글러브의 배터리팩 개수
                 int nLCBP = 0;    // 현재 배터리팩에서 추가하려는 배터리팩 개수

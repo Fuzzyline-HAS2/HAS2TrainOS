@@ -23,9 +23,11 @@ namespace HAS2TrainOS
                 pnRoomSelect.Enabled = true;
                 btnManual.Enabled = true;
                 btnStart.Enabled = true;
+
                 btnReady.Text = "READY";
                 btnReady.BackColor = Color.Tomato;
                 btnReady.ForeColor = Color.Black;
+
                 btnStart.Text = "START";
                 btnStart.BackColor = Color.YellowGreen;
             }
@@ -49,14 +51,9 @@ namespace HAS2TrainOS
                     PlayerNarr();
 
                     // 글러브 전송
-                    foreach(ListViewItem listiem in lvGlove.Items)
+                    foreach(ListViewItem lvItems in lvGlove.Items)
                     {
-                        int i = listiem.Index;
-                        GloveJSONPublish(lvGlove.Items[i].SubItems[(int)listviewGlove.Name].Text,
-                            lvGlove.Items[i].SubItems[(int)listviewGlove.Role].Text,
-                            lvGlove.Items[i].SubItems[(int)listviewGlove.State].Text,
-                            lvGlove.Items[i].SubItems[(int)listviewGlove.LC].Text,
-                            lvGlove.Items[i].SubItems[(int)listviewGlove.BP].Text);
+                        GloveListViewChange(lvItems);
                     }
 
                 }   
