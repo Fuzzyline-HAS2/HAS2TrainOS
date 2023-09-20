@@ -14,7 +14,7 @@ namespace HAS2TrainOS
 
     public partial class MainForm : Form
     {
-        public String strFileDir = @"C:\Users\user\Desktop\bbangjun\TrainRoom_excel\";
+        public String strFileDir = @"C:\Users\teamh\OneDrive\바탕 화면\CODE\HAS2Train\TrainRoom_excel\";
         int nMaxMACNum;         //맥주소  최대개수
         structMAC[] MACs;
 

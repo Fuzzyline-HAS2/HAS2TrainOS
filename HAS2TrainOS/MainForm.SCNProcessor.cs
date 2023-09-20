@@ -10,11 +10,16 @@ using uPLibrary.Networking.M2Mqtt;
 using uPLibrary.Networking.M2Mqtt.Messages;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
+using System.Diagnostics.Eventing.Reader;
 
 namespace HAS2TrainOS
 {
     public partial class MainForm
     {
+        public void FindSCN(string strCurSCN)
+        {
+            this.GetType().GetMethod(strCurSCN).Invoke(this, null);
+        }
         public class SCNProcessor
         {
             public ListView lvNarr;
@@ -28,6 +33,9 @@ namespace HAS2TrainOS
             public structMAC[] classMAC;
             public structALL AllDevice;
 
+            String strCurSCN;
+            public string [] strAGp;
+            public string [] strAGt;
             public string strSelectedNarr;
             public String strNarrDir = "";  //wav 파일이 있는 폴더 위치
             public int nCurrentCnt = 0;     //현재 진행중인 나레이션 번호
@@ -36,7 +44,10 @@ namespace HAS2TrainOS
             public int nTagCnt = 0;
             public int nTagMaxCnt = 0;
 
-            string BrokerAddress = "172.30.1.44";
+            public void formFindSCN()
+            {
+                MainForm.mainform.FindSCN(strCurSCN);
+            }
             public void MQTT_Init()
             {
                 string BrokerAddress = "172.30.1.44";
@@ -45,8 +56,8 @@ namespace HAS2TrainOS
                                                                                 // use a unique id as client id, each time we start the application
                 string clientId = Guid.NewGuid().ToString();   //mqtt 클라이언트가 갖는 고유 id 생성
                 classclient.Connect(clientId);
-                AllDevice.strALLp = new string[] { "EI1", "EI2", "EG", "EE", "ERp", "EVp" , "EMp"};
-                AllDevice.strALLt = new string[] { "ERt", "EVt", "ET","EMt"};
+                AllDevice.strALLp = new string[] { "EI1", "EI2", "EG", "EE", "ERp", "EVp" , "EMp","EA"};
+                AllDevice.strALLt = new string[] { "ERt", "EVt", "ET","EMt", "EA" };
 
             }
             /* 플레이어 WaitTime 타이머*/
@@ -101,9 +112,12 @@ namespace HAS2TrainOS
                         Console.WriteLine(strDN);
                         if (strDN.Contains("SG"))   //SGp 명령어 있을때 해당하는 함수 실행함
                         {
-                            String strCurSCN = "SCN"+ strSelectedNarr + (nCurrentCnt + 1).ToString();  //ex. SCN41 -> SCNp41 로 만드는작업
+                            strCurSCN = "SCN"+ strSelectedNarr + (nCurrentCnt + 1).ToString();  //ex. SCN41 -> SCNp41 로 만드는작업
                             Console.WriteLine(strCurSCN);
-                            this.GetType().GetMethod(strCurSCN).Invoke(this, null);    //strCurSCNp/t에 해당하는 함수 찾아서 실행
+                            //MainForm.mainform.GetType().GetMethod(strCurSCN).Invoke(this, null);    //strCurSCNp/t에 해당하는 함수 찾아서 실행
+                            //formFindSCN();
+                            MainForm.mainform.FindSCN(strCurSCN);
+
                         }
                         else
                         {
@@ -191,7 +205,7 @@ namespace HAS2TrainOS
                 JObject SituationData = new JObject(new JProperty("DS", "scenario"));
                 SituationData.Add(new JProperty("SCN", SCN));
 
-                if (Device.Contains("ALLp") || Device.Contains("ALLt") || Device.Contains("AGp") || Device.Contains("AGt"))
+                if (Device.Contains("ALLp") || Device.Contains("ALLt"))   
                 {
                     foreach (string strAllDevice in AllDevice.StringSelecetor(Device))
                     {
@@ -205,6 +219,36 @@ namespace HAS2TrainOS
                         }
                     }
                 }
+                else if (Device.Contains("AGp"))
+                {
+                    foreach (string strAllGlove in strAGp)
+                    {
+                        foreach (structMAC m in classMAC)
+                        {
+                            if (m.strDeviceName == strAllGlove)
+                            {
+                                classclient.Publish(m.strDeviceMAC, Encoding.UTF8.GetBytes(SituationData.ToString()), 0, true);
+                                break;
+                            }
+                        }
+                    }
+                }
+                else if (Device.Contains("AGt"))
+                {
+                    foreach (string strAllGlove in strAGt)
+                    {
+                        foreach (structMAC m in classMAC)
+                        {
+                            if (m.strDeviceName == strAllGlove)
+                            {
+                                classclient.Publish(m.strDeviceMAC, Encoding.UTF8.GetBytes(SituationData.ToString()), 0, true);
+                                break;
+                            }
+                        }
+                    }
+                }
+
+
                 else
                 {
                     foreach (structMAC m in classMAC)

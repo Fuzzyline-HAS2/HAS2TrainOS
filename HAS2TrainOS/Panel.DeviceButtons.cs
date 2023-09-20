@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.AxHost;
 
 namespace HAS2TrainOS
 {
@@ -109,6 +110,7 @@ namespace HAS2TrainOS
                         DeviceJSONPublish(lvDevice.Items[i].SubItems[(int)listviewDevice.Name].Text, 
                             lvDevice.Items[i].SubItems[(int)listviewDevice.State].Text);
                     }
+                    DeviceJSONPublishALL("setting");
                     break;
                 case (int)enumDevice.ITEMBOX:
                     lvDevice.Items[(int)enumDevice.EI1].SubItems[(int)listviewDevice.State].Text = "setting";

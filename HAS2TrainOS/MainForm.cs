@@ -31,10 +31,15 @@ namespace HAS2TrainOS
         SCNProcessor PlayerSCNProcessor = new SCNProcessor();
         SCNProcessor TaggerSCNProcessor = new SCNProcessor();
 
+        public static MainForm mainform;
         public MainForm()
         {
+            mainform = this;
             InitializeComponent();
 
+            PlayerSpk.nDeviceNum = 1;
+            TaggerSpk.nDeviceNum = 3;
+            CommonSpk.nDeviceNum = 3;
             timerMain = new System.Threading.Timer((Object s) => {BeginInvoke(new TimerEventFiredDelegate_timerPlayerWaitTime(timerMainWork)); });
             
             PlayerSCNProcessor.timerPlayerWaitTime = new System.Threading.Timer((Object s) => { BeginInvoke(new TimerEventFiredDelegate_timerPlayerWaitTime(PlayerSCNProcessor.timerPlayerWaitTimeWork)); });
@@ -56,11 +61,6 @@ namespace HAS2TrainOS
             TaggerSCNProcessor.SelectedSpk = TaggerSpk;
             TaggerSCNProcessor.MQTT_Init();
             TaggerSCNProcessor.strSelectedNarr = "t";
-
-            PlayerSpk.nDeviceNum = 0;
-            TaggerSpk.nDeviceNum = 0;
-            CommonSpk.nDeviceNum = 2;
-
         }
         private void MainForm_Load(object sender, EventArgs e)
         {

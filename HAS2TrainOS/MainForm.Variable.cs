@@ -30,19 +30,14 @@ namespace HAS2TrainOS
         {
             public String[] strALLp;
             public String[] strALLt;
-            public String[] strAGp;
-            public String[] strAGt;
+            //public String[] strAGp;
+            //public String[] strAGt;
             public String[] StringSelecetor(String input)
             {
                 if(input == "ALLp")
                     return strALLp;
                 else if(input == "ALLt")
                     return strALLt;
-                else if (input == "AGp")
-                    return strAGp;
-                else if (input == "AGt")
-                    return strAGt;
-
                 return strALLp;
             }
         }

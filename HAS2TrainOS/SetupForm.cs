@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -27,7 +28,7 @@ namespace HAS2TrainOS
             Console.WriteLine(dgMAC.Rows[0]);
             try
             {
-                wbMAC = new Workbook(@"C:\Users\user\Desktop\bbangjun\TrainRoom_excel\wbMac.xlsx");
+                wbMAC = new Workbook(@"C:\Users\teamh\OneDrive\바탕 화면\CODE\HAS2Train\TrainRoom_excel\wbMac.xlsx");
             }
             catch 
             {

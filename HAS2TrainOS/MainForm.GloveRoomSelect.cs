@@ -155,7 +155,7 @@ namespace HAS2TrainOS
                                 strLifeChip = "1";
                                 tmpBackColor = Color.YellowGreen;
                                 tmpForeColor = Color.Black;
-                                listAGp.Add(lvSelectedGlove.Text);  //플레이어 글러브 리스트에 추가
+                                listAGp.Add(gloveGroup + lvSelectedGlove.Text);  //플레이어 글러브 리스트에 추가
 
                                 break;
                             case 1:
@@ -169,7 +169,7 @@ namespace HAS2TrainOS
                                 strLifeChip = "0";
                                 tmpBackColor = Color.BlueViolet;
                                 tmpForeColor = Color.Black;
-                                listAGt.Add(lvSelectedGlove.Text);  //술래 글러브 리스트에 추가
+                                listAGt.Add(gloveGroup + lvSelectedGlove.Text);  //술래 글러브 리스트에 추가
                                 break;
                             default:
                                 strGoveRole = "error";
@@ -180,19 +180,19 @@ namespace HAS2TrainOS
                         }
                     }
                 }
-                PlayerSCNProcessor.AllDevice.strAGp = listAGp.ToArray();    //플레이어 리스트를 배열로 변환
-                PlayerSCNProcessor.AllDevice.strAGp = listAGt.ToArray();    //플레이어 리스트를 배열로 변환
-                TaggerSCNProcessor.AllDevice.strAGp = listAGp.ToArray();    //플레이어 리스트를 배열로 변환
-                TaggerSCNProcessor.AllDevice.strAGt = listAGt.ToArray();    //술래 리스트를 배열로 변환
-
                 string strGloveName = gloveGroup + "P" + nIndex.ToString();                                 //글러브 이름 만들기
                 GloveListViewChange(lvSelectedGlove,Name:strGloveName, 
                                                                         Role: strGoveRole,
+                                                                        State: "ready",
                                                                         strLC: strLifeChip,
                                                                         strBP: "0");                                                //TrackBar에 맞춘 Name, Role,LC,BP 전송
                 lvSelectedGlove.ForeColor = tmpForeColor;                                                            //TrackBar에 맞춘 글자색 변경
                 lvSelectedGlove.BackColor = tmpBackColor;                                                           //TrackBar에 맞춘 바탕색 변경
             }
+            PlayerSCNProcessor.strAGp = listAGp.ToArray();    //플레이어 리스트를 배열로 변환
+            PlayerSCNProcessor.strAGt = listAGt.ToArray();    //플레이어 리스트를 배열로 변환
+            TaggerSCNProcessor.strAGp = listAGp.ToArray();    //플레이어 리스트를 배열로 변환
+            TaggerSCNProcessor.strAGt = listAGt.ToArray();    //술래 리스트를 배열로 변환
         }
         private void ColorChange(String strTrackBarName, int nTempTrackValue)
         {

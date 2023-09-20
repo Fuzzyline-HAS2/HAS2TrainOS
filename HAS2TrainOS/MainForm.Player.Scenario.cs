@@ -12,7 +12,7 @@ namespace HAS2TrainOS
     {
         public bool SCNp32()    //아이템박스 배터리팩 추가
         {
-            Console.WriteLine("SCNp32");
+            Console.WriteLine("SCNp32 FUNC");
             int cnt = 0;
             foreach (ListViewItem lvPlayerGlove in lvGlove.Items)
             {
