@@ -10,9 +10,9 @@ namespace HAS2TrainOS
 {
     public partial class MainForm : Form
     {
-        public bool SCNt18()    //아이템박스 배터리팩 추가
+        public bool SCNt18()    //술래 글러브중 Role:tagger -> Role:player로 변환
         {
-            Console.WriteLine("SCNt18");
+            Console.WriteLine("SCNt18 func initiate");
             foreach (ListViewItem lvTaggerGlove in lvGlove.Items)
             {
                 if (lvTaggerGlove.BackColor == Color.BlueViolet)   //술래 방 글러브들 색은 보라색으로 지정해두었기 때문에 사용
@@ -23,9 +23,9 @@ namespace HAS2TrainOS
             }
             return false;
         }
-        public bool SCNt23()    //아이템박스 배터리팩 추가
+        public bool SCNt23()    //tagger가 player LC 뺃는 상황, 술래의 글러브 중 Role:player -> Role:ghost로 변환
         {
-            Console.WriteLine("SCNt23");
+            Console.WriteLine("SCNt23 func initiate");
             foreach (ListViewItem lvTaggerGlove in lvGlove.Items)
             {
                 if (lvTaggerGlove.BackColor == Color.BlueViolet)   //술래 방 글러브들 색은 보라색으로 지정해두었기 때문에 사용
@@ -43,9 +43,9 @@ namespace HAS2TrainOS
             }
             return false;
         }
-        public bool SCNt25()    //아이템박스 배터리팩 추가
+        public bool SCNt25()    //술래글러브 중 Role:ghost -> Role:player 로 변환
         {
-            Console.WriteLine("SCNt25");
+            Console.WriteLine("SCNt25 func initiate");
             foreach (ListViewItem lvTaggerGlove in lvGlove.Items)
             {
                 if (lvTaggerGlove.SubItems[(int)listviewGlove.Role].Text == "player")
@@ -62,9 +62,9 @@ namespace HAS2TrainOS
             }
             return false;
         }
-        public bool SCNt28()    //아이템박스 배터리팩 추가
+        public bool SCNt28()    //술래글러브중 Role:player -> Role:ghost로 변환
         {
-            Console.WriteLine("SCNt28");
+            Console.WriteLine("SCNt28 func initiate");
             foreach (ListViewItem lvTaggerGlove in lvGlove.Items)
             {
                 if (lvTaggerGlove.BackColor == Color.BlueViolet)   //술래 방 글러브들 색은 보라색으로 지정해두었기 때문에 사용
@@ -78,9 +78,9 @@ namespace HAS2TrainOS
             }
             return false;
         }
-        public bool SCNt29()    //아이템박스 배터리팩 추가
+        public bool SCNt29()    //술래글러브중 Role:player -> Role:ghost로 변환
         {
-            Console.WriteLine("SCNt29");
+            Console.WriteLine("SCNt29 func initiate");
             foreach (ListViewItem lvTaggerGlove in lvGlove.Items)
             {
                 if (lvTaggerGlove.BackColor == Color.BlueViolet)   //술래 방 글러브들 색은 보라색으로 지정해두었기 때문에 사용
@@ -94,9 +94,9 @@ namespace HAS2TrainOS
             }
             return false;
         }
-        public bool SCNt36()    //아이템박스 배터리팩 추가
+        public bool SCNt36()    // 제단 희생, 술래 글러브중 Role:tagger LC = 0
         {
-            Console.WriteLine("SCNt29");
+            Console.WriteLine("SCNt36 func initiate");
             foreach (ListViewItem lvTaggerGlove in lvGlove.Items)
             {
                 if (lvTaggerGlove.BackColor == Color.BlueViolet)   //술래 방 글러브들 색은 보라색으로 지정해두었기 때문에 사용
@@ -110,15 +110,28 @@ namespace HAS2TrainOS
             }
             return false;
         }
-        public bool SCNt47()    //아이템박스 배터리팩 추가
+        public bool SCNt45()    //모든 술래글러브 Role: tagger로 변경 및 teaken_LC = 0
         {
-            Console.WriteLine("SCNt29");
+            Console.WriteLine("SCNt45 func initiate");
             foreach (ListViewItem lvTaggerGlove in lvGlove.Items)
             {
                 if (lvTaggerGlove.BackColor == Color.BlueViolet)   //술래 방 글러브들 색은 보라색으로 지정해두었기 때문에 사용
                 {
                     GloveListViewChange(lvTaggerGlove, Role: "tagger", strLC: "0");
                     return false;   
+                }
+            }
+            return false;
+        }
+        public bool SCNt92()    //덕트킬 실행, 첫번째 술래글러브 LC +1
+        {
+            Console.WriteLine("SCNt92 func initiate");
+            foreach (ListViewItem lvTaggerGlove in lvGlove.Items)
+            {
+                if (lvTaggerGlove.BackColor == Color.BlueViolet)   //술래 방 글러브들 색은 보라색으로 지정해두었기 때문에 사용
+                {
+                    GloveListViewChange(lvTaggerGlove, strLC: "1");
+                    return false;
                 }
             }
             return false;

@@ -189,10 +189,14 @@ namespace HAS2TrainOS
                 lvSelectedGlove.ForeColor = tmpForeColor;                                                            //TrackBar에 맞춘 글자색 변경
                 lvSelectedGlove.BackColor = tmpBackColor;                                                           //TrackBar에 맞춘 바탕색 변경
             }
+            AllDevice.strAGp = listAGp.ToArray();
+            AllDevice.strAGt = listAGt.ToArray();
+            /*
             PlayerSCNProcessor.strAGp = listAGp.ToArray();    //플레이어 리스트를 배열로 변환
             PlayerSCNProcessor.strAGt = listAGt.ToArray();    //플레이어 리스트를 배열로 변환
             TaggerSCNProcessor.strAGp = listAGp.ToArray();    //플레이어 리스트를 배열로 변환
             TaggerSCNProcessor.strAGt = listAGt.ToArray();    //술래 리스트를 배열로 변환
+            */
         }
         private void ColorChange(String strTrackBarName, int nTempTrackValue)
         {

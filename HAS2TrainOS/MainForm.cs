@@ -37,9 +37,9 @@ namespace HAS2TrainOS
             mainform = this;
             InitializeComponent();
 
-            PlayerSpk.nDeviceNum = 1;
+            PlayerSpk.nDeviceNum = 0;
             TaggerSpk.nDeviceNum = 3;
-            CommonSpk.nDeviceNum = 3;
+            CommonSpk.nDeviceNum = 0;
             timerMain = new System.Threading.Timer((Object s) => {BeginInvoke(new TimerEventFiredDelegate_timerPlayerWaitTime(timerMainWork)); });
             
             PlayerSCNProcessor.timerPlayerWaitTime = new System.Threading.Timer((Object s) => { BeginInvoke(new TimerEventFiredDelegate_timerPlayerWaitTime(PlayerSCNProcessor.timerPlayerWaitTimeWork)); });
@@ -61,6 +61,9 @@ namespace HAS2TrainOS
             TaggerSCNProcessor.SelectedSpk = TaggerSpk;
             TaggerSCNProcessor.MQTT_Init();
             TaggerSCNProcessor.strSelectedNarr = "t";
+
+            AllDevice.strALLp = new string[] { "EI1", "EI2", "EG", "EE", "ERp", "EVp", "EMp", "EA" };
+            AllDevice.strALLt = new string[] { "ERt", "EVt", "ET", "EMt", "EA" };
         }
         private void MainForm_Load(object sender, EventArgs e)
         {
@@ -100,7 +103,8 @@ namespace HAS2TrainOS
         {
             Console.WriteLine(lvPlayerNarr.SelectedItems[0].Index);
             PlayerSCNProcessor.nCurrentCnt = lvPlayerNarr.SelectedItems[0].Index;
-            PlayerSCNProcessor.MainProcessor();
+            //PlayerSCNProcessor.MainProcessor()
+            PlayerMainProcessor();
         }
 
         private void lvTaggerNarr_DoubleClick(object sender, EventArgs e)

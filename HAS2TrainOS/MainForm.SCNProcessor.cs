@@ -11,6 +11,7 @@ using uPLibrary.Networking.M2Mqtt.Messages;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
 using System.Diagnostics.Eventing.Reader;
+using System.Drawing;
 
 namespace HAS2TrainOS
 {
@@ -19,6 +20,54 @@ namespace HAS2TrainOS
         public void FindSCN(string strCurSCN)
         {
             this.GetType().GetMethod(strCurSCN).Invoke(this, null);
+        }
+        public uint MainTimeSend()
+        {
+            return nMainTime;
+        }
+
+        public void PlayerMainProcessor()
+        {
+            uint nCurMainTime = nMainTime;
+            if (lvPlayerNarr.Items[PlayerSCNProcessor.nCurrentCnt].BackColor == SystemColors.Window)
+            {
+                PlayerSCNProcessor.MainProcessor();
+            }
+            else
+            {
+                string strNarrSkipMinMax = lvPlayerNarr.Items[PlayerSCNProcessor.nCurrentCnt].SubItems[6].Text;
+                string[] strSplit = strNarrSkipMinMax.Split(new char[] { ':' });
+                uint nMinMaxTime = UInt32.Parse(strSplit[0]) * 60 + UInt32.Parse(strSplit[1]);
+
+                string strNarrWaitTime = lvPlayerNarr.Items[PlayerSCNProcessor.nCurrentCnt].SubItems[5].Text;
+                uint nCompareTime = nCurMainTime + UInt32.Parse(strNarrWaitTime);
+
+                Console.WriteLine("현재+나레이션 시간: " + nCompareTime + "  ???  최대/소 시간: " + nMinMaxTime);
+                if (lvPlayerNarr.Items[PlayerSCNProcessor.nCurrentCnt].BackColor == Color.LemonChiffon)  // 스킵 할까?
+                {
+                    if (nCompareTime < nMinMaxTime) // 현재시간 + 나레이션 시간 < 최대 시작 시간 시 실행
+                    {
+                        PlayerSCNProcessor.MainProcessor();
+                    }
+                    else
+                    {
+                        PlayerSCNProcessor.nCurrentCnt++;
+                        PlayerMainProcessor();
+                    }
+                }
+                else if (lvPlayerNarr.Items[PlayerSCNProcessor.nCurrentCnt].BackColor == Color.PaleGreen)    // 추가 할까?
+                {
+                    if (nCompareTime < nMinMaxTime)    // 현재시간 + 나레이션 시간 < 최소 시작 시간 시 실행
+                    {
+                        PlayerSCNProcessor.MainProcessor();
+                    }
+                    else
+                    {
+                        PlayerSCNProcessor.nCurrentCnt++;
+                        PlayerMainProcessor();
+                    }
+                }
+            }
         }
         public class SCNProcessor
         {
@@ -31,11 +80,11 @@ namespace HAS2TrainOS
 
 
             public structMAC[] classMAC;
-            public structALL AllDevice;
+            //public structALL AllDevice;
 
             String strCurSCN;
-            public string [] strAGp;
-            public string [] strAGt;
+            //public string [] strAGp;
+            //public string [] strAGt;
             public string strSelectedNarr;
             public String strNarrDir = "";  //wav 파일이 있는 폴더 위치
             public int nCurrentCnt = 0;     //현재 진행중인 나레이션 번호
@@ -44,10 +93,6 @@ namespace HAS2TrainOS
             public int nTagCnt = 0;
             public int nTagMaxCnt = 0;
 
-            public void formFindSCN()
-            {
-                MainForm.mainform.FindSCN(strCurSCN);
-            }
             public void MQTT_Init()
             {
                 string BrokerAddress = "172.30.1.44";
@@ -56,9 +101,9 @@ namespace HAS2TrainOS
                                                                                 // use a unique id as client id, each time we start the application
                 string clientId = Guid.NewGuid().ToString();   //mqtt 클라이언트가 갖는 고유 id 생성
                 classclient.Connect(clientId);
-                AllDevice.strALLp = new string[] { "EI1", "EI2", "EG", "EE", "ERp", "EVp" , "EMp","EA"};
-                AllDevice.strALLt = new string[] { "ERt", "EVt", "ET","EMt", "EA" };
-
+                //AllDevice.strALLp = new string[] { "EI1", "EI2", "EG", "EE", "ERp", "EVp" , "EMp","EA"};
+                //AllDevice.strALLt = new string[] { "ERt", "EVt", "ET","EMt", "EA" };
+                uint time = MainForm.mainform.nMainTime;
             }
             /* 플레이어 WaitTime 타이머*/
             public System.Threading.Timer timerPlayerWaitTime;
@@ -113,7 +158,7 @@ namespace HAS2TrainOS
                         if (strDN.Contains("SG"))   //SGp 명령어 있을때 해당하는 함수 실행함
                         {
                             strCurSCN = "SCN"+ strSelectedNarr + (nCurrentCnt + 1).ToString();  //ex. SCN41 -> SCNp41 로 만드는작업
-                            Console.WriteLine(strCurSCN);
+                            //Console.WriteLine(strCurSCN);
                             //MainForm.mainform.GetType().GetMethod(strCurSCN).Invoke(this, null);    //strCurSCNp/t에 해당하는 함수 찾아서 실행
                             //formFindSCN();
                             MainForm.mainform.FindSCN(strCurSCN);
@@ -121,7 +166,7 @@ namespace HAS2TrainOS
                         }
                         else
                         {
-                            SCNJSONPublish(strDN, strSelectedNarr + lvNarr.Items[nCurrentCnt].SubItems[1].Text.Replace("#", ""));   //ex. #41 -> p41/t41
+                            MainForm.mainform.SCNJSONPublish(strDN, strSelectedNarr + lvNarr.Items[nCurrentCnt].SubItems[1].Text.Replace("#", ""));   //ex. #41 -> p41/t41
                         }
                     }
                 }
@@ -154,7 +199,7 @@ namespace HAS2TrainOS
                     }
                 }
 
-                SCNJSONPublish("image", strSelectedNarr + lvNarr.Items[nCurrentCnt].SubItems[1].Text.Replace("#", ""));    //생존자 훈련소 모니터 시나리오 전송하는 부분
+                MainForm.mainform.SCNJSONPublish("image", strSelectedNarr + lvNarr.Items[nCurrentCnt].SubItems[1].Text.Replace("#", ""));    //생존자 훈련소 모니터 시나리오 전송하는 부분
                 return;
             } //public void PlayerNarr()
 
@@ -200,12 +245,14 @@ namespace HAS2TrainOS
                     }
                 }
             }
+
+            /*
             public void SCNJSONPublish(String Device, String SCN)   //DeviceMAC:보내는 장치 MAC 주소,SCN: 시나리오 번호
             {
                 JObject SituationData = new JObject(new JProperty("DS", "scenario"));
                 SituationData.Add(new JProperty("SCN", SCN));
 
-                if (Device.Contains("ALLp") || Device.Contains("ALLt"))   
+                if (Device.Contains("ALLp") || Device.Contains("ALLt"))
                 {
                     foreach (string strAllDevice in AllDevice.StringSelecetor(Device))
                     {
@@ -261,6 +308,8 @@ namespace HAS2TrainOS
                     }
                 }
             }
+
+            */
         }
     }
 }

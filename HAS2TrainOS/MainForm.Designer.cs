@@ -207,6 +207,8 @@
             this.lbTaggerWaitTimer = new System.Windows.Forms.Label();
             this.lbTaggerSkipTimer = new System.Windows.Forms.Label();
             this.pnNarration = new System.Windows.Forms.Panel();
+            this.playerNarrSkipCondition = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.killerNarrSkipCondition = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.pnMainButton.SuspendLayout();
             this.pnDevice.SuspendLayout();
             this.panel5.SuspendLayout();
@@ -624,7 +626,8 @@
             this.killerNarration,
             this.killerSendTo,
             this.killerSkipCondition,
-            this.killerWaitTime});
+            this.killerWaitTime,
+            this.killerNarrSkipCondition});
             this.lvTaggerNarr.Font = new System.Drawing.Font("Haan YGodic 240", 7F);
             this.lvTaggerNarr.FullRowSelect = true;
             this.lvTaggerNarr.GridLines = true;
@@ -652,6 +655,18 @@
             // 
             this.killerNarration.Text = "Killer Narr.";
             this.killerNarration.Width = 304;
+            // 
+            // killerSendTo
+            // 
+            this.killerSendTo.Text = "SendTo";
+            // 
+            // killerSkipCondition
+            // 
+            this.killerSkipCondition.Text = "SkipCondition";
+            // 
+            // killerWaitTime
+            // 
+            this.killerWaitTime.Text = "WaitTime";
             // 
             // label13
             // 
@@ -704,7 +719,8 @@
             this.playerNarration,
             this.playerSendto,
             this.playerSkipCondition,
-            this.playerWaitTime});
+            this.playerWaitTime,
+            this.playerNarrSkipCondition});
             this.lvPlayerNarr.Font = new System.Drawing.Font("Haan YGodic 240", 6.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lvPlayerNarr.FullRowSelect = true;
             this.lvPlayerNarr.GridLines = true;
@@ -726,12 +742,12 @@
             // playerSCN
             // 
             this.playerSCN.Text = "SCN#";
-            this.playerSCN.Width = 50;
+            this.playerSCN.Width = 41;
             // 
             // playerNarration
             // 
             this.playerNarration.Text = "Player Narr.";
-            this.playerNarration.Width = 304;
+            this.playerNarration.Width = 312;
             // 
             // playerSendto
             // 
@@ -740,6 +756,7 @@
             // playerSkipCondition
             // 
             this.playerSkipCondition.Text = "Skip Conditions";
+            this.playerSkipCondition.Width = 90;
             // 
             // playerWaitTime
             // 
@@ -1155,6 +1172,14 @@
             this.pnNarration.Size = new System.Drawing.Size(920, 680);
             this.pnNarration.TabIndex = 6;
             // 
+            // playerNarrSkipCondition
+            // 
+            this.playerNarrSkipCondition.Text = "Min/Max";
+            // 
+            // killerNarrSkipCondition
+            // 
+            this.killerNarrSkipCondition.Text = "Min/Max";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -1282,6 +1307,8 @@
         private System.Windows.Forms.ColumnHeader killerSendTo;
         private System.Windows.Forms.ColumnHeader killerSkipCondition;
         private System.Windows.Forms.ColumnHeader killerWaitTime;
+        private System.Windows.Forms.ColumnHeader killerNarrSkipCondition;
+        private System.Windows.Forms.ColumnHeader playerNarrSkipCondition;
     }
 }
 

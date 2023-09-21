@@ -81,6 +81,66 @@ namespace HAS2TrainOS
                 }
             }
         }
-        
+        public void SCNJSONPublish(String Device, String SCN)   //DeviceMAC:보내는 장치 MAC 주소,SCN: 시나리오 번호
+            {
+                JObject SituationData = new JObject(new JProperty("DS", "scenario"));
+                SituationData.Add(new JProperty("SCN", SCN));
+
+                if (Device.Contains("ALLp") || Device.Contains("ALLt"))   
+                {
+                    foreach (string strAllDevice in AllDevice.StringSelecetor(Device))
+                    {
+                        foreach (structMAC m in MACs)
+                        {
+                            if (m.strDeviceName == strAllDevice)
+                            {
+                                client.Publish(m.strDeviceMAC, Encoding.UTF8.GetBytes(SituationData.ToString()), 0, true);
+                                break;
+                            }
+                        }
+                    }
+                }
+                else if (Device.Contains("AGp"))
+                {
+                    foreach (string strAllGlove in AllDevice.strAGp)
+                    {
+                        foreach (structMAC m in MACs)
+                        {
+                            if (m.strDeviceName == strAllGlove)
+                            {
+                                client.Publish(m.strDeviceMAC, Encoding.UTF8.GetBytes(SituationData.ToString()), 0, true);
+                                break;
+                            }
+                        }
+                    }
+                }
+                else if (Device.Contains("AGt"))
+                {
+                    foreach (string strAllGlove in AllDevice.strAGt)
+                    {
+                        foreach (structMAC m in MACs)
+                        {
+                            if (m.strDeviceName == strAllGlove)
+                            {
+                                client.Publish(m.strDeviceMAC, Encoding.UTF8.GetBytes(SituationData.ToString()), 0, true);
+                                break;
+                            }
+                        }
+                    }
+                }
+
+
+                else
+                {
+                    foreach (structMAC m in MACs)
+                    {
+                        if (m.strDeviceName == Device)
+                        {
+                            client.Publish(m.strDeviceMAC, Encoding.UTF8.GetBytes(SituationData.ToString()), 0, true);
+                            break;
+                        }
+                    }
+                }
+            }
     }
 }

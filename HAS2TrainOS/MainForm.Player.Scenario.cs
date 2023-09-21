@@ -12,7 +12,7 @@ namespace HAS2TrainOS
     {
         public bool SCNp32()    //아이템박스 배터리팩 추가
         {
-            Console.WriteLine("SCNp32 FUNC");
+            Console.WriteLine("SCNp32 func initiate");
             int cnt = 0;
             foreach (ListViewItem lvPlayerGlove in lvGlove.Items)
             {
@@ -30,7 +30,7 @@ namespace HAS2TrainOS
         }
         public bool SCNp40()    //발전기 배터리팩 회수
         {
-            Console.WriteLine("SCNp40");
+            Console.WriteLine("SCNp40 func initiate");
             foreach (ListViewItem lvPlayerGlove in lvGlove.Items)   // 모든 글러브 배터리팩 0으로 만듦
             {
                 if (lvPlayerGlove.SubItems[(int)listviewGlove.BP].Text != "0")
@@ -42,9 +42,28 @@ namespace HAS2TrainOS
             return false;
         }
 
-        public bool SCNp69()    //생명장치 생명칩 추가
+        public bool SCNp69()    //플레이어 글러브 중 Role:player 인 경우 생명칩 전달을 하기 위해 LC +1 함
         {
-            Console.WriteLine("SCNp40");
+            foreach (ListViewItem lvPlayerGlove in lvGlove.Items)   // 모든 글러브 배터리팩 0으로 만듦
+            {
+                if (lvPlayerGlove.SubItems[(int)listviewGlove.Role].Text == "player")
+                {
+                    GloveListViewChange(lvPlayerGlove, strLC: "+1");
+                    return false;
+                }
+            }
+            return false;
+        }
+        public bool SCNp76()    //부활, 플레이어 글러브 중 Role:ghost -> Role:player 부활
+        {
+            foreach (ListViewItem lvPlayerGlove in lvGlove.Items)   // 모든 글러브 배터리팩 0으로 만듦
+            {
+                if (lvPlayerGlove.SubItems[(int)listviewGlove.Role].Text == "ghost")
+                {
+                    GloveListViewChange(lvPlayerGlove, Role:"player", strLC: "1");
+                    return false;
+                }
+            }
             return false;
         }
     }

@@ -28,7 +28,7 @@ namespace HAS2TrainOS
             Console.WriteLine(dgMAC.Rows[0]);
             try
             {
-                wbMAC = new Workbook(@"C:\Users\teamh\OneDrive\바탕 화면\CODE\HAS2Train\TrainRoom_excel\wbMac.xlsx");
+                wbMAC = new Workbook(mainform.strFileDir +"wbMac.xlsx");
             }
             catch 
             {

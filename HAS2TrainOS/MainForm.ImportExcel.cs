@@ -14,7 +14,7 @@ namespace HAS2TrainOS
 
     public partial class MainForm : Form
     {
-        public String strFileDir = @"C:\Users\teamh\OneDrive\바탕 화면\CODE\HAS2Train\TrainRoom_excel\";
+        public String strFileDir = @"C:\Users\user\Desktop\bbangjun\TrainRoom_excel\";
         int nMaxMACNum;         //맥주소  최대개수
         structMAC[] MACs;
 
@@ -31,6 +31,7 @@ namespace HAS2TrainOS
                 ListViewItem items = new ListViewItem();
                 items.Text = "";
                 items.SubItems.Add(GetCell(wsNarr, i, 1));    //번호
+
                 items.SubItems.Add(GetCell(wsNarr, i, 5));    //나레이션
                 items.SubItems.Add(GetCell(wsNarr, i, 6));    //사용장치
                 items.SubItems.Add(GetCell(wsNarr, i, 7));    //스킵조건
@@ -44,6 +45,20 @@ namespace HAS2TrainOS
                 DateTime dtWaitTime = DateTime.ParseExact(strWaitTime, validformats, null);
                 items.SubItems.Add((dtNarrTime.Minute + dtWaitTime.Minute).ToString());
                 lvNarr.Items.Add(items);    //실제 추가
+
+                Color NarrAbstract = Color.FromArgb(255, 253, 228, 155);    //시간 오바하면 나레이션 스킵하는 색상
+                Color NarrAdd = Color.FromArgb(255, 166, 227, 183);          //시간 빠르면 추가하는 색상
+                var style = wsNarr.Cells[i, 5].GetStyle();                              //나레이션에 해당하는 나레이션 색상 추출
+                if (style.ForegroundColor == NarrAbstract)                           //스킵조건
+                {
+                    lvNarr.Items[i - 1].SubItems.Add(GetCellTime(wsNarr, i, 13));
+                    lvNarr.Items[i - 1].BackColor = Color.LemonChiffon;
+                }
+                else if (style.ForegroundColor == NarrAdd)                          //추가조건
+                {
+                    lvNarr.Items[i - 1].SubItems.Add(GetCellTime(wsNarr, i, 8));
+                    lvNarr.Items[i - 1].BackColor = Color.PaleGreen;
+                }
             }
         }
         private void DeviceRead(ListView lvDV, Worksheet wsDV)
@@ -167,6 +182,17 @@ namespace HAS2TrainOS
             }
             return strWSData;
         }
-
+        String GetCellTime(Worksheet ws, int col, int row)
+        {
+            String strWSData = "";
+            DateTime dtTemp;
+            Cell cellTemp = ws.Cells[col, row];
+            dtTemp = cellTemp.DateTimeValue;
+            strWSData = dtTemp.ToString();
+            Console.WriteLine(strWSData);
+            strWSData = strWSData.Substring(strWSData.Length - 8, 5);
+            Console.WriteLine(strWSData);
+            return strWSData;
+        }
     }
 }
