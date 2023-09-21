@@ -123,6 +123,13 @@ namespace HAS2TrainOS
             }
             return false;
         }
+        public bool SCNt66()    //모든 술래글러브 Role: tagger로 변경 및 teaken_LC = 0
+        {
+            Console.WriteLine("SCNt66 func initiate");
+            PlayerSCNProcessor.nCurrentCnt = 63;
+            PlayerSCNProcessor.NarrPlayJudge();
+            return false;
+        }
         public bool SCNt92()    //덕트킬 실행, 첫번째 술래글러브 LC +1
         {
             Console.WriteLine("SCNt92 func initiate");
@@ -134,6 +141,19 @@ namespace HAS2TrainOS
                     return false;
                 }
             }
+            return false;
+        }
+        public bool SCNt95()    //술래 퇴장 까지 기다림.
+        {
+            PlayerSCNProcessor.bAccessNext = true;
+            Console.WriteLine("SCNt95 func initiate");
+            Console.WriteLine("Wait for Player.....");
+            return false;
+        }
+        public bool SCNt98()    //술래 퇴장 까지 기다림.
+        {
+            TaggerSCNProcessor.timerPlayerWaitTime.Change(System.Threading.Timeout.Infinite, System.Threading.Timeout.Infinite); //메인타이머 종료
+            TaggerSCNProcessor.timerPlayerSkipTime.Change(System.Threading.Timeout.Infinite, System.Threading.Timeout.Infinite); //PlayerSkipTimer 종료
             return false;
         }
     }

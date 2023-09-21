@@ -161,7 +161,7 @@ namespace HAS2TrainOS
                                                                 }
                                                             }
                                                             PlayerSCNProcessor.strTagDevice = null;    //TAG 명령어 초기화
-                                                            PlayerSCNProcessor.MainProcessor();
+                                                            PlayerSCNProcessor.NarrPlayJudge();
                                                         }
                                                     }
                                                     if (TaggerSCNProcessor.strTagDevice != null)   //엑셀에서 TAG명령어 들어왔을때만 실행
@@ -186,7 +186,7 @@ namespace HAS2TrainOS
                                                                 }
                                                             }
                                                             TaggerSCNProcessor.strTagDevice = null;    //TAG 명령어 초기화
-                                                            TaggerSCNProcessor.MainProcessor();
+                                                            TaggerSCNProcessor.NarrPlayJudge();
                                                         }
                                                     }
                                                 } // if (jsonInput["DN"].ToString().Contains("G")) ")

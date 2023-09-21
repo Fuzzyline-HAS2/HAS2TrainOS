@@ -75,16 +75,10 @@ namespace HAS2TrainOS
             public Label lbWaitTimer;
             public Label lbSkipTimer;
 
-            public MqttClient classclient;
             public Mp3Player SelectedSpk;
-
-
-            public structMAC[] classMAC;
-            //public structALL AllDevice;
+            public Mp3Player CommonSpk;
 
             String strCurSCN;
-            //public string [] strAGp;
-            //public string [] strAGt;
             public string strSelectedNarr;
             public String strNarrDir = "";  //wav 파일이 있는 폴더 위치
             public int nCurrentCnt = 0;     //현재 진행중인 나레이션 번호
@@ -92,19 +86,9 @@ namespace HAS2TrainOS
             public String[] strTagDevice;
             public int nTagCnt = 0;
             public int nTagMaxCnt = 0;
+            public bool bAccessNext = false;   //다음 방에 입장 가능한지 확인하는 변수 
+            String strWavWait;          // 상대방 끝나길 기다린다는 나레이션 경로
 
-            public void MQTT_Init()
-            {
-                string BrokerAddress = "172.30.1.44";
-                classclient = new MqttClient(BrokerAddress);
-                // register a callback-function (we have to implement, see below) which is called by the library when a message was received
-                                                                                // use a unique id as client id, each time we start the application
-                string clientId = Guid.NewGuid().ToString();   //mqtt 클라이언트가 갖는 고유 id 생성
-                classclient.Connect(clientId);
-                //AllDevice.strALLp = new string[] { "EI1", "EI2", "EG", "EE", "ERp", "EVp" , "EMp","EA"};
-                //AllDevice.strALLt = new string[] { "ERt", "EVt", "ET","EMt", "EA" };
-                uint time = MainForm.mainform.nMainTime;
-            }
             /* 플레이어 WaitTime 타이머*/
             public System.Threading.Timer timerPlayerWaitTime;
             public delegate void TimerEventFiredDelegate_timerPlayerWaitTime();
@@ -117,6 +101,11 @@ namespace HAS2TrainOS
             uint nPlayerSkipCondition = 0;
             String strPlayerSkipTo = "";
 
+            /* 플레이어 WaitTime 타이머*/
+            public System.Threading.Timer timerForWait;
+            public delegate void TimerEventFiredDelegate_timerForWait();
+            uint nForWait = 0;
+            uint nWaitAlarmTime = 10;   //"상대방 기다리는중" 나레이션 주기
             public void MainProcessor()
             {
                 // WAV 나레이션 플레이 부분
@@ -128,7 +117,10 @@ namespace HAS2TrainOS
                 FileInfo fileTmp = new FileInfo(strWavName);
                 if (fileTmp.Exists)  //FileInfo.Exists로 파일 존재유무 확인 "
                 {
-                    SelectedSpk.PlayMp3(strWavName);
+                    if(lvNarr.Items[nCurrentCnt].SubItems[7].Text == strSelectedNarr)
+                        SelectedSpk.PlayMp3(strWavName);
+                    else
+                        CommonSpk.PlayMp3(strWavName);
                 }
                 else
                 {
@@ -141,10 +133,10 @@ namespace HAS2TrainOS
                 timerPlayerWaitTime.Change(0, 1000);
                 foreach (ListViewItem listitem in lvNarr.Items)
                 {
-                    if (listitem.Text == "ᐅ")
+                    if (listitem.Text == "ᐅᐅᐅ")
                         listitem.Text = "";
                 }
-                lvNarr.Items[nCurrentCnt].Text = "ᐅ";
+                lvNarr.Items[nCurrentCnt].Text = "ᐅᐅᐅ";
 
                 // Device Publish 부분
                 if (lvNarr.Items[nCurrentCnt].SubItems[3].Text != "")
@@ -158,11 +150,7 @@ namespace HAS2TrainOS
                         if (strDN.Contains("SG"))   //SGp 명령어 있을때 해당하는 함수 실행함
                         {
                             strCurSCN = "SCN"+ strSelectedNarr + (nCurrentCnt + 1).ToString();  //ex. SCN41 -> SCNp41 로 만드는작업
-                            //Console.WriteLine(strCurSCN);
-                            //MainForm.mainform.GetType().GetMethod(strCurSCN).Invoke(this, null);    //strCurSCNp/t에 해당하는 함수 찾아서 실행
-                            //formFindSCN();
                             MainForm.mainform.FindSCN(strCurSCN);
-
                         }
                         else
                         {
@@ -196,6 +184,14 @@ namespace HAS2TrainOS
                             nPlayerSkipCondition = UInt32.Parse(strWait[1]);    //스킵하는 시간 저장
                             strPlayerSkipTo = "#" + strWait[2];                                 //스킵하고 진행시킬 나레이션 번호 저장
                         }
+                        if (s.Contains("DELAY"))
+                        {
+                            
+                            timerPlayerSkipTime.Change(System.Threading.Timeout.Infinite, System.Threading.Timeout.Infinite); //PlayerSkipTimer 종료
+                            timerForWait.Change(System.Threading.Timeout.Infinite, System.Threading.Timeout.Infinite);         //timerForWait 종료
+                            nForWait = 0;                                                                                                                             //timerForWait 변수 초기화
+                            timerForWait.Change(0, 1000);                                                                                                    //timerForWait 시작
+                        }
                     }
                 }
 
@@ -203,10 +199,7 @@ namespace HAS2TrainOS
                 return;
             } //public void PlayerNarr()
 
-
-
             /* 플레이어 WaitTime 타이머*/
-
             public void timerPlayerWaitTimeWork()
             {
                 lbWaitTimer.Text = (nPlayerWaitTime / 60).ToString("00") + ":" + (nPlayerWaitTime % 60).ToString("00");    //남은 시간 uint -> String으로 변환하는 작업
@@ -217,10 +210,11 @@ namespace HAS2TrainOS
                 }
                 else if (nPlayerWaitTime >= Int32.Parse(lvNarr.Items[nCurrentCnt].SubItems[5].Text))
                 {
+                    timerPlayerWaitTime.Change(System.Threading.Timeout.Infinite, System.Threading.Timeout.Infinite); //메인타이머 종료
                     Console.WriteLine(nCurrentCnt.ToString() + " Player Narr Wait Time End!");
                     //lvNarr.Focus();
                     nCurrentCnt++;
-                    MainProcessor();
+                    NarrPlayJudge();
                 }
                 nPlayerWaitTime += 1;                                                                      //초 마다 타이머 함수 실행되면 -1해 남은시간 줄여줌
 
@@ -236,80 +230,77 @@ namespace HAS2TrainOS
                     {
                         if (listitem.SubItems[1].Text == strPlayerSkipTo)
                         {
+                            timerPlayerWaitTime.Change(System.Threading.Timeout.Infinite, System.Threading.Timeout.Infinite); //메인타이머 종료
                             timerPlayerSkipTime.Change(System.Threading.Timeout.Infinite, System.Threading.Timeout.Infinite); //PlayerSkipTimer 종료
                             nCurrentCnt = listitem.Index;
                             strTagDevice = null;
-                            MainProcessor();
+                            NarrPlayJudge();
                             break;
                         }
                     }
                 }
             }
-
-            /*
-            public void SCNJSONPublish(String Device, String SCN)   //DeviceMAC:보내는 장치 MAC 주소,SCN: 시나리오 번호
+            /* ForWait 타이머: 상대방 기다리기 위한 함수*/
+            public void timerForWaitWork()
             {
-                JObject SituationData = new JObject(new JProperty("DS", "scenario"));
-                SituationData.Add(new JProperty("SCN", SCN));
-
-                if (Device.Contains("ALLp") || Device.Contains("ALLt"))
+                nForWait += 1;                                                                      //초 마다 타이머 함수 실행되면 -1해 남은시간 줄여줌
+                if ((nForWait % nWaitAlarmTime ) == 0)
                 {
-                    foreach (string strAllDevice in AllDevice.StringSelecetor(Device))
-                    {
-                        foreach (structMAC m in classMAC)
-                        {
-                            if (m.strDeviceName == strAllDevice)
-                            {
-                                classclient.Publish(m.strDeviceMAC, Encoding.UTF8.GetBytes(SituationData.ToString()), 0, true);
-                                break;
-                            }
-                        }
-                    }
+                    strWavWait = strNarrDir + "Wait.wav";    // 상대방 끝나길 기다린다는 나레이션 경로
+                    SelectedSpk.PlayMp3(strWavWait);
                 }
-                else if (Device.Contains("AGp"))
+                if(bAccessNext == true)
                 {
-                    foreach (string strAllGlove in strAGp)
-                    {
-                        foreach (structMAC m in classMAC)
-                        {
-                            if (m.strDeviceName == strAllGlove)
-                            {
-                                classclient.Publish(m.strDeviceMAC, Encoding.UTF8.GetBytes(SituationData.ToString()), 0, true);
-                                break;
-                            }
-                        }
-                    }
+                    timerForWait.Change(System.Threading.Timeout.Infinite, System.Threading.Timeout.Infinite); //timerForWait 종료
+                    bAccessNext = false;
+                    nCurrentCnt++;
+                    NarrPlayJudge();
                 }
-                else if (Device.Contains("AGt"))
+            }
+            public void NarrPlayJudge()
+            {
+                uint nCurMainTime = MainForm.mainform.nMainTime;
+                if (lvNarr.Items[nCurrentCnt].BackColor == SystemColors.Window)
                 {
-                    foreach (string strAllGlove in strAGt)
-                    {
-                        foreach (structMAC m in classMAC)
-                        {
-                            if (m.strDeviceName == strAllGlove)
-                            {
-                                classclient.Publish(m.strDeviceMAC, Encoding.UTF8.GetBytes(SituationData.ToString()), 0, true);
-                                break;
-                            }
-                        }
-                    }
+                    MainProcessor();
                 }
-
-
                 else
                 {
-                    foreach (structMAC m in classMAC)
+                    string strNarrSkipMinMax = lvNarr.Items[nCurrentCnt].SubItems[6].Text;
+                    string[] strSplit = strNarrSkipMinMax.Split(new char[] { ':' });
+                    uint nMinMaxTime = UInt32.Parse(strSplit[0]) * 60 + UInt32.Parse(strSplit[1]);
+
+                    string strNarrWaitTime = lvNarr.Items[nCurrentCnt].SubItems[5].Text;
+                    uint nCompareTime = nCurMainTime + UInt32.Parse(strNarrWaitTime);
+
+                    Console.WriteLine("현재+나레이션 시간: " + nCompareTime + "  ???  최대/소 시간: " + nMinMaxTime);
+                    if (lvNarr.Items[nCurrentCnt].BackColor == Color.LemonChiffon)  // 스킵 할까?
                     {
-                        if (m.strDeviceName == Device)
+                        if (nCompareTime < nMinMaxTime) // 현재시간 + 나레이션 시간 < 최대 시작 시간 시 실행
                         {
-                            classclient.Publish(m.strDeviceMAC, Encoding.UTF8.GetBytes(SituationData.ToString()), 0, true);
-                            break;
+                            MainProcessor();
+                        }
+                        else
+                        {
+                            nCurrentCnt++;
+                            NarrPlayJudge();
                         }
                     }
-                }
-            }
+                    else if (lvNarr.Items[nCurrentCnt].BackColor == Color.PaleGreen)    // 추가 할까?
+                    {
+                        if (nCompareTime < nMinMaxTime)    // 현재시간 + 나레이션 시간 < 최소 시작 시간 시 실행
+                        {
+                            MainProcessor();
+                        }
+                        else
+                        {
+                            nCurrentCnt++;
+                            NarrPlayJudge();
+                        }
+                    } //else if 추가 할까?
+                } //else
+            }// func 종료
 
-            */
         }
     }
 }

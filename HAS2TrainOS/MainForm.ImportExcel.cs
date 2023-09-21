@@ -26,7 +26,7 @@ namespace HAS2TrainOS
         private void MainRead(ListView lvNarr, Worksheet wsNarr)
         {
             int rowsPlayer = wsNarr.Cells.MaxDataRow;
-            for (int i = 1; i < rowsPlayer; i++)
+            for (int i = 1; i <= rowsPlayer; i++)
             {
                 ListViewItem items = new ListViewItem();
                 items.Text = "";
@@ -59,6 +59,11 @@ namespace HAS2TrainOS
                     lvNarr.Items[i - 1].SubItems.Add(GetCellTime(wsNarr, i, 8));
                     lvNarr.Items[i - 1].BackColor = Color.PaleGreen;
                 }
+                else
+                {
+                    lvNarr.Items[i - 1].SubItems.Add("");
+                }
+                lvNarr.Items[i - 1].SubItems.Add(GetCell(wsNarr, i, 14));   //스피커 위치 
             }
         }
         private void DeviceRead(ListView lvDV, Worksheet wsDV)
@@ -117,13 +122,9 @@ namespace HAS2TrainOS
             Worksheet wsMAC = wbMAC.Worksheets["MAC"];
             nMaxMACNum = wsMAC.Cells.MaxDataRow;
             MACs = new structMAC[nMaxMACNum];
-            PlayerSCNProcessor.classMAC = new structMAC[nMaxMACNum];
-            TaggerSCNProcessor.classMAC = new structMAC[nMaxMACNum];
             for (int i = 0; i < nMaxMACNum; i++)
             {
                 MACs[i].SaveMAC(GetCell(wsMAC, i+1,0), GetCell(wsMAC, i+1, 1));
-                PlayerSCNProcessor.classMAC[i].SaveMAC(GetCell(wsMAC, i + 1, 0), GetCell(wsMAC, i + 1, 1));
-                TaggerSCNProcessor.classMAC[i].SaveMAC(GetCell(wsMAC, i + 1, 0), GetCell(wsMAC, i + 1, 1));
             }
         }
         private void DevicSave(ListView lvDV, Workbook wbDV, String strXlsx)

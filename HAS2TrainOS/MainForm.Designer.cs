@@ -161,6 +161,7 @@
             this.killerSendTo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.killerSkipCondition = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.killerWaitTime = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.killerNarrSkipCondition = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label13 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.btnTaggerNarrApply = new System.Windows.Forms.Button();
@@ -172,6 +173,7 @@
             this.playerSendto = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.playerSkipCondition = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.playerWaitTime = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.playerNarrSkipCondition = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label12 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.btnPlayerNarrApply = new System.Windows.Forms.Button();
@@ -207,8 +209,8 @@
             this.lbTaggerWaitTimer = new System.Windows.Forms.Label();
             this.lbTaggerSkipTimer = new System.Windows.Forms.Label();
             this.pnNarration = new System.Windows.Forms.Panel();
-            this.playerNarrSkipCondition = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.killerNarrSkipCondition = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.PlayerSpeaker = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.killerSpeaker = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.pnMainButton.SuspendLayout();
             this.pnDevice.SuspendLayout();
             this.panel5.SuspendLayout();
@@ -627,7 +629,8 @@
             this.killerSendTo,
             this.killerSkipCondition,
             this.killerWaitTime,
-            this.killerNarrSkipCondition});
+            this.killerNarrSkipCondition,
+            this.killerSpeaker});
             this.lvTaggerNarr.Font = new System.Drawing.Font("Haan YGodic 240", 7F);
             this.lvTaggerNarr.FullRowSelect = true;
             this.lvTaggerNarr.GridLines = true;
@@ -667,6 +670,10 @@
             // killerWaitTime
             // 
             this.killerWaitTime.Text = "WaitTime";
+            // 
+            // killerNarrSkipCondition
+            // 
+            this.killerNarrSkipCondition.Text = "Min/Max";
             // 
             // label13
             // 
@@ -720,7 +727,8 @@
             this.playerSendto,
             this.playerSkipCondition,
             this.playerWaitTime,
-            this.playerNarrSkipCondition});
+            this.playerNarrSkipCondition,
+            this.PlayerSpeaker});
             this.lvPlayerNarr.Font = new System.Drawing.Font("Haan YGodic 240", 6.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lvPlayerNarr.FullRowSelect = true;
             this.lvPlayerNarr.GridLines = true;
@@ -761,6 +769,10 @@
             // playerWaitTime
             // 
             this.playerWaitTime.Text = "Wait Time";
+            // 
+            // playerNarrSkipCondition
+            // 
+            this.playerNarrSkipCondition.Text = "Min/Max";
             // 
             // label12
             // 
@@ -1172,13 +1184,13 @@
             this.pnNarration.Size = new System.Drawing.Size(920, 680);
             this.pnNarration.TabIndex = 6;
             // 
-            // playerNarrSkipCondition
+            // PlayerSpeaker
             // 
-            this.playerNarrSkipCondition.Text = "Min/Max";
+            this.PlayerSpeaker.Text = "Spk.";
             // 
-            // killerNarrSkipCondition
+            // killerSpeaker
             // 
-            this.killerNarrSkipCondition.Text = "Min/Max";
+            this.killerSpeaker.Text = "Spk.";
             // 
             // MainForm
             // 
@@ -1309,6 +1321,8 @@
         private System.Windows.Forms.ColumnHeader killerWaitTime;
         private System.Windows.Forms.ColumnHeader killerNarrSkipCondition;
         private System.Windows.Forms.ColumnHeader playerNarrSkipCondition;
+        private System.Windows.Forms.ColumnHeader PlayerSpeaker;
+        private System.Windows.Forms.ColumnHeader killerSpeaker;
     }
 }
 

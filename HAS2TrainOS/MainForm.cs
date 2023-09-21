@@ -38,28 +38,30 @@ namespace HAS2TrainOS
             InitializeComponent();
 
             PlayerSpk.nDeviceNum = 0;
-            TaggerSpk.nDeviceNum = 3;
-            CommonSpk.nDeviceNum = 0;
+            TaggerSpk.nDeviceNum = 2;
+            CommonSpk.nDeviceNum = 3;
             timerMain = new System.Threading.Timer((Object s) => {BeginInvoke(new TimerEventFiredDelegate_timerPlayerWaitTime(timerMainWork)); });
             
             PlayerSCNProcessor.timerPlayerWaitTime = new System.Threading.Timer((Object s) => { BeginInvoke(new TimerEventFiredDelegate_timerPlayerWaitTime(PlayerSCNProcessor.timerPlayerWaitTimeWork)); });
             PlayerSCNProcessor.timerPlayerSkipTime = new System.Threading.Timer((Object s) => { BeginInvoke(new TimerEventFiredDelegate_timerPlayerSkipTime(PlayerSCNProcessor.timerPlayerSkipTimeWork)); });
+            PlayerSCNProcessor.timerForWait = new System.Threading.Timer((Object s) => { BeginInvoke(new TimerEventFiredDelegate_timerPlayerSkipTime(PlayerSCNProcessor.timerForWaitWork)); });
             PlayerSCNProcessor.strNarrDir = strFileDir + @"wavPlayerNarr\";
             PlayerSCNProcessor.lvNarr = lvPlayerNarr;
             PlayerSCNProcessor.lbWaitTimer = lbPlayerWaitTimer;
             PlayerSCNProcessor.lbSkipTimer = lbPlayerSkipTimer;
             PlayerSCNProcessor.SelectedSpk = PlayerSpk;
-            PlayerSCNProcessor.MQTT_Init();
+            PlayerSCNProcessor.CommonSpk = CommonSpk;
             PlayerSCNProcessor.strSelectedNarr = "p";
 
             TaggerSCNProcessor.timerPlayerWaitTime = new System.Threading.Timer((Object s) => { BeginInvoke(new TimerEventFiredDelegate_timerPlayerWaitTime(TaggerSCNProcessor.timerPlayerWaitTimeWork)); });
             TaggerSCNProcessor.timerPlayerSkipTime = new System.Threading.Timer((Object s) => { BeginInvoke(new TimerEventFiredDelegate_timerPlayerSkipTime(TaggerSCNProcessor.timerPlayerSkipTimeWork)); });
+            TaggerSCNProcessor.timerForWait = new System.Threading.Timer((Object s) => { BeginInvoke(new TimerEventFiredDelegate_timerPlayerSkipTime(TaggerSCNProcessor.timerForWaitWork)); });
             TaggerSCNProcessor.strNarrDir = strFileDir + @"wavTaggerNarr\";
             TaggerSCNProcessor.lvNarr = lvTaggerNarr;
             TaggerSCNProcessor.lbWaitTimer = lbTaggerWaitTimer;
             TaggerSCNProcessor.lbSkipTimer = lbTaggerSkipTimer;
             TaggerSCNProcessor.SelectedSpk = TaggerSpk;
-            TaggerSCNProcessor.MQTT_Init();
+            TaggerSCNProcessor.CommonSpk = CommonSpk;
             TaggerSCNProcessor.strSelectedNarr = "t";
 
             AllDevice.strALLp = new string[] { "EI1", "EI2", "EG", "EE", "ERp", "EVp", "EMp", "EA" };
@@ -103,8 +105,7 @@ namespace HAS2TrainOS
         {
             Console.WriteLine(lvPlayerNarr.SelectedItems[0].Index);
             PlayerSCNProcessor.nCurrentCnt = lvPlayerNarr.SelectedItems[0].Index;
-            //PlayerSCNProcessor.MainProcessor()
-            PlayerMainProcessor();
+            PlayerSCNProcessor.MainProcessor();
         }
 
         private void lvTaggerNarr_DoubleClick(object sender, EventArgs e)

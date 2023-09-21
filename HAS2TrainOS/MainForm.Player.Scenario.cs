@@ -33,37 +33,81 @@ namespace HAS2TrainOS
             Console.WriteLine("SCNp40 func initiate");
             foreach (ListViewItem lvPlayerGlove in lvGlove.Items)   // 모든 글러브 배터리팩 0으로 만듦
             {
-                if (lvPlayerGlove.SubItems[(int)listviewGlove.BP].Text != "0")
+                if (lvPlayerGlove.BackColor == Color.YellowGreen)   //생존자 방 글러브들 색은 초록색으로 지정해두었기 때문에 사용
                 {
-                    GloveListViewChange(lvPlayerGlove, strBP: "0");
+                    if (lvPlayerGlove.SubItems[(int)listviewGlove.BP].Text != "0")
+                    {
+                        GloveListViewChange(lvPlayerGlove, strBP: "0");
+                    }
                 }
             }
             DeviceListViewChange(lvDevice.Items[(int)enumDevice.EG], strLCBP: "4"); //발전기 배터리팩 다채워줌
             return false;
         }
+        public bool SCNp61()    //술래 퇴장 까지 기다림.
+        {
+            TaggerSCNProcessor.bAccessNext = true;
+            Console.WriteLine("SCNp61 func initiate");
+            Console.WriteLine("Wait for Tagger Exit.....");
+            return false;
+        }
 
         public bool SCNp69()    //플레이어 글러브 중 Role:player 인 경우 생명칩 전달을 하기 위해 LC +1 함
         {
+            Console.WriteLine("SCNp69 func initiate");
             foreach (ListViewItem lvPlayerGlove in lvGlove.Items)   // 모든 글러브 배터리팩 0으로 만듦
             {
-                if (lvPlayerGlove.SubItems[(int)listviewGlove.Role].Text == "player")
+                if (lvPlayerGlove.BackColor == Color.YellowGreen)   //생존자 방 글러브들 색은 초록색으로 지정해두었기 때문에 사용
                 {
-                    GloveListViewChange(lvPlayerGlove, strLC: "+1");
-                    return false;
+                    if (lvPlayerGlove.SubItems[(int)listviewGlove.Role].Text == "player")
+                    {
+                        GloveListViewChange(lvPlayerGlove, strLC: "+1");
+                        return false;
+                    }
                 }
             }
             return false;
         }
         public bool SCNp76()    //부활, 플레이어 글러브 중 Role:ghost -> Role:player 부활
         {
+            Console.WriteLine("SCNp76 func initiate");
             foreach (ListViewItem lvPlayerGlove in lvGlove.Items)   // 모든 글러브 배터리팩 0으로 만듦
             {
-                if (lvPlayerGlove.SubItems[(int)listviewGlove.Role].Text == "ghost")
+                if (lvPlayerGlove.BackColor == Color.YellowGreen)   //생존자 방 글러브들 색은 초록색으로 지정해두었기 때문에 사용
                 {
-                    GloveListViewChange(lvPlayerGlove, Role:"player", strLC: "1");
-                    return false;
+                    if (lvPlayerGlove.SubItems[(int)listviewGlove.Role].Text == "ghost")
+                    {
+                        GloveListViewChange(lvPlayerGlove, Role: "player", strLC: "1");
+                        return false;
+                    }
                 }
             }
+            return false;
+        }
+        public bool SCNp97()    //술래 퇴장 까지 기다림.
+        {
+            TaggerSCNProcessor.bAccessNext = true;
+            Console.WriteLine("SCNp97 func initiate");
+            Console.WriteLine("Wait for Tagger....");
+            return false;
+        }
+        public bool SCNp98()    //술래 퇴장 까지 기다림.
+        {
+            TaggerSCNProcessor.bAccessNext = true;
+            Console.WriteLine("SCNp98 func initiate");
+            Console.WriteLine("Wait for Tagger....");
+            return false;
+        }
+        public bool SCNp101()    //술래 퇴장 까지 기다림.
+        {
+            Console.WriteLine("SCNp101 func initiate");
+            Console.WriteLine("Wait for Tagger....");
+            return false;
+        }
+        public bool SCNp107()    //술래 퇴장 까지 기다림.
+        {
+            PlayerSCNProcessor.timerPlayerWaitTime.Change(System.Threading.Timeout.Infinite, System.Threading.Timeout.Infinite); //메인타이머 종료
+            PlayerSCNProcessor.timerPlayerSkipTime.Change(System.Threading.Timeout.Infinite, System.Threading.Timeout.Infinite); //PlayerSkipTimer 종료
             return false;
         }
     }

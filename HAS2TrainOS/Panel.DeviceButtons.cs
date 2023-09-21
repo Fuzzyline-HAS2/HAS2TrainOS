@@ -15,11 +15,11 @@ namespace HAS2TrainOS
         {
             if (State != "")
             {
-                lvSelectedDevice.SubItems[(int)listviewGlove.State].Text = State;   //글러브 Role 데이터 치환
+                lvSelectedDevice.SubItems[(int)listviewDevice.State].Text = State;   //글러브 Role 데이터 치환
             }
             if(strLCBP != "")
             {
-                int nCurLCBP = Int32.Parse(lvSelectedDevice.SubItems[(int)listviewGlove.LC].Text); // 현재 선택된 글러브의 배터리팩 개수
+                int nCurLCBP = Int32.Parse(lvSelectedDevice.SubItems[(int)listviewDevice.LCBP].Text); // 현재 선택된 글러브의 배터리팩 개수
                 int nLCBP = 0;    // 현재 배터리팩에서 추가하려는 배터리팩 개수
                 String strApplyLCBP = "";
                 try
@@ -28,7 +28,7 @@ namespace HAS2TrainOS
                 }
                 catch
                 {
-                    MessageBox.Show(lvSelectedDevice.SubItems[(int)listviewGlove.Name].Text + "허용되지 않는 숫자의 생명칩이 입력되었습니다\r\nLC: " + strLCBP);
+                    MessageBox.Show(lvSelectedDevice.SubItems[(int)listviewDevice.Name].Text + "허용되지 않는 숫자의 생명칩이 입력되었습니다\r\nLC: " + strLCBP);
                     goto DevicePublish;    // LC값이 정수로 변환이 안될때 다음 IF문인 BP섹션으로 이동
                 }
                 if (strLCBP.StartsWith("+") || strLCBP.StartsWith("-")) //글러브 배터리팩 +또는 -인지 확인 (게임처럼 동착하기 위함)
@@ -40,16 +40,16 @@ namespace HAS2TrainOS
                     }
                     else  //글러브가 소지 할 수 있는 배터리팩의 범위를 벗어나는 경우
                     {
-                        MessageBox.Show(lvSelectedDevice.SubItems[(int)listviewGlove.Name].Text + "의 배터리팩 범위를 벗어났습니다\r\n현재BP: " + nCurLCBP.ToString() + " 추가하려는 BP: " + strLCBP);
+                        MessageBox.Show(lvSelectedDevice.SubItems[(int)listviewDevice.Name].Text + "의 배터리팩 범위를 벗어났습니다\r\n현재BP: " + nCurLCBP.ToString() + " 추가하려는 BP: " + strLCBP);
                         goto DevicePublish;   //범위를 벗어났기 때문에 오류박스 show  후 함수 종료
                     }
                 }
-                else //글러브 배터리팩 +또는 - 없으면 배터리 최대소지개수에 상관없이 들어온 정수값 그대로 강제변환
+                else //장치 배터리팩 +또는 - 없으면 배터리 최대소지개수에 상관없이 들어온 정수값 그대로 강제변환
                 {
-                    MessageBox.Show(lvSelectedDevice.SubItems[(int)listviewGlove.Name].Text + "의 배터리팩을 강제로 바꿉니다.\r\n현재BP: " + "Change BP: " + strLCBP);
+                    //MessageBox.Show(lvSelectedDevice.SubItems[(int)listviewDevice.Name].Text + "의 배터리팩을 강제로 바꿉니다.\r\n현재BP: " + "Change BP: " + strLCBP);
                     strApplyLCBP = strLCBP;
                 }
-                lvSelectedDevice.SubItems[(int)listviewGlove.BP].Text = strApplyLCBP;   //lvGlove에 적용 
+                lvSelectedDevice.SubItems[(int)listviewDevice.LCBP].Text = strApplyLCBP;   //lvGlove에 적용 
             }
 
             DevicePublish:

@@ -86,7 +86,7 @@ namespace HAS2TrainOS
                 JObject SituationData = new JObject(new JProperty("DS", "scenario"));
                 SituationData.Add(new JProperty("SCN", SCN));
 
-                if (Device.Contains("ALLp") || Device.Contains("ALLt"))   
+                if (Device.Contains("ALLp") || Device.Contains("ALLt") || Device.Contains("AGp") || Device.Contains("AGt"))   
                 {
                     foreach (string strAllDevice in AllDevice.StringSelecetor(Device))
                     {
@@ -100,36 +100,6 @@ namespace HAS2TrainOS
                         }
                     }
                 }
-                else if (Device.Contains("AGp"))
-                {
-                    foreach (string strAllGlove in AllDevice.strAGp)
-                    {
-                        foreach (structMAC m in MACs)
-                        {
-                            if (m.strDeviceName == strAllGlove)
-                            {
-                                client.Publish(m.strDeviceMAC, Encoding.UTF8.GetBytes(SituationData.ToString()), 0, true);
-                                break;
-                            }
-                        }
-                    }
-                }
-                else if (Device.Contains("AGt"))
-                {
-                    foreach (string strAllGlove in AllDevice.strAGt)
-                    {
-                        foreach (structMAC m in MACs)
-                        {
-                            if (m.strDeviceName == strAllGlove)
-                            {
-                                client.Publish(m.strDeviceMAC, Encoding.UTF8.GetBytes(SituationData.ToString()), 0, true);
-                                break;
-                            }
-                        }
-                    }
-                }
-
-
                 else
                 {
                     foreach (structMAC m in MACs)
