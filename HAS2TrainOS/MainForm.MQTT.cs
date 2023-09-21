@@ -72,9 +72,10 @@ namespace HAS2TrainOS
                             if (m.strDeviceMAC == jsonInput["MAC"].ToString())  // 찾은 이름 m. 으로 임시 저장
                             {
                                 ListView lvTemp = lvDevice;
-                                if (m.strDeviceName.StartsWith("G")){
+                                if (m.strDeviceName.StartsWith("G")){   //r
                                     lvTemp = lvGlove;
-                                    if (!m.strDeviceName[1].Equals(lvGlove.Items[0].SubItems[(int)listviewGlove.Name].Text[1])){    //글러브 그룹의 번호가 lvGlove에 있는 글러브 그룹 번호가 동일하지 않다면 해당 글러브 change 전송
+                                    if (!m.strDeviceName[1].Equals(lvGlove.Items[0].SubItems[(int)listviewGlove.Name].Text[1]))
+                                    {    //글러브 그룹의 번호가 lvGlove에 있는 글러브 그룹 번호가 동일하지 않다면 해당 글러브 change 전송
                                         SituationJSONPublish(m.strDeviceName, "change"); //현재 훈련소에 들어가있는 번호와 다르면 change 보내서 게임 상태로 전송
                                     }
                                 }
@@ -97,7 +98,7 @@ namespace HAS2TrainOS
                                                             switch (m.strDeviceName[1])
                                                             {
                                                                 case 'I':
-                                                                    GloveData = "+"+ lvTempDevice.SubItems[(int)listviewDevice.LCBP].Text;   //글러브 BP 데이터 수정
+                                                                    GloveData = "+" + lvTempDevice.SubItems[(int)listviewDevice.LCBP].Text;   //글러브 BP 데이터 수정
                                                                     GloveListViewChange(lvTempGlove, strBP: GloveData);
                                                                     DeviceListViewChange(lvTempDevice, strLCBP: "0"); // 아박 배터리팩 데이터 사용완료 '0' 처리
                                                                     break;
@@ -191,7 +192,7 @@ namespace HAS2TrainOS
                                                     }
                                                 } // if (jsonInput["DN"].ToString().Contains("G")) ")
                                             } //if (jsonInput["SIT"].ToString() == "tag")
-                                            else if(jsonInput["SIT"].ToString() == "start")
+                                            else if (jsonInput["SIT"].ToString() == "start")
                                             {
                                                 if (lvTemp == lvGlove)
                                                 {
@@ -203,7 +204,35 @@ namespace HAS2TrainOS
                                                 }
                                             }
                                         } //if (jsonInput.ContainsKey("SIT")) 
-                                    } //if (lvTempDevice.SubItems[(int)listviewDevice.Name].Text == m.strDeviceName)
+                                        if (jsonInput.ContainsKey("DS"))
+                                        {
+                                            if (m.strDeviceName.StartsWith("E"))
+                                            {
+                                                DeviceListViewChange(lvTempDevice, State: jsonInput["DS"].ToString());
+                                            }
+                                            else if (m.strDeviceName.StartsWith("G"))
+                                            {
+                                                GloveListViewChange(lvTempDevice, State: jsonInput["DS"].ToString());
+                                            }
+                                        }
+                                        if (jsonInput.ContainsKey("LCBP"))
+                                        {
+                                            DeviceListViewChange(lvTempDevice, strLCBP: jsonInput["LCBP"].ToString()); // 아박 배터리팩 데이터 사용완료 '0' 처리
+                                        }
+                                        if (jsonInput.ContainsKey("ROLE"))
+                                        {
+                                            GloveListViewChange(lvTempDevice, Role: jsonInput["ROLE"].ToString());
+                                        }
+                                        if (jsonInput.ContainsKey("LC"))
+                                        {
+                                            GloveListViewChange(lvTempDevice, strLC: jsonInput["LC"].ToString());
+                                        }
+                                        if (jsonInput.ContainsKey("BP"))
+                                        {
+                                            GloveListViewChange(lvTempDevice, strBP: jsonInput["BP"].ToString());
+                                        }
+
+                                    }//if (lvTempDevice.SubItems[(int)listviewDevice.Name].Text == m.strDeviceName)
                                 } //foreach(ListViewItem lvTempDevice in lvDevice.Items)
                             } //if (m.strDeviceMAC == jsonInput["MAC"].ToString())
                         } //foreach (structMAC m in MACs)

@@ -37,9 +37,9 @@ namespace HAS2TrainOS
             mainform = this;
             InitializeComponent();
 
-            PlayerSpk.nDeviceNum = 0;
+            PlayerSpk.nDeviceNum = 1;
             TaggerSpk.nDeviceNum = 2;
-            CommonSpk.nDeviceNum = 3;
+            CommonSpk.nDeviceNum = 0;
             timerMain = new System.Threading.Timer((Object s) => {BeginInvoke(new TimerEventFiredDelegate_timerPlayerWaitTime(timerMainWork)); });
             
             PlayerSCNProcessor.timerPlayerWaitTime = new System.Threading.Timer((Object s) => { BeginInvoke(new TimerEventFiredDelegate_timerPlayerWaitTime(PlayerSCNProcessor.timerPlayerWaitTimeWork)); });

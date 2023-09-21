@@ -106,8 +106,9 @@ namespace HAS2TrainOS
         }
         public bool SCNp107()    //술래 퇴장 까지 기다림.
         {
-            PlayerSCNProcessor.timerPlayerWaitTime.Change(System.Threading.Timeout.Infinite, System.Threading.Timeout.Infinite); //메인타이머 종료
-            PlayerSCNProcessor.timerPlayerSkipTime.Change(System.Threading.Timeout.Infinite, System.Threading.Timeout.Infinite); //PlayerSkipTimer 종료
+            btnReady.PerformClick();
+            MessageBox.Show("훈련소가 종료되었습니다.");
+
             return false;
         }
     }

@@ -169,7 +169,7 @@ namespace HAS2TrainOS
                         //Console.WriteLine(s);   
                         if (s.Contains("TAG"))
                         {
-                            String[] strTag = s.Split('_'); //WAIT_시간_다음 나레이션#
+                            String[] strTag = s.Split('_'); //TAG_장치_다음 나레이션#
                             strTagDevice = strTag[1].Split('/');
                             strTagTo = "#" + strTag[2];
                             nTagMaxCnt = strTagDevice.Count();

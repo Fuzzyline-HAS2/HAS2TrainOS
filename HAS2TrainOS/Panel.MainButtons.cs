@@ -16,10 +16,15 @@ namespace HAS2TrainOS
             if (btnReady.Text == "READY")  //수동모드 시작하면
             {
                 GloveSelection();
+                lbMainTime.Text = "00:00"; 
             }
             else if (btnReady.Text == "!STOP¡")
             {
                 timerMain.Change(System.Threading.Timeout.Infinite, System.Threading.Timeout.Infinite); //메인타이머 종료
+                PlayerSCNProcessor.timerPlayerWaitTime.Change(System.Threading.Timeout.Infinite, System.Threading.Timeout.Infinite); //PlayerWaitTimer 종료
+                PlayerSCNProcessor.timerPlayerSkipTime.Change(System.Threading.Timeout.Infinite, System.Threading.Timeout.Infinite); //PlayerSkipTimer 종료
+                TaggerSCNProcessor.timerPlayerWaitTime.Change(System.Threading.Timeout.Infinite, System.Threading.Timeout.Infinite); //PlayerWaitTimer 종료
+                TaggerSCNProcessor.timerPlayerSkipTime.Change(System.Threading.Timeout.Infinite, System.Threading.Timeout.Infinite); //PlayerSkipTimer 종료
 
                 pnRoomSelect.Enabled = true;
                 btnManual.Enabled = true;
