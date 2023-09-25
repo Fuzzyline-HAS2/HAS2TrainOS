@@ -64,8 +64,8 @@ namespace HAS2TrainOS
             TaggerSCNProcessor.CommonSpk = CommonSpk;
             TaggerSCNProcessor.strSelectedNarr = "t";
 
-            AllDevice.strALLp = new string[] { "EI1", "EI2", "EG", "EE", "ERp", "EVp", "EMp", "EA" };
-            AllDevice.strALLt = new string[] { "ERt", "EVt", "ET", "EMt", "EA" };
+            AllDevice.strALLp = new string[] { "EI1", "EI2", "EG", "EE", "ERp", "EVp",  "EA","ED" };
+            AllDevice.strALLt = new string[] { "ERt", "EVt", "ET", "EMt", "EA","ED" };
         }
         private void MainForm_Load(object sender, EventArgs e)
         {

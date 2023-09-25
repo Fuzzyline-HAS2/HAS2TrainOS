@@ -37,11 +37,11 @@
             "",
             ""}, -1);
             System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem(new string[] {
-            "ER1",
+            "ERp",
             "",
             ""}, -1);
             System.Windows.Forms.ListViewItem listViewItem4 = new System.Windows.Forms.ListViewItem(new string[] {
-            "ER2",
+            "ERt",
             "",
             ""}, -1);
             System.Windows.Forms.ListViewItem listViewItem5 = new System.Windows.Forms.ListViewItem(new string[] {
@@ -73,48 +73,52 @@
             "",
             ""}, -1);
             System.Windows.Forms.ListViewItem listViewItem12 = new System.Windows.Forms.ListViewItem(new string[] {
+            "EA",
+            "",
+            ""}, -1);
+            System.Windows.Forms.ListViewItem listViewItem13 = new System.Windows.Forms.ListViewItem(new string[] {
             "G1P1",
             "",
             "",
             "",
             ""}, -1);
-            System.Windows.Forms.ListViewItem listViewItem13 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem14 = new System.Windows.Forms.ListViewItem(new string[] {
             "G1P2",
             "",
             "",
             "",
             ""}, -1);
-            System.Windows.Forms.ListViewItem listViewItem14 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem15 = new System.Windows.Forms.ListViewItem(new string[] {
             "G1P3",
             "",
             "",
             "",
             ""}, -1);
-            System.Windows.Forms.ListViewItem listViewItem15 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem16 = new System.Windows.Forms.ListViewItem(new string[] {
             "G1P4",
             "",
             "",
             "",
             ""}, -1);
-            System.Windows.Forms.ListViewItem listViewItem16 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem17 = new System.Windows.Forms.ListViewItem(new string[] {
             "G1P5",
             "",
             "",
             "",
             ""}, -1);
-            System.Windows.Forms.ListViewItem listViewItem17 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem18 = new System.Windows.Forms.ListViewItem(new string[] {
             "G1P6",
             "",
             "",
             "",
             ""}, -1);
-            System.Windows.Forms.ListViewItem listViewItem18 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem19 = new System.Windows.Forms.ListViewItem(new string[] {
             "G1P7",
             "",
             "",
             "",
             ""}, -1);
-            System.Windows.Forms.ListViewItem listViewItem19 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem20 = new System.Windows.Forms.ListViewItem(new string[] {
             "G1P8",
             "",
             "",
@@ -162,6 +166,7 @@
             this.killerSkipCondition = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.killerWaitTime = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.killerNarrSkipCondition = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.killerSpeaker = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label13 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.btnTaggerNarrApply = new System.Windows.Forms.Button();
@@ -174,6 +179,7 @@
             this.playerSkipCondition = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.playerWaitTime = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.playerNarrSkipCondition = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.PlayerSpeaker = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label12 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.btnPlayerNarrApply = new System.Windows.Forms.Button();
@@ -209,8 +215,6 @@
             this.lbTaggerWaitTimer = new System.Windows.Forms.Label();
             this.lbTaggerSkipTimer = new System.Windows.Forms.Label();
             this.pnNarration = new System.Windows.Forms.Panel();
-            this.PlayerSpeaker = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.killerSpeaker = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.pnMainButton.SuspendLayout();
             this.pnDevice.SuspendLayout();
             this.panel5.SuspendLayout();
@@ -292,7 +296,7 @@
             this.pnDevice.Controls.Add(this.cbDeviceState);
             this.pnDevice.Controls.Add(this.tbDeviceName);
             this.pnDevice.Controls.Add(this.lvDevice);
-            this.pnDevice.Font = new System.Drawing.Font("Haan YGodic 250", 9F);
+            this.pnDevice.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.pnDevice.Location = new System.Drawing.Point(12, 750);
             this.pnDevice.Name = "pnDevice";
             this.pnDevice.Size = new System.Drawing.Size(457, 279);
@@ -316,7 +320,7 @@
             this.cbDeviceName.FormattingEnabled = true;
             this.cbDeviceName.Location = new System.Drawing.Point(323, 57);
             this.cbDeviceName.Name = "cbDeviceName";
-            this.cbDeviceName.Size = new System.Drawing.Size(131, 26);
+            this.cbDeviceName.Size = new System.Drawing.Size(131, 23);
             this.cbDeviceName.TabIndex = 18;
             this.cbDeviceName.Text = "ALL";
             // 
@@ -324,7 +328,7 @@
             // 
             this.tbDeviceLCBP.Location = new System.Drawing.Point(323, 191);
             this.tbDeviceLCBP.Name = "tbDeviceLCBP";
-            this.tbDeviceLCBP.Size = new System.Drawing.Size(131, 25);
+            this.tbDeviceLCBP.Size = new System.Drawing.Size(131, 21);
             this.tbDeviceLCBP.TabIndex = 11;
             this.tbDeviceLCBP.Text = "0";
             // 
@@ -390,7 +394,7 @@
             "debuff"});
             this.cbDeviceState.Location = new System.Drawing.Point(323, 161);
             this.cbDeviceState.Name = "cbDeviceState";
-            this.cbDeviceState.Size = new System.Drawing.Size(131, 26);
+            this.cbDeviceState.Size = new System.Drawing.Size(131, 23);
             this.cbDeviceState.TabIndex = 11;
             this.cbDeviceState.Text = "STATE";
             // 
@@ -398,7 +402,7 @@
             // 
             this.tbDeviceName.Location = new System.Drawing.Point(323, 133);
             this.tbDeviceName.Name = "tbDeviceName";
-            this.tbDeviceName.Size = new System.Drawing.Size(131, 25);
+            this.tbDeviceName.Size = new System.Drawing.Size(131, 21);
             this.tbDeviceName.TabIndex = 11;
             this.tbDeviceName.Text = "NAME";
             // 
@@ -408,7 +412,7 @@
             this.deviceName,
             this.deviceState,
             this.deviceLifeChipBattery});
-            this.lvDevice.Font = new System.Drawing.Font("Haan YGodic 250", 9F);
+            this.lvDevice.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.lvDevice.FullRowSelect = true;
             this.lvDevice.GridLines = true;
             this.lvDevice.HideSelection = false;
@@ -423,7 +427,8 @@
             listViewItem8,
             listViewItem9,
             listViewItem10,
-            listViewItem11});
+            listViewItem11,
+            listViewItem12});
             this.lvDevice.Location = new System.Drawing.Point(6, 2);
             this.lvDevice.MultiSelect = false;
             this.lvDevice.Name = "lvDevice";
@@ -466,29 +471,29 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Haan YGodic 250", 10F);
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.label11.Location = new System.Drawing.Point(158, 255);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(96, 20);
+            this.label11.Size = new System.Drawing.Size(80, 17);
             this.label11.TabIndex = 10;
             this.label11.Text = "BATTERY :";
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Haan YGodic 250", 10F);
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.label10.Location = new System.Drawing.Point(3, 255);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(98, 20);
+            this.label10.Size = new System.Drawing.Size(75, 17);
             this.label10.TabIndex = 9;
             this.label10.Text = "LIFECHIP :";
             // 
             // tbGloveBattery
             // 
-            this.tbGloveBattery.Font = new System.Drawing.Font("Haan YGodic 250", 8F);
+            this.tbGloveBattery.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
             this.tbGloveBattery.Location = new System.Drawing.Point(257, 255);
             this.tbGloveBattery.Name = "tbGloveBattery";
-            this.tbGloveBattery.Size = new System.Drawing.Size(25, 23);
+            this.tbGloveBattery.Size = new System.Drawing.Size(25, 20);
             this.tbGloveBattery.TabIndex = 8;
             this.tbGloveBattery.Text = "0";
             this.tbGloveBattery.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -501,19 +506,19 @@
             this.gloveState,
             this.GloveLifeChip,
             this.GloveBattery});
-            this.lvGlove.Font = new System.Drawing.Font("Haan YGodic 250", 9F);
+            this.lvGlove.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.lvGlove.FullRowSelect = true;
             this.lvGlove.GridLines = true;
             this.lvGlove.HideSelection = false;
             this.lvGlove.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem12,
             listViewItem13,
             listViewItem14,
             listViewItem15,
             listViewItem16,
             listViewItem17,
             listViewItem18,
-            listViewItem19});
+            listViewItem19,
+            listViewItem20});
             this.lvGlove.Location = new System.Drawing.Point(3, 3);
             this.lvGlove.MultiSelect = false;
             this.lvGlove.Name = "lvGlove";
@@ -549,7 +554,7 @@
             // 
             // cbGloveState
             // 
-            this.cbGloveState.Font = new System.Drawing.Font("Haan YGodic 250", 8F);
+            this.cbGloveState.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
             this.cbGloveState.FormattingEnabled = true;
             this.cbGloveState.Items.AddRange(new object[] {
             "setting",
@@ -557,16 +562,16 @@
             "activate"});
             this.cbGloveState.Location = new System.Drawing.Point(180, 225);
             this.cbGloveState.Name = "cbGloveState";
-            this.cbGloveState.Size = new System.Drawing.Size(102, 24);
+            this.cbGloveState.Size = new System.Drawing.Size(102, 21);
             this.cbGloveState.TabIndex = 7;
             this.cbGloveState.Text = "STATE";
             // 
             // tbGloveName
             // 
-            this.tbGloveName.Font = new System.Drawing.Font("Haan YGodic 250", 8F);
+            this.tbGloveName.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
             this.tbGloveName.Location = new System.Drawing.Point(4, 225);
             this.tbGloveName.Name = "tbGloveName";
-            this.tbGloveName.Size = new System.Drawing.Size(63, 23);
+            this.tbGloveName.Size = new System.Drawing.Size(63, 20);
             this.tbGloveName.TabIndex = 3;
             this.tbGloveName.Text = "NAME";
             // 
@@ -584,7 +589,7 @@
             // 
             // cbGloveRole
             // 
-            this.cbGloveRole.Font = new System.Drawing.Font("Haan YGodic 250", 8F);
+            this.cbGloveRole.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
             this.cbGloveRole.FormattingEnabled = true;
             this.cbGloveRole.Items.AddRange(new object[] {
             "player",
@@ -594,16 +599,16 @@
             "none"});
             this.cbGloveRole.Location = new System.Drawing.Point(72, 225);
             this.cbGloveRole.Name = "cbGloveRole";
-            this.cbGloveRole.Size = new System.Drawing.Size(102, 24);
+            this.cbGloveRole.Size = new System.Drawing.Size(102, 21);
             this.cbGloveRole.TabIndex = 2;
             this.cbGloveRole.Text = "ROLE";
             // 
             // tbGloveLifeChip
             // 
-            this.tbGloveLifeChip.Font = new System.Drawing.Font("Haan YGodic 250", 8F);
+            this.tbGloveLifeChip.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
             this.tbGloveLifeChip.Location = new System.Drawing.Point(103, 255);
             this.tbGloveLifeChip.Name = "tbGloveLifeChip";
-            this.tbGloveLifeChip.Size = new System.Drawing.Size(25, 23);
+            this.tbGloveLifeChip.Size = new System.Drawing.Size(25, 20);
             this.tbGloveLifeChip.TabIndex = 4;
             this.tbGloveLifeChip.Text = "0";
             this.tbGloveLifeChip.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -631,7 +636,7 @@
             this.killerWaitTime,
             this.killerNarrSkipCondition,
             this.killerSpeaker});
-            this.lvTaggerNarr.Font = new System.Drawing.Font("Haan YGodic 240", 7F);
+            this.lvTaggerNarr.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F);
             this.lvTaggerNarr.FullRowSelect = true;
             this.lvTaggerNarr.GridLines = true;
             this.lvTaggerNarr.HideSelection = false;
@@ -675,23 +680,27 @@
             // 
             this.killerNarrSkipCondition.Text = "Min/Max";
             // 
+            // killerSpeaker
+            // 
+            this.killerSpeaker.Text = "Spk.";
+            // 
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Haan YGodic 250", 9F);
+            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.label13.Location = new System.Drawing.Point(298, 3);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(35, 18);
+            this.label13.Size = new System.Drawing.Size(27, 15);
             this.label13.TabIndex = 2;
             this.label13.Text = "60s";
             // 
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Haan YGodic 250", 9F);
+            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.label14.Location = new System.Drawing.Point(262, 18);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(71, 18);
+            this.label14.Size = new System.Drawing.Size(53, 15);
             this.label14.TabIndex = 1;
             this.label14.Text = ": Current";
             // 
@@ -729,7 +738,7 @@
             this.playerWaitTime,
             this.playerNarrSkipCondition,
             this.PlayerSpeaker});
-            this.lvPlayerNarr.Font = new System.Drawing.Font("Haan YGodic 240", 6.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lvPlayerNarr.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lvPlayerNarr.FullRowSelect = true;
             this.lvPlayerNarr.GridLines = true;
             this.lvPlayerNarr.HideSelection = false;
@@ -774,23 +783,27 @@
             // 
             this.playerNarrSkipCondition.Text = "Min/Max";
             // 
+            // PlayerSpeaker
+            // 
+            this.PlayerSpeaker.Text = "Spk.";
+            // 
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Haan YGodic 250", 9F);
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.label12.Location = new System.Drawing.Point(63, 3);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(35, 18);
+            this.label12.Size = new System.Drawing.Size(27, 15);
             this.label12.TabIndex = 2;
             this.label12.Text = "60s";
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Haan YGodic 250", 9F);
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.label9.Location = new System.Drawing.Point(63, 18);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(71, 18);
+            this.label9.Size = new System.Drawing.Size(53, 15);
             this.label9.TabIndex = 1;
             this.label9.Text = "Current: ";
             // 
@@ -1183,14 +1196,6 @@
             this.pnNarration.Name = "pnNarration";
             this.pnNarration.Size = new System.Drawing.Size(920, 680);
             this.pnNarration.TabIndex = 6;
-            // 
-            // PlayerSpeaker
-            // 
-            this.PlayerSpeaker.Text = "Spk.";
-            // 
-            // killerSpeaker
-            // 
-            this.killerSpeaker.Text = "Spk.";
             // 
             // MainForm
             // 

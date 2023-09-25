@@ -66,7 +66,7 @@ namespace HAS2TrainOS
             JObject DeviceData = new JObject(new JProperty("DS", state));
             if (LCBP != "")
                 DeviceData.Add(new JProperty("LCBP", LCBP));
-            //MQTT_Publish("ALL", DeviceData.ToString());
+            MQTT_Publish("ALL", DeviceData.ToString());
         }
         public void SituationJSONPublish(String Device, String Situation, String DN = "")   //Device: 글러브 이름, Situation: 명령어, DN: 글러브 이름(선택적)
         {

@@ -1,16 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Newtonsoft.Json.Linq;
+using System;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using uPLibrary.Networking.M2Mqtt;
 using uPLibrary.Networking.M2Mqtt.Messages;
-using Aspose.Cells;
-using NAudio.CoreAudioApi;
-using Newtonsoft.Json.Linq;
-using Newtonsoft.Json;
-using System.Security.Cryptography;
 
 namespace HAS2TrainOS
 {
@@ -98,21 +91,28 @@ namespace HAS2TrainOS
                                                             switch (m.strDeviceName[1])
                                                             {
                                                                 case 'I':
-                                                                    GloveData = "+" + lvTempDevice.SubItems[(int)listviewDevice.LCBP].Text;   //글러브 BP 데이터 수정
-                                                                    GloveListViewChange(lvTempGlove, strBP: GloveData);
-                                                                    DeviceListViewChange(lvTempDevice, strLCBP: "0"); // 아박 배터리팩 데이터 사용완료 '0' 처리
+                                                                    if (PlayerSCNProcessor.nCurrentCnt == 29)
+                                                                    {
+                                                                        GloveData = "+" + lvTempDevice.SubItems[(int)listviewDevice.LCBP].Text;   //글러브 BP 데이터 수정
+                                                                        GloveListViewChange(lvTempGlove, strBP: GloveData);
+                                                                        DeviceListViewChange(lvTempDevice, strLCBP: "0"); // 아박 배터리팩 데이터 사용완료 '0' 처리
+                                                                    }
                                                                     break;
                                                                 case 'G':
-                                                                    GloveListViewChange(lvTempGlove, strBP: "-1"); //글러브 BP 데이터 '-1' 처리
-                                                                    DeviceListViewChange(lvTempDevice, strLCBP: "+1");// 발전기 배터리팩 데이터  '+1' 처리
+                                                                        GloveListViewChange(lvTempGlove, strBP: "-1"); //글러브 BP 데이터 '-1' 처리
+                                                                        DeviceListViewChange(lvTempDevice, strLCBP: "+1");// 발전기 배터리팩 데이터  '+1' 처리
                                                                     break;
                                                                 case 'R':
                                                                     GloveListViewChange(lvTempGlove, strLC: "+1");//글러브 LC 데이터 +1 처리
                                                                     DeviceListViewChange(lvTempDevice, strLCBP: "0"); // 생장 생명칩 데이터 사용완료 '0' 처리
                                                                     break;
                                                                 case 'T':
-                                                                    GloveListViewChange(lvTempGlove, strLC: "-1"); //글러브 LC 데이터 '-1' 처리
-                                                                    DeviceListViewChange(lvTempDevice, strLCBP: "+1"); // 제단 생명칩 데이터  '+1' 처리
+                                                                    Console.WriteLine("cur:" + TaggerSCNProcessor.nCurrentCnt);
+                                                                    if(TaggerSCNProcessor.nCurrentCnt != 10)
+                                                                    {
+                                                                        GloveListViewChange(lvTempGlove, strLC: "-1"); //글러브 LC 데이터 '-1' 처리
+                                                                        DeviceListViewChange(lvTempDevice, strLCBP: "+1"); // 제단 생명칩 데이터  '+1' 처리
+                                                                    }
                                                                     break;
                                                                 case 'V':
                                                                     GloveListViewChange(lvTempGlove, strLC: "-1"); //생존자 글러브 LC 데이터 '-1' 처리
@@ -142,6 +142,7 @@ namespace HAS2TrainOS
                                                     }
                                                     if (PlayerSCNProcessor.strTagDevice != null)   //엑셀에서 TAG명령어 들어왔을때만 실행
                                                     {
+                                                        Console.WriteLine("PlayerSkip Tag detected");
                                                         foreach (String s in PlayerSCNProcessor.strTagDevice)  //엑셀에 있는 TAG_장치이름_시나리오# 에서 장치 이름 strTagDevice에 저장 후 비교중
                                                         {
                                                             if (s == m.strDeviceName)
@@ -150,9 +151,11 @@ namespace HAS2TrainOS
                                                                 PlayerSCNProcessor.nTagCnt++;
                                                                 break;
                                                             }
-                                                        }   // 비교 종료
+                                                        }   // 비교 종료.
+                                                        Console.WriteLine("PlayererSCNProcessor.nTagCnt: " + PlayerSCNProcessor.nTagCnt.ToString() + " PlayerSCNProcessor.nTagMaxCnt: " + PlayerSCNProcessor.nTagMaxCnt, ToString());
                                                         if (PlayerSCNProcessor.nTagCnt >= PlayerSCNProcessor.nTagMaxCnt)  //엑셀 TAG 명령어 총 개수와 일치하면 다음 나레인 재생 위한 if문
                                                         {
+                                                            Console.WriteLine("PlayerSkip MAXTag detected");
                                                             PlayerSCNProcessor.timerPlayerSkipTime.Change(System.Threading.Timeout.Infinite, System.Threading.Timeout.Infinite); //PlayerSkipTimer 종료
                                                             foreach (ListViewItem listitem in lvPlayerNarr.Items)
                                                             {
@@ -167,6 +170,7 @@ namespace HAS2TrainOS
                                                     }
                                                     if (TaggerSCNProcessor.strTagDevice != null)   //엑셀에서 TAG명령어 들어왔을때만 실행
                                                     {
+                                                        Console.WriteLine("TaggerSkip Tag detected");
                                                         foreach (String s in TaggerSCNProcessor.strTagDevice)  //엑셀에 있는 TAG_장치이름_시나리오# 에서 장치 이름 strTagDevice에 저장 후 비교중
                                                         {
                                                             if (s == m.strDeviceName)
@@ -176,10 +180,12 @@ namespace HAS2TrainOS
                                                                 break;
                                                             }
                                                         }   // 비교 종료
+                                                        Console.WriteLine("TaggerSCNProcessor.nTagCnt: " + TaggerSCNProcessor.nTagCnt.ToString() +" TaggerSCNProcessor.nTagMaxCnt: " + TaggerSCNProcessor.nTagMaxCnt, ToString()) ;
                                                         if (TaggerSCNProcessor.nTagCnt >= TaggerSCNProcessor.nTagMaxCnt)  //엑셀 TAG 명령어 총 개수와 일치하면 다음 나레인 재생 위한 if문
                                                         {
+                                                            Console.WriteLine("TaggerSkip MAXTag detected");
                                                             TaggerSCNProcessor.timerPlayerSkipTime.Change(System.Threading.Timeout.Infinite, System.Threading.Timeout.Infinite); //PlayerSkipTimer 종료
-                                                            foreach (ListViewItem listitem in lvPlayerNarr.Items)
+                                                            foreach (ListViewItem listitem in lvTaggerNarr.Items)
                                                             {
                                                                 if (listitem.SubItems[1].Text == TaggerSCNProcessor.strTagTo)
                                                                 {

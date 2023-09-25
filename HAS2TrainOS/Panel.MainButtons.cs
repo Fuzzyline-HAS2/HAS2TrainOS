@@ -16,16 +16,41 @@ namespace HAS2TrainOS
             if (btnReady.Text == "READY")  //수동모드 시작하면
             {
                 GloveSelection();
-                lbMainTime.Text = "00:00"; 
+                lbMainTime.Text = "00:00";
+                foreach (ListViewItem lvSelectedDevice in lvDevice.Items)
+                {
+                    string strTempLCBP = "0";
+                    switch (lvSelectedDevice.SubItems[(int)listviewDevice.Name].Text[1])
+                    {
+                        case 'I':
+                            strTempLCBP = "2";
+                            break;
+                        case 'R':
+                            strTempLCBP = "1";
+                            break;
+                        default:
+                            strTempLCBP = "0";
+                            break;
+                    }
+                    DeviceListViewChange(lvSelectedDevice, State: "ready", strLCBP: strTempLCBP);
+                }
+                int nPlayerCnt = 0;
+                foreach (ListViewItem lvSelectedDevice in lvGlove.Items)    // 훈련소때 탈출장치에 찍을 수 있는 플레이어 인원 3명 이하 인 경우 알려주기 위해 탈장 LCBP:player수 저장해서보냄
+                {
+                    if (lvSelectedDevice.SubItems[(int)listviewGlove.Role].Text.Contains("player"))
+                        nPlayerCnt++;
+                }
+                DeviceListViewChange(lvDevice.Items[(int)enumDevice.EE], strLCBP: nPlayerCnt.ToString());
             }
             else if (btnReady.Text == "!STOP¡")
             {
                 timerMain.Change(System.Threading.Timeout.Infinite, System.Threading.Timeout.Infinite); //메인타이머 종료
-                PlayerSCNProcessor.timerPlayerWaitTime.Change(System.Threading.Timeout.Infinite, System.Threading.Timeout.Infinite); //PlayerWaitTimer 종료
-                PlayerSCNProcessor.timerPlayerSkipTime.Change(System.Threading.Timeout.Infinite, System.Threading.Timeout.Infinite); //PlayerSkipTimer 종료
-                TaggerSCNProcessor.timerPlayerWaitTime.Change(System.Threading.Timeout.Infinite, System.Threading.Timeout.Infinite); //PlayerWaitTimer 종료
-                TaggerSCNProcessor.timerPlayerSkipTime.Change(System.Threading.Timeout.Infinite, System.Threading.Timeout.Infinite); //PlayerSkipTimer 종료
-
+                PlayerSCNProcessor.timerPlayerWaitTime.Change(System.Threading.Timeout.Infinite, System.Threading.Timeout.Infinite);     //PlayerWaitTimer 종료
+                PlayerSCNProcessor.timerPlayerSkipTime.Change(System.Threading.Timeout.Infinite, System.Threading.Timeout.Infinite);     //PlayerSkipTimer 종료
+                PlayerSCNProcessor.timerForWait.Change(System.Threading.Timeout.Infinite, System.Threading.Timeout.Infinite);               //PlayertimerForWait 종료
+                TaggerSCNProcessor.timerPlayerWaitTime.Change(System.Threading.Timeout.Infinite, System.Threading.Timeout.Infinite);    //TaggererSkipTimer 종료
+                TaggerSCNProcessor.timerPlayerSkipTime.Change(System.Threading.Timeout.Infinite, System.Threading.Timeout.Infinite);    //TaggererSkipTimer 종료
+                TaggerSCNProcessor.timerForWait.Change(System.Threading.Timeout.Infinite, System.Threading.Timeout.Infinite);              //TaggertimerForWait 종료
                 pnRoomSelect.Enabled = true;
                 btnManual.Enabled = true;
                 btnStart.Enabled = true;
@@ -44,6 +69,11 @@ namespace HAS2TrainOS
             {
                 if (btnManual.Enabled == true)  //Start를 맨 처음에 눌렀을경우 타이머 초기화 해서 0부터 카운트 되게
                 {
+                    
+                    foreach (ListViewItem lvSelectedDevice in lvDevice.Items)
+                    {
+                        DeviceListViewChange(lvSelectedDevice, State:"scenario" , strLCBP:lvSelectedDevice.SubItems[(int)listviewDevice.LCBP].Text);
+                    }
                     //메인 파트
                     btnReady.Text = "!STOP¡";
                     btnReady.BackColor = Color.Red;
@@ -83,6 +113,13 @@ namespace HAS2TrainOS
 
         private void btnManual_Click(object sender, EventArgs e)
         {
+            foreach (ListViewItem lvSelectedDevice in lvDevice.Items)
+            {
+                DeviceListViewChange(lvSelectedDevice, State: "setting");
+                DeviceListViewChange(lvSelectedDevice, State: "activate");
+            }
+
+            /*
             if(btnManual.Text == "MANUAL")  //수동모드 시작하면
             {
                 btnManual.Text = "STOP";
@@ -98,6 +135,7 @@ namespace HAS2TrainOS
                 btnReady.Enabled = true;
                 timerMain.Change(System.Threading.Timeout.Infinite, System.Threading.Timeout.Infinite); //메인타이머 종료
             }
+            */
         }
     }
 }

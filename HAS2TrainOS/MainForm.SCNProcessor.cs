@@ -186,16 +186,32 @@ namespace HAS2TrainOS
                         }
                         if (s.Contains("DELAY"))
                         {
-                            
-                            timerPlayerSkipTime.Change(System.Threading.Timeout.Infinite, System.Threading.Timeout.Infinite); //PlayerSkipTimer 종료
-                            timerForWait.Change(System.Threading.Timeout.Infinite, System.Threading.Timeout.Infinite);         //timerForWait 종료
-                            nForWait = 0;                                                                                                                             //timerForWait 변수 초기화
-                            timerForWait.Change(0, 1000);                                                                                                    //timerForWait 시작
+                            if (nCurrentCnt == 88)
+                            {
+                                if (MainForm.mainform.TaggerSCNProcessor.nCurrentCnt < 83)
+                                { 
+                                    timerPlayerSkipTime.Change(System.Threading.Timeout.Infinite, System.Threading.Timeout.Infinite); //PlayerSkipTimer 종료
+                                    timerForWait.Change(System.Threading.Timeout.Infinite, System.Threading.Timeout.Infinite);         //timerForWait 종료
+                                    nForWait = 0;                                                                                                                             //timerForWait 변수 초기화
+                                    timerForWait.Change(0, 1000);                                                                                                    //timerForWait 시작
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Player SCN83 대기 통과");
+                                }
+                            }
+                            else
+                            {
+                                timerPlayerSkipTime.Change(System.Threading.Timeout.Infinite, System.Threading.Timeout.Infinite); //PlayerSkipTimer 종료
+                                timerForWait.Change(System.Threading.Timeout.Infinite, System.Threading.Timeout.Infinite);         //timerForWait 종료
+                                nForWait = 0;                                                                                                                             //timerForWait 변수 초기화
+                                timerForWait.Change(0, 1000);                                                                                                    //timerForWait 시작
+                            }                                                                                                //timerForWait 시작
                         }
                     }
                 }
 
-                MainForm.mainform.SCNJSONPublish("image", strSelectedNarr + lvNarr.Items[nCurrentCnt].SubItems[1].Text.Replace("#", ""));    //생존자 훈련소 모니터 시나리오 전송하는 부분
+                MainForm.mainform.SCNJSONPublish("EM"+ strSelectedNarr, strSelectedNarr + lvNarr.Items[nCurrentCnt].SubItems[1].Text.Replace("#", ""));    //생존자 훈련소 모니터 시나리오 전송하는 부분
                 return;
             } //public void PlayerNarr()
 

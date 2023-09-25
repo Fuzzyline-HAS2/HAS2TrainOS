@@ -45,7 +45,7 @@ namespace HAS2TrainOS
                 return strALLp;
             }
         }
-
+        public structALL AllDevice;
         public struct structMAC
         {
             public String strDeviceName;
@@ -57,10 +57,8 @@ namespace HAS2TrainOS
             }
         }
 
-        public structALL AllDevice;
-
         enum enumGlove{P1 = 0,P2, P3, P4, P5, P6, P7, P8};
-        enum enumDevice { EI1 = 0, EI2, ER1,ER2,EVp,EVt,EG,ED,EE,ET,EM, ALL , ITEMBOX, REVIVAL, VENT};
+        enum enumDevice { EI1 = 0, EI2, ERp,ERt,EVp,EVt,EG,ED,EE,ET,EM,EA, ALL , ITEMBOX, REVIVAL, VENT};
         enum listviewDevice { Name = 0, State, LCBP };
         enum  listviewGlove { Name = 0, Role, State, LC, BP };
 
