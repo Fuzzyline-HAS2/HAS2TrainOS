@@ -34,6 +34,7 @@ namespace HAS2TrainOS
             if (audioFile == null)
             {
                 //String strTemp = "C:\\Users\\user\\Downloads\\" + filename + ".wav";
+                Console.WriteLine(filename);
                 audioFile = new AudioFileReader(@filename);
                 outputDevice.Init(audioFile);
                 audioFile.Volume = nDeviceVolume / 100f;

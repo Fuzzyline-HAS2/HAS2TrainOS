@@ -52,15 +52,18 @@ namespace HAS2TrainOS
                 if (style.ForegroundColor == NarrAbstract)                           //스킵조건
                 {
                     lvNarr.Items[i - 1].SubItems.Add(GetCellTime(wsNarr, i, 13));
+                    lvNarr.Items[i - 1].SubItems.Add(GetCellTime(wsNarr, i, 27));
                     lvNarr.Items[i - 1].BackColor = Color.LemonChiffon;
                 }
                 else if (style.ForegroundColor == NarrAdd)                          //추가조건
                 {
                     lvNarr.Items[i - 1].SubItems.Add(GetCellTime(wsNarr, i, 8));
+                    lvNarr.Items[i - 1].SubItems.Add(GetCellTime(wsNarr, i, 28));
                     lvNarr.Items[i - 1].BackColor = Color.PaleGreen;
                 }
                 else
                 {
+                    lvNarr.Items[i - 1].SubItems.Add("");
                     lvNarr.Items[i - 1].SubItems.Add("");
                 }
                 lvNarr.Items[i - 1].SubItems.Add(GetCell(wsNarr, i, 14));   //스피커 위치 

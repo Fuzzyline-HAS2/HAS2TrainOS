@@ -154,7 +154,10 @@ namespace HAS2TrainOS
 
         private void btnGloveApply_Click(object sender, EventArgs e)
         {
-            if (lvGlove.SelectedItems.Count > 0)    //listview에서 선택이 되었을때만 실행되기 위해 조건
+            int nSelectedIndex = lvGlove.FocusedItem.Index; //현재 선택된 인데스 번호 전자용
+            GloveListViewChange(lvGlove.Items[nSelectedIndex], Role: cbGloveRole.Text, State: cbGloveState.Text, strLC: tbGloveLifeChip.Text, strBP: tbGloveBattery.Text);
+            /*
+             * if (lvGlove.SelectedItems.Count > 0)    //listview에서 선택이 되었을때만 실행되기 위해 조건
             {
                 int nSelectedIndex = lvGlove.FocusedItem.Index; //현재 선택된 인데스 번호 전자용
                 lvGlove.Items[nSelectedIndex].SubItems[1].Text = cbGloveRole.Text;
@@ -169,6 +172,7 @@ namespace HAS2TrainOS
                     lvGlove.Items[nSelectedIndex].SubItems[(int)listviewGlove.LC].Text, 
                     lvGlove.Items[nSelectedIndex].SubItems[(int)listviewGlove.BP].Text);
             }
+            */
         }
 
     }

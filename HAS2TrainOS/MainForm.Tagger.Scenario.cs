@@ -130,7 +130,7 @@ namespace HAS2TrainOS
             PlayerSCNProcessor.NarrPlayJudge();
             return false;
         }
-        public bool SCNt84()    //모든 술래글러브 Role: tagger로 변경 및 teaken_LC = 0
+        public bool SCNt84()    //플레이어 상태 기다리는 용
         {
             Console.WriteLine("SCNt84 func initiate");
             if (PlayerSCNProcessor.nCurrentCnt == 88)

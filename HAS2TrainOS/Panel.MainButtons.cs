@@ -17,7 +17,7 @@ namespace HAS2TrainOS
             {
                 GloveSelection();
                 lbMainTime.Text = "00:00";
-                foreach (ListViewItem lvSelectedDevice in lvDevice.Items)
+                foreach (ListViewItem lvSelectedDevice in lvDevice.Items)   // 장치들 기본 레디 셋팅 하기 위한 foreach
                 {
                     string strTempLCBP = "0";
                     switch (lvSelectedDevice.SubItems[(int)listviewDevice.Name].Text[1])
@@ -37,10 +37,10 @@ namespace HAS2TrainOS
                 int nPlayerCnt = 0;
                 foreach (ListViewItem lvSelectedDevice in lvGlove.Items)    // 훈련소때 탈출장치에 찍을 수 있는 플레이어 인원 3명 이하 인 경우 알려주기 위해 탈장 LCBP:player수 저장해서보냄
                 {
-                    if (lvSelectedDevice.SubItems[(int)listviewGlove.Role].Text.Contains("player"))
+                    if (lvSelectedDevice.SubItems[(int)listviewGlove.Role].Text.Contains("player")) //플레이어 명수 확인하기 위함
                         nPlayerCnt++;
                 }
-                DeviceListViewChange(lvDevice.Items[(int)enumDevice.EE], strLCBP: nPlayerCnt.ToString());
+                DeviceListViewChange(lvDevice.Items[(int)enumDevice.EE], strLCBP: nPlayerCnt.ToString());   //탈장 LCBP 바꾸는 부분
             }
             else if (btnReady.Text == "!STOP¡")
             {
@@ -73,6 +73,10 @@ namespace HAS2TrainOS
                     foreach (ListViewItem lvSelectedDevice in lvDevice.Items)
                     {
                         DeviceListViewChange(lvSelectedDevice, State:"scenario" , strLCBP:lvSelectedDevice.SubItems[(int)listviewDevice.LCBP].Text);
+                    }
+                    foreach(ListViewItem lvSelectedGlove in lvGlove.Items)
+                    {
+                        GloveListViewChange(lvSelectedGlove, State: "scenario");
                     }
                     //메인 파트
                     btnReady.Text = "!STOP¡";

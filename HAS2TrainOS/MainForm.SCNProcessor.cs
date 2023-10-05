@@ -263,6 +263,7 @@ namespace HAS2TrainOS
                 if ((nForWait % nWaitAlarmTime ) == 0)
                 {
                     strWavWait = strNarrDir + "Wait.wav";    // 상대방 끝나길 기다린다는 나레이션 경로
+                    Console.WriteLine( strWavWait );
                     SelectedSpk.PlayMp3(strWavWait);
                 }
                 if(bAccessNext == true)
@@ -286,10 +287,16 @@ namespace HAS2TrainOS
                     string[] strSplit = strNarrSkipMinMax.Split(new char[] { ':' });
                     uint nMinMaxTime = UInt32.Parse(strSplit[0]) * 60 + UInt32.Parse(strSplit[1]);
 
+
+                    string strTempNarrSkipMinMax = lvNarr.Items[nCurrentCnt].SubItems[7].Text;
+                    string[] strTempSplit = strNarrSkipMinMax.Split(new char[] { ':' });
+                    uint nSkipMinMaxTime = UInt32.Parse(strSplit[0]) * 60 + UInt32.Parse(strSplit[1]);
+
                     string strNarrWaitTime = lvNarr.Items[nCurrentCnt].SubItems[5].Text;
                     uint nCompareTime = nCurMainTime + UInt32.Parse(strNarrWaitTime);
-
+                    /*
                     Console.WriteLine("현재+나레이션 시간: " + nCompareTime + "  ???  최대/소 시간: " + nMinMaxTime);
+                    
                     if (lvNarr.Items[nCurrentCnt].BackColor == Color.LemonChiffon)  // 스킵 할까?
                     {
                         if (nCompareTime < nMinMaxTime) // 현재시간 + 나레이션 시간 < 최대 시작 시간 시 실행
@@ -306,6 +313,35 @@ namespace HAS2TrainOS
                     {
                         if (nCompareTime < nMinMaxTime)    // 현재시간 + 나레이션 시간 < 최소 시작 시간 시 실행
                         {
+                            MainProcessor();
+                        }
+                        else
+                        {
+                            nCurrentCnt++;
+                            NarrPlayJudge();
+                        }
+                    } //else if 추가 할까?
+                    */
+                    Console.WriteLine("현재 시간: " + nCurMainTime + "  ???  최대/소 시간: " + nSkipMinMaxTime);
+                    if (lvNarr.Items[nCurrentCnt].BackColor == Color.LemonChiffon)  // 스킵 할까?
+                    {
+                        if (nCurMainTime < nSkipMinMaxTime) // 현재시간 + 나레이션 시간 < 최대 시작 시간 시 실행
+                        {
+                            
+                            MainProcessor();
+                        }
+                        else
+                        {
+                            nCurrentCnt++;
+                            Console.WriteLine(nCurrentCnt.ToString() + "스킵");
+                            NarrPlayJudge();
+                        }
+                    }
+                    else if (lvNarr.Items[nCurrentCnt].BackColor == Color.PaleGreen)    // 추가 할까?
+                    {
+                        if (nCurMainTime < nSkipMinMaxTime)    // 현재시간 + 나레이션 시간 < 최소 시작 시간 시 실행
+                        {
+                            Console.WriteLine(nCurrentCnt.ToString() + "추가");
                             MainProcessor();
                         }
                         else

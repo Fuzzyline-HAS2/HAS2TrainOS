@@ -202,6 +202,7 @@ namespace HAS2TrainOS
                                             {
                                                 if (lvTemp == lvGlove)
                                                 {
+                                                    GloveJSONPublish_MAC(lvTempDevice.SubItems[(int)listviewDevice.Name].Text);
                                                     GloveListViewChange(lvTempDevice);
                                                 }
                                                 else

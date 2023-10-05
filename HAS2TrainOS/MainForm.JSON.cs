@@ -86,31 +86,42 @@ namespace HAS2TrainOS
                 JObject SituationData = new JObject(new JProperty("DS", "scenario"));
                 SituationData.Add(new JProperty("SCN", SCN));
 
-                if (Device.Contains("ALLp") || Device.Contains("ALLt") || Device.Contains("AGp") || Device.Contains("AGt"))   
-                {
-                    foreach (string strAllDevice in AllDevice.StringSelecetor(Device))
-                    {
-                        foreach (structMAC m in MACs)
-                        {
-                            if (m.strDeviceName == strAllDevice)
-                            {
-                                client.Publish(m.strDeviceMAC, Encoding.UTF8.GetBytes(SituationData.ToString()), 0, true);
-                                break;
-                            }
-                        }
-                    }
-                }
-                else
+            if (Device.Contains("ALLp") || Device.Contains("ALLt"))
+            {
+                foreach (string strAllDevice in AllDevice.StringSelecetor(Device))
                 {
                     foreach (structMAC m in MACs)
                     {
-                        if (m.strDeviceName == Device)
+                        if (m.strDeviceName == strAllDevice)
                         {
-                            client.Publish(m.strDeviceMAC, Encoding.UTF8.GetBytes(SituationData.ToString()), 0, true);
+                            MQTT_Publish(m.strDeviceMAC, SituationData.ToString());
                             break;
                         }
                     }
                 }
+            }
+            else if (Device.Contains("AGp") || Device.Contains("AGt"))
+            {
+                SituationData.Add(new JProperty("DN","null"));
+                foreach (string strAllDevice in AllDevice.StringSelecetor(Device))
+                {
+                    Console.WriteLine(strAllDevice);
+                    SituationData.Remove("DN");
+                    SituationData.Add(new JProperty("DN", strAllDevice));
+                    MQTT_Publish("GLOVE", SituationData.ToString());
+                }
+            }
+            else
+            {
+                foreach (structMAC m in MACs)
+                {
+                    if (m.strDeviceName == Device)
+                    {
+                        client.Publish(m.strDeviceMAC, Encoding.UTF8.GetBytes(SituationData.ToString()));
+                        break;
+                    }
+                }
+            }
             }
     }
 }
