@@ -10,15 +10,47 @@ namespace HAS2TrainOS
 {
     public partial class MainForm : Form
     {
-        public bool SCNt18()    //술래 글러브중 Role:tagger -> Role:player로 변환
+        public bool SCNt8()    //술래 글러브중 Role:tagger -> Role:player로 변환
         {
-            Console.WriteLine("SCNt18 func initiate");
+            Console.WriteLine("SCNt8 func initiate");
             foreach (ListViewItem lvTaggerGlove in lvGlove.Items)
             {
                 if (lvTaggerGlove.BackColor == Color.BlueViolet)   //술래 방 글러브들 색은 보라색으로 지정해두었기 때문에 사용
                 {
-                    GloveListViewChange(lvTaggerGlove, Role: "player", strLC: "1");
+                    GloveListViewChange(lvTaggerGlove, Role: "blink");
                     return false;
+                }
+            }
+            return false;
+        }
+        public bool SCNt15()    //술래 글러브중 Role:tagger -> Role:blink 변환
+        {
+            Console.WriteLine("SCNt15 func initiate");
+            foreach (ListViewItem lvTaggerGlove in lvGlove.Items)
+            {
+                if (lvTaggerGlove.BackColor == Color.BlueViolet)   //술래 방 글러브들 색은 보라색으로 지정해두었기 때문에 사용
+                {
+                    if (lvTaggerGlove.SubItems[(int)listviewGlove.Role].Text == "blink")
+                        GloveListViewChange(lvTaggerGlove, Role: "tagger");
+                    return false;
+                }
+            }
+            return false;
+        }
+        public bool SCNt18()    //술래 글러브중 Role:tagger -> Role:player로 변환
+        {
+            Console.WriteLine("SCNt18 func initiate");
+            int nSkipFirstTagger = 0;
+            foreach (ListViewItem lvTaggerGlove in lvGlove.Items)
+            {
+                if (lvTaggerGlove.BackColor == Color.BlueViolet)   //술래 방 글러브들 색은 보라색으로 지정해두었기 때문에 사용
+                {
+                    nSkipFirstTagger++;
+                    if (nSkipFirstTagger == 2)
+                    {
+                        GloveListViewChange(lvTaggerGlove, Role: "player", strLC: "1");
+                        return false;
+                    }
                 }
             }
             return false;
@@ -160,7 +192,7 @@ namespace HAS2TrainOS
             Console.WriteLine("Wait for Player.....");
             return false;
         }
-        public bool SCNt98()    //술래 퇴장 까지 기다림.
+        public bool SCNt100()    //술래 퇴장 까지 기다림.
         {
             TaggerSCNProcessor.timerPlayerWaitTime.Change(System.Threading.Timeout.Infinite, System.Threading.Timeout.Infinite); //메인타이머 종료
             TaggerSCNProcessor.timerPlayerSkipTime.Change(System.Threading.Timeout.Infinite, System.Threading.Timeout.Infinite); //PlayerSkipTimer 종료

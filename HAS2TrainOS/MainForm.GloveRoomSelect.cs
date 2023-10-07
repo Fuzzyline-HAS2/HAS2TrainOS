@@ -155,7 +155,7 @@ namespace HAS2TrainOS
                                 strLifeChip = "1";
                                 tmpBackColor = Color.YellowGreen;
                                 tmpForeColor = Color.Black;
-                                listAGp.Add(lvSelectedGlove.Text);  //플레이어 글러브 리스트에 추가
+                                listAGp.Add(gloveGroup + lvSelectedGlove.Text.Substring(2));  //플레이어 글러브 리스트에 추가
 
                                 break;
                             case 1:
@@ -169,7 +169,7 @@ namespace HAS2TrainOS
                                 strLifeChip = "0";
                                 tmpBackColor = Color.BlueViolet;
                                 tmpForeColor = Color.Black;
-                                listAGt.Add(lvSelectedGlove.Text);  //술래 글러브 리스트에 추가
+                                listAGt.Add(gloveGroup + lvSelectedGlove.Text.Substring(2));  //술래 글러브 리스트에 추가
                                 break;
                             default:
                                 strGoveRole = "error";
@@ -189,6 +189,7 @@ namespace HAS2TrainOS
                 lvSelectedGlove.ForeColor = tmpForeColor;                                                            //TrackBar에 맞춘 글자색 변경
                 lvSelectedGlove.BackColor = tmpBackColor;                                                           //TrackBar에 맞춘 바탕색 변경
             }
+
             AllDevice.strAGp = listAGp.ToArray();
             AllDevice.strAGt = listAGt.ToArray();
             /*

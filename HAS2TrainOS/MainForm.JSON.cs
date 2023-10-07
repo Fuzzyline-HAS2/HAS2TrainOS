@@ -13,7 +13,7 @@ namespace HAS2TrainOS
 {
     public partial class MainForm : Form
     {
-        public void GloveJSONPublish(String DN, String role = "", String state = "", String LC = "", String BP = "") 
+        public void GloveJSONPublish(String DN, String role = "", String state = "", String LC = "", String BP = "", String SCN = "") 
         {
             JObject gloveData = new JObject(new JProperty("DN", DN));
             if (role != "")
@@ -24,7 +24,6 @@ namespace HAS2TrainOS
                 gloveData.Add(new JProperty("LC", LC));
             if (role != "")
                 gloveData.Add(new JProperty("BP", BP));
-
             MQTT_Publish("GLOVE", gloveData.ToString());//글러브의 TOPIC은 GLOVE를 통해서 전체 장치에 전달
         }
         public void GloveJSONPublish_MAC(String DN, String role = "", String state = "", String LC = "", String BP = "")
@@ -107,8 +106,9 @@ namespace HAS2TrainOS
                 {
                     Console.WriteLine(strAllDevice);
                     SituationData.Remove("DN");
+                    SituationData.Remove("DS");
                     SituationData.Add(new JProperty("DN", strAllDevice));
-                    MQTT_Publish("GLOVE", SituationData.ToString());
+                    MQTT_Publish("GLOVE_SCN", SituationData.ToString());
                 }
             }
             else

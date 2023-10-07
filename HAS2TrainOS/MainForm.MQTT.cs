@@ -79,7 +79,7 @@ namespace HAS2TrainOS
                                     {
                                         if (jsonInput.ContainsKey("SIT")) // json에 situation 존재할때
                                         {
-                                            if (jsonInput["SIT"].ToString() == "tag")
+                                            if (jsonInput["SIT"].ToString() == "tag"|| jsonInput["SIT"].ToString() == "kill")
                                             {
                                                 if (jsonInput["DN"].ToString().Contains("G"))
                                                 {
@@ -99,8 +99,8 @@ namespace HAS2TrainOS
                                                                     }
                                                                     break;
                                                                 case 'G':
-                                                                        GloveListViewChange(lvTempGlove, strBP: "-1"); //글러브 BP 데이터 '-1' 처리
-                                                                        DeviceListViewChange(lvTempDevice, strLCBP: "+1");// 발전기 배터리팩 데이터  '+1' 처리
+                                                                    GloveListViewChange(lvTempGlove, strBP: "-1"); //글러브 BP 데이터 '-1' 처리
+                                                                    DeviceListViewChange(lvTempDevice, strLCBP: "+1");// 발전기 배터리팩 데이터  '+1' 처리
                                                                     break;
                                                                 case 'R':
                                                                     GloveListViewChange(lvTempGlove, strLC: "+1");//글러브 LC 데이터 +1 처리
@@ -108,7 +108,7 @@ namespace HAS2TrainOS
                                                                     break;
                                                                 case 'T':
                                                                     Console.WriteLine("cur:" + TaggerSCNProcessor.nCurrentCnt);
-                                                                    if(TaggerSCNProcessor.nCurrentCnt != 10)
+                                                                    if (TaggerSCNProcessor.nCurrentCnt != 10)
                                                                     {
                                                                         GloveListViewChange(lvTempGlove, strLC: "-1"); //글러브 LC 데이터 '-1' 처리
                                                                         DeviceListViewChange(lvTempDevice, strLCBP: "+1"); // 제단 생명칩 데이터  '+1' 처리
@@ -132,8 +132,16 @@ namespace HAS2TrainOS
                                                                 case '6':
                                                                 case '7':
                                                                 case '8':
-                                                                    GloveListViewChange(lvTempGlove, strLC: "-1");// 생명칩을 주는 글러브 LC 데이터 '-1' 처리
-                                                                    GloveListViewChange(lvTempDevice, strLC: "+1");// 생명칩을 받는 글러브 LC 데이터  '+1' 처리
+                                                                    if (jsonInput["SIT"].ToString() == "tag")
+                                                                    {
+                                                                        GloveListViewChange(lvTempGlove, strLC: "-1");// 생명칩을 주는 글러브 LC 데이터 '-1' 처리
+                                                                        GloveListViewChange(lvTempDevice, strLC: "+1");// 생명칩을 받는 글러브 LC 데이터  '+1' 처리
+                                                                    }
+                                                                    else if (jsonInput["SIT"].ToString() == "kill")
+                                                                    {
+                                                                        GloveListViewChange(lvTempGlove, strLC: "+1");// 술래 글러브 LC 데이터 '+1' 처리
+                                                                        GloveListViewChange(lvTempDevice, strLC: "-1");// 생존자 글러브 LC 데이터  '-1' 처리
+                                                                    }
                                                                     break;
                                                                 default:
                                                                     break;
@@ -149,7 +157,14 @@ namespace HAS2TrainOS
                                                             {
                                                                 Console.WriteLine(s);
                                                                 PlayerSCNProcessor.nTagCnt++;
-                                                                break;
+                                                            }
+                                                            else if (s == "SGp")
+                                                            {
+                                                                if (m.strDeviceName.Contains("P"))
+                                                                {
+                                                                    Console.WriteLine("TAG_SGp에서 태그된 글러브 인식됨");
+                                                                    PlayerSCNProcessor.nTagCnt++;
+                                                                }
                                                             }
                                                         }   // 비교 종료.
                                                         Console.WriteLine("PlayererSCNProcessor.nTagCnt: " + PlayerSCNProcessor.nTagCnt.ToString() + " PlayerSCNProcessor.nTagMaxCnt: " + PlayerSCNProcessor.nTagMaxCnt, ToString());
@@ -177,10 +192,17 @@ namespace HAS2TrainOS
                                                             {
                                                                 Console.WriteLine(s);
                                                                 TaggerSCNProcessor.nTagCnt++;
-                                                                break;
+                                                            }
+                                                            else if (s == "SGt")
+                                                            {
+                                                                if (m.strDeviceName.Contains("P"))
+                                                                {
+                                                                    Console.WriteLine("TAG_SGt에서 태그된 글러브 인식됨");
+                                                                    TaggerSCNProcessor.nTagCnt++;
+                                                                }
                                                             }
                                                         }   // 비교 종료
-                                                        Console.WriteLine("TaggerSCNProcessor.nTagCnt: " + TaggerSCNProcessor.nTagCnt.ToString() +" TaggerSCNProcessor.nTagMaxCnt: " + TaggerSCNProcessor.nTagMaxCnt, ToString()) ;
+                                                        Console.WriteLine("TaggerSCNProcessor.nTagCnt: " + TaggerSCNProcessor.nTagCnt.ToString() + " TaggerSCNProcessor.nTagMaxCnt: " + TaggerSCNProcessor.nTagMaxCnt, ToString());
                                                         if (TaggerSCNProcessor.nTagCnt >= TaggerSCNProcessor.nTagMaxCnt)  //엑셀 TAG 명령어 총 개수와 일치하면 다음 나레인 재생 위한 if문
                                                         {
                                                             Console.WriteLine("TaggerSkip MAXTag detected");
@@ -211,6 +233,30 @@ namespace HAS2TrainOS
                                                 }
                                             }
                                         } //if (jsonInput.ContainsKey("SIT")) 
+                                        else if (jsonInput.ContainsKey("EMRG"))
+                                        {
+                                            if (jsonInput["EMRG"].ToString() == "null")
+                                            {
+                                                MessageBox.Show("비상탈출 버튼 문제 해결됨");
+                                            }
+                                            else if (jsonInput["EMRG"].ToString() == "player")
+                                            {
+                                                MessageBox.Show("!생존자 비상탈출 버튼 문제 발생!");
+                                            }
+                                            else if (jsonInput["EMRG"].ToString() == "tagger")
+                                            {
+                                                MessageBox.Show("!생존자 비상탈출 버튼 문제 발생!");
+                                            }
+                                            else if (jsonInput["EMRG"].ToString() == "all")
+                                            {
+                                                MessageBox.Show("!양쪽 비상탈출 버튼 문제 발생!");
+                                            }
+                                            else
+                                            {
+                                                MessageBox.Show("훈련소 공용공간 문제 발생");
+                                            }
+
+                                        }
                                         if (jsonInput.ContainsKey("DS"))
                                         {
                                             if (m.strDeviceName.StartsWith("E"))

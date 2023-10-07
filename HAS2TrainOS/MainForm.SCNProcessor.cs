@@ -117,7 +117,7 @@ namespace HAS2TrainOS
                 FileInfo fileTmp = new FileInfo(strWavName);
                 if (fileTmp.Exists)  //FileInfo.Exists로 파일 존재유무 확인 "
                 {
-                    if(lvNarr.Items[nCurrentCnt].SubItems[7].Text == strSelectedNarr)
+                    if(lvNarr.Items[nCurrentCnt].SubItems[8].Text == strSelectedNarr)
                         SelectedSpk.PlayMp3(strWavName);
                     else
                         CommonSpk.PlayMp3(strWavName);

@@ -174,6 +174,44 @@ namespace HAS2TrainOS
             }
             */
         }
+        private void AllGloveStateControl(String strChangeState)
+        {
+            Console.WriteLine(lvGlove.Items[(int)enumGlove.P1].Text);
+            Console.WriteLine(cbGloveGroup.Text);
+            if (lvGlove.Items[(int)enumGlove.P1].Text.Contains(cbGloveGroup.Text))
+            {
+                foreach (ListViewItem lvSelectedGlove in lvGlove.Items)
+                {
+                    GloveListViewChange(lvSelectedGlove, State: strChangeState);
+                }
+            }
+            else
+            {
+                for (int i = 0; i < lvGlove.Items.Count; i++)
+                {
+                    String strGloveNum = cbGloveGroup.Text + "P" + i.ToString();
+                    GloveJSONPublish(strGloveNum, state: strChangeState);
+                }
+            }
+        }
+        private void btnGloveConvert_Click(object sender, EventArgs e)
+        {
+            AllGloveStateControl("change");
+        }
 
+        private void btnGloveSetting_Click(object sender, EventArgs e)
+        {
+            AllGloveStateControl("setting");
+        }
+
+        private void btnGloveReady_Click(object sender, EventArgs e)
+        {
+            AllGloveStateControl("ready");
+        }
+
+        private void btnGloveActivate_Click(object sender, EventArgs e)
+        {
+            AllGloveStateControl("activate");
+        }
     }
 }

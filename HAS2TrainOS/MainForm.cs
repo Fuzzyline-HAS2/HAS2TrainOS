@@ -37,9 +37,9 @@ namespace HAS2TrainOS
             mainform = this;
             InitializeComponent();
 
-            PlayerSpk.nDeviceNum = 1;
-            TaggerSpk.nDeviceNum = 2;
-            CommonSpk.nDeviceNum = 0;
+            PlayerSpk.nDeviceNum = 2;
+            TaggerSpk.nDeviceNum = 0;
+            CommonSpk.nDeviceNum = 1;
             timerMain = new System.Threading.Timer((Object s) => {BeginInvoke(new TimerEventFiredDelegate_timerPlayerWaitTime(timerMainWork)); });
             
             PlayerSCNProcessor.timerPlayerWaitTime = new System.Threading.Timer((Object s) => { BeginInvoke(new TimerEventFiredDelegate_timerPlayerWaitTime(PlayerSCNProcessor.timerPlayerWaitTimeWork)); });
@@ -89,7 +89,18 @@ namespace HAS2TrainOS
                 Console.WriteLine(ex.Message);  
             }
         }
-
+        private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            ListviewtoExcel();      //현재까지 값 엑셀에 저장+
+            try
+            {
+                client.Disconnect();    //MQTT 연결종료
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
         private void btnSetup_Click(object sender, EventArgs e)
         {
             SetupForm setupform = new SetupForm(this);
