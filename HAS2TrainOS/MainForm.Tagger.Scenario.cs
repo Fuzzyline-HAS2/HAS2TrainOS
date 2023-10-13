@@ -80,15 +80,12 @@ namespace HAS2TrainOS
             Console.WriteLine("SCNt25 func initiate");
             foreach (ListViewItem lvTaggerGlove in lvGlove.Items)
             {
-                if (lvTaggerGlove.SubItems[(int)listviewGlove.Role].Text == "player")
+                if (lvTaggerGlove.BackColor == Color.BlueViolet)   //술래 방 글러브들 색은 보라색으로 지정해두었기 때문에 사용
                 {
-                    if (lvTaggerGlove.BackColor == Color.BlueViolet)   //술래 방 글러브들 색은 보라색으로 지정해두었기 때문에 사용
+                    if (lvTaggerGlove.SubItems[(int)listviewGlove.Role].Text == "ghost")
                     {
-                        if (lvTaggerGlove.SubItems[(int)listviewGlove.Role].Text == "ghost")
-                        {
-                            GloveListViewChange(lvTaggerGlove, Role: "player", strLC: "1");
-                            return false;
-                        }
+                        GloveListViewChange(lvTaggerGlove, Role: "player", strLC: "1");
+                        return false;
                     }
                 }
             }
@@ -196,6 +193,12 @@ namespace HAS2TrainOS
         {
             TaggerSCNProcessor.timerPlayerWaitTime.Change(System.Threading.Timeout.Infinite, System.Threading.Timeout.Infinite); //메인타이머 종료
             TaggerSCNProcessor.timerPlayerSkipTime.Change(System.Threading.Timeout.Infinite, System.Threading.Timeout.Infinite); //PlayerSkipTimer 종료
+            return false;
+        }
+        public bool SCNt101()    //술래 퇴장 까지 기다림.
+        {
+            MessageBox.Show("술래 훈련소가 종료되었습니다.");
+
             return false;
         }
     }

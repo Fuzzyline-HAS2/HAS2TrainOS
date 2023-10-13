@@ -107,8 +107,11 @@ namespace HAS2TrainOS
         public bool SCNp107()    //술래 퇴장 까지 기다림.
         {
             btnReady.PerformClick();
-            MessageBox.Show("훈련소가 종료되었습니다.");
-
+            MessageBox.Show("생존자 훈련소가 종료되었습니다.");
+            foreach (ListViewItem lvPlayerGlove in lvGlove.Items)   // 모든 글러브 배터리팩 0으로 만듦
+            {  
+                GloveListViewChange(lvPlayerGlove, State: "end");         
+            }
             return false;
         }
     }

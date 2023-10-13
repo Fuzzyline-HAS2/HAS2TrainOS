@@ -38,7 +38,7 @@ namespace HAS2TrainOS
                 }
                 catch
                 {
-                    MessageBox.Show(lvSelectedGlove.SubItems[(int)listviewGlove.Name].Text + "허용되지 않는 숫자의 생명칩이 입력되었습니다\r\nLC: " + strLC);
+                    MessageBox.Show(lvSelectedGlove.SubItems[(int)listviewGlove.Name].Text + " 허용되지 않는 숫자의 생명칩이 입력되었습니다\r\nLC: " + strLC);
                     goto GloveBP;    // LC값이 정수로 변환이 안될때 다음 IF문인 BP섹션으로 이동
                 }
                 if (strLC.StartsWith("+") || strLC.StartsWith("-")) //글러브 배터리팩 +또는 -인지 확인 (게임처럼 동착하기 위함)
