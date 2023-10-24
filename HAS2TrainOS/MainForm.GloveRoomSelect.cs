@@ -64,15 +64,21 @@ namespace HAS2TrainOS
                 if (strApplyLC == "0")   //생명칩이 0으로 바뀔때 ghost로 적용
                 {
                     if (lvSelectedGlove.SubItems[(int)listviewGlove.Role].Text == "player")  //role이 플레이어 일때만 ghost로
-                    { 
-                        lvSelectedGlove.SubItems[(int)listviewGlove.Role].Text = "ghost";   //lvGlove에 적용 
+                    {
+                        if (Role != "ghost") //이미 glovelistviewchange가 ghost로 들어와서 바꿔준 경우 실행 안하기 위해
+                        {
+                            lvSelectedGlove.SubItems[(int)listviewGlove.Role].Text = "ghost";   //lvGlove에 적용 
+                        }
                     }
                 }
                 else if(lvSelectedGlove.SubItems[(int)listviewGlove.Role].Text == "ghost")
                 {
                     if(strApplyLC == "1")
                     {
-                        lvSelectedGlove.SubItems[(int)listviewGlove.Role].Text = "revival";   //lvGlove에 적용 
+                        if (Role != "player") //이미 glovelistviewchange가 player 들어와서 바꿔준 경우 실행 안하기 위해
+                        {
+                            lvSelectedGlove.SubItems[(int)listviewGlove.Role].Text = "revival";   //lvGlove에 적용 
+                        }
                     }
                 }
             }

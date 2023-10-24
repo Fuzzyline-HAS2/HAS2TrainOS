@@ -18,39 +18,54 @@ namespace HAS2TrainOS
         public int nDeviceVolume = 50;
         public void PlayMp3(String filename)
         {
-            if (outputDevice != null)
+            try
             {
-                outputDevice.Stop();
-                //Thread.Sleep(150);
-            }
-            if (outputDevice == null)
-            {
-                outputDevice = new WaveOutEvent()
+                if (outputDevice != null)
                 {
-                    DeviceNumber = nDeviceNum
-                };
-                outputDevice.PlaybackStopped += OnPlaybackStopped;
+                    outputDevice.Stop();
+                    Thread.Sleep(150);
+                }
+                if (outputDevice == null)
+                {
+                    outputDevice = new WaveOutEvent()
+                    {
+                        DeviceNumber = nDeviceNum
+                    };
+                    outputDevice.PlaybackStopped += OnPlaybackStopped;
+                }
+                if (audioFile == null)
+                {
+                    //String strTemp = "C:\\Users\\user\\Downloads\\" + filename + ".wav";
+                    Console.WriteLine(filename);
+                    audioFile = new AudioFileReader(@filename);
+                    outputDevice.Init(audioFile);
+                    audioFile.Volume = nDeviceVolume / 100f;
+                    outputDevice.Play();
+                }
             }
-            if (audioFile == null)
+            catch (Exception e)
             {
-                //String strTemp = "C:\\Users\\user\\Downloads\\" + filename + ".wav";
-                Console.WriteLine(filename);
-                audioFile = new AudioFileReader(@filename);
-                outputDevice.Init(audioFile);
-                audioFile.Volume = nDeviceVolume / 100f;
-                outputDevice.Play();
+                Console.WriteLine($"An error occured while trying to stop the MP3: {e.Message}");
             }
         }
+            
         public void StopMp3()
         {
             outputDevice.Stop();
         }
         private void OnPlaybackStopped(object sender, StoppedEventArgs args)
         {
-            outputDevice.Dispose();
-            outputDevice = null;
-            audioFile.Dispose();
-            audioFile = null;
+            try
+            {
+                outputDevice.Dispose();
+                outputDevice = null;
+                audioFile.Dispose();
+                audioFile = null;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"An error occured while trying to stop the MP3: {e.Message}");
+            }
         }
     }
 }

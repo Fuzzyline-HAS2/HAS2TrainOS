@@ -11,6 +11,7 @@ namespace HAS2TrainOS
     {
         MqttClient client;
         string clientId;
+        bool bCommonTaggerTaken = false; //공용공간에서 술래가 생명칩을 한번 뺏으면 더이상 다른 술래들이 생명칩을 뺏을수 없게 막는 변수
         public void MQTT_Initializtion()
         {
 
@@ -87,13 +88,13 @@ namespace HAS2TrainOS
                                                     {
                                                         foreach (ListViewItem lvTempGlove in lvGlove.Items) //lvTempDevice = 통신 보낸 주체, lvTempGlove = 통신보낸주체에 쓰여 있는 글러브 DN
                                                         {
-                                                            if (jsonInput["DN"].ToString() == lvTempGlove.SubItems[(int)listviewGlove.Name].Text)
+                                                            if (jsonInput["DN"].ToString().Substring(2) == lvTempGlove.SubItems[(int)listviewGlove.Name].Text.Substring(2)) //그룹은빼고 플레이어 번호만 비교
                                                             {
                                                                 String GloveData;
                                                                 switch (m.strDeviceName[1])
                                                                 {
                                                                     case 'I':
-                                                                        if (PlayerSCNProcessor.nCurrentCnt == 29)
+                                                                        if (PlayerSCNProcessor.nCurrentCnt >= 28 && PlayerSCNProcessor.nCurrentCnt <= 30)   // 이 범위에만 실행
                                                                         {
                                                                             GloveData = "+" + lvTempDevice.SubItems[(int)listviewDevice.LCBP].Text;   //글러브 BP 데이터 수정
                                                                             GloveListViewChange(lvTempGlove, strBP: GloveData);
@@ -101,12 +102,18 @@ namespace HAS2TrainOS
                                                                         }
                                                                         break;
                                                                     case 'G':
-                                                                        GloveListViewChange(lvTempGlove, strBP: "-1"); //글러브 BP 데이터 '-1' 처리
-                                                                        DeviceListViewChange(lvTempDevice, strLCBP: "+1");// 발전기 배터리팩 데이터  '+1' 처리
+                                                                        if (PlayerSCNProcessor.nCurrentCnt >= 35 && PlayerSCNProcessor.nCurrentCnt <= 37) // 이 범위에만 실행
+                                                                        {
+                                                                            GloveListViewChange(lvTempGlove, strBP: "-1"); //글러브 BP 데이터 '-1' 처리
+                                                                            DeviceListViewChange(lvTempDevice, strLCBP: "+1");// 발전기 배터리팩 데이터  '+1' 처리
+                                                                        }
                                                                         break;
                                                                     case 'R':
-                                                                        GloveListViewChange(lvTempGlove, strLC: "+1");//글러브 LC 데이터 +1 처리
-                                                                        DeviceListViewChange(lvTempDevice, strLCBP: "0"); // 생장 생명칩 데이터 사용완료 '0' 처리
+                                                                        if (PlayerSCNProcessor.nCurrentCnt <= 39 && PlayerSCNProcessor.nCurrentCnt >= 42)   //이 범위 안에는 실행 x
+                                                                        {
+                                                                            GloveListViewChange(lvTempGlove, strLC: "+1");//글러브 LC 데이터 +1 처리
+                                                                            DeviceListViewChange(lvTempDevice, strLCBP: "0"); // 생장 생명칩 데이터 사용완료 '0' 처리
+                                                                        }
                                                                         break;
                                                                     case 'T':
                                                                         Console.WriteLine("cur:" + TaggerSCNProcessor.nCurrentCnt);
@@ -146,9 +153,13 @@ namespace HAS2TrainOS
 
                                                                             }
                                                                             else
-                                                                            {
-                                                                                GloveListViewChange(lvTempGlove, strLC: "+1");// 술래 글러브 LC 데이터 '+1' 처리
-                                                                                GloveListViewChange(lvTempDevice, strLC: "-1");// 생존자 글러브 LC 데이터  '-1' 처리
+                                                                            { 
+                                                                                if(bCommonTaggerTaken == false) //공용 공간때 술래가 이미 생명칩을 뺏었는지 확인하는 과정
+                                                                                {
+                                                                                    GloveListViewChange(lvTempGlove, strLC: "+1");// 술래 글러브 LC 데이터 '+1' 처리
+                                                                                    GloveListViewChange(lvTempDevice, strLC: "-1");// 생존자 글러브 LC 데이터  '-1' 처리
+                                                                                    bCommonTaggerTaken = true; //공용공간에서 술래가 생명칩을 한번 뺏으면 더이상 다른 술래들이 생명칩을 뺏을수 없게 막는 변수
+                                                                                }
                                                                             }
                                                                         }
                                                                         break;
@@ -166,6 +177,7 @@ namespace HAS2TrainOS
                                                                 {
                                                                     Console.WriteLine(s);
                                                                     PlayerSCNProcessor.nTagCnt++;
+                                                                    break;
                                                                 }
                                                                 else if (s == "SGp")
                                                                 {
@@ -173,6 +185,7 @@ namespace HAS2TrainOS
                                                                     {
                                                                         Console.WriteLine("TAG_SGp에서 태그된 글러브 인식됨");
                                                                         PlayerSCNProcessor.nTagCnt++;
+                                                                        break;
                                                                     }
                                                                 }
                                                             }   // 비교 종료.
@@ -189,6 +202,7 @@ namespace HAS2TrainOS
                                                                     }
                                                                 }
                                                                 PlayerSCNProcessor.strTagDevice = null;    //TAG 명령어 초기화
+                                                                PlayerSCNProcessor.nTagCnt = 0;
                                                                 PlayerSCNProcessor.NarrPlayJudge();
                                                             }
                                                         }
@@ -201,6 +215,7 @@ namespace HAS2TrainOS
                                                                 {
                                                                     Console.WriteLine(s);
                                                                     TaggerSCNProcessor.nTagCnt++;
+                                                                    break;
                                                                 }
                                                                 else if (s == "SGt")
                                                                 {
@@ -208,6 +223,7 @@ namespace HAS2TrainOS
                                                                     {
                                                                         Console.WriteLine("TAG_SGt에서 태그된 글러브 인식됨");
                                                                         TaggerSCNProcessor.nTagCnt++;
+                                                                        break;
                                                                     }
                                                                 }
                                                             }   // 비교 종료
@@ -224,6 +240,7 @@ namespace HAS2TrainOS
                                                                     }
                                                                 }
                                                                 TaggerSCNProcessor.strTagDevice = null;    //TAG 명령어 초기화
+                                                                TaggerSCNProcessor.nTagCnt = 0;
                                                                 TaggerSCNProcessor.NarrPlayJudge();
                                                             }
                                                         }

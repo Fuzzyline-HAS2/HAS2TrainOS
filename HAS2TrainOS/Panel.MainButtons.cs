@@ -105,6 +105,9 @@ namespace HAS2TrainOS
                 btnStart.Text = "PAUSE";
                 btnManual.Enabled = false;
                 timerMain.Change(0, 1000);  //메인 타이머 시작
+
+                /* 초기화 해야할 변수들*/
+                bCommonTaggerTaken = false; //공용공간에서 술래가 생명칩을 한번 뺏으면 더이상 다른 술래들이 생명칩을 뺏을수 없게 막는 변수
             }
             else // 모드 멈출 때
             {

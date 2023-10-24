@@ -115,12 +115,15 @@ namespace HAS2TrainOS
                 String strNarrNum = strWavName.Substring(strWavName.Length - 1, 1);
                 //Console.WriteLine(strWavName);
                 FileInfo fileTmp = new FileInfo(strWavName);
+                string[] strPlayDevices = lvNarr.Items[nCurrentCnt].SubItems[8].Text.Split(',');
                 if (fileTmp.Exists)  //FileInfo.Exists로 파일 존재유무 확인 "
                 {
-                    if(lvNarr.Items[nCurrentCnt].SubItems[8].Text == strSelectedNarr)
-                        SelectedSpk.PlayMp3(strWavName);
-                    else
-                        CommonSpk.PlayMp3(strWavName);
+                    foreach(string strSelectedPlayDevice in strPlayDevices){
+                        if (strSelectedPlayDevice == strSelectedNarr)
+                            SelectedSpk.PlayMp3(strWavName);
+                        else
+                            CommonSpk.PlayMp3(strWavName);
+                    }
                 }
                 else
                 {
@@ -169,10 +172,12 @@ namespace HAS2TrainOS
                         //Console.WriteLine(s);   
                         if (s.Contains("TAG"))
                         {
+                            Console.WriteLine("TAG CONDITION");
                             String[] strTag = s.Split('_'); //TAG_장치_다음 나레이션#
                             strTagDevice = strTag[1].Split('/');
                             strTagTo = "#" + strTag[2];
                             nTagMaxCnt = strTagDevice.Count();
+                            Console.WriteLine(strTagDevice[0]);
                         }
                         if (s.Contains("SKIP"))
                         {
@@ -250,6 +255,7 @@ namespace HAS2TrainOS
                             timerPlayerSkipTime.Change(System.Threading.Timeout.Infinite, System.Threading.Timeout.Infinite); //PlayerSkipTimer 종료
                             nCurrentCnt = listitem.Index;
                             strTagDevice = null;
+                            nTagCnt = 0;
                             NarrPlayJudge();
                             break;
                         }
@@ -294,34 +300,7 @@ namespace HAS2TrainOS
 
                     string strNarrWaitTime = lvNarr.Items[nCurrentCnt].SubItems[5].Text;
                     uint nCompareTime = nCurMainTime + UInt32.Parse(strNarrWaitTime);
-                    /*
-                    Console.WriteLine("현재+나레이션 시간: " + nCompareTime + "  ???  최대/소 시간: " + nMinMaxTime);
-                    
-                    if (lvNarr.Items[nCurrentCnt].BackColor == Color.LemonChiffon)  // 스킵 할까?
-                    {
-                        if (nCompareTime < nMinMaxTime) // 현재시간 + 나레이션 시간 < 최대 시작 시간 시 실행
-                        {
-                            MainProcessor();
-                        }
-                        else
-                        {
-                            nCurrentCnt++;
-                            NarrPlayJudge();
-                        }
-                    }
-                    else if (lvNarr.Items[nCurrentCnt].BackColor == Color.PaleGreen)    // 추가 할까?
-                    {
-                        if (nCompareTime < nMinMaxTime)    // 현재시간 + 나레이션 시간 < 최소 시작 시간 시 실행
-                        {
-                            MainProcessor();
-                        }
-                        else
-                        {
-                            nCurrentCnt++;
-                            NarrPlayJudge();
-                        }
-                    } //else if 추가 할까?
-                    */
+
                     Console.WriteLine("현재 시간: " + nCurMainTime + "  ???  최대/소 시간: " + nSkipMinMaxTime);
                     if (lvNarr.Items[nCurrentCnt].BackColor == Color.LemonChiffon)  // 스킵 할까?
                     {

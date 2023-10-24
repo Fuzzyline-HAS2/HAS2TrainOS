@@ -65,11 +65,11 @@ namespace HAS2TrainOS
                     if (lvTaggerGlove.SubItems[(int)listviewGlove.Role].Text == "player")
                     {
                         GloveListViewChange(lvTaggerGlove, Role: "ghost", strLC: "0");
+                        return false;
                     }
                     else if (lvTaggerGlove.SubItems[(int)listviewGlove.Role].Text == "tagger")
                     {
                         GloveListViewChange(lvTaggerGlove, strLC: "1");
-                        return false;
                     }
                 }
             }
@@ -147,7 +147,27 @@ namespace HAS2TrainOS
                 if (lvTaggerGlove.BackColor == Color.BlueViolet)   //술래 방 글러브들 색은 보라색으로 지정해두었기 때문에 사용
                 {
                     GloveListViewChange(lvTaggerGlove, Role: "tagger", strLC: "0");
-                    return false;   
+                }
+            }
+            return false;
+        }
+        public bool SCNt58()    //모든 술래글러브 Role: tagger로 변경 및 teaken_LC = 0
+        {
+            Console.WriteLine("SCNt58 func initiate");
+            foreach (ListViewItem lvTaggerGlove in lvGlove.Items)
+            {
+                if (lvTaggerGlove.BackColor == Color.BlueViolet)   //술래 방 글러브들 색은 보라색으로 지정해두었기 때문에 사용
+                {
+                    GloveListViewChange(lvTaggerGlove, Role: "tagger", strLC: "1");
+                    break;
+                }
+            }
+            foreach (ListViewItem lvPlayrGlove in lvGlove.Items)
+            {
+                if (lvPlayrGlove.BackColor == Color.YellowGreen)   //술래 방 글러브들 색은 보라색으로 지정해두었기 때문에 사용
+                {
+                    GloveListViewChange(lvPlayrGlove, Role: "ghost", strLC: "0");
+                    break;
                 }
             }
             return false;
@@ -189,16 +209,29 @@ namespace HAS2TrainOS
             Console.WriteLine("Wait for Player.....");
             return false;
         }
+        public bool SCNt99()    //생존자 술래 피하지 못함으로 넘기기
+        {
+            Console.WriteLine("SCNt99 func initiate");
+            PlayerSCNProcessor.timerPlayerWaitTime.Change(System.Threading.Timeout.Infinite, System.Threading.Timeout.Infinite); //메인타이머 종료
+            PlayerSCNProcessor.timerPlayerSkipTime.Change(System.Threading.Timeout.Infinite, System.Threading.Timeout.Infinite); //PlayerSkipTimer 종료
+   
+            PlayerSCNProcessor.nCurrentCnt = 105;   //생존자 #103 딜레이 탈출 하기위해
+            PlayerSCNProcessor.NarrPlayJudge();
+
+            return false;
+        }
         public bool SCNt100()    //술래 퇴장 까지 기다림.
         {
             TaggerSCNProcessor.timerPlayerWaitTime.Change(System.Threading.Timeout.Infinite, System.Threading.Timeout.Infinite); //메인타이머 종료
             TaggerSCNProcessor.timerPlayerSkipTime.Change(System.Threading.Timeout.Infinite, System.Threading.Timeout.Infinite); //PlayerSkipTimer 종료
+
             return false;
         }
         public bool SCNt101()    //술래 퇴장 까지 기다림.
         {
-            MessageBox.Show("술래 훈련소가 종료되었습니다.");
-
+            //MessageBox.Show("술래 훈련소가 종료되었습니다.");
+            PlayerSCNProcessor.nCurrentCnt = 105;   //생존자 #103 딜레이 탈출 하기위해
+            PlayerSCNProcessor.NarrPlayJudge();
             return false;
         }
     }

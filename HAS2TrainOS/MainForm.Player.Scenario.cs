@@ -14,6 +14,14 @@ namespace HAS2TrainOS
         {
             Console.WriteLine("SCNp32 func initiate");
             int cnt = 0;
+            int nMaxCnt  = 0;
+            for (int i = (int)enumDevice.EI1; i <= (int)enumDevice.EI2; i++)        //열리지 않은 아이템박스의 개수를 확인하기 위함
+            {
+                if(lvDevice.Items[i].SubItems[(int)listviewDevice.LCBP].Text != "0")
+                {
+                    nMaxCnt++;
+                }
+            }
             foreach (ListViewItem lvPlayerGlove in lvGlove.Items)
             {
                 if (lvPlayerGlove.BackColor == Color.YellowGreen)   //생존자 방 글러브들 색은 초록색으로 지정해두었기 때문에 사용
@@ -21,7 +29,7 @@ namespace HAS2TrainOS
                     GloveListViewChange(lvPlayerGlove, strBP: "+2");
                     cnt++;
                 }
-                if (cnt >= 2)    //플레이어 두명한테 배터리팩 전달 완료 하면 종료
+                if (cnt >= nMaxCnt)    //플레이어 두명한테 배터리팩 전달 완료 하면 종료
                 {
                     return false;
                 }
