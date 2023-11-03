@@ -49,38 +49,38 @@ namespace HAS2TrainOS
         {
             string ReceivedMessage = Encoding.UTF8.GetString(e.Message);
             string ReceivedTopic = e.Topic;
-            //Console.WriteLine(ReceivedMessage);
             this.Invoke(new MethodInvoker(delegate ()
             {
-            //Console.WriteLine(ReceivedTopic + ":" + ReceivedMessage + "\r\n");
-            JObject jsonInput = JObject.Parse(ReceivedMessage);
-                //JObject jsonInput = JsonConvert.DeserializeObject<Name>(ReceivedMessage);
-                Console.WriteLine(ReceivedTopic + ": " + ReceivedMessage) ;
+                //Console.WriteLine(ReceivedTopic + ":" + ReceivedMessage + "\r\n");
+                if (ReceivedMessage != null)
+                {
+                    JObject jsonInput = JObject.Parse(ReceivedMessage);
+                    //JObject jsonInput = JsonConvert.DeserializeObject<Name>(ReceivedMessage);
+                    Console.WriteLine(ReceivedTopic + ": " + ReceivedMessage);
 
-                if (ReceivedTopic == "OS")
-                {                
-                    if (jsonInput.ContainsKey("MAC"))   // 발신자 MAC 확인
+                    if (ReceivedTopic == "OS")
                     {
-                        foreach (structMAC m in MACs)   // 발신자 MAC으로 이름 검색
+                        if (jsonInput.ContainsKey("MAC"))   // 발신자 MAC 확인
                         {
-                            if (m.strDeviceMAC == jsonInput["MAC"].ToString())  // 찾은 이름 m. 으로 임시 저장
+                            foreach (structMAC m in MACs)   // 발신자 MAC으로 이름 검색
                             {
-                                ListView lvTemp = lvDevice;
-                                if (m.strDeviceName.StartsWith("G")){   //r
-                                    lvTemp = lvGlove;
-                                    if (!m.strDeviceName[1].Equals(lvGlove.Items[0].SubItems[(int)listviewGlove.Name].Text[1]))
-                                    {    //글러브 그룹의 번호가 lvGlove에 있는 글러브 그룹 번호가 동일하지 않다면 해당 글러브 change 전송
-                                        SituationJSONPublish(m.strDeviceName, "change"); //현재 훈련소에 들어가있는 번호와 다르면 change 보내서 게임 상태로 전송
-                                    }
-                                }
-
-                                foreach(ListViewItem lvTempDevice in lvTemp.Items)  //lvTempDevice = 통신 보낸 주체, lvTempGlove = 통신보낸주체에 쓰여 있는 글러브 DN
+                                if (m.strDeviceMAC == jsonInput["MAC"].ToString())  // 찾은 이름 m. 으로 임시 저장
                                 {
-                                    if (lvTempDevice.SubItems[(int)listviewDevice.Name].Text == m.strDeviceName)  // 찾은 이름 m. 으로 임시 저장
+                                    ListView lvTemp = lvDevice;
+                                    if (m.strDeviceName.StartsWith("G"))
+                                    {   //r
+                                        lvTemp = lvGlove;
+                                        if (!m.strDeviceName[1].Equals(lvGlove.Items[0].SubItems[(int)listviewGlove.Name].Text[1]))
+                                        {    //글러브 그룹의 번호가 lvGlove에 있는 글러브 그룹 번호가 동일하지 않다면 해당 글러브 change 전송
+                                            SituationJSONPublish(m.strDeviceName, "change"); //현재 훈련소에 들어가있는 번호와 다르면 change 보내서 게임 상태로 전송
+                                        }
+                                    }
+
+                                    foreach (ListViewItem lvTempDevice in lvTemp.Items)  //lvTempDevice = 통신 보낸 주체, lvTempGlove = 통신보낸주체에 쓰여 있는 글러브 DN
                                     {
-                                        if (jsonInput.ContainsKey("SIT")) // json에 situation 존재할때
+                                        if (lvTempDevice.SubItems[(int)listviewDevice.Name].Text == m.strDeviceName)  // 찾은 이름 m. 으로 임시 저장
                                         {
-                                            if (PlayerSCNProcessor.strTagDevice != null)   //엑셀에서 TAG명령어 들어왔을때만 실행
+                                            if (jsonInput.ContainsKey("SIT")) // json에 situation 존재할때
                                             {
                                                 if (jsonInput["SIT"].ToString() == "tag" || jsonInput["SIT"].ToString() == "kill")
                                                 {
@@ -144,17 +144,24 @@ namespace HAS2TrainOS
                                                                         if (jsonInput["SIT"].ToString() == "tag")
                                                                         {
                                                                             GloveListViewChange(lvTempGlove, strLC: "-1");// 생명칩을 주는 글러브 LC 데이터 '-1' 처리
-                                                                            GloveListViewChange(lvTempDevice, strLC: "+1");// 생명칩을 받는 글러브 LC 데이터  '+1' 처리
+                                                                            if(PlayerSCNProcessor.nCurrentCnt >= 70 && PlayerSCNProcessor.nCurrentCnt <= 74)
+                                                                            {
+                                                                                GloveListViewChange(lvTempDevice, Role:"player", strLC:"1");// 생명칩을 받는 글러브 LC 데이터  '+1' 처리
+                                                                            }
+                                                                            else
+                                                                            {
+                                                                                GloveListViewChange(lvTempDevice, strLC: "+1");// 생명칩을 받는 글러브 LC 데이터  '+1' 처리
+                                                                            }
                                                                         }
                                                                         else if (jsonInput["SIT"].ToString() == "kill")
                                                                         {
-                                                                            if(TaggerSCNProcessor.nCurrentCnt == 25 || TaggerSCNProcessor.nCurrentCnt == 26)    //25,26시나리오TAG는 생명칩추가회수 없엄
+                                                                            if (TaggerSCNProcessor.nCurrentCnt == 25 || TaggerSCNProcessor.nCurrentCnt == 26)    //25,26시나리오TAG는 생명칩추가회수 없엄
                                                                             {
 
                                                                             }
                                                                             else
-                                                                            { 
-                                                                                if(bCommonTaggerTaken == false) //공용 공간때 술래가 이미 생명칩을 뺏었는지 확인하는 과정
+                                                                            {
+                                                                                if (bCommonTaggerTaken == false) //공용 공간때 술래가 이미 생명칩을 뺏었는지 확인하는 과정
                                                                                 {
                                                                                     GloveListViewChange(lvTempGlove, strLC: "+1");// 술래 글러브 LC 데이터 '+1' 처리
                                                                                     GloveListViewChange(lvTempDevice, strLC: "-1");// 생존자 글러브 LC 데이터  '-1' 처리
@@ -246,77 +253,78 @@ namespace HAS2TrainOS
                                                         }
                                                     } // if (jsonInput["DN"].ToString().Contains("G")) ")
                                                 } //if (jsonInput["SIT"].ToString() == "tag")
-                                            }
-                                            else if (jsonInput["SIT"].ToString() == "start")
-                                            {
-                                                if (lvTemp == lvGlove)
+                                                
+                                                else if (jsonInput["SIT"].ToString() == "start")
                                                 {
-                                                    GloveJSONPublish_MAC(lvTempDevice.SubItems[(int)listviewDevice.Name].Text);
-                                                    GloveListViewChange(lvTempDevice);
+                                                    if (lvTemp == lvGlove)
+                                                    {
+                                                        GloveJSONPublish_MAC(lvTempDevice.SubItems[(int)listviewDevice.Name].Text);
+                                                        GloveListViewChange(lvTempDevice);
+                                                    }
+                                                    else
+                                                    {
+                                                        DeviceListViewChange(lvTempDevice);
+                                                    }
+                                                }
+                                            } //if (jsonInput.ContainsKey("SIT")) 
+                                            else if (jsonInput.ContainsKey("EMRG"))
+                                            {
+                                                if (jsonInput["EMRG"].ToString() == "null")
+                                                {
+                                                    MessageBox.Show("비상탈출 버튼 문제 해결됨");
+                                                }
+                                                else if (jsonInput["EMRG"].ToString() == "player")
+                                                {
+                                                    MessageBox.Show("!생존자 비상탈출 버튼 문제 발생!");
+                                                }
+                                                else if (jsonInput["EMRG"].ToString() == "tagger")
+                                                {
+                                                    MessageBox.Show("!생존자 비상탈출 버튼 문제 발생!");
+                                                }
+                                                else if (jsonInput["EMRG"].ToString() == "all")
+                                                {
+                                                    MessageBox.Show("!양쪽 비상탈출 버튼 문제 발생!");
                                                 }
                                                 else
                                                 {
-                                                    DeviceListViewChange(lvTempDevice);
+                                                    MessageBox.Show("훈련소 공용공간 문제 발생");
+                                                }
+
+                                            }
+                                            if (jsonInput.ContainsKey("DS"))
+                                            {
+                                                if (m.strDeviceName.StartsWith("E"))
+                                                {
+                                                    DeviceListViewChange(lvTempDevice, State: jsonInput["DS"].ToString());
+                                                }
+                                                else if (m.strDeviceName.StartsWith("G"))
+                                                {
+                                                    GloveListViewChange(lvTempDevice, State: jsonInput["DS"].ToString());
                                                 }
                                             }
-                                        } //if (jsonInput.ContainsKey("SIT")) 
-                                        else if (jsonInput.ContainsKey("EMRG"))
-                                        {
-                                            if (jsonInput["EMRG"].ToString() == "null")
+                                            if (jsonInput.ContainsKey("LCBP"))
                                             {
-                                                MessageBox.Show("비상탈출 버튼 문제 해결됨");
+                                                DeviceListViewChange(lvTempDevice, strLCBP: jsonInput["LCBP"].ToString()); // 아박 배터리팩 데이터 사용완료 '0' 처리
                                             }
-                                            else if (jsonInput["EMRG"].ToString() == "player")
+                                            if (jsonInput.ContainsKey("ROLE"))
                                             {
-                                                MessageBox.Show("!생존자 비상탈출 버튼 문제 발생!");
+                                                GloveListViewChange(lvTempDevice, Role: jsonInput["ROLE"].ToString());
                                             }
-                                            else if (jsonInput["EMRG"].ToString() == "tagger")
+                                            if (jsonInput.ContainsKey("LC"))
                                             {
-                                                MessageBox.Show("!생존자 비상탈출 버튼 문제 발생!");
+                                                GloveListViewChange(lvTempDevice, strLC: jsonInput["LC"].ToString());
                                             }
-                                            else if (jsonInput["EMRG"].ToString() == "all")
+                                            if (jsonInput.ContainsKey("BP"))
                                             {
-                                                MessageBox.Show("!양쪽 비상탈출 버튼 문제 발생!");
-                                            }
-                                            else
-                                            {
-                                                MessageBox.Show("훈련소 공용공간 문제 발생");
+                                                GloveListViewChange(lvTempDevice, strBP: jsonInput["BP"].ToString());
                                             }
 
-                                        }
-                                        if (jsonInput.ContainsKey("DS"))
-                                        {
-                                            if (m.strDeviceName.StartsWith("E"))
-                                            {
-                                                DeviceListViewChange(lvTempDevice, State: jsonInput["DS"].ToString());
-                                            }
-                                            else if (m.strDeviceName.StartsWith("G"))
-                                            {
-                                                GloveListViewChange(lvTempDevice, State: jsonInput["DS"].ToString());
-                                            }
-                                        }
-                                        if (jsonInput.ContainsKey("LCBP"))
-                                        {
-                                            DeviceListViewChange(lvTempDevice, strLCBP: jsonInput["LCBP"].ToString()); // 아박 배터리팩 데이터 사용완료 '0' 처리
-                                        }
-                                        if (jsonInput.ContainsKey("ROLE"))
-                                        {
-                                            GloveListViewChange(lvTempDevice, Role: jsonInput["ROLE"].ToString());
-                                        }
-                                        if (jsonInput.ContainsKey("LC"))
-                                        {
-                                            GloveListViewChange(lvTempDevice, strLC: jsonInput["LC"].ToString());
-                                        }
-                                        if (jsonInput.ContainsKey("BP"))
-                                        {
-                                            GloveListViewChange(lvTempDevice, strBP: jsonInput["BP"].ToString());
-                                        }
-
-                                    }//if (lvTempDevice.SubItems[(int)listviewDevice.Name].Text == m.strDeviceName)
-                                } //foreach(ListViewItem lvTempDevice in lvDevice.Items)
-                            } //if (m.strDeviceMAC == jsonInput["MAC"].ToString())
-                        } //foreach (structMAC m in MACs)
-                    } //if (jsonInput.ContainsKey("MAC"))
+                                        }//if (lvTempDevice.SubItems[(int)listviewDevice.Name].Text == m.strDeviceName)
+                                    } //foreach(ListViewItem lvTempDevice in lvDevice.Items)
+                                } //if (m.strDeviceMAC == jsonInput["MAC"].ToString())
+                            } //foreach (structMAC m in MACs)
+                        } //if (jsonInput.ContainsKey("MAC"))
+                    }
                 }
             }));
             //DO SOMETHING..!

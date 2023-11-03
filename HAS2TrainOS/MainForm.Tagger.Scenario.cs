@@ -100,7 +100,8 @@ namespace HAS2TrainOS
                 {
                     if (lvTaggerGlove.SubItems[(int)listviewGlove.Role].Text == "player")
                     {
-                        GloveListViewChange(lvTaggerGlove, Role: "ghost", strLC: "0");
+                        Console.WriteLine("Tagger Player -> Ghost change?");
+                        //GloveListViewChange(lvTaggerGlove, Role: "ghost", strLC: "0");
                         return false;
                     }
                 }
@@ -204,7 +205,7 @@ namespace HAS2TrainOS
         }
         public bool SCNt95()    //술래 퇴장 까지 기다림.
         {
-            PlayerSCNProcessor.bAccessNext = true;
+            //PlayerSCNProcessor.bAccessNext = true;
             Console.WriteLine("SCNt95 func initiate");
             Console.WriteLine("Wait for Player.....");
             return false;
@@ -214,7 +215,7 @@ namespace HAS2TrainOS
             Console.WriteLine("SCNt99 func initiate");
             PlayerSCNProcessor.timerPlayerWaitTime.Change(System.Threading.Timeout.Infinite, System.Threading.Timeout.Infinite); //메인타이머 종료
             PlayerSCNProcessor.timerPlayerSkipTime.Change(System.Threading.Timeout.Infinite, System.Threading.Timeout.Infinite); //PlayerSkipTimer 종료
-   
+            PlayerSCNProcessor.timerForWait.Change(System.Threading.Timeout.Infinite, System.Threading.Timeout.Infinite); //timerForWait 종료
             PlayerSCNProcessor.nCurrentCnt = 105;   //생존자 #103 딜레이 탈출 하기위해
             PlayerSCNProcessor.NarrPlayJudge();
 
@@ -229,6 +230,10 @@ namespace HAS2TrainOS
         }
         public bool SCNt101()    //술래 퇴장 까지 기다림.
         {
+            PlayerSCNProcessor.timerPlayerWaitTime.Change(System.Threading.Timeout.Infinite, System.Threading.Timeout.Infinite); //메인타이머 종료
+            PlayerSCNProcessor.timerPlayerSkipTime.Change(System.Threading.Timeout.Infinite, System.Threading.Timeout.Infinite); //PlayerSkipTimer 종료
+            PlayerSCNProcessor.timerForWait.Change(System.Threading.Timeout.Infinite, System.Threading.Timeout.Infinite); //timerForWait 종료
+
             //MessageBox.Show("술래 훈련소가 종료되었습니다.");
             PlayerSCNProcessor.nCurrentCnt = 105;   //생존자 #103 딜레이 탈출 하기위해
             PlayerSCNProcessor.NarrPlayJudge();

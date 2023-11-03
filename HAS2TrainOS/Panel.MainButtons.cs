@@ -15,6 +15,7 @@ namespace HAS2TrainOS
         {
             if (btnReady.Text == "READY")  //수동모드 시작하면
             {
+                //client.Publish("GLOVE_SCN",new byte[0],0,true);
                 GloveSelection();
                 lbMainTime.Text = "00:00";
                 foreach (ListViewItem lvSelectedDevice in lvDevice.Items)   // 장치들 기본 레디 셋팅 하기 위한 foreach

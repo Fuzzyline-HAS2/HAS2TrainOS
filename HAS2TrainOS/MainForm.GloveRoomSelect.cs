@@ -75,9 +75,12 @@ namespace HAS2TrainOS
                 {
                     if(strApplyLC == "1")
                     {
-                        if (Role != "player") //이미 glovelistviewchange가 player 들어와서 바꿔준 경우 실행 안하기 위해
+                        if (lvSelectedGlove.SubItems[(int)listviewGlove.Role].Text == "ghost")  //role이 플레이어 일때만 ghost로
                         {
-                            lvSelectedGlove.SubItems[(int)listviewGlove.Role].Text = "revival";   //lvGlove에 적용 
+                            if (Role != "player") //이미 glovelistviewchange가 player 들어와서 바꿔준 경우 실행 안하기 위해
+                            {
+                                lvSelectedGlove.SubItems[(int)listviewGlove.Role].Text = "revival";   //lvGlove에 적용 
+                            }
                         }
                     }
                 }

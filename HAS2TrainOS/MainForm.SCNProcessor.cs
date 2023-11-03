@@ -12,6 +12,7 @@ using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
 using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace HAS2TrainOS
 {
@@ -120,9 +121,15 @@ namespace HAS2TrainOS
                 {
                     foreach(string strSelectedPlayDevice in strPlayDevices){
                         if (strSelectedPlayDevice == strSelectedNarr)
+                        {
                             SelectedSpk.PlayMp3(strWavName);
+                            //SelectedSpk.StopAndPlay(strWavName);
+                        }
                         else
+                        {
                             CommonSpk.PlayMp3(strWavName);
+                            //CommonSpk.StopAndPlay(strWavName);
+                        }
                     }
                 }
                 else
@@ -191,14 +198,18 @@ namespace HAS2TrainOS
                         }
                         if (s.Contains("DELAY"))
                         {
-                            if (nCurrentCnt == 88)
+                            Console.WriteLine("DELAY command detected");
+                            if (nCurrentCnt == 88)  //술래가 공용공간 시나리오 안끝났으면 DELAY 끝났으면 DELAY 없음
                             {
                                 if (MainForm.mainform.TaggerSCNProcessor.nCurrentCnt < 83)
-                                { 
+                                {
+                                    timerPlayerWaitTime.Change(System.Threading.Timeout.Infinite, System.Threading.Timeout.Infinite); //PlayerSkipTimer 종료
                                     timerPlayerSkipTime.Change(System.Threading.Timeout.Infinite, System.Threading.Timeout.Infinite); //PlayerSkipTimer 종료
                                     timerForWait.Change(System.Threading.Timeout.Infinite, System.Threading.Timeout.Infinite);         //timerForWait 종료
                                     nForWait = 0;                                                                                                                             //timerForWait 변수 초기화
+                                    bAccessNext = false;                                                                                                                    //DELAY 종료하는 변수
                                     timerForWait.Change(0, 1000);                                                                                                    //timerForWait 시작
+
                                 }
                                 else
                                 {
@@ -207,6 +218,7 @@ namespace HAS2TrainOS
                             }
                             else
                             {
+                                timerPlayerWaitTime.Change(System.Threading.Timeout.Infinite, System.Threading.Timeout.Infinite); //메인타이머 종료
                                 timerPlayerSkipTime.Change(System.Threading.Timeout.Infinite, System.Threading.Timeout.Infinite); //PlayerSkipTimer 종료
                                 timerForWait.Change(System.Threading.Timeout.Infinite, System.Threading.Timeout.Infinite);         //timerForWait 종료
                                 nForWait = 0;                                                                                                                             //timerForWait 변수 초기화
@@ -227,7 +239,8 @@ namespace HAS2TrainOS
                 if (Int32.Parse(lvNarr.Items[nCurrentCnt].SubItems[5].Text) == 0)
                 {
                     Console.WriteLine("0sec detected Wait for skip condition!");
-                    nPlayerWaitTime = 0;
+                    timerPlayerWaitTime.Change(System.Threading.Timeout.Infinite, System.Threading.Timeout.Infinite); //메인타이머 종료
+                    nPlayerWaitTime = 0; //Player Wait Timer 변수 초기화
                 }
                 else if (nPlayerWaitTime >= Int32.Parse(lvNarr.Items[nCurrentCnt].SubItems[5].Text))
                 {
@@ -247,6 +260,7 @@ namespace HAS2TrainOS
                 nPlayerSkipTime += 1;                                                                      //초 마다 타이머 함수 실행되면 -1해 남은시간 줄여줌
                 if (nPlayerSkipTime >= nPlayerSkipCondition)
                 {
+                    Console.WriteLine("Skip Condition complete");
                     foreach (ListViewItem listitem in lvNarr.Items)
                     {
                         if (listitem.SubItems[1].Text == strPlayerSkipTo)
@@ -266,7 +280,7 @@ namespace HAS2TrainOS
             public void timerForWaitWork()
             {
                 nForWait += 1;                                                                      //초 마다 타이머 함수 실행되면 -1해 남은시간 줄여줌
-                if ((nForWait % nWaitAlarmTime ) == 0)
+                if ((nForWait % nWaitAlarmTime ) == 2)
                 {
                     strWavWait = strNarrDir + "Wait.wav";    // 상대방 끝나길 기다린다는 나레이션 경로
                     Console.WriteLine( strWavWait );

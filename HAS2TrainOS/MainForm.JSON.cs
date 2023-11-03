@@ -47,21 +47,25 @@ namespace HAS2TrainOS
         }
         public void DeviceJSONPublish(String DN, String state = "", String LCBP = "") //DN: 장치이름. State: 장치 상태, LCBP: 생명/배터리 개수
         {
-            JObject DeviceData = new JObject(new JProperty("DN", DN));
-            if (state != "")
-                DeviceData.Add(new JProperty("DS", state));
-            if (LCBP != "")
-                DeviceData.Add(new JProperty("LCBP", LCBP));
-            foreach (structMAC m in MACs)
+            if (!(DN.Contains("EM")))
             {
-                if (m.strDeviceName == DN)
+                JObject DeviceData = new JObject(new JProperty("DN", DN));
+                if (state != "")
+                    DeviceData.Add(new JProperty("DS", state));
+                if (LCBP != "")
+                    DeviceData.Add(new JProperty("LCBP", LCBP));
+                foreach (structMAC m in MACs)
                 {
-                    MQTT_Publish(m.strDeviceMAC, DeviceData.ToString());
+                    if (m.strDeviceName == DN)
+                    {
+                        MQTT_Publish(m.strDeviceMAC, DeviceData.ToString());
+                    }
                 }
             }
         }
         public void DeviceJSONPublishALL(String state, String LCBP = "") //DN: 장치이름. State: 장치 상태, LCBP: 생명/배터리 개수
         {
+
             JObject DeviceData = new JObject(new JProperty("DS", state));
             if (LCBP != "")
                 DeviceData.Add(new JProperty("LCBP", LCBP));

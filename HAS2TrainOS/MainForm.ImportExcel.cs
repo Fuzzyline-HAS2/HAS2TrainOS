@@ -75,10 +75,10 @@ namespace HAS2TrainOS
             int colsDevice = wsDV.Cells.MaxDataColumn;
             for (int i = 0; i < rowsDevice; i++)
             {
-                //Console.WriteLine(wsGlove.Cells[i, 0].Value.ToString());
+                //Console.WriteLine(wsDV.Cells[i, 0].Value.ToString());
                 for (int j = 0; j <= colsDevice; j++)
                 {
-                    //Console.WriteLine((wsGlove.Cells[i, j + 1].Value).ToString());
+                    //Console.WriteLine((wsDV.Cells[i, j].Value).ToString());
                     //Console.WriteLine("i:" + i.ToString() + "j:" + j.ToString());
                     lvDV.Items[i].SubItems[j].Text = (wsDV.Cells[i + 1, j].Value).ToString();
                 }

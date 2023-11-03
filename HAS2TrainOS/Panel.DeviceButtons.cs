@@ -187,7 +187,7 @@ namespace HAS2TrainOS
             }
             else
             {
-                for (int i = 0; i < lvGlove.Items.Count; i++)
+                for (int i = 1; i <= lvGlove.Items.Count; i++)
                 {
                     String strGloveNum = cbGloveGroup.Text + "P" + i.ToString();
                     GloveJSONPublish(strGloveNum, state: strChangeState);
