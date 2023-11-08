@@ -64,6 +64,7 @@ namespace HAS2TrainOS
 
         const int nMaxLifeChip = 3;
         const int nMaxBatteryPack = 4;
+        string strFirstKilledPlayerName = "null";
     }
 }
 

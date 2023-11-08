@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Aspose.Cells.Drawing;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -10,15 +11,17 @@ namespace HAS2TrainOS
 {
     public partial class MainForm : Form
     {
-        public bool SCNt8()    //술래 글러브중 Role:tagger -> Role:player로 변환
+        public bool SCNt9()    //술래 글러브 중 맨처음 Role:tagger -> Role:blink 변환, 나머지 Role:tagger -> Role:player 변환
         {
-            Console.WriteLine("SCNt8 func initiate");
+            Console.WriteLine("SCNt9 func initiate");
+            int nGloveCnt = 0;
             foreach (ListViewItem lvTaggerGlove in lvGlove.Items)
             {
-                if (lvTaggerGlove.BackColor == Color.BlueViolet)   //술래 방 글러브들 색은 보라색으로 지정해두었기 때문에 사용
+                nGloveCnt++;
+                switch (nGloveCnt)
                 {
-                    GloveListViewChange(lvTaggerGlove, Role: "blink");
-                    return false;
+                    case 1: GloveListViewChange(lvTaggerGlove, Role: "blink"); break;
+                    default: GloveListViewChange(lvTaggerGlove, Role: "player"); break;
                 }
             }
             return false;
@@ -40,7 +43,7 @@ namespace HAS2TrainOS
         public bool SCNt18()    //술래 글러브중 Role:tagger -> Role:player로 변환
         {
             Console.WriteLine("SCNt18 func initiate");
-            int nSkipFirstTagger = 0;
+            /*int nSkipFirstTagger = 0;
             foreach (ListViewItem lvTaggerGlove in lvGlove.Items)
             {
                 if (lvTaggerGlove.BackColor == Color.BlueViolet)   //술래 방 글러브들 색은 보라색으로 지정해두었기 때문에 사용
@@ -52,7 +55,7 @@ namespace HAS2TrainOS
                         return false;
                     }
                 }
-            }
+            }*/
             return false;
         }
         public bool SCNt23()    //tagger가 player LC 뺃는 상황, 술래의 글러브 중 Role:player -> Role:ghost로 변환
@@ -85,6 +88,7 @@ namespace HAS2TrainOS
                     if (lvTaggerGlove.SubItems[(int)listviewGlove.Role].Text == "ghost")
                     {
                         GloveListViewChange(lvTaggerGlove, Role: "player", strLC: "1");
+                        strFirstKilledPlayerName = lvTaggerGlove.SubItems[(int)listviewGlove.Role].Text;    //누가 술래한테 죽엇는지 저장하는 변수
                         return false;
                     }
                 }
@@ -135,6 +139,29 @@ namespace HAS2TrainOS
                         GloveListViewChange(lvTaggerGlove, strLC: "0");
                         return false;
                     }
+                }
+            }
+            return false;
+        }
+        public bool SCNt38()    //술래 글러브중 Role:tagger -> Role:blink 변환
+        {
+            Console.WriteLine("SCNt15 func initiate");
+            foreach (ListViewItem lvTaggerGlove in lvGlove.Items)
+            {
+                if (lvTaggerGlove.BackColor == Color.BlueViolet)   //술래 방 글러브들 색은 보라색으로 지정해두었기 때문에 사용
+                {
+                    if (lvTaggerGlove.SubItems[(int)listviewGlove.Role].Text == "player" && lvTaggerGlove.SubItems[(int)listviewGlove.Role].Text != strFirstKilledPlayerName)
+                        GloveListViewChange(lvTaggerGlove, Role: "ghost");  //보라색에 player이면서 이미 처음에 죽은애랑 일치 하지 않으면  실행
+                    return false;
+                }
+            }   // 위에서 탈출하지 못하는 경우 아래로 진행: 경우1: 술래공간 2명일때. 경우2: strFirstKilledPlayerName변수에 저장된게 없을때
+            foreach (ListViewItem lvTaggerGlove in lvGlove.Items)
+            {
+                if (lvTaggerGlove.BackColor == Color.BlueViolet)   //술래 방 글러브들 색은 보라색으로 지정해두었기 때문에 사용
+                {
+                    if (lvTaggerGlove.SubItems[(int)listviewGlove.Role].Text == "player")
+                        GloveListViewChange(lvTaggerGlove, Role: "ghost");  //보라색에 player이면서 이미 처음에 죽은애랑 일치 하지 않으면  실행
+                    return false;
                 }
             }
             return false;

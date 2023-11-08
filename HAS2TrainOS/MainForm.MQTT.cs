@@ -160,6 +160,10 @@ namespace HAS2TrainOS
                                                                                     GloveListViewChange(lvTempDevice, strLC: "-1");// 생존자 글러브 LC 데이터  '-1' 처리
                                                                                     bCommonTaggerTaken = true; //공용공간에서 술래가 생명칩을 한번 뺏으면 더이상 다른 술래들이 생명칩을 뺏을수 없게 막는 변수
                                                                                 }
+                                                                                if (TaggerSCNProcessor.nCurrentCnt == 19 || TaggerSCNProcessor.nCurrentCnt == 20)    //19,20 시나리오 첫 킬을 어떤 생존자 했는지 저장하기해
+                                                                                {
+                                                                                    strFirstKilledPlayerName = lvTempDevice.Name; //19,20 시나리오 첫 킬을 어떤 생존자 했는지 저장하기위해
+                                                                                }
                                                                             }
                                                                         }
                                                                         break;
