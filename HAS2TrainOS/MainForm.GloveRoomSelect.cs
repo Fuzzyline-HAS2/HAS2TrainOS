@@ -174,7 +174,7 @@ namespace HAS2TrainOS
                                 tmpForeColor = Color.Gray;
                                 break;
                             case 2:
-                                strGoveRole = "tagger";
+                                strGoveRole = "before_tagger";
                                 strLifeChip = "0";
                                 tmpBackColor = Color.BlueViolet;
                                 tmpForeColor = Color.Black;

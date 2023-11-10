@@ -64,6 +64,7 @@ namespace HAS2TrainOS
 
         const int nMaxLifeChip = 3;
         const int nMaxBatteryPack = 4;
+        string strFirstKilledPlayerName = "null"; //누가 술래한테 죽엇는지 저장하는 변수
     }
 }
 

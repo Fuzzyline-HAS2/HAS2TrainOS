@@ -42,6 +42,7 @@ namespace HAS2TrainOS
                         nPlayerCnt++;
                 }
                 DeviceListViewChange(lvDevice.Items[(int)enumDevice.EE], strLCBP: nPlayerCnt.ToString());   //탈장 LCBP 바꾸는 부분
+                strFirstKilledPlayerName = "null";  //술래 시나리오 첫 캐치 시에 //누가 술래한테 죽엇는지 저장하는 변수
             }
             else if (btnReady.Text == "!STOP¡")
             {

@@ -129,7 +129,6 @@
             "",
             ""}, -1);
             this.btnStart = new System.Windows.Forms.Button();
-            this.btnReady = new System.Windows.Forms.Button();
             this.pnMainButton = new System.Windows.Forms.Panel();
             this.btnManual = new System.Windows.Forms.Button();
             this.pnDevice = new System.Windows.Forms.Panel();
@@ -227,6 +226,7 @@
             this.lbTaggerWaitTimer = new System.Windows.Forms.Label();
             this.lbTaggerSkipTimer = new System.Windows.Forms.Label();
             this.pnNarration = new System.Windows.Forms.Panel();
+            this.btnReady = new System.Windows.Forms.Button();
             this.pnMainButton.SuspendLayout();
             this.pnDevice.SuspendLayout();
             this.panel5.SuspendLayout();
@@ -257,20 +257,6 @@
             this.btnStart.Text = "START";
             this.btnStart.UseVisualStyleBackColor = false;
             this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
-            // 
-            // btnReady
-            // 
-            this.btnReady.BackColor = System.Drawing.Color.Tomato;
-            this.btnReady.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnReady.Font = new System.Drawing.Font("Impact", 21F);
-            this.btnReady.ForeColor = System.Drawing.Color.Black;
-            this.btnReady.Location = new System.Drawing.Point(311, 3);
-            this.btnReady.Name = "btnReady";
-            this.btnReady.Size = new System.Drawing.Size(299, 48);
-            this.btnReady.TabIndex = 7;
-            this.btnReady.Text = "READY";
-            this.btnReady.UseVisualStyleBackColor = false;
-            this.btnReady.Click += new System.EventHandler(this.btnReady_Click);
             // 
             // pnMainButton
             // 
@@ -1298,6 +1284,20 @@
             this.pnNarration.Size = new System.Drawing.Size(920, 680);
             this.pnNarration.TabIndex = 6;
             // 
+            // btnReady
+            // 
+            this.btnReady.BackColor = System.Drawing.Color.Tomato;
+            this.btnReady.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnReady.Font = new System.Drawing.Font("Impact", 21F);
+            this.btnReady.ForeColor = System.Drawing.Color.Black;
+            this.btnReady.Location = new System.Drawing.Point(311, 3);
+            this.btnReady.Name = "btnReady";
+            this.btnReady.Size = new System.Drawing.Size(299, 48);
+            this.btnReady.TabIndex = 7;
+            this.btnReady.Text = "READY";
+            this.btnReady.UseVisualStyleBackColor = false;
+            this.btnReady.Click += new System.EventHandler(this.btnReady_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -1340,7 +1340,6 @@
 
         #endregion
         private System.Windows.Forms.Button btnStart;
-        private System.Windows.Forms.Button btnReady;
         private System.Windows.Forms.Panel pnMainButton;
         private System.Windows.Forms.Panel pnDevice;
         private System.Windows.Forms.ListView lvGlove;
@@ -1438,6 +1437,7 @@
         private System.Windows.Forms.Button btnGloveReady;
         private System.Windows.Forms.Button btnGloveConvert;
         private System.Windows.Forms.ColumnHeader GloveSCN;
+        private System.Windows.Forms.Button btnReady;
     }
 }
 
