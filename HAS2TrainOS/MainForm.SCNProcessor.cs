@@ -112,7 +112,23 @@ namespace HAS2TrainOS
                 // WAV 나레이션 플레이 부분
                 String strWavName = lvNarr.Items[nCurrentCnt].SubItems[1].Text;
                 strWavName = strNarrDir + "SCN" + strWavName.Replace("#", "") + ".wav";
-                Console.WriteLine("나레이션 플레이: SCN" + strWavName.ToString());
+
+                MainForm.mainform.SCNJSONPublish("EM" + strSelectedNarr, strSelectedNarr + lvNarr.Items[nCurrentCnt].SubItems[1].Text.Replace("#", ""));    //생존자 훈련소 모니터 시나리오 전송하는 부분
+                MainForm.mainform.SCNJSONPublish("EMc", strSelectedNarr + lvNarr.Items[nCurrentCnt].SubItems[1].Text.Replace("#", ""));    //생존자 훈련소 모니터 시나리오 전송하는 부분 
+
+                //Console.WriteLine("nCurrentCnt: " + nCurrentCnt + "  나레이션 플레이: SCN" + strWavName.ToString());
+                if (strSelectedNarr == "p")
+                {
+                    //MainForm.mainform.tbPlayer.AppendText("nCurrentCnt: " + nCurrentCnt + strWavName.);
+                }
+                else if (strSelectedNarr == "t")
+                {
+                    MainForm.mainform.tbTagger.AppendText("nCurrentCnt: " + nCurrentCnt + "  나레이션 플레이: SCN" + strWavName.Replace("#", "") + ".wav");
+                }
+                else if (strSelectedNarr == "c")
+                {
+                    MainForm.mainform.tbCommon.AppendText("nCurrentCnt: " + nCurrentCnt + "  나레이션 플레이: SCN" + strWavName.Replace("#", "") + ".wav");
+                }
                 String strNarrNum = strWavName.Substring(strWavName.Length - 1, 1);
                 //Console.WriteLine(strWavName);
                 FileInfo fileTmp = new FileInfo(strWavName);
@@ -227,8 +243,6 @@ namespace HAS2TrainOS
                         }
                     }
                 }
-
-                MainForm.mainform.SCNJSONPublish("EM"+ strSelectedNarr, strSelectedNarr + lvNarr.Items[nCurrentCnt].SubItems[1].Text.Replace("#", ""));    //생존자 훈련소 모니터 시나리오 전송하는 부분
                 return;
             } //public void PlayerNarr()
 
@@ -315,18 +329,19 @@ namespace HAS2TrainOS
                     string strNarrWaitTime = lvNarr.Items[nCurrentCnt].SubItems[5].Text;
                     uint nCompareTime = nCurMainTime + UInt32.Parse(strNarrWaitTime);
 
-                    Console.WriteLine("현재 시간: " + nCurMainTime + "  ???  최대/소 시간: " + nSkipMinMaxTime);
                     if (lvNarr.Items[nCurrentCnt].BackColor == Color.LemonChiffon)  // 스킵 할까?
-                    {
+                    {                     
                         if (nCurMainTime < nSkipMinMaxTime) // 현재시간 + 나레이션 시간 < 최대 시작 시간 시 실행
                         {
-                            
+                            Console.WriteLine("현재 시간: " + nCurMainTime + "<<<  최대/소 시간: " + nSkipMinMaxTime);
+                            Console.WriteLine("노랑" + nCurrentCnt.ToString() + "추가");
                             MainProcessor();
                         }
                         else
                         {
+                            Console.WriteLine("현재 시간: " + nCurMainTime + ">>>  최대/소 시간: " + nSkipMinMaxTime);
                             nCurrentCnt++;
-                            Console.WriteLine(nCurrentCnt.ToString() + "스킵");
+                            Console.WriteLine("노랑" + nCurrentCnt.ToString() + "스킵");
                             NarrPlayJudge();
                         }
                     }
@@ -334,11 +349,14 @@ namespace HAS2TrainOS
                     {
                         if (nCurMainTime < nSkipMinMaxTime)    // 현재시간 + 나레이션 시간 < 최소 시작 시간 시 실행
                         {
-                            Console.WriteLine(nCurrentCnt.ToString() + "추가");
+                            Console.WriteLine("현재 시간: " + nCurMainTime + "<<<  최대/소 시간: " + nSkipMinMaxTime);
+                            Console.WriteLine("초록"+nCurrentCnt.ToString() + "추가");
                             MainProcessor();
                         }
                         else
                         {
+                            Console.WriteLine("현재 시간: " + nCurMainTime +" >>>  최대/소 시간: " + nSkipMinMaxTime);
+                            Console.WriteLine("초록" + nCurrentCnt.ToString() + "스킵");
                             nCurrentCnt++;
                             NarrPlayJudge();
                         }

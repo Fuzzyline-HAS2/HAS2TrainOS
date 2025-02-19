@@ -83,7 +83,12 @@ namespace HAS2TrainOS
             {
                 if (lvPlayerGlove.BackColor == Color.YellowGreen)   //생존자 방 글러브들 색은 초록색으로 지정해두었기 때문에 사용
                 {
-                    if (lvPlayerGlove.SubItems[(int)listviewGlove.Role].Text == "ghost")
+                    if (lvPlayerGlove.SubItems[(int)listviewGlove.LC].Text == "2")
+                    {
+                        GloveListViewChange(lvPlayerGlove, strLC: "1");
+                        return false;
+                    }
+                    else if (lvPlayerGlove.SubItems[(int)listviewGlove.Role].Text == "ghost")
                     {
                         GloveListViewChange(lvPlayerGlove, Role: "player", strLC: "1");
                         return false;

@@ -1,4 +1,5 @@
-﻿namespace HAS2TrainOS
+﻿
+namespace HAS2TrainOS
 {
     partial class MainForm
     {
@@ -28,101 +29,101 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem43 = new System.Windows.Forms.ListViewItem(new string[] {
             "EI1",
             "",
             ""}, -1);
-            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem44 = new System.Windows.Forms.ListViewItem(new string[] {
             "EI2",
             "",
             ""}, -1);
-            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem45 = new System.Windows.Forms.ListViewItem(new string[] {
             "ERp",
             "",
             ""}, -1);
-            System.Windows.Forms.ListViewItem listViewItem4 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem46 = new System.Windows.Forms.ListViewItem(new string[] {
             "ERt",
             "",
             ""}, -1);
-            System.Windows.Forms.ListViewItem listViewItem5 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem47 = new System.Windows.Forms.ListViewItem(new string[] {
             "EVp",
             "",
             ""}, -1);
-            System.Windows.Forms.ListViewItem listViewItem6 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem48 = new System.Windows.Forms.ListViewItem(new string[] {
             "EVt",
             "",
             ""}, -1);
-            System.Windows.Forms.ListViewItem listViewItem7 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem49 = new System.Windows.Forms.ListViewItem(new string[] {
             "EG",
             "",
             ""}, -1);
-            System.Windows.Forms.ListViewItem listViewItem8 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem50 = new System.Windows.Forms.ListViewItem(new string[] {
             "ED",
             "",
             ""}, -1);
-            System.Windows.Forms.ListViewItem listViewItem9 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem51 = new System.Windows.Forms.ListViewItem(new string[] {
             "EE",
             "",
             ""}, -1);
-            System.Windows.Forms.ListViewItem listViewItem10 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem52 = new System.Windows.Forms.ListViewItem(new string[] {
             "ET",
             "",
             ""}, -1);
-            System.Windows.Forms.ListViewItem listViewItem11 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem53 = new System.Windows.Forms.ListViewItem(new string[] {
             "EMp",
             "",
             ""}, -1);
-            System.Windows.Forms.ListViewItem listViewItem12 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem54 = new System.Windows.Forms.ListViewItem(new string[] {
             "EMt",
             "",
             ""}, -1);
-            System.Windows.Forms.ListViewItem listViewItem13 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem55 = new System.Windows.Forms.ListViewItem(new string[] {
             "EA",
             "",
             ""}, -1);
-            System.Windows.Forms.ListViewItem listViewItem14 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem56 = new System.Windows.Forms.ListViewItem(new string[] {
             "G1P1",
             "",
             "",
             "",
             ""}, -1);
-            System.Windows.Forms.ListViewItem listViewItem15 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem57 = new System.Windows.Forms.ListViewItem(new string[] {
             "G1P2",
             "",
             "",
             "",
             ""}, -1);
-            System.Windows.Forms.ListViewItem listViewItem16 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem58 = new System.Windows.Forms.ListViewItem(new string[] {
             "G1P3",
             "",
             "",
             "",
             ""}, -1);
-            System.Windows.Forms.ListViewItem listViewItem17 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem59 = new System.Windows.Forms.ListViewItem(new string[] {
             "G1P4",
             "",
             "",
             "",
             ""}, -1);
-            System.Windows.Forms.ListViewItem listViewItem18 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem60 = new System.Windows.Forms.ListViewItem(new string[] {
             "G1P5",
             "",
             "",
             "",
             ""}, -1);
-            System.Windows.Forms.ListViewItem listViewItem19 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem61 = new System.Windows.Forms.ListViewItem(new string[] {
             "G1P6",
             "",
             "",
             "",
             ""}, -1);
-            System.Windows.Forms.ListViewItem listViewItem20 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem62 = new System.Windows.Forms.ListViewItem(new string[] {
             "G1P7",
             "",
             "",
             "",
             ""}, -1);
-            System.Windows.Forms.ListViewItem listViewItem21 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem63 = new System.Windows.Forms.ListViewItem(new string[] {
             "G1P8",
             "",
             "",
@@ -130,6 +131,7 @@
             ""}, -1);
             this.btnStart = new System.Windows.Forms.Button();
             this.pnMainButton = new System.Windows.Forms.Panel();
+            this.btnReady = new System.Windows.Forms.Button();
             this.btnManual = new System.Windows.Forms.Button();
             this.pnDevice = new System.Windows.Forms.Panel();
             this.btnSetup = new System.Windows.Forms.Button();
@@ -146,6 +148,7 @@
             this.deviceState = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.deviceLifeChipBattery = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panel5 = new System.Windows.Forms.Panel();
+            this.btnGloveOTA = new System.Windows.Forms.Button();
             this.btnGloveConvert = new System.Windows.Forms.Button();
             this.btnGloveSetting = new System.Windows.Forms.Button();
             this.btnGloveActivate = new System.Windows.Forms.Button();
@@ -226,7 +229,10 @@
             this.lbTaggerWaitTimer = new System.Windows.Forms.Label();
             this.lbTaggerSkipTimer = new System.Windows.Forms.Label();
             this.pnNarration = new System.Windows.Forms.Panel();
-            this.btnReady = new System.Windows.Forms.Button();
+            this.tbMQTT = new System.Windows.Forms.TextBox();
+            this.tbPlayer = new System.Windows.Forms.TextBox();
+            this.tbTagger = new System.Windows.Forms.TextBox();
+            this.tbCommon = new System.Windows.Forms.TextBox();
             this.pnMainButton.SuspendLayout();
             this.pnDevice.SuspendLayout();
             this.panel5.SuspendLayout();
@@ -267,6 +273,20 @@
             this.pnMainButton.Name = "pnMainButton";
             this.pnMainButton.Size = new System.Drawing.Size(920, 54);
             this.pnMainButton.TabIndex = 0;
+            // 
+            // btnReady
+            // 
+            this.btnReady.BackColor = System.Drawing.Color.Tomato;
+            this.btnReady.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnReady.Font = new System.Drawing.Font("Impact", 21F);
+            this.btnReady.ForeColor = System.Drawing.Color.Black;
+            this.btnReady.Location = new System.Drawing.Point(311, 3);
+            this.btnReady.Name = "btnReady";
+            this.btnReady.Size = new System.Drawing.Size(299, 48);
+            this.btnReady.TabIndex = 7;
+            this.btnReady.Text = "READY";
+            this.btnReady.UseVisualStyleBackColor = false;
+            this.btnReady.Click += new System.EventHandler(this.btnReady_Click);
             // 
             // btnManual
             // 
@@ -415,19 +435,19 @@
             this.lvDevice.GridLines = true;
             this.lvDevice.HideSelection = false;
             this.lvDevice.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1,
-            listViewItem2,
-            listViewItem3,
-            listViewItem4,
-            listViewItem5,
-            listViewItem6,
-            listViewItem7,
-            listViewItem8,
-            listViewItem9,
-            listViewItem10,
-            listViewItem11,
-            listViewItem12,
-            listViewItem13});
+            listViewItem43,
+            listViewItem44,
+            listViewItem45,
+            listViewItem46,
+            listViewItem47,
+            listViewItem48,
+            listViewItem49,
+            listViewItem50,
+            listViewItem51,
+            listViewItem52,
+            listViewItem53,
+            listViewItem54,
+            listViewItem55});
             this.lvDevice.Location = new System.Drawing.Point(6, 2);
             this.lvDevice.MultiSelect = false;
             this.lvDevice.Name = "lvDevice";
@@ -453,6 +473,7 @@
             // 
             // panel5
             // 
+            this.panel5.Controls.Add(this.btnGloveOTA);
             this.panel5.Controls.Add(this.btnGloveConvert);
             this.panel5.Controls.Add(this.btnGloveSetting);
             this.panel5.Controls.Add(this.btnGloveActivate);
@@ -471,6 +492,19 @@
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(457, 279);
             this.panel5.TabIndex = 8;
+            // 
+            // btnGloveOTA
+            // 
+            this.btnGloveOTA.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btnGloveOTA.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnGloveOTA.Font = new System.Drawing.Font("Impact", 10F);
+            this.btnGloveOTA.Location = new System.Drawing.Point(303, 7);
+            this.btnGloveOTA.Name = "btnGloveOTA";
+            this.btnGloveOTA.Size = new System.Drawing.Size(25, 25);
+            this.btnGloveOTA.TabIndex = 23;
+            this.btnGloveOTA.Text = "O";
+            this.btnGloveOTA.UseVisualStyleBackColor = false;
+            this.btnGloveOTA.Click += new System.EventHandler(this.btnGloveOTA_Click);
             // 
             // btnGloveConvert
             // 
@@ -520,7 +554,7 @@
             "G2",
             "G3",
             "G4"});
-            this.cbGloveGroup.Location = new System.Drawing.Point(285, 11);
+            this.cbGloveGroup.Location = new System.Drawing.Point(254, 11);
             this.cbGloveGroup.Name = "cbGloveGroup";
             this.cbGloveGroup.Size = new System.Drawing.Size(43, 21);
             this.cbGloveGroup.TabIndex = 11;
@@ -583,14 +617,14 @@
             this.lvGlove.GridLines = true;
             this.lvGlove.HideSelection = false;
             this.lvGlove.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem14,
-            listViewItem15,
-            listViewItem16,
-            listViewItem17,
-            listViewItem18,
-            listViewItem19,
-            listViewItem20,
-            listViewItem21});
+            listViewItem56,
+            listViewItem57,
+            listViewItem58,
+            listViewItem59,
+            listViewItem60,
+            listViewItem61,
+            listViewItem62,
+            listViewItem63});
             this.lvGlove.Location = new System.Drawing.Point(-8, 38);
             this.lvGlove.MultiSelect = false;
             this.lvGlove.Name = "lvGlove";
@@ -1284,31 +1318,69 @@
             this.pnNarration.Size = new System.Drawing.Size(920, 680);
             this.pnNarration.TabIndex = 6;
             // 
-            // btnReady
+            // tbMQTT
             // 
-            this.btnReady.BackColor = System.Drawing.Color.Tomato;
-            this.btnReady.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnReady.Font = new System.Drawing.Font("Impact", 21F);
-            this.btnReady.ForeColor = System.Drawing.Color.Black;
-            this.btnReady.Location = new System.Drawing.Point(311, 3);
-            this.btnReady.Name = "btnReady";
-            this.btnReady.Size = new System.Drawing.Size(299, 48);
-            this.btnReady.TabIndex = 7;
-            this.btnReady.Text = "READY";
-            this.btnReady.UseVisualStyleBackColor = false;
-            this.btnReady.Click += new System.EventHandler(this.btnReady_Click);
+            this.tbMQTT.Font = new System.Drawing.Font("Arial Narrow", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbMQTT.Location = new System.Drawing.Point(1159, 490);
+            this.tbMQTT.Multiline = true;
+            this.tbMQTT.Name = "tbMQTT";
+            this.tbMQTT.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.tbMQTT.Size = new System.Drawing.Size(215, 537);
+            this.tbMQTT.TabIndex = 9;
+            // 
+            // tbPlayer
+            // 
+            this.tbPlayer.Font = new System.Drawing.Font("Arial Narrow", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbPlayer.Location = new System.Drawing.Point(938, 8);
+            this.tbPlayer.Multiline = true;
+            this.tbPlayer.Name = "tbPlayer";
+            this.tbPlayer.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.tbPlayer.Size = new System.Drawing.Size(215, 478);
+            this.tbPlayer.TabIndex = 10;
+            // 
+            // tbTagger
+            // 
+            this.tbTagger.Font = new System.Drawing.Font("Arial Narrow", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbTagger.Location = new System.Drawing.Point(1159, 8);
+            this.tbTagger.Multiline = true;
+            this.tbTagger.Name = "tbTagger";
+            this.tbTagger.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.tbTagger.Size = new System.Drawing.Size(215, 478);
+            this.tbTagger.TabIndex = 11;
+            // 
+            // tbCommon
+            // 
+            this.tbCommon.Font = new System.Drawing.Font("Arial Narrow", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbCommon.Location = new System.Drawing.Point(938, 492);
+            this.tbCommon.Multiline = true;
+            this.tbCommon.Name = "tbCommon";
+            this.tbCommon.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.tbCommon.Size = new System.Drawing.Size(215, 537);
+            this.tbCommon.TabIndex = 12;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(944, 1041);
+            this.ClientSize = new System.Drawing.Size(1394, 1041);
+            this.Controls.Add(this.tbCommon);
+            this.Controls.Add(this.tbTagger);
+            this.Controls.Add(this.tbPlayer);
+            this.Controls.Add(this.tbMQTT);
             this.Controls.Add(this.pnDevice);
             this.Controls.Add(this.pnNarration);
             this.Controls.Add(this.pnMainButton);
             this.Controls.Add(this.panel5);
             this.Name = "MainForm";
+
+            // changed by Kim Tae Woo 2024/06/29
+            // 1370~1380
+            // Make WinForm to start at specific location
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
+            this.Location = new System.Drawing.Point(960, -1080);
+            // end
+
             this.Text = "z";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainForm_FormClosed);
@@ -1335,6 +1407,7 @@
             this.pnNarration.ResumeLayout(false);
             this.pnNarration.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -1438,6 +1511,11 @@
         private System.Windows.Forms.Button btnGloveConvert;
         private System.Windows.Forms.ColumnHeader GloveSCN;
         private System.Windows.Forms.Button btnReady;
+        private System.Windows.Forms.TextBox tbMQTT;
+        private System.Windows.Forms.TextBox tbPlayer;
+        private System.Windows.Forms.TextBox tbTagger;
+        private System.Windows.Forms.TextBox tbCommon;
+        private System.Windows.Forms.Button btnGloveOTA;
     }
 }
 

@@ -100,7 +100,7 @@ namespace HAS2TrainOS
 
         private void btnALLSendfunc(string strState)
         {
-            switch (cbDeviceName.SelectedIndex)
+            switch (cbDeviceName.SelectedIndex-1)
             {
                 case (int)enumDevice.ALL:
                     foreach (ListViewItem lvSelectedDevice in lvDevice.Items)
@@ -193,6 +193,10 @@ namespace HAS2TrainOS
                     GloveJSONPublish(strGloveNum, state: strChangeState);
                 }
             }
+        }
+        private void btnGloveOTA_Click(object sender, EventArgs e)
+        {
+            AllGloveStateControl("OTA");
         }
         private void btnGloveConvert_Click(object sender, EventArgs e)
         {

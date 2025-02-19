@@ -43,7 +43,7 @@ namespace HAS2TrainOS
         }
         public void MQTT_Publish(string mqtt_topic, string mqtt_msg)
         {
-            client.Publish(mqtt_topic, Encoding.UTF8.GetBytes(mqtt_msg), 0, true);
+            client.Publish(mqtt_topic, Encoding.UTF8.GetBytes(mqtt_msg), 0, false);
         }
         private void client_MqttMsgPublishReceived(object sender, MqttMsgPublishEventArgs e)
         {
@@ -56,10 +56,11 @@ namespace HAS2TrainOS
                 {
                     JObject jsonInput = JObject.Parse(ReceivedMessage);
                     //JObject jsonInput = JsonConvert.DeserializeObject<Name>(ReceivedMessage);
-                    Console.WriteLine(ReceivedTopic + ": " + ReceivedMessage);
-
+                    //Console.WriteLine(ReceivedTopic + ": " + ReceivedMessage);
+                    tbMQTT.AppendText(ReceivedTopic + ": " + ReceivedMessage + "\r\n");
                     if (ReceivedTopic == "OS")
                     {
+                        tbCommon.AppendText(ReceivedTopic + ": " + ReceivedMessage + "\r\n");
                         if (jsonInput.ContainsKey("MAC"))   // 발신자 MAC 확인
                         {
                             foreach (structMAC m in MACs)   // 발신자 MAC으로 이름 검색
@@ -109,7 +110,7 @@ namespace HAS2TrainOS
                                                                         }
                                                                         break;
                                                                     case 'R':
-                                                                        if (PlayerSCNProcessor.nCurrentCnt <= 39 && PlayerSCNProcessor.nCurrentCnt >= 42)   //이 범위 안에는 실행 x
+                                                                        if (PlayerSCNProcessor.nCurrentCnt ==65 || PlayerSCNProcessor.nCurrentCnt ==66)   //이 범위 안에는 실행 
                                                                         {
                                                                             GloveListViewChange(lvTempGlove, strLC: "+1");//글러브 LC 데이터 +1 처리
                                                                             DeviceListViewChange(lvTempDevice, strLCBP: "0"); // 생장 생명칩 데이터 사용완료 '0' 처리
@@ -117,7 +118,7 @@ namespace HAS2TrainOS
                                                                         break;
                                                                     case 'T':
                                                                         Console.WriteLine("cur:" + TaggerSCNProcessor.nCurrentCnt);
-                                                                        if (TaggerSCNProcessor.nCurrentCnt != 10)
+                                                                        if (TaggerSCNProcessor.nCurrentCnt == 31 || TaggerSCNProcessor.nCurrentCnt == 32 || TaggerSCNProcessor.nCurrentCnt == 56 || TaggerSCNProcessor.nCurrentCnt == 57)
                                                                         {
                                                                             GloveListViewChange(lvTempGlove, strLC: "-1"); //글러브 LC 데이터 '-1' 처리
                                                                             DeviceListViewChange(lvTempDevice, strLCBP: "+1"); // 제단 생명칩 데이터  '+1' 처리
@@ -160,12 +161,13 @@ namespace HAS2TrainOS
 
                                                                             }
                                                                             else
-                                                                            {
-                                                                                if (bCommonTaggerTaken == false) //공용 공간때 술래가 이미 생명칩을 뺏었는지 확인하는 과정
+                                                                            { 
+                                                                                if ((TaggerSCNProcessor.nCurrentCnt >= 19 && TaggerSCNProcessor.nCurrentCnt <= 21  || TaggerSCNProcessor.nCurrentCnt == 54 || TaggerSCNProcessor.nCurrentCnt == 55) && bCommonTaggerTaken == false) //공용 공간때 술래가 이미 생명칩을 뺏었는지 확인하는 과정
                                                                                 {
                                                                                     GloveListViewChange(lvTempGlove, strLC: "+1");// 술래 글러브 LC 데이터 '+1' 처리
                                                                                     GloveListViewChange(lvTempDevice, strLC: "-1");// 생존자 글러브 LC 데이터  '-1' 처리
-                                                                                    bCommonTaggerTaken = true; //공용공간에서 술래가 생명칩을 한번 뺏으면 더이상 다른 술래들이 생명칩을 뺏을수 없게 막는 변수
+                                                                                    if(TaggerSCNProcessor.nCurrentCnt == 54 || TaggerSCNProcessor.nCurrentCnt == 55)    //공용공간에서 생존자 뺏는경우
+                                                                                        bCommonTaggerTaken = true; //공용공간에서 술래가 생명칩을 한번 뺏으면 더이상 다른 술래들이 생명칩을 뺏을수 없게 막는 변수
                                                                                 }
                                                                             }
                                                                         }

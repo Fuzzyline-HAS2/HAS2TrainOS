@@ -121,7 +121,7 @@ namespace HAS2TrainOS
                 {
                     if (m.strDeviceName == Device)
                     {
-                        client.Publish(m.strDeviceMAC, Encoding.UTF8.GetBytes(SituationData.ToString()));
+                        MQTT_Publish(m.strDeviceMAC, SituationData.ToString());
                         break;
                     }
                 }

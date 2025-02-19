@@ -23,7 +23,7 @@ namespace HAS2TrainOS
                     switch (nGloveCnt)
                     {
                         case 1: GloveListViewChange(lvTaggerGlove, Role: "blink"); break;
-                        default: GloveListViewChange(lvTaggerGlove, Role: "player"); break;
+                        default: GloveListViewChange(lvTaggerGlove, Role: "player",strLC:"1"); break;
                     }
                 }
             }
@@ -115,17 +115,17 @@ namespace HAS2TrainOS
         public bool SCNt28()    //술래글러브중 Role:player -> Role:ghost로 변환
         {
             Console.WriteLine("SCNt28 func initiate");
-            foreach (ListViewItem lvTaggerGlove in lvGlove.Items)
-            {
-                if (lvTaggerGlove.BackColor == Color.BlueViolet)   //술래 방 글러브들 색은 보라색으로 지정해두었기 때문에 사용
-                {
-                    if (lvTaggerGlove.SubItems[(int)listviewGlove.Role].Text == "player")
-                    {
-                        GloveListViewChange(lvTaggerGlove, Role: "ghost", strLC: "0");
-                        return false;
-                    }
-                }
-            }
+            //foreach (ListViewItem lvTaggerGlove in lvGlove.Items)
+            //{
+            //    if (lvTaggerGlove.BackColor == Color.BlueViolet)   //술래 방 글러브들 색은 보라색으로 지정해두었기 때문에 사용
+            //    {
+            //        if (lvTaggerGlove.SubItems[(int)listviewGlove.Role].Text == "player")
+            //        {
+            //            GloveListViewChange(lvTaggerGlove, Role: "ghost", strLC: "0");
+            //            return false;
+            //        }
+            //    }
+            //}
             return false;
         }
         public bool SCNt29()    //술래글러브중 Role:player -> Role:ghost로 변환
@@ -160,25 +160,28 @@ namespace HAS2TrainOS
             }
             return false;
         }
+
         public bool SCNt38()    //술래 글러브중 Role:tagger -> Role:blink 변환
         {
             Console.WriteLine("SCNt38 func initiate");
+            //foreach (ListViewItem lvTaggerGlove in lvGlove.Items)
+            //{
+            //    if (lvTaggerGlove.BackColor == Color.BlueViolet)   //술래 방 글러브들 색은 보라색으로 지정해두었기 때문에 사용
+            //    {
+            //        if (lvTaggerGlove.SubItems[(int)listviewGlove.Role].Text == "player" && lvTaggerGlove.SubItems[(int)listviewGlove.Role].Text != strFirstKilledPlayerName)
+            //            GloveListViewChange(lvTaggerGlove, Role: "ghost", strLC: "0");  //보라색에 player이면서 이미 처음에 죽은애랑 일치 하지 않으면  실행
+            //        return false;
+            //    }
+            //}   // 위에서 탈출하지 못하는 경우 아래로 진행: 경우1: 술래공간 2명일때. 경우2: strFirstKilledPlayerName변수에 저장된게 없을때
             foreach (ListViewItem lvTaggerGlove in lvGlove.Items)
             {
                 if (lvTaggerGlove.BackColor == Color.BlueViolet)   //술래 방 글러브들 색은 보라색으로 지정해두었기 때문에 사용
                 {
-                    if (lvTaggerGlove.SubItems[(int)listviewGlove.Role].Text == "player" && lvTaggerGlove.SubItems[(int)listviewGlove.Role].Text != strFirstKilledPlayerName)
-                        GloveListViewChange(lvTaggerGlove, Role: "ghost");  //보라색에 player이면서 이미 처음에 죽은애랑 일치 하지 않으면  실행
-                    return false;
-                }
-            }   // 위에서 탈출하지 못하는 경우 아래로 진행: 경우1: 술래공간 2명일때. 경우2: strFirstKilledPlayerName변수에 저장된게 없을때
-            foreach (ListViewItem lvTaggerGlove in lvGlove.Items)
-            {
-                if (lvTaggerGlove.BackColor == Color.BlueViolet)   //술래 방 글러브들 색은 보라색으로 지정해두었기 때문에 사용
-                {
-                    if (lvTaggerGlove.SubItems[(int)listviewGlove.Role].Text == "player")
-                        GloveListViewChange(lvTaggerGlove, Role: "ghost");  //보라색에 player이면서 이미 처음에 죽은애랑 일치 하지 않으면  실행
-                    return false;
+                    if (lvTaggerGlove.SubItems[(int)listviewGlove.Role].Text.Contains("player"))
+                    {
+                        GloveListViewChange(lvTaggerGlove, Role: "ghost", strLC: "0");  //보라색에 player이면서 이미 처음에 죽은애랑 일치 하지 않으면  실행
+                        return false;
+                    }
                 }
             }
             return false;
@@ -198,14 +201,6 @@ namespace HAS2TrainOS
         public bool SCNt58()    //모든 술래글러브 Role: tagger로 변경 및 teaken_LC = 0
         {
             Console.WriteLine("SCNt58 func initiate");
-            foreach (ListViewItem lvTaggerGlove in lvGlove.Items)
-            {
-                if (lvTaggerGlove.BackColor == Color.BlueViolet)   //술래 방 글러브들 색은 보라색으로 지정해두었기 때문에 사용
-                {
-                    GloveListViewChange(lvTaggerGlove, Role: "tagger", strLC: "1");
-                    break;
-                }
-            }
             foreach (ListViewItem lvPlayrGlove in lvGlove.Items)
             {
                 if (lvPlayrGlove.BackColor == Color.YellowGreen)   //술래 방 글러브들 색은 보라색으로 지정해두었기 때문에 사용
@@ -216,9 +211,19 @@ namespace HAS2TrainOS
             }
             return false;
         }
+
         public bool SCNt66()    //모든 술래글러브 Role: tagger로 변경 및 teaken_LC = 0
         {
             Console.WriteLine("SCNt66 func initiate");
+            foreach (ListViewItem lvTaggerGlove in lvGlove.Items)
+            {
+                if (lvTaggerGlove.BackColor == Color.BlueViolet)   //술래 방 글러브들 색은 보라색으로 지정해두었기 때문에 사용
+                {
+                    if (lvTaggerGlove.SubItems[(int)listviewGlove.LC].Text != "0") 
+                        GloveListViewChange(lvTaggerGlove,  strLC: "0");
+                    break;
+                }
+            }
             PlayerSCNProcessor.nCurrentCnt = 63;
             PlayerSCNProcessor.NarrPlayJudge();
             return false;
