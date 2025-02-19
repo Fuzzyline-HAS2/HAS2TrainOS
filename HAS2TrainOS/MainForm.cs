@@ -71,10 +71,10 @@ namespace HAS2TrainOS
         {
             SetupForm setupform = new SetupForm(this);
             setupform.Show();
-            ExceltoListview();              //Excel에 저장된 값 불러오기
-            ComboBoxDeviceAdd();     //Device panel에 있는 콤보박스에 추가하기
-            MQTT_Initializtion();         // MQTT 서버 연결
-            trbLoad();                        //TrackBar 기존의 엑셀에 저장된 데이터 가져오기
+            //ExceltoListview();              //Excel에 저장된 값 불러오기
+            //ComboBoxDeviceAdd();     //Device panel에 있는 콤보박스에 추가하기
+            //MQTT_Initializtion();         // MQTT 서버 연결
+            //trbLoad();                        //TrackBar 기존의 엑셀에 저장된 데이터 가져오기
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
